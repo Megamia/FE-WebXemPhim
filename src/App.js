@@ -7,19 +7,28 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        
-      <img src={'../img/donatepls.jpg'} className="App-logo" alt="" />
+        <img src={'../img/donatepls.jpg'} className="App-logo" alt="" />
         <p>
           Đô nết để ủng hộ nhóm nhé ❤️
         </p>
-        <a
-          className="App-link"
-          href="./img/tusenavoicenhat.mp4"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Donate
-        </a>
+        <div className="App-link">
+          <a
+            className="App-link1"
+            href="./img/tusenavoicenhat.mp4"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            寄付する
+          </a>
+          <a
+            className="App-link2"
+            href="./img/tusenacute.mp4"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Donate
+          </a>
+        </div>
       </header>
     </div>
   );

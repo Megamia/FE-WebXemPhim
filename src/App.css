@@ -25,6 +25,14 @@
 }
 
 .App-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.App-link1,
+.App-link2 {
+  margin: 0 50px;
+  text-decoration: none;
   color: #61dafb;
 }
 
