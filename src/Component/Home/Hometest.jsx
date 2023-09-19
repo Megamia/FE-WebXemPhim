@@ -2,7 +2,13 @@ import React from "react";
 import './App.css';
 
 
-const Home = () => {
+const Hometest = () => {
+    const handleVideoClick = (event) => {
+        event.preventDefault(); 
+        const videoUrl = event.currentTarget.getAttribute('href');
+        window.location.href = videoUrl; 
+    };
+
     return (
         <div className="App">
             <header className="App-header">
@@ -13,14 +19,12 @@ const Home = () => {
                 <div className="App-link">
                     <a className="App-link1"
                         href={process.env.PUBLIC_URL + '/img/tusenavoicenhat.mp4'}
-                        target="_blank"
-                        rel="noopener noreferrer">
+                        onClick={handleVideoClick}>
                         寄付する
                     </a>
                     <a className="App-link2"
                         href={process.env.PUBLIC_URL + '/img/tusenacute.mp4'}
-                        target="_blank"
-                        rel="noopener noreferrer">
+                        onClick={handleVideoClick}>
                         Donate
                     </a>
                 </div>
@@ -29,4 +33,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Hometest;

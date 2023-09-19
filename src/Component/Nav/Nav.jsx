@@ -8,7 +8,7 @@ const Nav = () => {
     return (
         <div className="flex justify-center items-center h-screen">
             <div className="w-1/2">
-                <NavLink to="/Home">
+                <NavLink to="/Hometest">
                     Donate
                     <span className="inline-block ml-2">
                         <FontAwesomeIcon icon={faSackDollar} />
