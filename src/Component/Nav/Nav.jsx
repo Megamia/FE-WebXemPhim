@@ -6,9 +6,9 @@ import { faSackDollar, faQuestion } from '@fortawesome/free-solid-svg-icons';
 
 const Nav = () => {
     return (
-        <div className="flex justify-center items-center h-screen">
+        <div className="w-full h-[100px] bg-black flex items-center justify-center opacity-90 absolute top-0 left-0">
             <div className="w-1/4">
-                <NavLink to="/Hometest">
+                <NavLink to="/Hometest" className=" text-white">
                     Donate
                     <span className="inline-block ml-2">
                         <FontAwesomeIcon icon={faSackDollar} />
@@ -16,17 +16,17 @@ const Nav = () => {
                 </NavLink>
             </div>
             <div className="w-1/4">
-                <NavLink to="/Login">
+                <NavLink to="/Login" className=" text-white">
                     Login
                 </NavLink>
             </div>
             <div className="w-1/4">
-                <NavLink to="/Signup">
+                <NavLink to="/Signup" className=" text-white">
                     Signup
                 </NavLink>
             </div>
             <div className="w-1/4">
-                <NavLink to="/Footer">
+                <NavLink to="/Error404" className=" text-white">
                     Chưa phát triển
                     <span className="inline-block ml-2">
                         <FontAwesomeIcon icon={faQuestion} />
