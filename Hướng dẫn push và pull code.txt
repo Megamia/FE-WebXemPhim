@@ -1,7 +1,5 @@
 pull code(lấy code về máy):                                                             push code(đẩy code lên):
-git init                                                                                git add . (push toàn bộ code)/git add <tên file> (push 1 phần)
-git clone <URL>                                                                         git commit -m "<Thông điệp gửi>"
-git pull origin <tên nhánh>                                                             git push origin <tên-nhánh-từ-xa>
-
-
-thay đổi các thứ trong < > để thực hiện
+git clone <URL>                                                                         git add . (push toàn bộ) / git add <đường_dẫn_đến_phần_code>
+                                                                                        git commit -m "Thông điệp commit"
+                                                                                        git remote add origin <URL>
+                                                                                        git push -u origin <tên_nhánh>
