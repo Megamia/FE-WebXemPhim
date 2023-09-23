@@ -10,7 +10,7 @@ const Nav = () => {
         <div className="w-full relative">
             <div className="flex items-center h-[100px] sticky top-0 z-50 bg-black opacity-90">
                 <div className="h-full sm:w-[15%] flex justify-center">
-                    <img src="./img/logoPgae.png" alt="logo" style={{ height: "100%" }} />
+                    <img src="./img/logo.png" alt="logo" style={{ height: "100%" }} />
                 </div>
 
                 <div className=" hidden md:flex justify-center w-[75%] mr-[80px]">
