@@ -9,13 +9,8 @@
   border-radius: 8px;
   background-color: rgb(243 244 246);
   border: 1px solid rgb(229 231 235);
-  /* color: white; */
 }
 
 .inputUser::placeholder {
   color: #292929;
-}
-
-.checkGender {
-  padding: 0px 50px;
 }

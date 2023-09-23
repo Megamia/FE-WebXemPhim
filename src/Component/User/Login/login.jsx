@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import './login.css'
+import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Login = () => {
     const [User, setUser] = useState();
     const [Password, setPassword] = useState();
+
     const handleUserChange = (event) => {
         setUser(event.target.value);
     }
@@ -15,33 +19,31 @@ const Login = () => {
         console.log("Đăng nhập với username:", User, "và password:", Password);
     };
     return (
-        <div className="w-[100%] h-screen flex justify-center items-center">
-            <form onSubmit={handleSubmit} className="border-gray-300 border-2 w-[400px] h-[100px]">
-                <div className=" ">
-                    <div>
-                        <label htmlFor="username" className="w-100px border-blue-600 border-2">
-                            Tên đăng nhập:
-                        </label>
-                        <input
-                            type="text"
-                            id="username"
-                            value={User}
-                            onChange={handleUserChange}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="password" className=" border-blue-600 border-2">
-                            Mật khẩu:
-                        </label>
-                        <input
-                            type="password"
-                            id="password"
-                            value={Password}
-                            onChange={handlePasswordChange}
-                        />
-                    </div>
+        <div className="w-[100%] flex items-center justify-center h-screen bg-slate-600">
+            <form onSubmit={handleSubmit} className="flex justify-center w-[200px] md:w-[400px] lg:w-[600px] h-[600px] bg-white rounded-xl">
+                <div className="flex flex-col justify-center w-[80%]">
+                    <div className="font-semibold text-2xl">
+                        Đăng nhập</div>
+                    <label htmlFor="username" className="text-left">Tên đăng nhập</label>
+                    <input type="text"
+                        id="username"
+                        value={User}
+                        onChange={handleUserChange}
+                        placeholder="Tên đăng nhập..." 
+                        className="inputUser border-gray-300 text-white"
+                    />
+                    <label htmlFor="password" className="text-left">Mật khẩu</label>
+                    <input 
+                        type="password"
+                        id="password"
+                        value={Password}
+                        onChange={handlePasswordChange} 
+                        placeholder="Mật khẩu..." 
+                        className="inputUser border-gray-300 text-white"
+                    />
+                    <button type="submit" className="p-[10px] bg-red-600 text-white rounded-lg my-[10px]">Đăng nhập</button>
+                    <p>Bạn chưa có tài khoản? <NavLink to="/Signup" className="text-red-600">Đăng ký</NavLink></p>
                 </div>
-                <button type="submit" className="border-gray-600 border-2">Đăng nhập</button>
             </form>
         </div>
     );
