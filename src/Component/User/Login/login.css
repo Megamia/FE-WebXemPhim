@@ -1,5 +1,5 @@
 .label-width {
-    width: 200px; /* Thiết lập chiều rộng cố định là 200px */
+    width: 200px; 
 }
 
 .inputUser {
@@ -9,7 +9,6 @@
   border-radius: 8px;
   background-color: rgb(243 244 246);
   border: 1px solid rgb(229 231 235);
-  /* color: white; */
 }
 
 .inputUser::placeholder {

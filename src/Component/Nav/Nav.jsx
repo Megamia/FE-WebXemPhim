@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {  faUserCheck } from "@fortawesome/free-solid-svg-icons";
 //import { faSackDollar, faQuestion } from '@fortawesome/free-solid-svg-icons';
 
 const Nav = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const handleLogin = () => {
+        setIsLoggedIn(true);
+      };
+      const handleLogout = () => {
+        setIsLoggedIn(false);
+    };
 
     return (
         <div className="w-full relative">
@@ -17,7 +24,7 @@ const Nav = () => {
                 <div className=" hidden md:flex justify-center w-[75%] mr-[80px]">
 
                     <div className="w-1/5">
-                        <NavLink to="/Error404" className="text-white text-2xl ">
+                        <NavLink to="/" className="text-white text-2xl ">
                             Trang chủ
                         </NavLink>
                     </div>
@@ -64,20 +71,22 @@ const Nav = () => {
                     </button>
                 </div>
                 {isLoggedIn ? (
-                    < NavLink
-                        to="/Login"
-                        className="hidden md:flex md:items-center bg-red-600 hover:bg-gray-600 text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center w-[150px] h-[40px]"
-                        activeClassName="hidden"
-                    >
-                        <span className="mx-auto">Đăng nhập</span>
-                    </NavLink>
-                ) : (
-                    // Icon user
-                    <NavLink className="md:flex md:items-center bg-red-600 hover:bg-gray-600 text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center">
-                        <FontAwesomeIcon icon="fa-solid fa-circle-user" size="lg" />
-                    </NavLink>
-                )
-                }
+                <NavLink
+                    to="/Login"
+                    className="hidden md:flex md:items-center bg-red-600 hover:bg-gray-600 text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center w-[150px] h-[40px]"
+                    activeClassName="hidden"
+                >
+                    <span className="mx-auto">Đăng Nhập</span>
+                </NavLink>
+            ) : (
+                <NavLink
+                    to="/"
+                    className="md:flex md:items-center  text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center"
+                    onClick={handleLogin}
+                >
+                    <FontAwesomeIcon icon={faUserCheck} className="text-2xl" />
+                </NavLink>
+            )}
             </div>
         </div>
     );
