@@ -1,6 +1,6 @@
 import React from "react";
 import './App.css';
-
+import { NavLink } from "react-router-dom";
 
 const Hometest = () => {
     const handleVideoClick = (event) => {
@@ -28,6 +28,12 @@ const Hometest = () => {
                         Donate
                     </a>
                 </div>
+                <NavLink
+          to="/"
+          className="mt-4 px-6 py-3 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white rounded hover:bg-gradient-to-r hover:from-pink-600 hover:via-purple-600 hover:to-blue-600 transition-colors duration-300"
+        >
+          Go back to homepage
+        </NavLink>
             </header>
         </div>
     );
