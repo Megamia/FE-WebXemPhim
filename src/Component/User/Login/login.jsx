@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect  } from "react";
 import "./login.css";
 import { NavLink } from "react-router-dom";
 import { Navigate } from "react-router-dom";
@@ -10,6 +10,16 @@ const Login = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [showNotification, setShowNotification] = useState(false);
 
+    /*useEffect(() => {
+        if (isLoggedIn) {
+          const timer = setTimeout(() => {
+            setShowNotification(true);
+          }, 2000);
+    
+          return () => clearTimeout(timer);
+        }
+      }, [isLoggedIn]);*/
+
     const handleUserChange = (event) => {
         setUser(event.target.value);
     };
@@ -20,22 +30,23 @@ const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-
+    
         if (User === "admin" && Password === "123") {
-            setIsLoggedIn(true);
+          setIsLoggedIn(true);
         } else {
-            setShowNotification(true);
-            console.log("Tài khoản hoặc mật khẩu không chính xác");
+          setIsLoggedIn(false);
+          setShowNotification(true);
         }
-    };
+      };
 
-    const closeNotification = () => {
+
+      const closeNotification = () => {
         setShowNotification(false);
-    };
-
-    if (isLoggedIn) {
+      };
+    
+      if (isLoggedIn) {
         return <Navigate to="/" />;
-    }
+      }
 
     return (
         <>
@@ -76,8 +87,8 @@ const Login = () => {
             </div>
             {showNotification && (
                 <NotificationModal
-                    title="Lỗi đăng nhập"
-                    message="Tài khoản hoặc mật khẩu bị nhầm rồi cu em ơi!"
+                    title={isLoggedIn ? "Đăng nhập thành công" : "Đăng nhập thất bại"}
+                    message={isLoggedIn ? "Đăng nhập thành công" : "Tài khoản hoặc mật khẩu bị nhầm rồi cu em ơi!"}
                     onClose={closeNotification}
                 />
             )}
