@@ -1,7 +1,6 @@
-import React, { useState,useEffect  } from "react";
+import React, { useState, useEffect } from "react";
 import "./login.css";
-import { NavLink } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import NotificationModal from "./NotificationModal";
 
 const Login = () => {
@@ -9,16 +8,7 @@ const Login = () => {
     const [Password, setPassword] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [showNotification, setShowNotification] = useState(false);
-
-    /*useEffect(() => {
-        if (isLoggedIn) {
-          const timer = setTimeout(() => {
-            setShowNotification(true);
-          }, 2000);
-    
-          return () => clearTimeout(timer);
-        }
-      }, [isLoggedIn]);*/
+    const navigate = useNavigate();
 
     const handleUserChange = (event) => {
         setUser(event.target.value);
@@ -30,23 +20,32 @@ const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-    
+
         if (User === "admin" && Password === "123") {
-          setIsLoggedIn(true);
+            setIsLoggedIn(true);
+            setShowNotification(true);
         } else {
-          setIsLoggedIn(false);
-          setShowNotification(true);
+            setIsLoggedIn(false);
+            setShowNotification(true);
         }
-      };
+    };
 
-
-      const closeNotification = () => {
+    const closeNotification = () => {
         setShowNotification(false);
-      };
-    
-      if (isLoggedIn) {
-        return <Navigate to="/" />;
-      }
+        if (isLoggedIn) {
+            navigate("/");
+        }
+    };
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            const timer = setTimeout(() => {
+                closeNotification();
+            }, 3000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [isLoggedIn, navigate]);
 
     return (
         <>
@@ -88,7 +87,11 @@ const Login = () => {
             {showNotification && (
                 <NotificationModal
                     title={isLoggedIn ? "Đăng nhập thành công" : "Đăng nhập thất bại"}
-                    message={isLoggedIn ? "Đăng nhập thành công" : "Tài khoản hoặc mật khẩu bị nhầm rồi cu em ơi!"}
+                    message={
+                        isLoggedIn
+                            ? "Đăng nhập thành công"
+                            : "Tài khoản hoặc mật khẩu sai rồi cu em"
+                    }
                     onClose={closeNotification}
                 />
             )}

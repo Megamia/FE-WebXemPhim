@@ -9,7 +9,7 @@ const NotificationModal = ({ title, message, onClose }) => {
         <div className="flex justify-center mt-4">
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-gray-500 text-white rounded-md"
+            className="px-4 py-2 bg-red-600 text-white rounded-md"
           >
             Đóng
           </button>
