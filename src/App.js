@@ -7,6 +7,7 @@ import Nav from './Component/Nav/Nav';
 import Login from './Component/User/Login/login';
 import Signup from './Component/User/Signup/Signup';
 import Error404 from './Component/Error404/Error404';
+import Home from './Component/Home/Home';
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Nav />}/>
-          <Route path="/Hometest" element={<Hometest />}/> 
+          <Route path="/Hometest" element={<Hometest />}/>
+          <Route path="Home" element={<Home/>}/> 
           <Route path="/Login" element={<Login/>}/>
           <Route path="/Signup" element={<Signup/>}/>
           <Route path="/Error404" element={<Error404 />}/> 

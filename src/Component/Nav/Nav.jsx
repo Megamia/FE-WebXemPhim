@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  faUserCheck } from "@fortawesome/free-solid-svg-icons";
-//import { faSackDollar, faQuestion } from '@fortawesome/free-solid-svg-icons';
+import { faUserCheck } from "@fortawesome/free-solid-svg-icons";
 
 const Nav = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const handleLogin = () => {
         setIsLoggedIn(true);
-      };
-      const handleLogout = () => {
+    };
+    const handleLogout = () => {
         setIsLoggedIn(false);
     };
 
@@ -17,14 +16,16 @@ const Nav = () => {
         <div className="w-full relative">
 
             <div className="flex items-center h-[100px]  sticky top-0 z-50 bg-black opacity-90">
-                <div className="h-full sm:w-[15%] flex justify-center">
-                    <img src="./img/logo.png" alt="logo" style={{ height: "100%" }} />
-                </div>
+                <NavLink to="/Home" className="h-full sm:w-[15%] flex items-center justify-center">
+                    <div className="flex justify-center" style={{ height: "100%" }}>
+                        <img src="./img/logo.png" alt="logo" style={{ height: "auto", maxHeight: "100%" }} />
+                    </div>
+                </NavLink>
 
                 <div className=" hidden md:flex justify-center w-[75%] mr-[80px]">
 
                     <div className="w-1/5">
-                        <NavLink to="/" className="text-white text-2xl ">
+                        <NavLink to="/Home" className="text-white text-2xl ">
                             Trang chủ
                         </NavLink>
                     </div>
@@ -71,22 +72,22 @@ const Nav = () => {
                     </button>
                 </div>
                 {isLoggedIn ? (
-                <NavLink
-                    to="/Login"
-                    className="hidden md:flex md:items-center bg-red-600 hover:bg-gray-600 text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center w-[150px] h-[40px]"
-                    activeClassName="hidden"
-                >
-                    <span className="mx-auto">Đăng Nhập</span>
-                </NavLink>
-            ) : (
-                <NavLink
-                    to="/"
-                    className="md:flex md:items-center  text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center"
-                    onClick={handleLogin}
-                >
-                    <FontAwesomeIcon icon={faUserCheck} className="text-2xl" />
-                </NavLink>
-            )}
+                    <NavLink
+                        to="/Login"
+                        className="hidden md:flex md:items-center bg-red-600 hover:bg-gray-600 text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center w-[150px] h-[40px]"
+                        activeClassName="hidden"
+                    >
+                        <span className="mx-auto">Đăng Nhập</span>
+                    </NavLink>
+                ) : (
+                    <NavLink
+                        to="/"
+                        className="md:flex md:items-center text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center"
+                        onClick={handleLogin}
+                    >
+                        <FontAwesomeIcon icon={faUserCheck} className="text-2xl" />
+                    </NavLink>
+                )}
             </div>
         </div>
     );
