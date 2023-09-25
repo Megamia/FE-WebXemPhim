@@ -15,8 +15,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Nav />}/>
-          <Route path="/Hometest" element={<Hometest />}/>
           <Route path="Home" element={<Home/>}/> 
+          <Route path="/Hometest" element={<Hometest />}/>
           <Route path="/Login" element={<Login/>}/>
           <Route path="/Signup" element={<Signup/>}/>
           <Route path="/Error404" element={<Error404 />}/> 
