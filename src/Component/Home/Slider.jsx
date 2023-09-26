@@ -6,14 +6,13 @@ const SliderImg = () => {
         speed: 3000,
         fade: true,
         autoplay: true,
-        autoplaySpeed: 5000,
+        autoplaySpeed: 5000,    
         dots: true,
         infinite: true,
         slidesToShow: 3,
         slidesToScroll: 1,
         arrows:false
     };
-    
     return (
         <div>
             <Slider  {...settings}>

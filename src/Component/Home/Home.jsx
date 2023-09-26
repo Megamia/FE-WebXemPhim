@@ -21,7 +21,7 @@ const Home = () => {
           </SliderImg>
         </div>
       </div>
-    </div>
+     </div>
   );
 };
 
