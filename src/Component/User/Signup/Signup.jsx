@@ -5,8 +5,10 @@ import { NavLink } from "react-router-dom";
 
 const Signup = () => {
     const [name, setName] = useState('');
+    const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [phone, setPhone] = useState('');
 
     
     return (
@@ -22,6 +24,16 @@ const Signup = () => {
                         className="inputUser"
                         placeholder="Họ và tên người dùng..."
                         onChange={(e) => setName(e.target.value)}
+                        required
+                    />
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        value={email}
+                        className="inputUser"
+                        placeholder="Username..."
+                        onChange={(e) => setUserName(e.target.value)}
                         required
                     />
                     <input
@@ -42,6 +54,16 @@ const Signup = () => {
                         className="inputUser"
                         placeholder="Email..."
                         onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                    <input
+                        type="text"
+                        id="phone"
+                        name="phone"
+                        value={phone}
+                        className="inputUser"
+                        placeholder="Phone..."
+                        onChange={(e) => setPhone(e.target.value)}
                         required
                     />
                     <button type="submit" className="p-[10px] bg-red-600 text-white rounded-lg my-[10px]">Đăng ký</button>

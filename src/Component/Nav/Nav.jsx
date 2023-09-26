@@ -14,8 +14,7 @@ const Nav = () => {
 
     return (
         <div className="w-full relative">
-
-            <div className="flex items-center h-[100px]  sticky top-0 z-50 bg-black opacity-90">
+            <div className="flex items-center h-[100px] sticky top-0 z-50 bg-black opacity-90">
                 <NavLink to="/Home" className="h-full sm:w-[15%] flex items-center justify-center">
                     <div className="flex justify-center" style={{ height: "100%" }}>
                         <img src="./img/logoPgae.png" alt="logo" style={{ height: "auto", maxHeight: "100%" }} />
@@ -81,7 +80,7 @@ const Nav = () => {
                     </NavLink>
                 ) : (
                     <NavLink
-                        to="/"
+                        to="/Profile"
                         className="hidden md:flex md:items-center text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center"
                         onClick={handleLogin}
                     >
