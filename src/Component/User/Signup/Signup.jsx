@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useState } from "react";
 import './signup.css';
 import { NavLink } from "react-router-dom";
@@ -10,7 +10,10 @@ const Signup = () => {
     const [password, setPassword] = useState('');
     const [phone, setPhone] = useState('');
 
-    
+    useEffect (() => {
+        document.title = "Đăng kí";
+      },[]);
+
     return (
         <div className="w-[100%] flex items-center justify-center h-screen bg-slate-600">
             <form className="flex justify-center w-[200px] md:w-[400px] lg:w-[600px] h-[600px] bg-white rounded-xl">

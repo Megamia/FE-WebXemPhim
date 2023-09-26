@@ -10,6 +10,10 @@ const Login = () => {
     const [showNotification, setShowNotification] = useState(false);
     const navigate = useNavigate();
 
+    useEffect (() => {
+        document.title = "Đăng nhập";
+      },[]);
+
     const handleUserChange = (event) => {
         setUser(event.target.value);
     };
@@ -33,7 +37,7 @@ const Login = () => {
     const closeNotification = () => {
         setShowNotification(false);
         if (isLoggedIn) {
-            navigate("/");
+            navigate("/Profile");
         }
     };
 
