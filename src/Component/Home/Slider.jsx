@@ -3,25 +3,27 @@ import Slider from "react-slick";
 
 const SliderImg = () => {
     const settings = {
-        speed: 2000,
+        speed: 3000,
         fade: true,
         autoplay: true,
-        autoplaySpeed: 2000,
-        dots: false,
+        autoplaySpeed: 5000,
+        dots: true,
         infinite: true,
-        slidesToShow: 1,
+        slidesToShow: 3,
         slidesToScroll: 1,
+        arrows:false
     };
+    
     return (
         <div>
-            <Slider {...settings}>
+            <Slider  {...settings}>
                 <div className="w-full slick-slide">
                     <img
                         src={process.env.PUBLIC_URL + "/img/asuna.png"}
                         alt="asuna"
                         className="h-screen w-full object-cover"
                     />
-                    <div className="absolute top-0 left-0 w-full h-full bg-[#37373753]"></div>
+                    <div className=" absolute top-0 left-0 w-full h-full bg-[#37373753]"></div>
                 </div>
                 <div className="w-full slick-slide">
                     <img
@@ -41,6 +43,7 @@ const SliderImg = () => {
                 </div>
             </Slider>
         </div>
+        
     );
 };
 
