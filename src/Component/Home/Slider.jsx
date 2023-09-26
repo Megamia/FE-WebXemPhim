@@ -7,11 +7,16 @@ const SliderImg = () => {
         fade: true,
         autoplay: true,
         autoplaySpeed: 2000,
-        dots: false,
+        dots: true,
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
-    };
+        appendDots: (dots) => (
+            <div style={{ position: "absolute", bottom: 20, left: "50%", transform: "translateX(-50%)" }}>
+              <ul style={{ margin: 0, padding: 0, display: "flex", justifyContent: "center" }}>{dots}</ul>
+            </div>
+          ),
+        };
     return (
         <div>
             <Slider {...settings}>
