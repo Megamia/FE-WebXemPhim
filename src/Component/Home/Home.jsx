@@ -12,6 +12,7 @@ const Home = () => {
       </div>
       <div className="absolute top-0 left-0 right-0 z-[19]">
         <div className="relative w-full h-screen">
+          <div className="slick-slider" style={{overflow:"hidden"}}>
           <SliderImg
             dots={true}
             infinite={true}
@@ -19,6 +20,7 @@ const Home = () => {
             slidesToScroll={1}
           >
           </SliderImg>
+          </div>
         </div>
       </div>
     </div>
