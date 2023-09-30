@@ -68,7 +68,7 @@ const SliderImg = () => {
   };
 
   return (
-    <div className="ml-[50px] mr-[50px] relative">
+    <div className=" relative">
       <Slider {...settings}>
         <div className="w-full slick-slide">
           <img

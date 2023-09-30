@@ -9,6 +9,8 @@ import Signup from './Component/User/Signup/Signup';
 import Error404 from './Component/Error404/Error404';
 import Home from './Component/Home/Home';
 import Profile from './Component/User/Profile/Profile';
+import ExPage from './Component/ExamplePage/ExPage';
+import Hacking from './Component/Hacking/Hacking';
 
 function App() {
   return (
@@ -16,12 +18,14 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Nav />}/>
-          <Route path="Home" element={<Home/>}/> 
+          <Route path="/Home" element={<Home/>}/> 
           <Route path="/Hometest" element={<Hometest />}/>
           <Route path="/Login" element={<Login/>}/>
           <Route path="/Signup" element={<Signup/>}/>
           <Route path="/Error404" element={<Error404 />}/>
           <Route path="/Profile" element={<Profile />}/>
+          <Route path="/ExPage" element={<ExPage/>}/> 
+          <Route path="/Hacking" element={<Hacking/>}/>
         </Routes>
       </Router>
     </div>

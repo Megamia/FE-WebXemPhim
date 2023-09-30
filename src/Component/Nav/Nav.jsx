@@ -15,9 +15,9 @@ const Nav = () => {
     return (
         <div className="w-full relative">
             <div className="flex items-center h-[100px] top-0 z-50 bg-black ">
-                <NavLink to="/Home" className="h-full sm:w-[15%] flex items-center justify-center">
-                    <div className="flex justify-center" style={{ height: "100%" }}>
-                        <img src="./img/logoPgae.png" alt="logo" style={{ height: "auto", maxHeight: "100%" }} />
+                <NavLink to="/Home" className="h-full w-[100px] flex items-center justify-center ml-[50px]">
+                    <div className="flex justify-center h-[85%]">
+                        <img src="./img/logoPage.png" alt="logo" style={{ height: "auto", maxHeight: "100%" }} />
                     </div>
                 </NavLink>
 
@@ -30,7 +30,7 @@ const Nav = () => {
                     </div>
 
                     <div className="w-1/5">
-                        <NavLink to="/Error404" className="text-white text-2xl ">
+                        <NavLink to="/ExPage" className="text-white text-2xl ">
                             Top anime
                         </NavLink>
                     </div>
