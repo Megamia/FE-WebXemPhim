@@ -10,10 +10,10 @@ const Home = () => {
   },[]);
 
   return (
-    <div className="w-full h-screen relative flex justify-center items-center">
+    <div className="w-full h-screen relative flex justify-center items-center bg-gray-700">
       <title>Trang chủ</title>
       <Header />
-      <div className="absolute top-0 left-0 right-0 z-[19]">
+      <div className="absolute top-[100px] left-0 right-0 z-[19]">
         <div className="relative w-full h-screen">
           <SliderImg
             dots={true}
