@@ -1,8 +1,7 @@
 pull:                                                                                   push:
-git clone <URL>                                                                         git status
-                                                                                        // git diff FILE_PATH / git diff
-                                                                                        git commit -am ‘YOUR_COMMIT_MESSAGE’
-                                                                                        git push -u origin <tên_nhánh>
+git clone <URL>                                                                         git add .
+                                                                                        git commit -m "<message>"
+                                                                                        git push 
 
 
 xem đang ở nhánh nào:                                                                   kiểm tra nhánh:
