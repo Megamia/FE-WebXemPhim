@@ -5,22 +5,24 @@ const Footer = () => {
     const handleScrollToTop = (event) => {
         event.preventDefault();
         window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
+            top: 0,
+            behavior: 'smooth'
         });
-      };
+    };
     return (
-        <div className=" bottom-0 left-0 w-full h-[600px] bg-black pt-[30px]">
-            <div className="flex h-[500px] ml-[50px] mr-[50px] border-gray-600 border-b-2">
-                <div className="w-3/5 flex justify-start items-start mt-[50px]">
-                    <NavLink to="/Home" className="w-auto">
-                        <div className="flex justify-start items-start">
-                            <img src="./img/logoPage.png" alt="logo" className="w-[70%] h-[100%]" />
-                        </div>
-                    </NavLink>
-                    <span className="w-3/5 hidden xl:flex h-auto text-white text-left text-[20px] ml-[50px] mr-[100px] mt-[40px] whitespace-normal ">
-                        Mang lại trải nghiệm giải trí tuyệt vời trong từng thước phim
-                    </span>
+        <div className=" bottom-0 left-0 w-full h-[550px] bg-black pt-[30px]">
+            <div className="flex h-[450px] ml-[50px] mr-[50px] border-gray-600 border-b-2">
+                <div className="w-3/5 h-auto flex flex-col justify-start items-start mt-[30px]">
+                    <div className="w-auto h-auto ">
+                        <NavLink to="/Home"  onClick={handleScrollToTop}>
+                                <img src="./img/logo.png" alt="logo" className="  h-[80%] max-h-[100%]" />
+                        </NavLink>
+                    </div>
+                    <div>
+                        <span className="w-3/5 hidden xl:flex h-auto text-white text-left text-[20px]  mr-[100px] whitespace-normal ">
+                            Hãy sẵn sàng để bị cuốn hút và lắng nghe câu chuyện được kể qua từng hình ảnh, âm thanh và cung bậc cảm xúc khác nhau.
+                        </span>
+                    </div>
                 </div>
 
                 <div className="w-full flex overflow-hidden">
@@ -96,10 +98,10 @@ const Footer = () => {
 
                     {/*Công ty*/}
                     <div className="w-[70%] h-full flex items-start justify-start flex-col">
-                        <span className="text-white text-left text-[30px] mb-[30px]">Công ty trách nhiệm hữu hạn một mình tao</span>
+                        <span className="text-white text-left text-[30px] mb-[60px]">Công ty trách nhiệm hữu hạn một mình tao</span>
                         <span className="text-white sm:flex hidden text-left text-[20px]">Địa chỉ: 123 Trần Duy Hưng, Hong Kong, California, Trung tâm kiểm soát động vật hoang dã, New York,dwajkdah ưqjdhqk</span>
                         <span className="text-white sm:flex hidden text-[20px] mt-[30px]">Giới hạn trách nhiệm</span>
-                        <div className="inline-block my-[15px] mt-[30px]">
+                        <div className="inline-block my-[15px] mt-[30px] flex-grow">
                             <span className="text-white text-[20px] mt-[30px]">Email: </span>
                             <NavLink to="/Hacking" className="text-orange-600 text-[20px] mt-[30px]">
                                 <span>Bấmvàobayacc@gmail.com</span>
@@ -109,32 +111,44 @@ const Footer = () => {
                 </div>
             </div>
             <div className=" h-[70px] mr-[50px] ml-[50px] flex items-center justify-center">
-                <div className=" w-1/3">
+                <div className=" w-1/3 flex">
                     <NavLink to="/Home">
                         <span className="text-white text-[20px] hidden md:block justify-start ml-[50px]">Xem anime</span>
                     </NavLink>
                 </div>
                 <div className="w-2/3 hidden sm:flex items-center justify-end">
-                <span className="text-white text-[20px] mr-4 hidden lg:flex">Theo dõi mạng xã hội:</span>
-                    <a href="https://www.facebook.com/"><div className="w-[40px] h-[40px] bg-neutral-500 hover:bg-neutral-600 mr-4 rounded flex items-center justify-center">
-                    <img src="./img/SocialNetworkLogos/facebook-f.svg" alt="facebook" className="w-2/3 h-2/3 text-cyan-400"/>
-                    </div></a>
-                    <a href="https://www.tiktok.com/"><div className="w-[40px] h-[40px] bg-neutral-500 hover:bg-neutral-600 mr-4 rounded flex items-center justify-center">
-                    <img src="./img/SocialNetworkLogos/tiktok.svg" alt="tiktok" className="w-2/3 h-2/3 text-cyan-400"/>
-                    </div></a>
-                    <a href="https://www.twitter.com/"><div className="w-[40px] h-[40px] bg-neutral-500 hover:bg-neutral-600 mr-4 rounded flex items-center justify-center">
-                    <img src="./img/SocialNetworkLogos/twitter.svg" alt="twitter" className="w-2/3 h-2/3 text-cyan-400"/>
-                    </div></a>
-                    <a href="https://www.instagram.com/"><div className="w-[40px] h-[40px] bg-neutral-500 hover:bg-neutral-600 mr-4 rounded flex items-center justify-center">
-                    <img src="./img/SocialNetworkLogos/instagram.svg" alt="instagram" className="w-2/3 h-2/3 text-cyan-400"/>
-                    </div></a>
-                    <a href="https://www.youtube.com/"><div className="w-[40px] h-[40px] bg-neutral-500 hover:bg-neutral-600 mr-4 rounded flex items-center justify-center">
-                    <img src="./img/SocialNetworkLogos/youtube.svg" alt="youtube" className="w-2/3 h-2/3 text-cyan-400"/>
-                    </div></a>
+                    <span className="text-white text-[20px] mr-4 hidden lg:flex">Theo dõi mạng xã hội:</span>
+                    <a href="https://www.facebook.com/">
+                        <div className="w-[40px] h-[40px] bg-neutral-500 hover:bg-neutral-600 mr-4 rounded flex items-center justify-center">
+                            <img src="./img/SocialNetworkLogos/facebook-f.svg" alt="facebook" className="w-2/3 h-2/3 text-cyan-400" />
+                        </div>
+                    </a>
+                    <a href="https://www.tiktok.com/">
+                        <div className="w-[40px] h-[40px] bg-neutral-500 hover:bg-neutral-600 mr-4 rounded flex items-center justify-center">
+                            <img src="./img/SocialNetworkLogos/tiktok.svg" alt="tiktok" className="w-2/3 h-2/3 text-cyan-400" />
+                        </div>
+                    </a>
+                    <a href="https://www.twitter.com/">
+                        <div className="w-[40px] h-[40px] bg-neutral-500 hover:bg-neutral-600 mr-4 rounded flex items-center justify-center">
+                            <img src="./img/SocialNetworkLogos/twitter.svg" alt="twitter" className="w-2/3 h-2/3 text-cyan-400" />
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/">
+                        <div className="w-[40px] h-[40px] bg-neutral-500 hover:bg-neutral-600 mr-4 rounded flex items-center justify-center">
+                            <img src="./img/SocialNetworkLogos/instagram.svg" alt="instagram" className="w-2/3 h-2/3 text-cyan-400" />
+                        </div>
+                    </a>
+                    <a href="https://www.youtube.com/">
+                        <div className="w-[40px] h-[40px] bg-neutral-500 hover:bg-neutral-600 mr-4 rounded flex items-center justify-center">
+                            <img src="./img/SocialNetworkLogos/youtube.svg" alt="youtube" className="w-2/3 h-2/3 text-cyan-400" />
+                        </div>
+                    </a>
                 </div>
-                <a href="#"  onClick={handleScrollToTop} ><div className="w-[40px] h-[40px] bg-lime-500 hover:bg-lime-600 ml-5 rounded flex items-center justify-center">
-                <img src="./img/SocialNetworkLogos/arrow-up-solid.svg" alt="back-up" className="w-2/3 h-2/3 text-cyan-400"/>
-                </div></a>
+                <a href="#" onClick={handleScrollToTop} >
+                    <div className="w-[40px] h-[40px] bg-lime-500 hover:bg-lime-600 ml-2 rounded flex items-center justify-center">
+                        <img src="./img/SocialNetworkLogos/arrow-up-solid.svg" alt="back-up" className="w-2/3 h-2/3 text-cyan-400" />
+                    </div>
+                </a>
             </div>
         </div>
     );
