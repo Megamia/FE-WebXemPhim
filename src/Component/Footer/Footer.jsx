@@ -18,14 +18,14 @@ const Footer = () => {
                             <img src="./img/logoPage.png" alt="logo" className="w-[70%] h-[100%]" />
                         </div>
                     </NavLink>
-                    <span className="w-3/5 hidden md:flex h-auto text-white text-left text-[20px] ml-[50px] mr-[100px] mt-[40px] whitespace-normal ">
+                    <span className="w-3/5 hidden xl:flex h-auto text-white text-left text-[20px] ml-[50px] mr-[100px] mt-[40px] whitespace-normal ">
                         Mang lại trải nghiệm giải trí tuyệt vời trong từng thước phim
                     </span>
                 </div>
 
-                <div className="w-full flex">
+                <div className="w-full flex overflow-hidden">
                     {/*NỘI DUNG*/}
-                    <div className="w-1/3 h-full hidden md:flex items-start justify-start flex-col  mr-[30px]">
+                    <div className="w-1/3 h-full hidden lg:flex items-start justify-start flex-col  mr-[30px]">
                         <span className="text-white text-left text-[30px] mb-[30px]">Nội dung</span>
                         <div className="inline-block my-[15px] text-left">
                             <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
@@ -45,7 +45,7 @@ const Footer = () => {
                     </div>
 
                     {/*DỊCH VỤ*/}
-                    <div className="w-1/3 h-full hidden md:flex items-start justify-start flex-col  mr-[25px]  ">
+                    <div className="w-1/3 h-full hidden lg:flex items-start justify-start flex-col  mr-[25px]  ">
                         <span className="text-white text-left text-[30px] mb-[30px]">Dịch vụ</span>
                         <div className="inline-block my-[15px] text-left">
                             <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
@@ -65,7 +65,7 @@ const Footer = () => {
                     </div>
 
                     {/*HỖ TRỢ*/}
-                    <div className="w-1/2 h-full hidden md:flex items-start justify-start flex-col mr-[30px]">
+                    <div className="w-1/2 h-full hidden lg:flex items-start justify-start flex-col mr-[30px]">
                         <span className="text-white text-left text-[30px] mb-[30px]">Hỗ trợ</span>
                         <div className="inline-block my-[15px] text-left">
                             <NavLink to="/Home" className="text-white  text-[20px] mt-[30px]">
@@ -95,10 +95,10 @@ const Footer = () => {
                     </div>
 
                     {/*Công ty*/}
-                    <div className="w-[70%] h-full flex items-start justify-start flex-col overflow-hidden">
+                    <div className="w-[70%] h-full flex items-start justify-start flex-col">
                         <span className="text-white text-left text-[30px] mb-[30px]">Công ty trách nhiệm hữu hạn một mình tao</span>
-                        <span className="text-white text-left text-[20px]">Địa chỉ: 123 Trần Duy Hưng, Hong Kong, California, Trung tâm kiểm soát động vật hoang dã, New York,dwajkdah ưqjdhqk</span>
-                        <span className="text-white text-[20px] mt-[30px]">Giới hạn trách nhiệm</span>
+                        <span className="text-white sm:flex hidden text-left text-[20px]">Địa chỉ: 123 Trần Duy Hưng, Hong Kong, California, Trung tâm kiểm soát động vật hoang dã, New York,dwajkdah ưqjdhqk</span>
+                        <span className="text-white sm:flex hidden text-[20px] mt-[30px]">Giới hạn trách nhiệm</span>
                         <div className="inline-block my-[15px] mt-[30px]">
                             <span className="text-white text-[20px] mt-[30px]">Email: </span>
                             <NavLink to="/Hacking" className="text-orange-600 text-[20px] mt-[30px]">
@@ -111,10 +111,11 @@ const Footer = () => {
             <div className=" h-[70px] mr-[50px] ml-[50px] flex items-center justify-center">
                 <div className=" w-1/3">
                     <NavLink to="/Home">
-                        <span className="text-white flex justify-start ml-[50px]">Xem anime</span>
+                        <span className="text-white text-[20px] hidden md:block justify-start ml-[50px]">Xem anime</span>
                     </NavLink>
                 </div>
-                <div className="w-2/3 flex justify-end">
+                <div className="w-2/3 hidden sm:flex items-center justify-end">
+                <span className="text-white text-[20px] mr-4 hidden lg:flex">Theo dõi mạng xã hội:</span>
                     <a href="https://www.facebook.com/"><div className="w-[40px] h-[40px] bg-neutral-500 hover:bg-neutral-600 mr-4 rounded flex items-center justify-center">
                     <img src="./img/SocialNetworkLogos/facebook-f.svg" alt="facebook" className="w-2/3 h-2/3 text-cyan-400"/>
                     </div></a>
@@ -131,7 +132,7 @@ const Footer = () => {
                     <img src="./img/SocialNetworkLogos/youtube.svg" alt="youtube" className="w-2/3 h-2/3 text-cyan-400"/>
                     </div></a>
                 </div>
-                <a href="#"  onClick={handleScrollToTop} ><div className="w-[40px] h-[40px] bg-lime-500 hover:bg-lime-600 mr-4 rounded flex items-center justify-center">
+                <a href="#"  onClick={handleScrollToTop} ><div className="w-[40px] h-[40px] bg-lime-500 hover:bg-lime-600 ml-5 rounded flex items-center justify-center">
                 <img src="./img/SocialNetworkLogos/arrow-up-solid.svg" alt="back-up" className="w-2/3 h-2/3 text-cyan-400"/>
                 </div></a>
             </div>
