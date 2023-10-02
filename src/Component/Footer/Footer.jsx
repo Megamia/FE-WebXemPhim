@@ -11,105 +11,106 @@ const Footer = () => {
     };
     return (
         <div className=" bottom-0 left-0 w-full h-[550px] bg-black pt-[30px]">
-            <div className="flex h-[450px] ml-[50px] mr-[50px] border-gray-600 border-b-2">
-                <div className="w-3/5 h-auto flex flex-col justify-start items-start mt-[30px]">
-                    <div className="w-auto h-auto ">
-                        <NavLink to="/Home"  onClick={handleScrollToTop}>
-                                <img src="./img/logo.png" alt="logo" className="  h-[80%] max-h-[100%]" />
+            <div className="flex h-[400px] ml-[50px] mr-[50px] border-gray-600 border-b-2">
+                <div className="w-[40%] flex flex-col mt-[30px] overflow-hidden">
+                    <div className="w-[15%] h-auto ">
+                        <NavLink to="/Home" onClick={handleScrollToTop}>
+                            <img src="./img/logo.png" alt="logo" className=" w-full h-auto " />
                         </NavLink>
                     </div>
-                    <div>
-                        <span className="w-3/5 hidden xl:flex h-auto text-white text-left text-[20px]  mr-[100px] whitespace-normal ">
-                            Hãy sẵn sàng để bị cuốn hút và lắng nghe câu chuyện được kể qua từng hình ảnh, âm thanh và cung bậc cảm xúc khác nhau.
-                        </span>
+                    <div className=" w-auto h-auto">
+                        <div className="flex flex-col text-left">
+                            <span className="text-white text-[20px] mt-[30px]">Địa chỉ: 123 Trần Duy Hưng, Hong Kong, California, Trung tâm kiểm soát động vật hoang dã, New York,dwajkdah ưqjdhqk</span>
+                            <span className="text-white text-[20px] mt-[30px]">Số điện thoại: 113</span>
+                            <div className="w-auto h-auto mt-[30px]">
+                                <span className="text-white text-[20px] ">Email: </span>
+                                <NavLink to="/Hacking" className="text-orange-600 text-[20px] mt-[30px]">
+                                    <span>Bấmvàobayacc@gmail.com</span>
+                                </NavLink>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div className="w-full flex overflow-hidden">
+
+                <div className="w-full flex justify-end overflow-hidden">
                     {/*NỘI DUNG*/}
-                    <div className="w-1/3 h-full hidden lg:flex items-start justify-start flex-col  mr-[30px]">
-                        <span className="text-white text-left text-[30px] mb-[30px]">Nội dung</span>
-                        <div className="inline-block my-[15px] text-left">
-                            <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
-                                <span>Trang chủ</span>
-                            </NavLink>
-                        </div>
-                        <div className="inline-block my-[15px] text-left">
-                            <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
-                                <span>Anime</span>
-                            </NavLink>
-                        </div>
-                        <div className="inline-block my-[15px] text-left">
-                            <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
-                                <span>Series</span>
-                            </NavLink>
+                    <div className="w-1/4 h-full flex-col items-center text-left hidden md:flex">
+                        <div className="w-auto flex flex-col">
+                            <span className="text-white text-[30px] mb-[30px]">Thông tin</span>
+                            <div className=" my-[15px]">
+                                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
+                                    <span>Trang chủ</span>
+                                </NavLink>
+                            </div>
+                            <div className="inline-block my-[15px] text-left">
+                                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
+                                    <span>Anime</span>
+                                </NavLink>
+                            </div>
+                            <div className="inline-block my-[15px] text-left">
+                                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
+                                    <span>Series</span>
+                                </NavLink>
+                            </div>
                         </div>
                     </div>
+
 
                     {/*DỊCH VỤ*/}
-                    <div className="w-1/3 h-full hidden lg:flex items-start justify-start flex-col  mr-[25px]  ">
-                        <span className="text-white text-left text-[30px] mb-[30px]">Dịch vụ</span>
-                        <div className="inline-block my-[15px] text-left">
-                            <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
-                                <span>Trang chủ</span>
-                            </NavLink>
-                        </div>
-                        <div className="inline-block my-[15px] text-left">
-                            <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
-                                <span>Blog</span>
-                            </NavLink>
-                        </div>
-                        <div className="inline-block my-[15px] text-left">
-                            <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
-                                <span>Nội dung</span>
-                            </NavLink>
+                    <div className="w-1/4 h-full flex-col items-center text-left mr-[60px] hidden md:flex">
+                        <div className="w-auto flex flex-col">
+                            <span className="text-white text-left text-[30px] mb-[30px]">Dịch vụ</span>
+                            <div className="inline-block my-[15px] text-left">
+                                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
+                                    <span>Trang chủ</span>
+                                </NavLink>
+                            </div>
+                            <div className="inline-block my-[15px] text-left">
+                                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
+                                    <span>Blog</span>
+                                </NavLink>
+                            </div>
+                            <div className="inline-block my-[15px] text-left">
+                                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
+                                    <span>Nội dung</span>
+                                </NavLink>
+                            </div>
                         </div>
                     </div>
+
 
                     {/*HỖ TRỢ*/}
-                    <div className="w-1/2 h-full hidden lg:flex items-start justify-start flex-col mr-[30px]">
-                        <span className="text-white text-left text-[30px] mb-[30px]">Hỗ trợ</span>
-                        <div className="inline-block my-[15px] text-left">
-                            <NavLink to="/Home" className="text-white  text-[20px] mt-[30px]">
-                                <span>FAQs</span>
-                            </NavLink>
-                        </div>
-                        <div className="inline-block my-[15px] text-left">
-                            <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
-                                <span>Quyền riêng tư</span>
-                            </NavLink>
-                        </div>
-                        <div className="inline-block my-[15px] text-left">
-                            <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
-                                <span>Trách nhiệm người dùng</span>
-                            </NavLink>
-                        </div>
-                        <div className="inline-block my-[15px] text-left">
-                            <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
-                                <span>Giới hạn trách nhiệm</span>
-                            </NavLink>
-                        </div>
-                        <div className="inline-block my-[15px] text-left">
-                            <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
-                                <span>Chính sách và quy trình xử lý khiếu nại</span>
-                            </NavLink>
-                        </div>
-                    </div>
-
-                    {/*Công ty*/}
-                    <div className="w-[70%] h-full flex items-start justify-start flex-col">
-                        <span className="text-white text-left text-[30px] mb-[60px]">Công ty trách nhiệm hữu hạn một mình tao</span>
-                        <span className="text-white sm:flex hidden text-left text-[20px]">Địa chỉ: 123 Trần Duy Hưng, Hong Kong, California, Trung tâm kiểm soát động vật hoang dã, New York,dwajkdah ưqjdhqk</span>
-                        <span className="text-white sm:flex hidden text-[20px] mt-[30px]">Giới hạn trách nhiệm</span>
-                        <div className="inline-block my-[15px] mt-[30px] flex-grow">
-                            <span className="text-white text-[20px] mt-[30px]">Email: </span>
-                            <NavLink to="/Hacking" className="text-orange-600 text-[20px] mt-[30px]">
-                                <span>Bấmvàobayacc@gmail.com</span>
-                            </NavLink>
+                    <div className="w-1/5 h-full flex-col items-center text-left hidden md:flex">
+                        <div className="w-auto flex flex-col">
+                            <span className="text-white text-left text-[30px] mb-[30px]">Hỗ trợ</span>
+                            <div className="inline-block my-[15px] text-left">
+                                <NavLink to="/Home" className="text-white  text-[20px] mt-[30px]">
+                                    <span>FAQs</span>
+                                </NavLink>
+                            </div>
+                            <div className="inline-block my-[15px] text-left">
+                                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
+                                    <span>Trách nhiệm người dùng</span>
+                                </NavLink>
+                            </div>
+                            <div className="inline-block my-[15px] text-left">
+                                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
+                                    <span>Quyền riêng tư</span>
+                                </NavLink>
+                            </div>
+                            <div className="inline-block my-[15px] text-left">
+                                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
+                                    <span>Chính sách và quy trình xử lý khiếu nại</span>
+                                </NavLink>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+            {/*BOT*/}
             <div className=" h-[70px] mr-[50px] ml-[50px] flex items-center justify-center">
                 <div className=" w-1/3 flex">
                     <NavLink to="/Home">
