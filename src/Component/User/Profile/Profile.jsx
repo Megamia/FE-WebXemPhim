@@ -49,14 +49,14 @@ const Profile = () => {
                                     </div>
                                 </div>
                                 <div>
-                                    <input 
+                                    <input
                                         type="file"
                                         id='avatarInput'
                                         accept='.jpg, .png, .gif'
-                                        style={{display: 'none'}}
+                                        style={{ display: 'none' }}
                                         onChange={handelImageChange}
                                     />
-                                    <button 
+                                    <button
                                         onClick={handleEditAvatar}
                                         className="bg-red-500 text-white px-3 py-1 rounded-full"
                                     >
