@@ -31,7 +31,7 @@ const Nav = () => {
 
                     <div className="w-1/5">
                         <NavLink to="/ExPage" className="text-white text-2xl ">
-                            Top anime
+                            Top phim
                         </NavLink>
                     </div>
 
