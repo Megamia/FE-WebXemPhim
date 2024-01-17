@@ -95,20 +95,20 @@ const Home = () => {
                 <li className={`text-[#F3DD3C] ${styles.listItem}`}>
                   Lưu hoặc nhớ ngay link rút gọn
                   <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="text-white">
-                    bit.ly/2tenvietsub
+                    {' '}bit.ly/2tenvietsub
                   </a>
                   để truy cập khi nhà mạng chặn!
                 </li>
                 <li className={`text-[#F3DD3C] ${styles.listItem}`}>
                   Mời bạn tham gia Group
                   <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="text-[#E62117]">
-                    tại đây!
+                  {' '}tại đây!
                   </a>
                   hoặc tham gia Discord
                   <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="text-[#E62117]">
-                    tại đây!
+                  {' '}tại đây!{' '}
                   </a>
-                  để ủng hộ{" "}
+                  để ủng hộ{' '}
                   <span className="text-[#E62117]">2tenvietsub</span>
                 </li>
                 <li className={`text-[#F3DD3C] ${styles.listItem}`}>
