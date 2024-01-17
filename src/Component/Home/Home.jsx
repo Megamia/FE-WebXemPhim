@@ -26,22 +26,37 @@ const Home = () => {
     './img/grand_blue.png',
   ]);
 
+  // const nextSlide = () => {
+  //   if (isTransitioning) return;
+  //   setIsTransitioning(true);
+  
+  //   setTimeout(() => {
+  //     setImages(prevImages => {
+  //       const newImages = [...prevImages];
+  //       const firstItem = newImages.shift();
+  //       newImages.push(firstItem);
+  //       return newImages;
+  //     });
+  
+  //     setIsTransitioning(false);
+  //   }, 300);
+  // };
   const nextSlide = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
+    
+    const firstItem = images[0];
+    setImages(prevImages => {
+      const newImages = [...prevImages];
+      newImages.shift();
+      newImages.push(firstItem);
+      return newImages;
+    });
   
     setTimeout(() => {
-      setImages(prevImages => {
-        const newImages = [...prevImages];
-        const firstItem = newImages.shift();
-        newImages.push(firstItem);
-        return newImages;
-      });
-  
       setIsTransitioning(false);
     }, 300);
   };
-  
 
 
   const prevSlide = () => {
