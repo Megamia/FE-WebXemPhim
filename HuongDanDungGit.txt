@@ -1,10 +1,13 @@
-pull:                                                                                   push:
-git clone <URL>                                                                         git add .
-                                                                                        git commit -m "<message>"
-                                                                                        git push 
+PULL TRƯỚC KHI CODE
+
+pull:   -git clone <url> (lần đầu lấy code từ github)
+        -git pull (các lần sau nếu muốn lấy hoặc update code)
+
+push:   git add . (tất cả các thay đổi)
+        git commit -m "<message>" (message)
+        git push 
 
 
-xem đang ở nhánh nào:                                                                   kiểm tra nhánh:
-git branch                                                                              git branch -av
-                                                                                        -a (all)
-                                                                                        -v (verbose)
+ĐỂ CÓ THỂ CHẠY CODE:
+-mở terminal:   npm install (tải node_modules)
+                npm start
