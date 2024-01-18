@@ -4,10 +4,16 @@ import { NavLink } from "react-router-dom";
 const Footer = () => {
     const handleScrollToTop = (event) => {
         event.preventDefault();
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        const scrollToTop = () => {
+            if (window.scrollY !== 0) {
+                window.scrollTo({
+                    top: window.scrollY - 85,
+                    behavior: 'smooth'
+                });
+                requestAnimationFrame(scrollToTop);
+            }
+        };
+        scrollToTop();
     };
     return (
         <div className=" bottom-0 left-0 w-full h-[550px] bg-black pt-[30px]">
@@ -113,7 +119,7 @@ const Footer = () => {
             {/*BOT*/}
             <div className=" h-[70px] mr-[50px] ml-[50px] flex items-center justify-center">
                 <div className=" w-1/3 flex">
-                    <NavLink to="/Home">
+                    <NavLink to="/#">
                         <span className="text-white text-[20px] hidden md:block justify-start ml-[50px]">Xem anime</span>
                     </NavLink>
                 </div>
