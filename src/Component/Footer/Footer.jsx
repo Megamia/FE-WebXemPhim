@@ -33,7 +33,7 @@ const Footer = () => {
                 </div>
 
 
-                <div className="w-full flex justify-end overflow-hidden">
+                <div className="w-full flex flex-1 justify-end overflow-hidden">
                     {/*NỘI DUNG*/}
                     <div className="w-1/4 h-full flex-col items-center text-left hidden md:flex">
                         <div className="w-auto flex flex-col">
@@ -81,12 +81,12 @@ const Footer = () => {
 
 
                     {/*HỖ TRỢ*/}
-                    <div className="w-1/5 h-full flex-col items-center text-left hidden md:flex">
-                        <div className="w-auto flex flex-col">
+                    <div className="w-2/5 h-full flex-col items-center text-left hidden md:flex">
+                        <div className=" flex flex-col">
                             <span className="text-white text-left text-[30px] mb-[30px]">Hỗ trợ</span>
                             <div className="inline-block my-[15px] text-left">
                                 <NavLink to="/Home" className="text-white  text-[20px] mt-[30px]">
-                                    <span>FAQs</span>
+                                    <span>Quyền riêng tư</span>
                                 </NavLink>
                             </div>
                             <div className="inline-block my-[15px] text-left">
@@ -96,7 +96,7 @@ const Footer = () => {
                             </div>
                             <div className="inline-block my-[15px] text-left">
                                 <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
-                                    <span>Quyền riêng tư</span>
+                                    <span>FAQs</span>
                                 </NavLink>
                             </div>
                             <div className="inline-block my-[15px] text-left">

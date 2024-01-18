@@ -59,7 +59,7 @@ const Login = () => {
                     className="flex justify-center w-[200px] md:w-[400px] lg:w-[600px] h-[600px] bg-white rounded-xl"
                 >
                     <div className="flex flex-col justify-center w-[80%]">
-                        <div className="font-semibold text-2xl">Đăng nhập</div>
+                        <div className="font-semibold text-2xl text-center mb-[20px]">Đăng nhập</div>
                         <input
                             type="text"
                             id="username"
