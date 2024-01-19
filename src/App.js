@@ -11,6 +11,7 @@ import Home from './Component/Home/Home';
 import Profile from './Component/User/Profile/Profile';
 import ExPage from './Component/ExamplePage/ExPage';
 import Hacking from './Component/Hacking/Hacking';
+import Payment from './Component/Payment/Payment';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/Home" element={<Home/>}/>
+          <Route path="/Payment" element={<Payment/>}/>
           <Route path="/Nav" element={<Nav/>}/> 
           <Route path="/Hometest" element={<Hometest />}/>
           <Route path="/Login" element={<Login/>}/>

@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import Catalog from "../Catalog/Catalog(Home)";
 import Footer from "../Footer/Footer";
@@ -29,7 +29,7 @@ const Home = () => {
   // const nextSlide = () => {
   //   if (isTransitioning) return;
   //   setIsTransitioning(true);
-  
+
   //   setTimeout(() => {
   //     setImages(prevImages => {
   //       const newImages = [...prevImages];
@@ -37,14 +37,14 @@ const Home = () => {
   //       newImages.push(firstItem);
   //       return newImages;
   //     });
-  
+
   //     setIsTransitioning(false);
   //   }, 300);
   // };
   const nextSlide = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
-    
+
     const firstItem = images[0];
     setImages(prevImages => {
       const newImages = [...prevImages];
@@ -52,7 +52,7 @@ const Home = () => {
       newImages.push(firstItem);
       return newImages;
     });
-  
+
     setTimeout(() => {
       setIsTransitioning(false);
     }, 300);
@@ -79,8 +79,8 @@ const Home = () => {
 
   return (
     <div className="bg-[#263238]">
-        <Header />
-        <div className="bg-[#253238] flex  justify-center">
+      <Header />
+      <div className="bg-[#253238] flex  justify-center">
         <div className="w-[1280px]  justify-center flex-col bg-[#141414] p-[20px] mt-[130px]">
           <div className="bg-[#2D2D2D] w-full  p-[10px] mb-[20px]">
             <div
@@ -102,11 +102,11 @@ const Home = () => {
                 <li className={`text-[#F3DD3C] ${styles.listItem}`}>
                   Mời bạn tham gia Group
                   <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="text-[#E62117]">
-                  {' '}tại đây!{' '}
+                    {' '}tại đây!{' '}
                   </a>
                   hoặc tham gia Discord
                   <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="text-[#E62117]">
-                  {' '}tại đây!{' '}
+                    {' '}tại đây!{' '}
                   </a>
                   để ủng hộ{' '}
                   <span className="text-[#E62117]">2tenvietsub</span>
@@ -138,7 +138,7 @@ const Home = () => {
       </div>
       {/* <Catalog/> */}
       <div className="w-full  mt-[20px] ">
-      <Footer />
+        <Footer />
       </div>
     </div>
   );

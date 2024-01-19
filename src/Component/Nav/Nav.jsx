@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCheck } from "@fortawesome/free-solid-svg-icons";
+import Payment from './../Payment/Payment';
 
 const Nav = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -36,7 +37,7 @@ const Nav = () => {
                     </div>
 
                     <div className="w-1/5">
-                        <NavLink to="/Error404" className="text-white text-2xl ">
+                        <NavLink to="/Payment" className="text-white text-2xl ">
                             Thể loại
                         </NavLink>
                     </div>
