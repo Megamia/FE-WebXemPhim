@@ -2,82 +2,68 @@ import React, { useState, useEffect } from "react";
 import "./login.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import NotificationModal from "./NotificationModal";
-// const connectToDatabase = require("../../../dbConfig");
-// const sql = require("msnodesqlv8");
 const Login = () => {
     const [User, setUser] = useState("");
     const [Password, setPassword] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [showNotification, setShowNotification] = useState(false);
     const navigate = useNavigate();
-
-    useEffect(() => {
+    useEffect (() => {
         document.title = "Đăng nhập";
-    }, []);
-
+      },[]);
     const handleUserChange = (event) => {
         setUser(event.target.value);
     };
-
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
     };
-
-    // const handleLogin = async () => {
-    //     try {
-    //       const connection = await connectToDatabase();
-    
-    //       const request = new sql.Request(connection);
-    //       const query = `SELECT * FROM User WHERE username = @username AND password = @password`;
-    //       request.input("username", sql.NVarChar, User);
-    //       request.input("password", sql.NVarChar, Password);
-    
-    //       const result = await request.query(query);
-    //       const isAuthenticated = result.recordset.length > 0;
-    
-    //       if (isAuthenticated) {
-    //         setIsLoggedIn(true);
-    //         setShowNotification(true);
-    //       } else {
-    //         setIsLoggedIn(false);
-    //         setShowNotification(true);
-    //       }
-    
-    //       connection.close();
-    //     } catch (error) {
-    //       console.error("Error:", error);
-    //       // Xử lý lỗi
-    //     }
-    //   };
+    const handleLogin = (e) => {
+        e.preventDefault();
+        if (User === "admin" && Password === "123") {
+            setIsLoggedIn(true);
+            setShowNotification(true);
+        } else {
+            setIsLoggedIn(false);
+            setShowNotification(true);
+        }
+    };
     const closeNotification = () => {
         setShowNotification(false);
         if (isLoggedIn) {
             navigate("/Profile");
         }
     };
-
     useEffect(() => {
         if (isLoggedIn) {
             const timer = setTimeout(() => {
                 closeNotification();
             }, 3000);
-
             return () => clearTimeout(timer);
         }
     }, [isLoggedIn, navigate]);
-
     return (
         <>
             <div className="w-[100%] flex items-center justify-center h-screen bg-slate-600">
                 <form
-                    // onSubmit={handleLogin}
+                    onSubmit={handleLogin}
                     className="flex justify-center w-[200px] md:w-[400px] lg:w-[600px] h-[600px] bg-white rounded-xl"
                 >
                     <div className="flex flex-col justify-center w-[80%]">
-                        <div className="font-semibold text-2xl text-center mb-[20px]">Đăng nhập</div>
+                        <div className="font-semibold text-2xl">Đăng nhập</div>
                         <input
                             type="text"
                             id="username"
+
+    
+          
+            
+    
+
+          
+          Expand Down
+    
+    
+  
                             value={User}
                             onChange={handleUserChange}
                             placeholder="Tên đăng nhập..."
@@ -117,5 +103,4 @@ const Login = () => {
         </>
     );
 };
-
 export default Login;
