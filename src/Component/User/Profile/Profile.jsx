@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faUserCheck } from '@fortawesome/free-solid-svg-icons';
-import Header from '../../Header/Header';
+import Header from '../../Header&Footer/Header/Header';
 import ItemProfile from './itemProfile';
-import Footer from '../../Footer/Footer';
+import Footer from '../../Header&Footer/Footer/Footer';
 
 const Profile = () => {
     const [avatar, setAvatar] = useState('./img/avatarUser.jpg');

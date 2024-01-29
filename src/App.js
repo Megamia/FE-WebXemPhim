@@ -12,7 +12,9 @@ import Profile from './Component/User/Profile/Profile';
 import ExPage from './Component/ExamplePage/ExPage';
 import Hacking from './Component/Hacking/Hacking';
 import Payment from './Component/Payment/Payment';
-
+import Paypal from './Component/Payment/Paypal';
+import Slider from './Component/Home/Slider';
+import Detail from './Component/Detail/Detail';
 function App() {
   return (
     <div className="App">
@@ -29,6 +31,8 @@ function App() {
           <Route path="/Profile" element={<Profile />}/>
           <Route path="/ExPage" element={<ExPage/>}/> 
           <Route path="/Hacking" element={<Hacking/>}/>
+          <Route path="/Slider" element={<Slider/>}/>
+          {/* <Route path="/detail/:id" render={(props) => <Detail {...props} images={images} />} /> */}
         </Routes>
       </Router>
     </div>

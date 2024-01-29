@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Nav from "../Nav/Nav";
+import Nav from "../../Nav/Nav";
 
 const Header = () => {
   const [isHeaderVisible, setHeaderVisible] = useState(true);

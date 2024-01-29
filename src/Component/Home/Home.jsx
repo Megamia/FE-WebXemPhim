@@ -1,32 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Header from "../Header/Header";
+import Header from "../Header&Footer/Header/Header";
 import Catalog from "../Catalog/Catalog(Home)";
-import Footer from "../Footer/Footer";
+import Footer from "../Header&Footer/Footer/Footer";
 import styles from './style.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBullhorn } from '@fortawesome/free-solid-svg-icons';
 import Slider from "./Slider";
 
 const Home = () => {
-  
-
-  // const nextSlide = () => {
-  //   if (isTransitioning) return;
-  //   setIsTransitioning(true);
-
-  //   setTimeout(() => {
-  //     setImages(prevImages => {
-  //       const newImages = [...prevImages];
-  //       const firstItem = newImages.shift();
-  //       newImages.push(firstItem);
-  //       return newImages;
-  //     });
-
-  //     setIsTransitioning(false);
-  //   }, 300);
-  // };
-  
-
   return (
     <div className="bg-[#263238]">
       <Header />
