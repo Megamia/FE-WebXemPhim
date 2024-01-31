@@ -32,7 +32,7 @@ function App() {
           <Route path="/ExPage" element={<ExPage/>}/> 
           <Route path="/Hacking" element={<Hacking/>}/>
           <Route path="/Slider" element={<Slider/>}/>
-          {/* <Route path="/detail/:id" render={(props) => <Detail {...props} images={images} />} /> */}
+          <Route path="/detail/:id" render={(props) => <Detail/>} />
         </Routes>
       </Router>
     </div>
