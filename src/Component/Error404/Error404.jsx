@@ -8,14 +8,14 @@ const Error404 = () => {
   },[]);
   
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <div className="error-container flex flex-col items-center">
-        <div>
-          <img src="./img/404.png" alt="Error 404" className="error-image" />
+    <div className="flex flex-col items-center justify-center h-screen w-[100%]">
+      <div className="error-container flex flex-1 flex-col items-center  w-[100%]">
+        <div className="relative z-2">
+          <img src="./img/404.png" alt="Error 404" className="error-image w-[100%] h-[100vh]" />
         </div>
         <NavLink
           to="/Home"
-          className="mt-4 px-6 py-3 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white rounded hover:bg-gradient-to-r hover:from-pink-600 hover:via-purple-600 hover:to-blue-600 transition-colors duration-300"
+          className="absolute z-10 bottom-0 left-[40%]  px-6 py-3 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white rounded hover:bg-gradient-to-r hover:from-pink-600 hover:via-purple-600 hover:to-blue-600 transition-colors duration-300"
         >
           Go back to homepage
         </NavLink>

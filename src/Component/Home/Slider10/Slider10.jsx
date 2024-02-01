@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styles from './style.module.scss';
 import { Link } from "react-router-dom";
-const Slider = () => {
+import { GrCaretPrevious, GrCaretNext } from "react-icons/gr";
+const Slider10 = () => {
     useEffect(() => {
         document.title = "Trang chủ";
     }, []);
-    const [startIndex, setStartIndex] = useState(0);
+    const [startIndex] = useState(0);
     const [isTransitioning, setIsTransitioning] = useState(false);
-    const [slideOffset, setSlideOffset] = useState(0);
+    const [slideOffset] = useState(0);
     const [images, setImages] = useState([
         { id: 1, img: './img/nisekoi.png' },
         { id: 2, img: './img/zom100.png' },
@@ -71,28 +72,30 @@ const Slider = () => {
 
     const visibleImages = images.slice(startIndex, startIndex + 10);
     return (
-        <div>
-
+        <div className="flex-1 ">
             <div className={styles.slider}>
                 <div className={styles.sliderContainer} style={{ transform: `translateX(${slideOffset}%)` }}>
+                    <button className="flex absolute z-10 text-[20px] top-[30%] left-0 bg-red-500 py-[5px] px-[7px] rounded-[50%]">
+                        <div className="text-white flex items-center p-[2px]" onClick={prevSlide} disabled={isTransitioning}>
+                            <GrCaretPrevious className=" ml-[-3px] " />
+                        </div>
+                    </button>
                     {visibleImages.map((slide, index) => (
                         <div className={styles.slide} key={slide.id}>
                             <Link to={`/detail/${slide.id}`}>
-                                <img src={slide.img} alt={`Image ${slide.id}`} />
+                                <img src={slide.img} alt={` ${slide.id}`} />
                             </Link>
                         </div>
                     ))}
+                    <button className="flex absolute z-10 text-[20px] top-[30%] right-0 bg-red-500 py-[5px] px-[7px] rounded-[50%]">
+                        <div className="text-white flex items-center p-[2px]" onClick={nextSlide} disabled={isTransitioning}>
+                            <GrCaretNext className=" mr-[-3px]" />
+                        </div>
+                    </button>
                 </div>
             </div>
-            <div>
-                <button className="text-white" onClick={prevSlide} disabled={isTransitioning}>
-                    Previous
-                </button>
-                <button className="text-white" onClick={nextSlide} disabled={isTransitioning}>
-                    Next
-                </button>
-            </div>
+
         </div>
     )
 }
-export default Slider;
+export default Slider10;

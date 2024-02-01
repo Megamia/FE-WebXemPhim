@@ -1,0 +1,49 @@
+.menu {
+    position: relative;
+    a {
+        position: relative;
+        z-index: 1;
+        
+    }
+    ul {
+        position: absolute;
+        top: -40px;
+        left: 10px;
+        z-index: 2;
+        border-top: 2px solid #B5E745;
+        
+    }
+    ul::before {
+        content: "";
+        position: absolute;
+        top: -15px;
+        left: 20%;
+        transform: translateX(-50%);
+        border-style: solid;
+        border-width: 7px;
+        border-color: transparent transparent #B5E745 transparent;
+    }
+    ul li {
+
+    }
+    ul li a{
+        color: black;
+        padding-left: 10px;
+
+    }
+}
+
+.menu:hover {
+    display: block;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+}
+
+.menu:hover .submenu {
+    display: block;
+    position: relative;
+}

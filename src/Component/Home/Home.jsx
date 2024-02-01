@@ -4,7 +4,7 @@ import Catalog from "../Catalog/Catalog(Home)";
 import Footer from "../Header&Footer/Footer/Footer";
 
 import Notification from "../Notification/Nontification";
-import Slider from "./Slider";
+import Slider10 from "./Slider10/Slider10";
 import Righter from "../Header&Footer/Righter/Righter";
 
 const Home = () => {
@@ -15,7 +15,7 @@ const Home = () => {
         <div className="w-[1280px]  justify-center flex-col bg-[#141414] p-[20px] mt-[130px]">
           <Notification/>
           
-          <Slider/>
+          <Slider10/>
           <div className="flex flex-row">
             <p>
               hello world

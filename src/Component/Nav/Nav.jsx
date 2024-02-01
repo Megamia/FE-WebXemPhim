@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCheck } from "@fortawesome/free-solid-svg-icons";
-import Payment from './../Payment/Payment';
-import Detail from './../Detail/Detail';
-
+// import Payment from './../Payment/Payment';
+// import Detail from './../Detail/Detail';
+// import Error404 from './../Error404/Error404';
+import styles from './style.module.scss';
 const Nav = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const handleLogin = () => {
         setIsLoggedIn(true);
     };
-    const handleLogout = () => {
-        setIsLoggedIn(false);
-    };
+    // const handleLogout = () => {
+    //     setIsLoggedIn(false);
+    // };
 
     return (
         <div className="w-full relative">
@@ -23,36 +24,86 @@ const Nav = () => {
                     </div>
                 </NavLink>
 
-                <div className=" hidden md:flex justify-center flex-1 ">
+                <div className=" hidden md:flex justify-center flex-1 h-[100%] pt-[33px]">
 
                     <div className="w-1/5">
-                        <NavLink to="/Home" className="text-white text-2xl ">
+                        <a href="/Home" className="text-white text-2xl ">
                             Trang chủ
-                        </NavLink>
+                        </a>
                     </div>
 
-                    <div className="w-1/5">
-                        <NavLink to="/Error404" className="text-white text-2xl ">
+                    <div className={`w-1/5  ${styles.menu}`}>
+                        <a href="/Error404" className="text-white text-2xl ">
                             Top phim
-                        </NavLink>
+                        </a>
+                        <div className={styles.submenu}>
+                            <ul className="bg-white w-[100px]  ">
+                                <li>
+                                    <button className=" w-[100%] flex left-0">
+                                        <a href="/Error404" className="">
+                                            Theo năm
+                                        </a>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button className=" w-[100%] flex left-0">
+                                        <a href="/Error404" className="">
+                                            Theo mùa
+                                        </a>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button className=" w-[100%] flex left-0">
+                                        <a href="/Error404" className="">
+                                            Theo ngày
+                                        </a>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <div className="w-1/5">
-                        <NavLink to="/Error404" className="text-white text-2xl ">
+                    <div className={`w-1/5  ${styles.menu}`}>
+                        <a href="/Error404" className="text-white text-2xl ">
                             Thể loại
-                        </NavLink>
+                        </a>
+                        <div className={styles.submenu}>
+                            <ul className="bg-white w-[100px] ">
+                                <li>
+                                    <button className=" w-[100%] flex left-0">
+                                        <a href="/Error404" className="">
+                                            Luận loan
+                                        </a>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button className=" w-[100%] flex left-0">
+                                        <a href="/Error404" className="">
+                                            Hentai
+                                        </a>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button className=" w-[100%] flex left-0">
+                                        <a href="/Error404" className="">
+                                            Sẽ gầy
+                                        </a>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
 
                     <div className="w-1/5">
-                        <NavLink to="/Error404" className="text-white text-2xl">
+                        <a href="/Error404" className="text-white text-2xl">
                             Thư viện
-                        </NavLink>
+                        </a>
                     </div>
 
                     <div className="w-1/5">
-                        <NavLink to="/Hometest" className="text-white text-2xl ">
+                        <a href="/Hometest" className="text-white text-2xl ">
                             Donate
-                        </NavLink>
+                        </a>
                     </div>
 
                 </div>
