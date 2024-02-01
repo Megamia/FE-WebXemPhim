@@ -15,6 +15,7 @@ import Payment from './Component/Payment/Payment';
 import Paypal from './Component/Payment/Paypal';
 import Slider from './Component/Home/Slider';
 import Detail from './Component/Detail/Detail';
+import Righter from './Component/Header&Footer/Righter/Righter';
 function App() {
   return (
     <div className="App">
@@ -23,7 +24,7 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/Home" element={<Home/>}/>
           <Route path="/Payment" element={<Payment/>}/>
-          <Route path="/Nav" element={<Nav/>}/> 
+          {/* <Route path="/Nav" element={<Nav/>}/>  */}
           <Route path="/Hometest" element={<Hometest />}/>
           <Route path="/Login" element={<Login/>}/>
           <Route path="/Signup" element={<Signup/>}/>
@@ -32,6 +33,8 @@ function App() {
           <Route path="/ExPage" element={<ExPage/>}/> 
           <Route path="/Hacking" element={<Hacking/>}/>
           <Route path="/Slider" element={<Slider/>}/>
+          <Route path="/Righter" element={<Righter/>}/>
+
           <Route path="/detail/:id" render={(props) => <Detail/>} />
         </Routes>
       </Router>

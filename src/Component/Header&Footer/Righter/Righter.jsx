@@ -1,0 +1,33 @@
+import React from "react";
+// import { FaPlay } from "react-icons/fa6";
+const Righter = () => {
+    return (
+        <div className="bg-[#141414] text-white w-[350px] flex justify-center p-[20px] flex flex-col">
+            <div className="bg-[#181D1F] mb-[20px] px-[10px] rounded-[5px]">
+                <div className="py-[10px] border-b-[3px] border-[#B5E745]">
+                    <p className="font-bold">
+                        Hôm nay xem gì?
+                    </p>
+                </div>
+                <div className="mt-[20px] flex flex-row">
+                    <p>
+                        Nếu bạn buồn phiền không biết xem gì hôm nay. Hãy để chúng tôi chọn cho bạn
+                    </p>
+                </div>
+                <div className="bg-red-500 text-white my-[10px] py-[5px] px-[10px] rounded-[5px]">
+                    <button>
+                        <p>
+                            {/* <FaPlay /> */}
+                            Xem Phim Ngẫu nhiên
+                        </p>
+                    </button>
+                </div>
+
+            </div>
+            <div className="flex flex-1">
+                <img src='../img/gif.gif' alt="video" className="w-[100%]" />
+            </div>
+        </div>
+    )
+}
+export default Righter;

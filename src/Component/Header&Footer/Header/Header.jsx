@@ -21,8 +21,8 @@ const Header = () => {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full h-16 z-30 transition-opacity duration-1000 ${
-        isHeaderVisible ? "opacity-100" : "opacity-0"
+      className={`fixed top-0 left-0 w-full h-16 z-30 transition-all duration-1000 ${
+        isHeaderVisible ? "opacity-100" : "opacity-0 invisible"
       }`}
     >
       <Nav />
