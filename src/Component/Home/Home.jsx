@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Header from "../Header&Footer/Header/Header";
-import Catalog from "../Catalog/Catalog(Home)";
+// import Catalog from "../Catalog/Catalog(Home)";
 import Footer from "../Header&Footer/Footer/Footer";
 
 import Notification from "../Notification/Nontification";

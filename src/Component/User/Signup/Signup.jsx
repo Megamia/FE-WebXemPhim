@@ -31,7 +31,6 @@ const Signup = () => {
 
         } catch (error) {
             console.error('Error signing up:', error);
-            // Xử lý lỗi đăng ký
             alert('Người dùng đã tồn tại');
         }
     };
