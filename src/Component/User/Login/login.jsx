@@ -18,6 +18,20 @@ const Login = () => {
     document.title = "Đăng nhập";
   }, []);
 
+  useEffect(() => {
+    const storedLoggedInStatus = localStorage.getItem("isLoggedIn");
+
+    if (storedLoggedInStatus === "true") {
+      setIsLoggedIn(true);
+    }
+  }, []);
+  useEffect(() => {
+  if (isLoggedIn) {
+    sessionStorage.setItem('isLoggedIn', 'true');
+  }
+}, [isLoggedIn]);
+
+
   const handleUserChange = (event) => {
     setUser(event.target.value);
   };
@@ -36,6 +50,7 @@ const Login = () => {
       });
 
       if (response.status === 200) {
+        localStorage.setItem("isLoggedIn", "true"); 
         setIsLoggedIn(true);
         setShowNotification(true);
         return;
@@ -125,14 +140,14 @@ const Login = () => {
               />
             )}
           </div>
-        </div>
-        {/* <Catalog/> */}
-        <div className="w-full  mt-[20px] ">
-          <Footer />
-        </div>
       </div>
-    </>
-  );
+      {/* <Catalog/> */}
+      <div className="w-full  mt-[20px] ">
+        <Footer />
+      </div>
+    </div>
+  </>
+);
 };
 
 export default Login;

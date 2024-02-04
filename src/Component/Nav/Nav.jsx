@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCheck } from "@fortawesome/free-solid-svg-icons";
@@ -6,14 +6,25 @@ import { faUserCheck } from "@fortawesome/free-solid-svg-icons";
 // import Detail from './../Detail/Detail';
 // import Error404 from './../Error404/Error404';
 import styles from './style.module.scss';
+
 const Nav = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+
     const handleLogin = () => {
         setIsLoggedIn(true);
-    };
-    // const handleLogout = () => {
-    //     setIsLoggedIn(false);
-    // };
+        localStorage.setItem('isLoggedIn', true);
+      };
+
+      const handleLogout = () => {
+        setIsLoggedIn(false);
+        localStorage.removeItem('isLoggedIn');
+      };
+    useEffect(() => {
+        const loggedInStatus = localStorage.getItem('isLoggedIn');
+        if (loggedInStatus) {
+          setIsLoggedIn(true);
+        }
+      }, []);
 
     return (
         <div className="w-full relative">
@@ -125,19 +136,19 @@ const Nav = () => {
                 </div>
                 {isLoggedIn ? (
                     <NavLink
+                        to="/Profile"
+                        className="hidden md:flex md:items-center text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center"
+                        activeClassName="hidden"
+                    >
+                        <FontAwesomeIcon icon={faUserCheck} className="text-2xl" />
+                    </NavLink>
+                ) : (
+                    <NavLink
                         to="/Login"
                         className="hidden md:flex md:items-center bg-red-600 hover:bg-gray-600 text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center w-[150px] h-[40px]"
                         activeClassName="hidden"
                     >
                         <span className="mx-auto">Đăng Nhập</span>
-                    </NavLink>
-                ) : (
-                    <NavLink
-                        to="/Profile"
-                        className="hidden md:flex md:items-center text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center"
-                        onClick={handleLogin}
-                    >
-                        <FontAwesomeIcon icon={faUserCheck} className="text-2xl" />
                     </NavLink>
                 )}
             </div>

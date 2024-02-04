@@ -4,8 +4,8 @@ const NotificationModal = ({ title, message, onClose }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
       <div className="w-100 bg-white rounded-lg p-6">
-        <h2 className="text-xl font-bold mb-4">{title}</h2>
-        <p>{message}</p>
+        <h2 className="text-xl font-bold mb-4 flex justify-center">{title}</h2>
+        <p className="flex justify-center">{message}</p>
         <div className="flex justify-center mt-4">
           <button
             onClick={onClose}
