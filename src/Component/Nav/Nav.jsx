@@ -112,7 +112,7 @@ const Nav = () => {
                     </div>
 
                     <div className="w-1/5">
-                        <a href="/Hometest" className="text-white text-2xl ">
+                        <a href="/Donate" className="text-white text-2xl ">
                             Donate
                         </a>
                     </div>
