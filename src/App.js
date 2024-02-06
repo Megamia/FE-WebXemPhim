@@ -11,8 +11,6 @@ import Home from './Component/Home/Home';
 import Profile from './Component/User/Profile/Profile';
 import ExPage from './Component/ExamplePage/ExPage';
 import Hacking from './Component/Hacking/Hacking';
-import Payment from './Component/Payment/Payment';
-import Paypal from './Component/Payment/Paypal';
 import Slider from './Component/Home/Slider10/Slider10';
 import Detail from './Component/Detail/Detail';
 import Righter from './Component/Header&Footer/Righter/Righter';
@@ -23,11 +21,10 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <PayPalScriptProvider options={{ clientId: "your-client-id", currency: "USD" }}>
+        <PayPalScriptProvider options={{ "clientId": process.env.REACT_APP_PAYPAL_CLIENT_ID  }}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Home" element={<Home />} />
-            <Route path="/Payment" element={<Payment />} />
             <Route path="/Hometest" element={<Hometest />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Signup" element={<Signup />} />

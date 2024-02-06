@@ -1,53 +1,57 @@
-import React, { useEffect } from "react";
-import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import React, { useState } from "react";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
-const Paypal = ({ selectedOption }) => {
-  const [{ isPending }] = usePayPalScriptReducer();
-  const [hasChanged, setHasChanged] = React.useState(false);
+const Paypal = (props) => {
+  const { product } = props;
+  const [paidFor, setPaidFor] = useState(false);
+  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    // Đặt cờ để kiểm tra sự thay đổi trong selectedOption
-    setHasChanged(true);
-  }, [selectedOption]);
+  const handleApprove = (orderID) => {
+    setPaidFor(true);
+  };
 
-  useEffect(() => {
-    const createOrder = async () => {
-      try {
-        if (hasChanged && !isPending) {
-          const response = await fetch("http://localhost:4000/api/paypal/donate", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                amount: selectedOption.toString(),
-              }),
-          });
+  if (paidFor) {
+    alert("Cảm ơn đã donate");
+  }
 
-          const data = await response.json();
-
-          // Xử lý URL hoặc chuyển hướng nếu cần
-          console.log('URL for approval:', data.approvalUrl);
-
-          // Đặt lại cờ
-          setHasChanged(false);
-        }
-      } catch (error) {
-        console.error('Có lỗi khi gửi yêu cầu đến server:', error.message);
-      }
-    };
-
-    createOrder();
-  }, [selectedOption, isPending, hasChanged]);
+  if (error) {
+    alert(error);
+  }
 
   return (
-    <PayPalScriptProvider options={{ clientId: "Ac9K4i7QCNP72Tt9H5W02MjClbQxKDPTLQGMjkltRGInHipe139bwdFZILDbE1PyDm90A5HnHNupLrf_", currency: "USD" }}>
-      {isPending && <div className="spinner">Đang xử lý thanh toán...</div>}
+    <PayPalScriptProvider>
       <PayPalButtons
-        style={{ layout: "vertical" }}
-        disabled={isPending}
-        forceReRender={[{ layout: "vertical" }]}
-        fundingSource={undefined}
+        onClick={(data, actions) => {
+          const hasAlready = false;
+          if (hasAlready) {
+            setError("Đã tồn tại");
+            return actions.reject();
+          } else {
+            return actions.resolve();
+          }
+        }}
+        createOrder={(data, actions) => {
+          return actions.order.create({
+            purchase_units: [
+              {
+                description: product.description,
+                amount: {
+                  value: product.price,
+                },
+              },
+            ],
+          });
+        }}
+        onApprove={async (data, actions) => {
+          const order = await actions.order.capture();
+          console.log("order", order);
+          handleApprove(data.orderID);
+        }}
+        onCancel={() => { }}
+        onError={(err) => {
+          setError(err);
+          console.log("Failed");
+        }}
       />
     </PayPalScriptProvider>
   );
