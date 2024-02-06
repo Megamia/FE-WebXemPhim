@@ -36,7 +36,6 @@ function App() {
             <Route path="/Righter" element={<Righter />} />
             <Route path="/Slider1" element={<Righter />} />
             <Route path="/Donate" element={<Donate />} />
-
             <Route path="/detail/:id" element={<Detail />} />
           </Routes>
         </PayPalScriptProvider>
