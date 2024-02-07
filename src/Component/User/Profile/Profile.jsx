@@ -7,6 +7,7 @@ import axios from 'axios';
 const Profile = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
+  const [username, setUsername] = useState('');
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -40,6 +41,7 @@ const Profile = () => {
       })
         .then(response => {
           setUser(response.data.userInfo);
+          setUsername(response.data.userInfo.username);
           setFullname(response.data.userInfo.fullname);
           setEmail(response.data.userInfo.email);
           setPhone(response.data.userInfo.phone);
@@ -52,6 +54,7 @@ const Profile = () => {
   const handleUpdate = () => {
     // Gọi API để cập nhật thông tin người dùng
     axios.post('http://localhost:4000/api/profile', {
+      username:username,
       fullname: fullname,
       email: email,
       phone: phone
@@ -84,7 +87,7 @@ const Profile = () => {
         </aside>
         <main className="p-4 w-3/4">
           <div className="bg-white p-6 border-none ">
-            {/* <div className="flex justify-between py-[16px]">
+             <div className="flex justify-between py-[16px]">
               <div className="flex flex-col items-start">
                 <h3 className="text-xl font-semibold">Tên tài khoản</h3>
                 <input
@@ -94,7 +97,7 @@ const Profile = () => {
                   className="border-b border-gray-200 focus:outline-none py-[5px] px-[10px] w-[200%]"
                 />
               </div>
-            </div> */}
+            </div> 
             <div className="flex justify-between py-[16px]">
               <div className="flex flex-col items-start">
                 <h3 className="text-xl font-semibold">Họ và tên</h3>
