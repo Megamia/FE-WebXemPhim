@@ -26,10 +26,10 @@ const Login = () => {
     }
   }, []);
   useEffect(() => {
-  if (isLoggedIn) {
-    sessionStorage.setItem('isLoggedIn', 'true');
-  }
-}, [isLoggedIn]);
+    if (isLoggedIn) {
+      sessionStorage.setItem('isLoggedIn', 'true');
+    }
+  }, [isLoggedIn]);
 
 
   const handleUserChange = (event) => {
@@ -50,6 +50,8 @@ const Login = () => {
       });
 
       if (response.status === 200) {
+        const token = response.data.token;
+        localStorage.setItem("token", token); 
         localStorage.setItem("isLoggedIn", "true"); 
         setIsLoggedIn(true);
         setShowNotification(true);
@@ -59,11 +61,12 @@ const Login = () => {
       setIsLoggedIn(false);
       setShowNotification(true);
     } catch (error) {
-      console.log('Error querying the database:', error);
+      console.error('Error querying the database:', error);
       setIsLoggedIn(false);
       setShowNotification(true);
     }
   };
+
 
   const closeNotification = () => {
     setShowNotification(false);
@@ -71,6 +74,7 @@ const Login = () => {
       navigate("/Profile");
     }
   };
+
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -140,14 +144,14 @@ const Login = () => {
               />
             )}
           </div>
+        </div>
+        {/* <Catalog/> */}
+        <div className="w-full  mt-[20px] ">
+          <Footer />
+        </div>
       </div>
-      {/* <Catalog/> */}
-      <div className="w-full  mt-[20px] ">
-        <Footer />
-      </div>
-    </div>
-  </>
-);
+    </>
+  );
 };
 
 export default Login;
