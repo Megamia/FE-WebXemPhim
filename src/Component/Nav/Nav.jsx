@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCheck } from "@fortawesome/free-solid-svg-icons";
@@ -9,22 +9,26 @@ import styles from './style.module.scss';
 
 const Nav = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+    const handleVideoClick = (event) => {
+        event.preventDefault();
+        const videoUrl = event.currentTarget.getAttribute('href');
+        window.location.href = videoUrl;
+    };
     const handleLogin = () => {
         setIsLoggedIn(true);
         localStorage.setItem('isLoggedIn', true);
-      };
+    };
 
-      const handleLogout = () => {
+    const handleLogout = () => {
         setIsLoggedIn(false);
         localStorage.removeItem('isLoggedIn');
-      };
+    };
     useEffect(() => {
         const loggedInStatus = localStorage.getItem('isLoggedIn');
         if (loggedInStatus) {
-          setIsLoggedIn(true);
+            setIsLoggedIn(true);
         }
-      }, []);
+    }, []);
 
     return (
         <div className="w-full relative">
@@ -35,15 +39,15 @@ const Nav = () => {
                     </div>
                 </NavLink>
 
-                <div className=" hidden md:flex justify-center flex-1 h-[100%] pt-[33px]">
+                <div className=" hidden md:flex justify-center flex-1 h-[100%] ">
 
-                    <div className="w-1/5">
+                    <button className="w-1/5">
                         <a href="/Home" className="text-white text-2xl ">
                             Trang chủ
                         </a>
-                    </div>
+                    </button>
 
-                    <div className={`w-1/5  ${styles.menu}`}>
+                    <button className={`w-1/5  ${styles.menu}`}>
                         <a href="/Error404" className="text-white text-2xl ">
                             Top phim
                         </a>
@@ -72,9 +76,9 @@ const Nav = () => {
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </button>
 
-                    <div className={`w-1/5  ${styles.menu}`}>
+                    <button className={`w-1/5  ${styles.menu}`}>
                         <a href="/Error404" className="text-white text-2xl ">
                             Thể loại
                         </a>
@@ -82,40 +86,46 @@ const Nav = () => {
                             <ul className="bg-white w-[100px] ">
                                 <li>
                                     <button className=" w-[100%] flex left-0">
-                                        <a href="/Error404" className="">
+                                        <a className=""
+                                            href={process.env.PUBLIC_URL + '/img/cut.mp4'}
+                                            onClick={handleVideoClick}>
                                             Luận loan
                                         </a>
                                     </button>
                                 </li>
                                 <li>
-                                    <button className=" w-[100%] flex left-0">
-                                        <a href="/Error404" className="">
+                                    <button className=" w-[100%] flex left-0" >
+                                        <a className=""
+                                            href={process.env.PUBLIC_URL + '/img/sad.mp4'}
+                                            onClick={handleVideoClick}>
                                             Hentai
                                         </a>
                                     </button>
                                 </li>
                                 <li>
                                     <button className=" w-[100%] flex left-0">
-                                        <a href="/Error404" className="">
+                                        <a className=""
+                                            href={process.env.PUBLIC_URL + '/img/sadboiz.mp4'}
+                                            onClick={handleVideoClick}>
                                             Sẽ gầy
                                         </a>
                                     </button>
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </button>
 
-                    <div className="w-1/5">
+                    <button className="w-1/5">
                         <a href="/Error404" className="text-white text-2xl">
                             Thư viện
                         </a>
-                    </div>
+                    </button>
 
-                    <div className="w-1/5">
+                    <button className="w-1/5">
                         <a href="/Donate" className="text-white text-2xl ">
                             Donate
                         </a>
-                    </div>
+                    </button>
 
                 </div>
                 <div className="w-1/2  sm:w-1/4">

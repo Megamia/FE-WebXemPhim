@@ -15,6 +15,9 @@ const Footer = () => {
         };
         scrollToTop();
     };
+    const Notification = () =>{
+        alert('Clm bình tĩnh đi đã làm đâu');
+    }
     return (
         <div className=" bottom-0 left-0 w-full h-[550px] bg-black pt-[30px]">
             <div className="flex h-[400px] ml-[50px] mr-[50px] border-gray-600 border-b-2">
@@ -44,18 +47,18 @@ const Footer = () => {
                     <div className="w-1/4 h-full flex-col items-center text-left hidden md:flex">
                         <div className="w-auto flex flex-col">
                             <span className="text-white text-[30px] mb-[30px]">Thông tin</span>
-                            <div className=" my-[15px]">
-                                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
+                            <div className=" my-[15px]" onClick={Notification}>
+                                <NavLink to="/" className="text-white text-[20px] mt-[30px]">
                                     <span>Trang chủ</span>
                                 </NavLink>
                             </div>
-                            <div className="inline-block my-[15px] text-left">
-                                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
+                            <div className="inline-block my-[15px] text-left"  onClick={Notification}>
+                                <NavLink to="/" className="text-white text-[20px] mt-[30px]">
                                     <span>Anime</span>
                                 </NavLink>
                             </div>
-                            <div className="inline-block my-[15px] text-left">
-                                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
+                            <div className="inline-block my-[15px] text-left"  onClick={Notification}>
+                                <NavLink to="/" className="text-white text-[20px] mt-[30px]">
                                     <span>Series</span>
                                 </NavLink>
                             </div>
@@ -67,18 +70,18 @@ const Footer = () => {
                     <div className="w-1/4 h-full flex-col items-center text-left mr-[60px] hidden md:flex">
                         <div className="w-auto flex flex-col">
                             <span className="text-white text-left text-[30px] mb-[30px]">Dịch vụ</span>
-                            <div className="inline-block my-[15px] text-left">
-                                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
+                            <div className="inline-block my-[15px] text-left" onClick={Notification}>
+                                <NavLink to="/" className="text-white text-[20px] mt-[30px]">
                                     <span>Trang chủ</span>
                                 </NavLink>
                             </div>
-                            <div className="inline-block my-[15px] text-left">
-                                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
+                            <div className="inline-block my-[15px] text-left" onClick={Notification}>
+                                <NavLink to="/" className="text-white text-[20px] mt-[30px]">
                                     <span>Blog</span>
                                 </NavLink>
                             </div>
-                            <div className="inline-block my-[15px] text-left">
-                                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
+                            <div className="inline-block my-[15px] text-left" onClick={Notification}>
+                                <NavLink to="/" className="text-white text-[20px] mt-[30px]">
                                     <span>Nội dung</span>
                                 </NavLink>
                             </div>
@@ -91,22 +94,22 @@ const Footer = () => {
                         <div className=" flex flex-col">
                             <span className="text-white text-left text-[30px] mb-[30px]">Hỗ trợ</span>
                             <div className="inline-block my-[15px] text-left">
-                                <NavLink to="/Home" className="text-white  text-[20px] mt-[30px]">
+                                <NavLink to="/" className="text-white  text-[20px] mt-[30px]" onClick={Notification}>
                                     <span>Quyền riêng tư</span>
                                 </NavLink>
                             </div>
-                            <div className="inline-block my-[15px] text-left">
-                                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
+                            <div className="inline-block my-[15px] text-left" onClick={Notification}>
+                                <NavLink to="/" className="text-white text-[20px] mt-[30px]">
                                     <span>Trách nhiệm người dùng</span>
                                 </NavLink>
                             </div>
-                            <div className="inline-block my-[15px] text-left">
-                                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
+                            <div className="inline-block my-[15px] text-left" onClick={Notification}>
+                                <NavLink to="/" className="text-white text-[20px] mt-[30px]">
                                     <span>FAQs</span>
                                 </NavLink>
                             </div>
-                            <div className="inline-block my-[15px] text-left">
-                                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
+                            <div className="inline-block my-[15px] text-left" onClick={Notification}>
+                                <NavLink to="/" className="text-white text-[20px] mt-[30px]">
                                     <span>Chính sách và quy trình xử lý khiếu nại</span>
                                 </NavLink>
                             </div>

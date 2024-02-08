@@ -10,8 +10,10 @@
         top: -40px;
         left: 10px;
         z-index: 2;
-        border-top: 2px solid #B5E745;
-        
+        border: 2px solid #B5E745;
+        background-color: white;
+        padding: 5px;
+        // width: 100px;
     }
     ul::before {
         content: "";
@@ -28,11 +30,15 @@
     }
     ul li a{
         color: black;
+        // color: white;
         padding-left: 10px;
-
+font-weight: 500;
     }
 }
 
+.menu {
+    position: relative;
+}
 .menu:hover {
     display: block;
 }
@@ -40,7 +46,8 @@
 .submenu {
     display: none;
     position: absolute;
-    top: 100%;
+    top: 70%;
+    left: 15%;
 }
 
 .menu:hover .submenu {

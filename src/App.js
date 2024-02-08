@@ -15,7 +15,7 @@ import Slider from './Component/Home/Slider10/Slider10';
 import Detail from './Component/Detail/Detail';
 import Righter from './Component/Header&Footer/Righter/Righter';
 import Slider1 from './Component/Home/Slider1/Slider1';
-import Donate from './Component/Payment/Donate';
+import Donate from './Component/Donate/Donate';
 
 function App() {
   return (
