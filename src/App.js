@@ -23,6 +23,7 @@ function App() {
       <Router>
         <PayPalScriptProvider options={{ "clientId": process.env.REACT_APP_PAYPAL_CLIENT_ID  }}>
           <Routes>
+          {/* <Route path="/" element={<Slider1 />} /> */}
             <Route path="/" element={<Home />} />
             <Route path="/Home" element={<Home />} />
             <Route path="/Hometest" element={<Hometest />} />

@@ -6,6 +6,7 @@ import Footer from "../Header&Footer/Footer/Footer";
 import Notification from "../Notification/Nontification";
 import Slider10 from "./Slider10/Slider10";
 import Righter from "../Header&Footer/Righter/Righter";
+import Slider1 from "./Slider1/Slider1";
 
 const Home = () => {
   return (
@@ -13,15 +14,18 @@ const Home = () => {
       <Header />
       <div className="bg-[#253238] flex  justify-center">
         <div className="w-[1280px]  justify-center flex-col bg-[#141414] p-[20px] mt-[130px]">
-          <Notification/>
-          
-          <Slider10/>
-          <div className="flex flex-row">
-            <p>
-              hello world
-            </p>
-            <div className=" flex flex-1 justify-end">
-            <Righter/>
+          <Notification />
+          <div className="mx-[-10px] ">
+            <Slider10 />
+          </div>
+          <div className="flex flex-row h-screen">
+            <div className="flex-row w-2/3 flex-1 pt-[20px] mr-[20px]">
+              <Slider1 />
+              <div className="  h-[30px] z-1 relative" />
+
+            </div>
+            <div className=" flex justify-end ">
+              <Righter />
 
             </div>
           </div>

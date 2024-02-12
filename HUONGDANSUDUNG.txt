@@ -1,12 +1,3 @@
-ĐỂ CÓ THỂ CHẠY CODE:
--mở terminal:   npm install (tải node_modules)
+Chạy file BE trước: node index.js
+Chạy file FE:   npm install (npm install --force)
                 npm start
-
-
-ĐỂ CÓ THỂ LẤY CODE(PULL TRƯỚC KHI CODE):
-pull:   -git clone <url> (lần đầu lấy code từ github)
-        -git pull (các lần sau nếu muốn lấy hoặc update code)
-
-push:   git add . (tất cả các thay đổi)
-        git commit -m "<message>" (message)
-        git push 

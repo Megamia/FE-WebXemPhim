@@ -42,36 +42,36 @@ const Nav = () => {
                 <div className=" hidden md:flex justify-center flex-1 h-[100%] ">
 
                     <button className="w-1/5">
-                        <a href="/Home" className="text-white text-2xl ">
+                        <NavLink to="/Home" className="text-white text-2xl ">
                             Trang chủ
-                        </a>
+                        </NavLink>
                     </button>
 
                     <button className={`w-1/5  ${styles.menu}`}>
-                        <a href="/Error404" className="text-white text-2xl ">
+                        <NavLink to="/Error404" className="text-white text-2xl ">
                             Top phim
-                        </a>
+                        </NavLink>
                         <div className={styles.submenu}>
                             <ul className="bg-white w-[100px]  ">
                                 <li>
                                     <button className=" w-[100%] flex left-0">
-                                        <a href="/Error404" className="">
+                                        <NavLink to="/Error404" className="">
                                             Theo năm
-                                        </a>
+                                        </NavLink>
                                     </button>
                                 </li>
                                 <li>
                                     <button className=" w-[100%] flex left-0">
-                                        <a href="/Error404" className="">
+                                        <NavLink to="/Error404" className="">
                                             Theo mùa
-                                        </a>
+                                        </NavLink>
                                     </button>
                                 </li>
                                 <li>
                                     <button className=" w-[100%] flex left-0">
-                                        <a href="/Error404" className="">
+                                        <NavLink to="/Error404" className="">
                                             Theo ngày
-                                        </a>
+                                        </NavLink>
                                     </button>
                                 </li>
                             </ul>
@@ -79,9 +79,9 @@ const Nav = () => {
                     </button>
 
                     <button className={`w-1/5  ${styles.menu}`}>
-                        <a href="/Error404" className="text-white text-2xl ">
+                        <NavLink to="/Error404" className="text-white text-2xl ">
                             Thể loại
-                        </a>
+                        </NavLink>
                         <div className={styles.submenu}>
                             <ul className="bg-white w-[100px] ">
                                 <li>
@@ -116,15 +116,15 @@ const Nav = () => {
                     </button>
 
                     <button className="w-1/5">
-                        <a href="/Error404" className="text-white text-2xl">
+                        <NavLink to="/Error404" className="text-white text-2xl">
                             Thư viện
-                        </a>
+                        </NavLink>
                     </button>
 
                     <button className="w-1/5">
-                        <a href="/Donate" className="text-white text-2xl ">
+                        <NavLink to="/Donate" className="text-white text-2xl ">
                             Donate
-                        </a>
+                        </NavLink>
                     </button>
 
                 </div>

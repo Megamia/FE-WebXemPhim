@@ -154,7 +154,7 @@ const Footer = () => {
                         </div>
                     </a>
                 </div>
-                <a href="#" onClick={handleScrollToTop} >
+                <a href="/#" onClick={handleScrollToTop} >
                     <div className="w-[40px] h-[40px] bg-lime-500 hover:bg-lime-600 ml-2 rounded flex items-center justify-center">
                         <img src="./img/SocialNetworkLogos/arrow-up-solid.svg" alt="back-up" className="w-2/3 h-2/3 text-cyan-400" />
                     </div>

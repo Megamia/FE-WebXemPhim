@@ -11,7 +11,6 @@ const Donate = () => {
   };
 
   const handleDonate = () => {
-
     console.log("Đã chọn giá trị:", selectedPrice);
   };
 
