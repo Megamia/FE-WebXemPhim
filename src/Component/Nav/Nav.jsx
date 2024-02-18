@@ -116,7 +116,7 @@ const Nav = () => {
                     </button>
 
                     <button className="w-1/5">
-                        <NavLink to="/Error404" className="text-white text-2xl">
+                        <NavLink to="/Test" className="text-white text-2xl">
                             Thư viện
                         </NavLink>
                     </button>

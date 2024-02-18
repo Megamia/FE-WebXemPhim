@@ -16,6 +16,7 @@ import Detail from './Component/Detail/Detail';
 import Righter from './Component/Header&Footer/Righter/Righter';
 import Slider1 from './Component/Home/Slider1/Slider1';
 import Donate from './Component/Donate/Donate';
+import Test from './Component/Test/Test';
 
 function App() {
   return (
@@ -23,7 +24,6 @@ function App() {
       <Router>
         <PayPalScriptProvider options={{ "clientId": process.env.REACT_APP_PAYPAL_CLIENT_ID  }}>
           <Routes>
-          {/* <Route path="/" element={<Slider1 />} /> */}
             <Route path="/" element={<Home />} />
             <Route path="/Home" element={<Home />} />
             <Route path="/Hometest" element={<Hometest />} />
@@ -37,6 +37,7 @@ function App() {
             <Route path="/Righter" element={<Righter />} />
             <Route path="/Slider1" element={<Righter />} />
             <Route path="/Donate" element={<Donate />} />
+            <Route path="/Test" element={<Test />} />
             <Route path="/detail/:id" element={<Detail />} />
           </Routes>
         </PayPalScriptProvider>

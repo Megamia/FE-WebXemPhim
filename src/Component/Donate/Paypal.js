@@ -11,7 +11,7 @@ const Paypal = (props) => {
   };
 
   if (paidFor) {
-    alert("Cảm ơn đã donate");
+    alert(`Cảm ơn vì đã donate $${product.price}`);
   }
 
   if (error) {
@@ -38,6 +38,9 @@ const Paypal = (props) => {
                 amount: {
                   value: product.price,
                 },
+                payee: {
+                  email_address: "sb-duksl29334917@business.example.com" // Email nhận tiền
+                }
               },
             ],
           });
