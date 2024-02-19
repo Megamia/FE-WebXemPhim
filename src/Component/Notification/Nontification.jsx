@@ -18,7 +18,7 @@ const Notification = () =>{
                 <li className={`text-[#F3DD3C] ${styles.listItem}`}>
                   Lưu hoặc nhớ ngay link rút gọn
                   <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="text-white">
-                    {' '}bit.ly/2tenvietsub{' '}
+                    {' '}bit.ly/TAIHEN{' '}
                   </a>
                   để truy cập khi nhà mạng chặn!
                 </li>
@@ -32,7 +32,7 @@ const Notification = () =>{
                     {' '}tại đây!{' '}
                   </a>
                   để ủng hộ{' '}
-                  <span className="text-[#E62117]">2tenvietsub</span>
+                  <span className="text-[#E62117]">TAIHEN</span>
                 </li>
                 <li className={`text-[#F3DD3C] ${styles.listItem}`}>
                   Do thiếu hút kinh phí nên quảng cáo có thể gây khó chịu, rất mong các bạn thông cảm!

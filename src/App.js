@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import './App.css';
 import Hometest from './Component/Home/Hometest';
-import Nav from './Component/Nav/Nav';
 import Login from './Component/User/Login/login';
 import Signup from './Component/User/Signup/Signup';
 import Error404 from './Component/Error404/Error404';
@@ -14,7 +13,6 @@ import Hacking from './Component/Hacking/Hacking';
 import Slider from './Component/Home/Slider10/Slider10';
 import Detail from './Component/Detail/Detail';
 import Righter from './Component/Header&Footer/Righter/Righter';
-import Slider1 from './Component/Home/Slider1/Slider1';
 import Donate from './Component/Donate/Donate';
 import Test from './Component/Test/Test';
 

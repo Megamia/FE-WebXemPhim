@@ -17,9 +17,9 @@ const Righter = () => {
                 <div className="bg-red-500 text-white my-[10px] py-[5px] px-[10px] rounded-[5px] flex">
                     <button className="flex flex-1 justify-end items-center">
                     <FaPlay className=""/>
-                        <p className="flex-1 flex justify-center">
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="flex-1 flex justify-center">
                             Xem Phim Ngẫu nhiên
-                        </p>
+                        </a>
                     </button>
                 </div>
 
