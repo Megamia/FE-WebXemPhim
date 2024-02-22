@@ -71,7 +71,11 @@ const Login = () => {
   const closeNotification = () => {
     setShowNotification(false);
     if (isLoggedIn) {
-      navigate("/Profile");
+      if (User === 'admin' && Password === 'admin') {
+        navigate("/UserMNGM");
+      } else {
+        navigate("/Profile");
+      }
     }
   };
 

@@ -1,3 +1,0 @@
-Chạy file BE trước: node index.js
-Chạy file FE:   npm install (npm install --force)
-                npm start

@@ -48,14 +48,14 @@ const Nav = () => {
                     </button>
 
                     <button className={`w-1/5  ${styles.menu}`}>
-                        <NavLink to="/Error404" className="text-white text-2xl ">
+                        <NavLink to="/NewMovie" className="text-white text-2xl ">
                             Top phim
                         </NavLink>
                         <div className={styles.submenu}>
                             <ul className="bg-white w-[100px]  ">
                                 <li>
                                     <button className=" w-[100%] flex left-0">
-                                        <NavLink to="/Error404" className="">
+                                        <NavLink to="/UserMNGM" className="">
                                             Theo năm
                                         </NavLink>
                                     </button>
@@ -116,7 +116,7 @@ const Nav = () => {
                     </button>
 
                     <button className="w-1/5">
-                        <NavLink to="/Error404" className="text-white text-2xl">
+                        <NavLink to="/Test" className="text-white text-2xl">
                             Thư viện
                         </NavLink>
                     </button>

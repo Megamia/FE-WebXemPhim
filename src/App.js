@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import './App.css';
 import Hometest from './Component/Home/Hometest';
-import Nav from './Component/Nav/Nav';
 import Login from './Component/User/Login/login';
 import Signup from './Component/User/Signup/Signup';
 import Error404 from './Component/Error404/Error404';
@@ -12,10 +11,11 @@ import Profile from './Component/User/Profile/Profile';
 import ExPage from './Component/ExamplePage/ExPage';
 import Hacking from './Component/Hacking/Hacking';
 import Slider from './Component/Home/Slider10/Slider10';
-import Detail from './Component/Detail/Detail';
+import NewMovie from './Component/ListMovie/NewMovie';
 import Righter from './Component/Header&Footer/Righter/Righter';
-import Slider1 from './Component/Home/Slider1/Slider1';
 import Donate from './Component/Donate/Donate';
+import Test from './Component/Test/Test';
+import UserMNGM from './Component/Admin/UserMNGM';
 
 function App() {
   return (
@@ -23,7 +23,6 @@ function App() {
       <Router>
         <PayPalScriptProvider options={{ "clientId": process.env.REACT_APP_PAYPAL_CLIENT_ID  }}>
           <Routes>
-          {/* <Route path="/" element={<Slider1 />} /> */}
             <Route path="/" element={<Home />} />
             <Route path="/Home" element={<Home />} />
             <Route path="/Hometest" element={<Hometest />} />
@@ -37,7 +36,10 @@ function App() {
             <Route path="/Righter" element={<Righter />} />
             <Route path="/Slider1" element={<Righter />} />
             <Route path="/Donate" element={<Donate />} />
-            <Route path="/detail/:id" element={<Detail />} />
+            <Route path="/Test" element={<Test />} />
+            <Route path="/UserMNGM" element={<UserMNGM />} />
+            {/* <Route path="/detail/:id" element={<Detail />} /> */}
+            <Route path="/NewMovie" element={<NewMovie/>} />
           </Routes>
         </PayPalScriptProvider>
       </Router>

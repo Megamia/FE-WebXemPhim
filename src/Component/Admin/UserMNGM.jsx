@@ -1,0 +1,115 @@
+import React, { useEffect, useState } from "react";
+import Header from "../Header&Footer/Header/Header";
+import Footer from "../Header&Footer/Footer/Footer";
+import axios from 'axios';
+
+const UserMNGM = () => {
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await axios.get("http://localhost:4000/api/UserMNGM");
+                setUsers(response.data);
+            } catch (error) {
+                console.error('Error retrieving users:', error);
+            }
+        };
+
+        fetchUsers();
+    }, []);
+    const handleDeleteUser = async (userId) => {
+        try {
+            await axios.delete(`http://localhost:4000/api/UserMNGM/${userId}`);
+            setUsers(prevUsers => prevUsers.filter(user => user.userid !== userId));
+            alert('User đã bị cho ra đảo thành công');
+        } catch (error) {
+            alert('User chưa bị cho ra đảo @@', error);
+        }
+    };
+
+    return (
+        <div className="bg-[#263238]">
+            <Header />
+            <div className="bg-[#253238] flex  justify-center">
+                <div className="w-[1280px]  justify-center flex-col bg-[#141414] p-[20px] mt-[130px]">
+                    <div className="flex flex-1 flex-row justify-between text-white text-[25px] ">
+                        <div className="flex flex-col ">
+                            <span>
+                                Username
+                            </span>
+                            <div className="text-[15px] ">
+                                {users.map((user) => (
+                                    <div key={user.userid} className="py-[10px]">{user.username}</div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="flex flex-col">
+                            <span>
+                                Fullname
+                            </span>
+                            <div className="text-[15px] ">
+                                {users.map((user) => (
+                                    <div key={user.userid} className="py-[10px]">{user.fullname}</div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="flex flex-col">
+                            <span>
+                                Email
+                            </span>
+                            <div className="text-[15px] ">
+                                {users.map((user) => (
+                                    <div key={user.userid} className="py-[10px]">{user.email}</div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="flex flex-col">
+                            <span>
+                                Password
+                            </span>
+                            <div className="text-[15px] ">
+                                {users.map((user) => (
+                                    <div key={user.userid} className="py-[10px]">{user.password}</div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="flex flex-col">
+                            <span>
+                                Phone
+                            </span>
+                            <div className="text-[15px] ">
+                                {users.map((user) => (
+                                    <div key={user.userid} className="py-[10px]">{user.phone}</div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="flex flex-col">
+                            <span>
+                                Chỉnh sửa
+                            </span>
+                            <div className="text-[15px] flex flex-col ">
+                                {users.map((user) => (
+
+                                    <button key={user.userid} onClick={() => handleDeleteUser(user.userid)} className="py-[10px]">
+                                    <div className=" w-[100%]  bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white rounded hover:bg-gradient-to-r hover:from-pink-600 hover:via-purple-600 hover:to-blue-600 transition-colors duration-300">
+
+                                         Xóa
+                                    </div>
+                                            
+                                    </button>
+
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="w-full  mt-[20px] ">
+                <Footer />
+            </div>
+        </div>
+    );
+};
+
+export default UserMNGM;

@@ -8,16 +8,16 @@ import { GrCaretPrevious, GrCaretNext } from "react-icons/gr";
 const Slider10 = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const Notification = () =>{
+  const Notification = () => {
     alert('Clm bình tĩnh đi đã làm đâu');
-}
+  }
   useEffect(() => {
     document.title = "Trang chủ";
   }, []);
 
   const CustomPrevArrow = (props) => {
     return (
-      <div className="bg-red-500 text-white flex absolute top-[70px] left-[10px] w-[25px] h-[25px] items-center justify-center z-10" onClick={props.onClick}>
+      <div className="bg-red-500 text-white flex absolute top-[70px] left-[10px] w-[25px] h-[25px] items-center justify-center z-10 cursor-pointer" onClick={props.onClick}>
         <GrCaretPrevious />
       </div>
     );
@@ -25,7 +25,7 @@ const Slider10 = () => {
 
   const CustomNextArrow = (props) => {
     return (
-      <div className="bg-red-500 text-white flex absolute top-[70px] right-[10px] w-[25px] h-[25px] items-center justify-center z-10" onClick={props.onClick}>
+      <div className="bg-red-500 text-white flex absolute top-[70px] right-[10px] w-[25px] h-[25px] items-center justify-center z-10 cursor-pointer" onClick={props.onClick}>
         <GrCaretNext />
       </div>
     );
@@ -36,9 +36,9 @@ const Slider10 = () => {
     infinite: true,
     speed: 500,
     slidesToShow: 10,
-    swipe: true, 
-  swipeToSlide: true,
-  initialSlide: currentSlide,
+    swipe: true,
+    swipeToSlide: true,
+    initialSlide: currentSlide,
     slidesToScroll: 1,
     arrows: true,
     prevArrow: <CustomPrevArrow />,
@@ -48,7 +48,7 @@ const Slider10 = () => {
         <ul className={styles.customDots}>{dots}</ul>
       </div>
     ),
-    
+
     afterChange: (slideIndex) => {
       setCurrentSlide(slideIndex);
       setIsPaused(false); // Khi thay đổi slide, kích hoạt Slider tự động trượt lại
@@ -79,7 +79,7 @@ const Slider10 = () => {
     <Slider {...settings} className="">
       {images.map((image, index) => (
         <div key={index} className="flex flex-row px-[10px]">
-          <img src={image.img} alt={`Slide ${index + 1}`} className="cursor-pointer" onClick={Notification}/>
+          <img src={image.img} alt={`Slide ${index + 1}`} className="cursor-pointer" onClick={Notification} />
         </div>
       ))}
     </Slider>

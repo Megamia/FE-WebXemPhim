@@ -1,3 +1,8 @@
+Cách run project:
+- Chạy file BE trước: node index.js
+- Chạy file FE:   npm install (npm install --force)
+                npm start
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

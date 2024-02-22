@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../Header&Footer/Header/Header";
 // import Catalog from "../Catalog/Catalog(Home)";
 import Footer from "../Header&Footer/Footer/Footer";
-
+import NewMovie from "../ListMovie/NewMovie";
 import Notification from "../Notification/Nontification";
 import Slider10 from "./Slider10/Slider10";
 import Righter from "../Header&Footer/Righter/Righter";
@@ -18,15 +18,16 @@ const Home = () => {
           <div className="mx-[-10px] ">
             <Slider10 />
           </div>
-          <div className="flex flex-row h-screen">
-            <div className="flex-row w-2/3 flex-1 pt-[20px] mr-[20px]">
-              <Slider1 />
-              <div className="  h-[30px] z-1 relative" />
-
+          <div className="flex flex-row ">
+            <div className="flex-row w-2/3 flex-1 pt-[20px]">
+              <div className="mr-[20px]">
+              <Slider1/> 
+              </div>
+              
+              <NewMovie/>
             </div>
             <div className=" flex justify-end ">
               <Righter />
-
             </div>
           </div>
         </div>
