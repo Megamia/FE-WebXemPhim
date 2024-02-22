@@ -15,6 +15,7 @@ import Detail from './Component/Detail/Detail';
 import Righter from './Component/Header&Footer/Righter/Righter';
 import Donate from './Component/Donate/Donate';
 import Test from './Component/Test/Test';
+import UserMNGM from './Component/Admin/UserMNGM';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             <Route path="/Slider1" element={<Righter />} />
             <Route path="/Donate" element={<Donate />} />
             <Route path="/Test" element={<Test />} />
+            <Route path="/UserMNGM" element={<UserMNGM />} />
             <Route path="/detail/:id" element={<Detail />} />
           </Routes>
         </PayPalScriptProvider>

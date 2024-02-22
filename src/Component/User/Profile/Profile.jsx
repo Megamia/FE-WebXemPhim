@@ -33,7 +33,6 @@ const Profile = () => {
 
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
-      // alert(`Token: ${storedToken}`);
       axios.get("http://localhost:4000/api/profile", {
         headers: {
           Authorization: `Bearer ${storedToken}`
@@ -52,7 +51,6 @@ const Profile = () => {
     }
   }, []);
   const handleUpdate = () => {
-    // Gọi API để cập nhật thông tin người dùng
     axios.post('http://localhost:4000/api/profile', {
       username:username,
       fullname: fullname,
