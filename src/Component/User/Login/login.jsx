@@ -5,7 +5,7 @@ import NotificationModal from "./NotificationModal";
 import axios from "axios";
 import Header from "../../Header&Footer/Header/Header";
 import Footer from "../../Header&Footer/Footer/Footer";
-import Notification from "../../Notification/Nontification";
+import Notification from "../../Home/Notification/Nontification";
 
 const Login = () => {
   const [User, setUser] = useState("");
@@ -66,7 +66,6 @@ const Login = () => {
       setShowNotification(true);
     }
   };
-
 
   const closeNotification = () => {
     setShowNotification(false);

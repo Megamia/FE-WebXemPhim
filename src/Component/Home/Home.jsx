@@ -3,7 +3,7 @@ import Header from "../Header&Footer/Header/Header";
 // import Catalog from "../Catalog/Catalog(Home)";
 import Footer from "../Header&Footer/Footer/Footer";
 import NewMovie from "../ListMovie/NewMovie";
-import Notification from "../Notification/Nontification";
+import Notification from "./Notification/Nontification";
 import Slider10 from "./Slider10/Slider10";
 import Righter from "../Header&Footer/Righter/Righter";
 import Slider1 from "./Slider1/Slider1";

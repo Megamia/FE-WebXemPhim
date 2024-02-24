@@ -58,7 +58,7 @@ const Slider1 = () => {
         ),
 
         beforeChange: (current, next) => {
-            handleDotClick(next); // Cập nhật trạng thái activeDotIndex khi chuyển đổi ảnh
+            handleDotClick(next);
             setCurrentSlide(next);
           },
     };
@@ -80,7 +80,7 @@ const Slider1 = () => {
                             <div className=" absolute top-0 left-0  w-[60%] h-[100%] flex px-[20px] py-[10px] flex-col">
 
                                 {/*NAME*/}
-                                <a href="url1" className="w-[100%]">
+                                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="w-[100%]">
                                     <div className="text-white text-[40px]  ">
                                         {information && information.name}
                                     </div>
@@ -128,7 +128,7 @@ const Slider1 = () => {
                                         ))}
                                     </div>
                                     <button className="bg-red-500 flex w-[200px] justify-center rounded-[10px] px-[20px] py-[10px] mt-[20px]">
-                                        <a href="url1" className="flex flex-row items-center">
+                                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="flex flex-row items-center">
                                             <FaPlay className="text-white mr-[15px]" />
                                             <div className=" flex flex-1 text-white font-bold ">
                                                 Xem phim

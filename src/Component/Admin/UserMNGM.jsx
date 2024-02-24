@@ -40,7 +40,9 @@ const UserMNGM = () => {
                             </span>
                             <div className="text-[15px] ">
                                 {users.map((user) => (
-                                    <div key={user.userid} className="py-[10px]">{user.username}</div>
+                                    <div key={user?.userid} className="py-[10px]">
+                                        {user?.userid !== null ? user?.username : 'No data'}
+                                    </div>
                                 ))}
                             </div>
                         </div>
@@ -50,7 +52,9 @@ const UserMNGM = () => {
                             </span>
                             <div className="text-[15px] ">
                                 {users.map((user) => (
-                                    <div key={user.userid} className="py-[10px]">{user.fullname}</div>
+                                    <div key={user?.userid} className="py-[10px]">
+                                        {user?.userid !== null ? user?.fullname : 'No data'}
+                                    </div>
                                 ))}
                             </div>
                         </div>
@@ -60,7 +64,9 @@ const UserMNGM = () => {
                             </span>
                             <div className="text-[15px] ">
                                 {users.map((user) => (
-                                    <div key={user.userid} className="py-[10px]">{user.email}</div>
+                                    <div key={user?.userid} className="py-[10px]">
+                                        {user?.userid !== null ? user?.email : 'No data'}
+                                    </div>
                                 ))}
                             </div>
                         </div>
@@ -70,7 +76,9 @@ const UserMNGM = () => {
                             </span>
                             <div className="text-[15px] ">
                                 {users.map((user) => (
-                                    <div key={user.userid} className="py-[10px]">{user.password}</div>
+                                    <div key={user?.userid} className="py-[10px]">
+                                        {user?.userid !== null ? user?.password : 'No data'}
+                                    </div>
                                 ))}
                             </div>
                         </div>
@@ -80,7 +88,9 @@ const UserMNGM = () => {
                             </span>
                             <div className="text-[15px] ">
                                 {users.map((user) => (
-                                    <div key={user.userid} className="py-[10px]">{user.phone}</div>
+                                    <div key={user?.userid} className="py-[10px]">
+                                        {user?.phone !== null ? user?.phone : 'No data'}
+                                    </div>
                                 ))}
                             </div>
                         </div>
@@ -88,17 +98,17 @@ const UserMNGM = () => {
                             <span>
                                 Chỉnh sửa
                             </span>
-                            <div className="text-[15px] flex flex-col ">
+                            <div className="text-[15px] flex flex-col">
                                 {users.map((user) => (
-
-                                    <button key={user.userid} onClick={() => handleDeleteUser(user.userid)} className="py-[10px]">
-                                    <div className=" w-[100%]  bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white rounded hover:bg-gradient-to-r hover:from-pink-600 hover:via-purple-600 hover:to-blue-600 transition-colors duration-300">
-
-                                         Xóa
-                                    </div>
-                                            
-                                    </button>
-
+                                    user.username !== "admin" ? (
+                                        <button key={user.userid} onClick={() => handleDeleteUser(user.userid)} className="py-[10px]">
+                                            <div className="w-[100%] bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white rounded hover:bg-gradient-to-r hover:from-pink-600 hover:via-purple-600 hover:to-blue-600 transition-colors duration-300">
+                                                Xóa
+                                            </div>
+                                        </button>
+                                    ) : (
+                                        <p className="py-[10px] flex">Can't delete</p>
+                                    )
                                 ))}
                             </div>
                         </div>

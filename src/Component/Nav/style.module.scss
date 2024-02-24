@@ -1,10 +1,12 @@
 .menu {
     position: relative;
+
     a {
         position: relative;
         z-index: 1;
-        
+
     }
+
     ul {
         position: absolute;
         top: -40px;
@@ -12,9 +14,8 @@
         z-index: 2;
         border: 2px solid #B5E745;
         background-color: white;
-        padding: 5px;
-        // width: 100px;
     }
+
     ul::before {
         content: "";
         position: absolute;
@@ -25,16 +26,18 @@
         border-width: 7px;
         border-color: transparent transparent #B5E745 transparent;
     }
-    ul li a{
+
+    ul li a {
         color: black;
         padding-left: 10px;
-font-weight: 500;
+        font-weight: 500;
     }
 }
 
 .menu {
     position: relative;
 }
+
 .menu:hover {
     display: block;
 }
