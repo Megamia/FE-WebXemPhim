@@ -11,11 +11,13 @@ import Profile from './Component/User/Profile/Profile';
 import ExPage from './Component/ExamplePage/ExPage';
 import Hacking from './Component/Hacking/Hacking';
 import Slider from './Component/Home/Slider10/Slider10';
-import NewMovie from './Component/ListMovie/NewMovie';
+import ListMovieCategory from './Component/ListMovie/ListMovieCategory';
 import Righter from './Component/Header&Footer/Righter/Righter';
 import Donate from './Component/Donate/Donate';
 import Test from './Component/Test/Test';
 import UserMNGM from './Component/Admin/UserMNGM';
+import ListMovieType from './Component/ListMovie/ListMovieType';
+import NewMovie from './Component/ListMovie/NewMovie';
 
 function App() {
   return (
@@ -39,7 +41,10 @@ function App() {
             <Route path="/Test" element={<Test />} />
             <Route path="/UserMNGM" element={<UserMNGM />} />
             {/* <Route path="/detail/:id" element={<Detail />} /> */}
-            <Route path="/NewMovie" element={<NewMovie/>} />
+            <Route path="/phim-moi" element={<NewMovie/>} />
+            <Route path="/phim-moi/:page" element={<NewMovie/>} />
+            <Route path="/danh-muc/:category" element={<ListMovieCategory/>} />
+            <Route path="/the-loai/:type" element={<ListMovieType/>} />
           </Routes>
         </PayPalScriptProvider>
       </Router>

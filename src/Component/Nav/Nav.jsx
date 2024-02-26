@@ -48,7 +48,7 @@ const Nav = () => {
                     </button>
 
                     <button className={`w-1/5  ${styles.menu}`}>
-                        <NavLink to="/NewMovie" className="text-white text-2xl ">
+                        <NavLink to="/phim-moi" className="text-white text-2xl ">
                             Top phim
                         </NavLink>
                         <div className={styles.submenu}>

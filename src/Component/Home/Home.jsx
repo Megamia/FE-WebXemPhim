@@ -23,8 +23,6 @@ const Home = () => {
               <div className="mr-[20px]">
               <Slider1/> 
               </div>
-              
-              <NewMovie/>
             </div>
             <div className=" flex justify-end ">
               <Righter />
