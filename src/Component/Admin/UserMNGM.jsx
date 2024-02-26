@@ -41,7 +41,7 @@ const UserMNGM = () => {
                             <div className="text-[15px] ">
                                 {users.map((user) => (
                                     <div key={user?.userid} className="py-[10px]">
-                                        {user?.userid !== null ? user?.username : 'No data'}
+                                        {user.username}
                                     </div>
                                 ))}
                             </div>
@@ -53,7 +53,7 @@ const UserMNGM = () => {
                             <div className="text-[15px] ">
                                 {users.map((user) => (
                                     <div key={user?.userid} className="py-[10px]">
-                                        {user?.userid !== null ? user?.fullname : 'No data'}
+                                        {user?.fullname !== null && user?.fullname !== '' ? user?.fullname : 'No data'}
                                     </div>
                                 ))}
                             </div>
@@ -65,7 +65,7 @@ const UserMNGM = () => {
                             <div className="text-[15px] ">
                                 {users.map((user) => (
                                     <div key={user?.userid} className="py-[10px]">
-                                        {user?.userid !== null ? user?.email : 'No data'}
+                                        {user?.email !== null && user?.email !== '' ? user?.email : 'No data'}
                                     </div>
                                 ))}
                             </div>
@@ -77,7 +77,7 @@ const UserMNGM = () => {
                             <div className="text-[15px] ">
                                 {users.map((user) => (
                                     <div key={user?.userid} className="py-[10px]">
-                                        {user?.userid !== null ? user?.password : 'No data'}
+                                       {user.password}
                                     </div>
                                 ))}
                             </div>
@@ -89,7 +89,7 @@ const UserMNGM = () => {
                             <div className="text-[15px] ">
                                 {users.map((user) => (
                                     <div key={user?.userid} className="py-[10px]">
-                                        {user?.phone !== null ? user?.phone : 'No data'}
+                                        {user?.phone !== null && user?.phone !== '' ? user?.phone : 'No data'}
                                     </div>
                                 ))}
                             </div>
