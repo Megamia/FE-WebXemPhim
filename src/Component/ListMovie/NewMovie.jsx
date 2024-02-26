@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import Header from '../Header&Footer/Header/Header';
@@ -12,6 +12,7 @@ const NewMovie = () => {
   const [movieData, setMovieData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [moviesPerPage] = useState(15);
+  const scrollRef = useRef();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,6 +33,7 @@ const NewMovie = () => {
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
+    scrollRef.current.scrollIntoView({ behavior: 'smooth' });
     navigate(`/phim-moi/${pageNumber}`);
   };
 
@@ -46,7 +48,7 @@ const NewMovie = () => {
         <div className="w-[1280px]  justify-center flex-col bg-[#141414] p-[20px] mt-[130px]">
           <Notification />
           <div className="w-full flex">
-            <div className="w-full flex-row bg-[#141414]">
+            <div ref={scrollRef} className="w-full flex-row bg-[#141414]">
               <div className="flex w-full justify-center mt-4 mb-4 relative left-[-10px]">
                 {movieData.length > moviesPerPage && (
                   <nav className="w-full">

@@ -74,6 +74,20 @@ const Nav = () => {
                                         </NavLink>
                                     </button>
                                 </li>
+                                <li>
+                                    <button className=" w-[100%] flex left-0">
+                                        <NavLink to="/danh-muc/phim-bo" className="">
+                                            Phim Bộ
+                                        </NavLink>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button className=" w-[100%] flex left-0">
+                                        <NavLink to="/danh-muc/phim-le" className="">
+                                            Phim Lẻ
+                                        </NavLink>
+                                    </button>
+                                </li>
                             </ul>
                         </div>
                     </button>
@@ -109,6 +123,34 @@ const Nav = () => {
                                             onClick={handleVideoClick}>
                                             Sẽ gầy
                                         </a>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button className=" w-[100%] flex left-0">
+                                        <NavLink to="/the-loai/drama" className="">
+                                            Drama
+                                        </NavLink>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button className=" w-[100%] flex left-0">
+                                        <NavLink to="/the-loai/action" className="">
+                                            Action
+                                        </NavLink>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button className=" w-[100%] flex left-0">
+                                        <NavLink to="/the-loai/adventure" className="">
+                                            Adventure
+                                        </NavLink>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button className=" w-[100%] flex left-0">
+                                        <NavLink to="/the-loai/fantasy" className="">
+                                            Fantasy
+                                        </NavLink>
                                     </button>
                                 </li>
                             </ul>

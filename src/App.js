@@ -44,7 +44,9 @@ function App() {
             <Route path="/phim-moi" element={<NewMovie/>} />
             <Route path="/phim-moi/:page" element={<NewMovie/>} />
             <Route path="/danh-muc/:category" element={<ListMovieCategory/>} />
+            <Route path="/danh-muc/:category/:page" element={<ListMovieCategory/>} />
             <Route path="/the-loai/:type" element={<ListMovieType/>} />
+            <Route path="/the-loai/:type/:page" element={<ListMovieType/>} />
           </Routes>
         </PayPalScriptProvider>
       </Router>
