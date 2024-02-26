@@ -24,7 +24,7 @@ const Footer = () => {
                 <div className="w-[40%] flex flex-col mt-[30px] overflow-hidden">
                     <div className="w-[15%] h-auto ">
                         <NavLink to="/Home" onClick={handleScrollToTop}>
-                            <img src="./img/logo.png" alt="logo" className=" w-full h-auto " />
+                            <img src="../../img/logo.png" alt="logo" className=" w-full h-auto " />
                         </NavLink>
                     </div>
                     <div className=" w-auto h-auto">

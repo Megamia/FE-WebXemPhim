@@ -35,7 +35,7 @@ const Nav = () => {
             <div className="flex items-center h-[100px] top-0 z-50 bg-black ">
                 <NavLink to="/Home" className="h-full w-[100px] flex items-center justify-center ml-[40px] mr-[40px]">
                     <div className="flex justify-center h-[85%]">
-                        <img src="./img/logoPage.png" alt="logo" className="h-auto max-h-[100%]" />
+                        <img src="../../img/logoPage.png" alt="logo" className="h-auto max-h-[100%]" />
                     </div>
                 </NavLink>
 
