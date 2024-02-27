@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../../Header&Footer/Header/Header';
 import Footer from '../../Header&Footer/Footer/Footer';
 import { useNavigate } from 'react-router-dom';
+import { FaUser } from "react-icons/fa";
 import axios from 'axios';
 
 const Profile = () => {
@@ -52,7 +53,7 @@ const Profile = () => {
   }, []);
   const handleUpdate = () => {
     axios.post('http://localhost:4000/api/profile', {
-      username:username,
+      username: username,
       fullname: fullname,
       email: email,
       phone: phone
@@ -73,69 +74,106 @@ const Profile = () => {
       <div>
         <Header />
       </div>
-      <div className="flex mt-[100px]">
-        <aside className="bg-white p-4 m-4 h-screen w-1/4 border-none">
-          <ul>
-            <li className="mb-4">
-              <a href="/profile-settings" className="hover:underline">
-                Cài đặt profile
-              </a>
-            </li>
-          </ul>
-        </aside>
-        <main className="p-4 w-3/4">
-          <div className="bg-white p-6 border-none ">
-             <div className="flex justify-between py-[16px]">
-              <div className="flex flex-col items-start">
-                <h3 className="text-xl font-semibold">Tên tài khoản</h3>
-                <input
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="border-b border-gray-200 focus:outline-none py-[5px] px-[10px] w-[200%]"
-                />
+      <div className="flex flex-col mt-[100px] p-[35px]">
+        <div className='flex flex-row flex-1'>
+          <div className="flex flex-col w-[300px] px-[20px]">
+            <div className="flex flex-col items-center mb-[30px]">
+              <img src="../../img/AVT/03ebd625cc0b9d636256ecc44c0ea324.jpg" alt="?" className="w-[50%]" />
+              <div className='flex text-black'>
+                {fullname}
               </div>
-            </div> 
-            <div className="flex justify-between py-[16px]">
-              <div className="flex flex-col items-start">
-                <h3 className="text-xl font-semibold">Họ và tên</h3>
-                <input
-                  type="text"
-                  value={fullname}
-                  onChange={(e) => setFullname(e.target.value)}
-                  className="border-b border-gray-200 focus:outline-none py-[5px] px-[10px] w-[200%]"
-                />
+              <div className='flex text-black'>
+                {email}
               </div>
             </div>
-            <div className="flex justify-between py-[16px]">
-              <div className="flex flex-col items-start">
-                <h3 className="text-xl font-semibold">Email</h3>
-                <input
-                  type="text"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="border-b border-gray-200 focus:outline-none py-[5px] px-[10px] w-[200%]"
-                />
+            <div className='px-[60px]'>
+              <div className='flex flex-row items-center'>
+                <FaUser className='mr-[10px]' /> Profile
+              </div>
+              <div className='flex flex-row items-center'>
+                <FaUser className='mr-[10px]' /> Profile
+              </div>
+              <div className='flex flex-row items-center'>
+                <FaUser className='mr-[10px]' /> Profile
+              </div>
+              <div className='flex flex-row items-center'>
+                <FaUser className='mr-[10px]' /> Profile
+              </div>
+              <div className='flex flex-row items-center'>
+                <FaUser className='mr-[10px]' /> Profile
+              </div>
+              <div className='flex flex-row items-center'>
+                <FaUser className='mr-[10px]' /> Profile
               </div>
             </div>
-            <div className="flex justify-between py-[16px]">
-              <div className="flex flex-col items-start">
-                <h3 className="text-xl font-semibold">Số điện thoại</h3>
-                <input
-                  type="text"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="border-b border-gray-200 focus:outline-none py-[5px] px-[10px] w-[200%]"
-                />
-              </div>
-            </div>
+          </div>
 
+          <div className='flex flex-col flex-1 '>
+            <p className="hover:underline text-xl font-bold">
+              Cài đặt profile
+            </p>
+            <div className='flex flex-col flex-1 py-[30px]'>
+              <div className="flex flex-col flex-1 bg-white px-[60px] border-none ">
+                <div className="flex justify-between py-[16px]">
+                  <div className="flex flex-1 flex-row items-center">
+                    <span className="text-xl font-semibold mr-[30px] w-[130px]">Username</span>
+                    <input
+                      type="input"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      className="border-[2px] border-gray-300 focus:outline-none py-[5px] px-[10px] flex flex-1 rounded-[5px]"
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-between py-[16px]">
+                  <div className="flex flex-1 flex-row items-center">
+                    <span className="text-xl font-semibold mr-[30px] w-[130px]">Fullname</span>
+                    <input
+                      type="input"
+                      value={fullname}
+                      onChange={(e) => setFullname(e.target.value)}
+                      className="border-[2px] border-gray-300 focus:outline-none py-[5px] px-[10px] flex flex-1 rounded-[5px]"
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-between py-[16px]">
+                  <div className="flex flex-1 flex-row items-center">
+                    <span className="text-xl font-semibold mr-[30px] w-[130px]">Email</span>
+                    <input
+                      type="input"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="border-[2px] border-gray-300 focus:outline-none py-[5px] px-[10px] flex flex-1 rounded-[5px]"
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-between py-[16px]">
+                  <div className="flex flex-1 flex-row items-center">
+                    <span className="text-xl font-semibold mr-[30px] w-[130px]">Số điện thoại</span>
+                    <input
+                      type="text"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      className="border-[2px] border-gray-300 focus:outline-none py-[5px] px-[10px] flex flex-1 rounded-[5px]"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className=' flex justify-between w-[300px]'>
-            <button onClick={handleUpdate}>Lưu Thông tin</button>
-            <button onClick={handleLogout}>Đăng xuất</button>
-          </div>
-        </main>
+        </div>
+        <div className="flex items-center justify-evenly " >
+          <button onClick={handleUpdate}>
+            <div className='bg-[#EF4444] p-[10px] rounded-full border border-solid border-red-500 text-white font-bold hover:bg-[#3EA6FF]'>
+              Lưu thông tin
+            </div>
+          </button>
+          <button onClick={handleLogout}>
+            <div className='bg-[#EF4444] p-[10px] rounded-full border border-solid border-red-500 text-white font-bold hover:bg-[#3EA6FF]'>
+              Đăng xuất
+            </div>
+          </button>
+        </div>
       </div>
       <div>
         <Footer />

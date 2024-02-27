@@ -7,8 +7,7 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const threshold = 100; // Ngưỡng cuộn trang để header biến mất
-
+      const threshold = 100; 
       setHeaderVisible(scrollTop < threshold);
     };
 

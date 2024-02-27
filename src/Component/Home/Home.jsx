@@ -29,7 +29,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-      {/* <Catalog/> */}
       <div className="w-full  mt-[20px] ">
         <Footer />
       </div>

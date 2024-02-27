@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCheck } from "@fortawesome/free-solid-svg-icons";
-// import Payment from './../Payment/Payment';
-// import Detail from './../Detail/Detail';
-// import Error404 from './../Error404/Error404';
 import styles from './style.module.scss';
 
 const Nav = () => {

@@ -79,7 +79,7 @@ const Slider10 = () => {
     <Slider {...settings} className="">
       {images.map((image, index) => (
         <div key={index} className="flex flex-row px-[10px]">
-          <img src={image.img} alt={`Slide ${index + 1}`} className="cursor-pointer" onClick={Notification} />
+          <img src={image.img} alt={`Slide ${index + 1}`} className="cursor-pointer"/>
         </div>
       ))}
     </Slider>
