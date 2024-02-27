@@ -18,8 +18,9 @@ import Test from './Component/Test/Test';
 import UserMNGM from './Component/Admin/UserMNGM';
 import ListMovieType from './Component/ListMovie/ListMovieType';
 import NewMovie from './Component/ListMovie/NewMovie';
+import MovieBox from './Component/Detail/MovieBox';
 
-function App() {
+function App() { 
   return (
     <div className="App">
       <Router>
@@ -30,7 +31,7 @@ function App() {
             <Route path="/Hometest" element={<Hometest />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Signup" element={<Signup />} />
-            <Route path="/Error404" element={<Error404 />} />
+            <Route path="/not-found" element={<Error404 />} />
             <Route path="/Profile" element={<Profile />} />
             <Route path="/ExPage" element={<ExPage />} />
             <Route path="/Hacking" element={<Hacking />} />
@@ -47,6 +48,8 @@ function App() {
             <Route path="/danh-muc/:category/:page" element={<ListMovieCategory/>} />
             <Route path="/the-loai/:type" element={<ListMovieType/>} />
             <Route path="/the-loai/:type/:page" element={<ListMovieType/>} />
+            <Route path="*" element={<Error404 />} />
+            <Route path="/MovieBox/:movieid" element={<MovieBox />} />
           </Routes>
         </PayPalScriptProvider>
       </Router>

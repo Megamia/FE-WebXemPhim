@@ -9,10 +9,10 @@ import Slider1 from "./Slider1/Slider1";
 
 const Home = () => {
   return (
-    <div className="bg-[#263238]">
+    <div className="bg-[#263238] ">
       <Header />
-      <div className="bg-[#253238] flex  justify-center">
-        <div className="w-[1280px]  justify-center flex-col bg-[#141414] p-[20px] mt-[130px]">
+      <div className="bg-[#253238] flex  justify-center ">
+        <div className="w-[1280px]  justify-center flex-col bg-[#141414] p-[20px] pt-[130px]">
           <Notification />
           <div className="mx-[-10px] ">
             <Slider10 />

@@ -93,7 +93,7 @@ const Nav = () => {
                     </button>
 
                     <button className={`w-1/5  ${styles.menu}`}>
-                        <NavLink to="/Error404" className="text-white text-2xl ">
+                        <NavLink to="/MovieBox" className="text-white text-2xl ">
                             Thể loại
                         </NavLink>
                         <div className={styles.submenu}>

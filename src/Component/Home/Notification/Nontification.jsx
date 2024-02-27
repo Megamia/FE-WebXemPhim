@@ -5,7 +5,7 @@ import { faBullhorn } from '@fortawesome/free-solid-svg-icons';
 
 const Notification = () =>{
     return(
-        <div className="bg-[#2D2D2D] w-full  p-[10px] mb-[20px]">
+        <div className="bg-[#2D2D2D] w-full  p-[10px] mb-[20px] rounded">
             <div
               className={`bg-[#252525] rounded-[50px]  inline-flex w-[40px] h-[40px] items-center justify-center ${styles.icon}`}
             >

@@ -5,6 +5,7 @@ import Header from '../Header&Footer/Header/Header';
 import Notification from '../Home/Notification/Nontification';
 import Footer from '../Header&Footer/Footer/Footer';
 import Righter from '../Header&Footer/Righter/Righter';
+import MovieBox from '../Detail/MovieBox';
 
 const NewMovie = () => {
   const { page } = useParams();
@@ -69,6 +70,10 @@ const NewMovie = () => {
                       </li>
                       {Array.from({ length: Math.min(4, Math.ceil(movieData.length / moviesPerPage)) }, (_, index) => {
                         const totalPages = Math.ceil(movieData.length / moviesPerPage);
+                        if (page && parseInt(page) > totalPages) {
+                          navigate('/not-found'); // Chuyển hướng đến trang Error404
+                          return null; // Ngừng render component hiện tại
+                        }
                         if (currentPage > totalPages - 3 && totalPages > 4) {
                           const pageNumber = totalPages - 4 + index + 1;
                           return (
@@ -132,19 +137,20 @@ const NewMovie = () => {
               <div className="flex w-full">
                 <ul className="flex w-full flex-wrap relative left-[-10px]">
                   {currentMovies.map((movie) => (
-                    <li key={movie.movieid} className="w-1/5 mb-5 px-[10px]">
-                      <a className="block w-full" href="/#">
-                        <div>
-                          <img
-                            className="w-[200px] flex justify-center rounded"
-                            src={`../../upload/poster/${movie.poster}`}
-                            alt="Movie Avatar"
-                          />
-                        </div>
-                        <span className="text-white flex justify-center capitalize">{movie.moviename}</span>
-                        <span className="text-[#7D7D7D] flex justify-center text-[13px]">Lượt xem: {movie.views}</span>
-                      </a>
-                    </li>
+                    <MovieBox key={movie.movieid} movie={movie} />
+                    // <li key={movie.movieid} className="w-1/5 mb-5 px-[10px]">
+                    //   <a className="block w-full" href="/#">
+                    //     <div>
+                    //       <img
+                    //         className="w-[200px] flex justify-center rounded"
+                    //         src={`../../upload/poster/${movie.poster}`}
+                    //         alt="Movie Avatar"
+                    //       />
+                    //     </div>
+                    //     <span className="text-white flex justify-center capitalize">{movie.moviename}</span>
+                    //     <span className="text-[#7D7D7D] flex justify-center text-[13px]">Lượt xem: {movie.views}</span>
+                    //   </a>
+                    // </li>
                   ))}
                 </ul>
               </div>
