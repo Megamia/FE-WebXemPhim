@@ -29,6 +29,9 @@ const Nav = () => {
             setIsLoggedIn(true);
         }
     }, []);
+    const handleLoginClick = () => {
+        window.scrollTo(0, 300);
+      };
 
     return (
         <div className="w-full relative">
@@ -198,7 +201,8 @@ const Nav = () => {
                     <NavLink
                         to="/Login"
                         className="hidden md:flex md:items-center bg-red-600 hover:bg-gray-600 text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center w-[150px] h-[40px]"
-                        activeClassName="hidden"
+                        activeClassName="hidden "
+                        onClick={handleLoginClick}
                     >
                         <span className="mx-auto">Đăng Nhập</span>
                     </NavLink>

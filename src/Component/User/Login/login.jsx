@@ -1,160 +1,253 @@
 import React, { useState, useEffect } from "react";
 import "./login.css";
-import { NavLink, useNavigate } from "react-router-dom";
-import NotificationModal from "./NotificationModal";
+import { useNavigate } from "react-router-dom";
+// import NotificationModal from "./NotificationModal";
 import axios from "axios";
 import Header from "../../Header&Footer/Header/Header";
 import Footer from "../../Header&Footer/Footer/Footer";
 import Notification from "../../Home/Notification/Nontification";
 
 const Login = () => {
-  const [User, setUser] = useState("");
-  const [Password, setPassword] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [showNotification, setShowNotification] = useState(false);
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    document.title = "Đăng nhập";
-  }, []);
+    const [User, setUser] = useState('');
+    const [Password, setPassword] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    const storedLoggedInStatus = localStorage.getItem("isLoggedIn");
+    const [fullname, setFullName] = useState('');
+    const [username, setUserName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setpassword] = useState('');
+    const [phone, setPhone] = useState('');
 
-    if (storedLoggedInStatus === "true") {
-      setIsLoggedIn(true);
-    }
-  }, []);
-  useEffect(() => {
-    if (isLoggedIn) {
-      sessionStorage.setItem('isLoggedIn', 'true');
-    }
-  }, [isLoggedIn]);
+    useEffect(() => {
+        document.title = "Đăng nhập";
+    }, []);
+
+    useEffect(() => {
+        const storedLoggedInStatus = localStorage.getItem("isLoggedIn");
+        if (storedLoggedInStatus === "true") {
+            setIsLoggedIn(true);
+        }
+    }, []);
+    useEffect(() => {
+        if (isLoggedIn) {
+            sessionStorage.setItem('isLoggedIn', 'true');
+        }
+    }, [isLoggedIn]);
+
+    //login//
+    const handleUserChange = (event) => {
+        setUser(event.target.value);
+    };
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
+    
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post("http://localhost:4000/api/login", {
+                username: User,
+                password: Password
+            });
+
+            if (response.status === 200) {
+                const token = response.data.token;
+                localStorage.setItem("token", token);
+                localStorage.setItem("isLoggedIn", "true");
+                setIsLoggedIn(true);
+                alert("Đăng nhập thành công");
+                window.scrollTo(0, 0);
+                if (User === 'admin') {
+                    navigate("/UserMNGM");
+                  } else {
+                    navigate("/Profile");
+                  }
+                return;
+            }
+
+            setIsLoggedIn(false);
+            alert("Đăng nhập thất bại");
+        } catch (error) {
+            console.error('Error querying the database:', error);
+            setIsLoggedIn(false);
+            alert("Đăng nhập thất bại");
+        }
+    };
 
 
-  const handleUserChange = (event) => {
-    setUser(event.target.value);
-  };
+    //SIGNUP//
+    const handleSignup = async (event) => {
+        event.preventDefault();
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
+        try {
+            const response = await axios.post('http://localhost:4000/api/signup', {
+                username,
+                fullname,
+                email,
+                password,
+                phone,
+            });
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+            console.log('Signup successful:', response.data);
+            alert('Đăng kí thành công');
+            window.location.href = '/login';
 
-    try {
-      const response = await axios.post("http://localhost:4000/api/login", {
-        username: User,
-        password: Password
-      });
+        } catch (error) {
+            console.error('Error signing up:', error);
+            alert('Người dùng đã tồn tại');
+        }
+    };
+    const [isSignUpActive, setIsSignUpActive] = useState(false);
 
-      if (response.status === 200) {
-        const token = response.data.token;
-        localStorage.setItem("token", token); 
-        localStorage.setItem("isLoggedIn", "true"); 
-        setIsLoggedIn(true);
-        setShowNotification(true);
-        return;
-      }
+    const handleSignUpClick = () => {
+        setIsSignUpActive(true);
+    };
 
-      setIsLoggedIn(false);
-      setShowNotification(true);
-    } catch (error) {
-      console.error('Error querying the database:', error);
-      setIsLoggedIn(false);
-      setShowNotification(true);
-    }
-  };
+    const handleLoginClick = () => {
+        setIsSignUpActive(false);
+    };
 
-  const closeNotification = () => {
-    setShowNotification(false);
-    if (isLoggedIn) {
-      if (User === 'admin' && Password === 'admin') {
-        navigate("/UserMNGM");
-      } else {
-        navigate("/Profile");
-      }
-    }
-  };
+    return (
+        <>
+            <div className="bg-[#263238]">
+                <Header />
+                <div className="bg-[#253238] flex  justify-center">
+                    <div className="w-[1280px]  justify-center flex-col bg-[#141414] p-[20px] mt-[130px]">
+                        <Notification />
 
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      const timer = setTimeout(() => {
-        closeNotification();
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [isLoggedIn, navigate]);
-
-  return (
-    <>
-      <div className="bg-[#263238]">
-        <Header />
-        <div className="bg-[#253238] flex  justify-center">
-          <div className="w-[1280px]  justify-center flex-col bg-[#141414] p-[20px] mt-[130px]">
-            <Notification />
-
-            <div className=" flex items-center justify-center bg-[#263238]">
-              <form
-                onSubmit={handleLogin}
-                className="flex justify-center w-[200px] md:w-[400px] lg:w-[600px] h-[600px] rounded-xl"
-              >
-                <div className="flex flex-col justify-center w-[80%]">
-                  <div className="font-bold text-[30px] justify-center flex mb-[10px] text-white">
-                    ĐĂNG NHẬP
-                  </div>
-                  <input
-                    type="text"
-                    id="username"
-                    value={User}
-                    onChange={handleUserChange}
-                    placeholder="Tên đăng nhập..."
-                    className="inputUser border-gray-300 text-black"
-                  />
-                  <input
-                    type="password"
-                    id="password"
-                    value={Password}
-                    onChange={handlePasswordChange}
-                    placeholder="Mật khẩu..."
-                    className="inputUser border-gray-300 text-black"
-                  />
-                  <div className="  flex justify-center ">
-                    <button className="w-1/2 bg-red-500 text-white rounded-lg my-[2px] py-[10px]">
-                      <p className="">Đăng nhập</p>
-                    </button>
-                  </div>
-                  <p className="flex justify-center text-white">
-                    Bạn chưa có tài khoản?{" "}
-                    <NavLink to="/Signup" className="text-red-600">
-                      Đăng ký
-                    </NavLink>
-                  </p>
+                        <div className=" flex items-center justify-center bg-[#263238]">
+                            <div className={`container ${isSignUpActive ? 'right-panel-active' : ''}`}>
+                                <div className="form-container sign-up-container ">
+                                    <form action="#" className="bg-white flex items-center justify-center flex-col px-[50px] h-full text-center">
+                                        <h1 className="font-bold m-0">Create Account</h1>
+                                        <div className="social-container">
+                                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="social"><i className="fab fa-facebook-f"></i></a>
+                                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="social"><i className="fab fa-google-plus-g"></i></a>
+                                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="social"><i className="fab fa-linkedin-in"></i></a>
+                                        </div>
+                                        <span className="text-[15px] mb-[10px]">or use your email for registration</span>
+                                        <input
+                                            type="text"
+                                            id="fullname"
+                                            name="fullname"
+                                            value={fullname}
+                                            className="inputUser"
+                                            placeholder="Tên đầy đủ"
+                                            onChange={(e) => setFullName(e.target.value)}
+                                            required
+                                        />
+                                        <input
+                                            type="text"
+                                            id="username"
+                                            name="username"
+                                            value={username}
+                                            className="inputUser"
+                                            placeholder="Tên tài khoản"
+                                            onChange={(e) => setUserName(e.target.value)}
+                                            required
+                                        />
+                                        <input
+                                            type="password"
+                                            id="password"
+                                            name="password"
+                                            value={password}
+                                            className="inputUser"
+                                            placeholder="Mật khẩu"
+                                            onChange={(e) => setpassword(e.target.value)}
+                                            required
+                                        />
+                                        <input
+                                            type="email"
+                                            id="email"
+                                            name="email"
+                                            value={email}
+                                            className="inputUser"
+                                            placeholder="Email"
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            required
+                                        />
+                                        <input
+                                            type="text"
+                                            id="phone"
+                                            name="phone"
+                                            value={phone}
+                                            className="inputUser"
+                                            placeholder="Số điện thoại"
+                                            onChange={(e) => setPhone(e.target.value)}
+                                            required
+                                        />
+                                        <button onClick={handleSignup} className="rounded-full border border-solid border-red-500 bg-red-500 text-white text-xs font-bold py-3 px-12 tracking-wide uppercase transition-transform duration-80 ease-in">
+                                            Đăng ký
+                                        </button>
+                                    </form>
+                                </div>
+                                <div className="form-container sign-in-container">
+                                    <form action="#" className="bg-white flex items-center justify-center flex-col px-[50px] h-full text-center">
+                                        <h1 className="font-bold m-0">Sign in</h1>
+                                        <div className="social-container">
+                                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="social"><i className="fab fa-facebook-f"></i></a>
+                                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="social"><i className="fab fa-google-plus-g"></i></a>
+                                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="social"><i className="fab fa-linkedin-in"></i></a>
+                                        </div>
+                                        <span className="text-[15px] mb-[10px]">or use your account</span>
+                                        <input
+                                            type="text"
+                                            id="username"
+                                            value={User}
+                                            onChange={handleUserChange}
+                                            placeholder="Tên đăng nhập"
+                                            className="inputUser border-gray-300 text-black"
+                                        />
+                                        <input
+                                            type="password"
+                                            id="password"
+                                            value={Password}
+                                            onChange={handlePasswordChange}
+                                            placeholder="Mật khẩu"
+                                            className="inputUser border-gray-300 text-black"
+                                        />
+                                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="mb-[10px]">Forgot your password?</a>
+                                        <button onClick={handleLogin} className="rounded-full border border-solid border-red-500 bg-red-500 text-white text-xs font-bold py-3 px-12 tracking-wide uppercase transition-transform duration-80 ease-in">
+                                            Đăng nhập
+                                        </button>
+                                    </form>
+                                </div>
+                                <div className="overlay-container">
+                                    <div className="overlay">
+                                        <div className="overlay-panel overlay-left">
+                                            <h1 className="font-bold m-0">Welcome Back!</h1>
+                                            <p className="text-sm font-light leading-5 tracking-wider my-20">
+                                                To keep connected with us please login with your personal info
+                                            </p>
+                                            <button className=" bg-red-500 border-white text-white font-bold text-xs uppercase py-3 px-12 rounded-full border border-solid  transition-transform duration-80 ease-in focus:outline-none active:scale-95" onClick={handleLoginClick}>
+                                                Sign In
+                                            </button>
+                                        </div>
+                                        <div className="overlay-panel overlay-right">
+                                            <h1 className="font-bold m-0">Hello, Friend!</h1>
+                                            <p className="text-sm font-light leading-5 tracking-wider my-20">
+                                                Enter your personal details and start journey with us
+                                            </p>
+                                            <button className=" bg-red-500 border-white text-white font-bold text-xs uppercase py-3 px-12 rounded-full border border-solid  transition-transform duration-80 ease-in focus:outline-none active:scale-95" onClick={handleSignUpClick}>
+                                                Sign Up
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </form>
+                <div className="w-full  mt-[20px] ">
+                    <Footer />
+                </div>
             </div>
-            {showNotification && (
-              <NotificationModal
-                title={isLoggedIn ? "Đăng nhập thành công" : "Đăng nhập thất bại"}
-                message={
-                  isLoggedIn
-                    ? "Đăng nhập thành công"
-                    : "Sai tài khoản hoặc mật khẩu"
-                }
-                onClose={closeNotification}
-              />
-            )}
-          </div>
-        </div>
-        {/* <Catalog/> */}
-        <div className="w-full  mt-[20px] ">
-          <Footer />
-        </div>
-      </div>
-    </>
-  );
+        </>
+    );
 };
 
 export default Login;
