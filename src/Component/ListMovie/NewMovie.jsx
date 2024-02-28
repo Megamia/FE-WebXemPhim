@@ -45,7 +45,7 @@ const NewMovie = () => {
   return (
     <div className="bg-[#263238]">
       <Header />
-      <div className="bg-[#253238] flex  justify-center">
+      <div className="bg-[#253238] flex justify-center">
         <div className="w-[1280px]  justify-center flex-col bg-[#141414] p-[20px] mt-[130px]">
           <Notification />
           <div className="w-full flex">

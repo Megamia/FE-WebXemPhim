@@ -19,6 +19,7 @@ import UserMNGM from './Component/Admin/UserMNGM';
 import ListMovieType from './Component/ListMovie/ListMovieType';
 import NewMovie from './Component/ListMovie/NewMovie';
 import MovieBox from './Component/Detail/MovieBox';
+import MovieDetail from './Component/Detail/MovieDetail';
 
 function App() { 
   return (
@@ -50,6 +51,7 @@ function App() {
             <Route path="/the-loai/:type/:page" element={<ListMovieType/>} />
             <Route path="*" element={<Error404 />} />
             <Route path="/MovieBox/:movieid" element={<MovieBox />} />
+            <Route path="/phim/:url" element={<MovieDetail />} />
           </Routes>
         </PayPalScriptProvider>
       </Router>

@@ -130,33 +130,33 @@ const Footer = () => {
                     <span className="text-white text-[20px] mr-4 hidden lg:flex">Theo dõi mạng xã hội:</span>
                     <a href="https://www.facebook.com/">
                         <div className="w-[40px] h-[40px] bg-neutral-500 hover:bg-neutral-600 mr-4 rounded flex items-center justify-center">
-                            <img src="./img/SocialNetworkLogos/facebook-f.svg" alt="facebook" className="w-2/3 h-2/3 text-cyan-400" />
+                            <img src="../img/SocialNetworkLogos/facebook-f.svg" alt="facebook" className="w-2/3 h-2/3 text-cyan-400" />
                         </div>
                     </a>
                     <a href="https://www.tiktok.com/">
                         <div className="w-[40px] h-[40px] bg-neutral-500 hover:bg-neutral-600 mr-4 rounded flex items-center justify-center">
-                            <img src="./img/SocialNetworkLogos/tiktok.svg" alt="tiktok" className="w-2/3 h-2/3 text-cyan-400" />
+                            <img src="../img/SocialNetworkLogos/tiktok.svg" alt="tiktok" className="w-2/3 h-2/3 text-cyan-400" />
                         </div>
                     </a>
                     <a href="https://www.twitter.com/">
                         <div className="w-[40px] h-[40px] bg-neutral-500 hover:bg-neutral-600 mr-4 rounded flex items-center justify-center">
-                            <img src="./img/SocialNetworkLogos/twitter.svg" alt="twitter" className="w-2/3 h-2/3 text-cyan-400" />
+                            <img src="../img/SocialNetworkLogos/twitter.svg" alt="twitter" className="w-2/3 h-2/3 text-cyan-400" />
                         </div>
                     </a>
                     <a href="https://www.instagram.com/">
                         <div className="w-[40px] h-[40px] bg-neutral-500 hover:bg-neutral-600 mr-4 rounded flex items-center justify-center">
-                            <img src="./img/SocialNetworkLogos/instagram.svg" alt="instagram" className="w-2/3 h-2/3 text-cyan-400" />
+                            <img src="../img/SocialNetworkLogos/instagram.svg" alt="instagram" className="w-2/3 h-2/3 text-cyan-400" />
                         </div>
                     </a>
                     <a href="https://www.youtube.com/">
                         <div className="w-[40px] h-[40px] bg-neutral-500 hover:bg-neutral-600 mr-4 rounded flex items-center justify-center">
-                            <img src="./img/SocialNetworkLogos/youtube.svg" alt="youtube" className="w-2/3 h-2/3 text-cyan-400" />
+                            <img src="../img/SocialNetworkLogos/youtube.svg" alt="youtube" className="w-2/3 h-2/3 text-cyan-400" />
                         </div>
                     </a>
                 </div>
                 <a href="/#" onClick={handleScrollToTop} >
                     <div className="w-[40px] h-[40px] bg-lime-500 hover:bg-lime-600 ml-2 rounded flex items-center justify-center">
-                        <img src="./img/SocialNetworkLogos/arrow-up-solid.svg" alt="back-up" className="w-2/3 h-2/3 text-cyan-400" />
+                        <img src="../img/SocialNetworkLogos/arrow-up-solid.svg" alt="back-up" className="w-2/3 h-2/3 text-cyan-400" />
                     </div>
                 </a>
             </div>
