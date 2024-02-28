@@ -5,7 +5,7 @@ import './App.css';
 import Hometest from './Component/Home/Hometest';
 import Error404 from './Component/Error404/Error404';
 import Home from './Component/Home/Home';
-import Profile from './Component/User/Profile/Profile';
+import Profile from './Component/User/ProfileCHA/ProfileCON/Profile';
 import ExPage from './Component/ExamplePage/ExPage';
 import Hacking from './Component/Hacking/Hacking';
 import Slider from './Component/Home/Slider10/Slider10';
@@ -18,7 +18,11 @@ import ListMovieType from './Component/ListMovie/ListMovieType';
 import NewMovie from './Component/ListMovie/NewMovie';
 import MovieBox from './Component/Detail/MovieBox';
 import MovieDetail from './Component/Detail/MovieDetail';
-import Login from './Component/User/Login/login';
+import Login from './Component/User/Login/Login';
+import Test1 from './Component/Test/Test1';
+import Test2 from './Component/Test/Test2';
+import Test3 from './Component/Test/Test3';
+import ProfileCHA from './Component/User/ProfileCHA/ProfileCHA';
 
 function App() { 
   return (
@@ -32,6 +36,7 @@ function App() {
             <Route path="/Hometest" element={<Hometest />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/not-found" element={<Error404 />} />
+            <Route path="/ProfileCHA" element={<ProfileCHA />} />
             <Route path="/Profile" element={<Profile />} />
             <Route path="/ExPage" element={<ExPage />} />
             <Route path="/Hacking" element={<Hacking />} />
@@ -39,6 +44,10 @@ function App() {
             <Route path="/Righter" element={<Righter />} />
             <Route path="/Slider1" element={<Righter />} />
             <Route path="/Donate" element={<Donate />} />
+            <Route path="/Test1" element={<Test1 />} />
+            <Route path="/Test2" element={<Test2 />} />
+            <Route path="/Test3" element={<Test3 />} />
+
             <Route path="/Test" element={<Test />} />
             <Route path="/UserMNGM" element={<UserMNGM />} />
             <Route path="/phim-moi" element={<NewMovie/>} />
