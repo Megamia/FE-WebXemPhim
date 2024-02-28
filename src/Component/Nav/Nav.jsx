@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCheck } from "@fortawesome/free-solid-svg-icons";
-// import Payment from './../Payment/Payment';
-// import Detail from './../Detail/Detail';
-// import Error404 from './../Error404/Error404';
 import styles from './style.module.scss';
 
 const Nav = () => {
@@ -29,6 +26,9 @@ const Nav = () => {
             setIsLoggedIn(true);
         }
     }, []);
+    const handleLoginClick = () => {
+        window.scrollTo(0, 300);
+      };
 
     return (
         <div className="w-full relative">
@@ -198,7 +198,8 @@ const Nav = () => {
                     <NavLink
                         to="/Login"
                         className="hidden md:flex md:items-center bg-red-600 hover:bg-gray-600 text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center w-[150px] h-[40px]"
-                        activeClassName="hidden"
+                        activeClassName="hidden "
+                        onClick={handleLoginClick}
                     >
                         <span className="mx-auto">Đăng Nhập</span>
                     </NavLink>

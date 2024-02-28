@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import './App.css';
 import Hometest from './Component/Home/Hometest';
-import Login from './Component/User/Login/login';
-import Signup from './Component/User/Signup/Signup';
 import Error404 from './Component/Error404/Error404';
 import Home from './Component/Home/Home';
 import Profile from './Component/User/Profile/Profile';
@@ -20,6 +18,7 @@ import ListMovieType from './Component/ListMovie/ListMovieType';
 import NewMovie from './Component/ListMovie/NewMovie';
 import MovieBox from './Component/Detail/MovieBox';
 import MovieDetail from './Component/Detail/MovieDetail';
+import Login from './Component/User/Login/login';
 
 function App() { 
   return (
@@ -28,10 +27,10 @@ function App() {
         <PayPalScriptProvider options={{ "clientId": process.env.REACT_APP_PAYPAL_CLIENT_ID  }}>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="*" element={<Error404 />} />
             <Route path="/Home" element={<Home />} />
             <Route path="/Hometest" element={<Hometest />} />
             <Route path="/Login" element={<Login />} />
-            <Route path="/Signup" element={<Signup />} />
             <Route path="/not-found" element={<Error404 />} />
             <Route path="/Profile" element={<Profile />} />
             <Route path="/ExPage" element={<ExPage />} />
@@ -42,14 +41,12 @@ function App() {
             <Route path="/Donate" element={<Donate />} />
             <Route path="/Test" element={<Test />} />
             <Route path="/UserMNGM" element={<UserMNGM />} />
-            {/* <Route path="/detail/:id" element={<Detail />} /> */}
             <Route path="/phim-moi" element={<NewMovie/>} />
             <Route path="/phim-moi/:page" element={<NewMovie/>} />
             <Route path="/danh-muc/:category" element={<ListMovieCategory/>} />
             <Route path="/danh-muc/:category/:page" element={<ListMovieCategory/>} />
             <Route path="/the-loai/:type" element={<ListMovieType/>} />
             <Route path="/the-loai/:type/:page" element={<ListMovieType/>} />
-            <Route path="*" element={<Error404 />} />
             <Route path="/MovieBox/:movieid" element={<MovieBox />} />
             <Route path="/phim/:url" element={<MovieDetail />} />
           </Routes>

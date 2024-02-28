@@ -45,7 +45,7 @@ const ListMovieCategory = () => {
     <div className="bg-[#263238]">
       <Header />
       <div className="bg-[#253238] flex  justify-center">
-        <div className="w-[1280px] justify-center flex-col bg-[#141414] p-[20px] mt-[130px]">
+        <div className="w-[1280px]  justify-center flex-col bg-[#141414] p-[20px] mt-[130px] rounded">
           <Notification />
           <div className="w-full flex">
             <div ref={scrollRef} className="w-full flex-row bg-[#141414]">
