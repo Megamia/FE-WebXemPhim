@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import Header from '../Header&Footer/Header/Header';
 import Notification from '../Home/Notification/Nontification';
 import Footer from '../Header&Footer/Footer/Footer';
 import Righter from '../Header&Footer/Righter/Righter';
-import "./Detail.css";
 import { FaRegClock, FaRegCalendarAlt } from "react-icons/fa";
 import { BsFillEyeFill } from "react-icons/bs";
 import { HiDocumentText } from "react-icons/hi2";
@@ -13,10 +12,10 @@ import { MdVideoCall } from "react-icons/md";
 import { IoMdPhotos } from "react-icons/io";
 import { FaRegCircleDot } from "react-icons/fa6";
 import { FacebookProvider, Comments } from 'react-facebook';
-
 import "./Detail.css";
 
 const MovieDetail = () => {
+    const { url } = useParams();
     const [activeTab, setActiveTab] = useState(0);
     const [movieData, setMovieData] = useState([]);
     const [typeData, setTypeData] = useState([]);
@@ -113,8 +112,8 @@ const MovieDetail = () => {
                                                     &nbsp;
                                                     {videoData.slice(0, 4).map((video) => (
                                                         <div className='bg-[#B5E745] text-white rounded mr-[5px] mt-[-3px]' key={video.videoid}>
-                                                            <a>
-                                                                <div className=' hover:bg-[#B5E745] hover:text-[#4C4C4C] font-semibold capitalize bg-[#4C4C4C] m-[1px] px-2 py-[2px]  text-white rounded' href={`/the-loai/${video.typeurl}`}>{video.videoname}</div>
+                                                            <a href={`/phim/${url}/${video.videourl}-${video.videoid}`}>
+                                                                <div className=' hover:bg-[#B5E745] hover:text-[#4C4C4C] font-semibold capitalize bg-[#4C4C4C] m-[1px] px-[7px] py-[2px]  text-white rounded'>{video.videoname}</div>
                                                             </a>
                                                         </div>
                                                     ))}
@@ -124,7 +123,7 @@ const MovieDetail = () => {
                                                     <strong className='text-white'>Thể loại:</strong>
                                                     &nbsp;
                                                     {typeData.map((type) => (
-                                                        <a className='text-[#B5E745]' key={type.typeid} href={`/the-loai/${type.typeurl}`}>{type.typename}, </a>
+                                                        <a className='text-[#B5E745] a' key={type.typeid} href={`/the-loai/${type.typeurl}`}>{type.typename}, </a>
                                                     ))}
                                                 </li>
                                                 <li className='relative pl-[20px] py-[5px]'>
@@ -132,7 +131,7 @@ const MovieDetail = () => {
                                                     <strong className='text-white'>Danh mục:</strong>
                                                     &nbsp;
                                                     {categoryData.map((categories) => (
-                                                        <a className='text-[#B5E745]' key={categories.categoryid} href={`/danh-muc/${categories.categoryurl}`}>{categories.categoryname}, </a>
+                                                        <a className='text-[#B5E745] a' key={categories.categoryid} href={`/danh-muc/${categories.categoryurl}`}>{categories.categoryname}, </a>
                                                     ))}
                                                 </li>
                                                 <li className='relative pl-[20px] py-[5px]'>

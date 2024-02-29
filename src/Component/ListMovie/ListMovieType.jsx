@@ -15,6 +15,25 @@ const ListMovieType = () => {
   const [moviesPerPage] = useState(2);
   const scrollRef = useRef();
 
+  const smoothScroll = () => {
+    const currentScrollPosition = window.pageYOffset;
+    const targetScrollPosition = scrollRef.current.offsetTop;
+    const distance = targetScrollPosition - currentScrollPosition;
+    const duration = 500;
+    const startTime = performance.now();
+    const scrollStep = timestamp => {
+      const elapsedTime = timestamp - startTime;
+      const progress = Math.min(elapsedTime / duration, 1);
+      const easeProgress = easeOutQuart(progress);
+      window.scrollTo(0, currentScrollPosition + distance * easeProgress);
+      if (elapsedTime < duration) {
+        requestAnimationFrame(scrollStep);
+      }
+    };
+    requestAnimationFrame(scrollStep);
+  };
+  const easeOutQuart = t => 1 - (--t) * t * t * t;
+
   useEffect(() => {
     axios.get(`http://localhost:4000/api/type-movie/${type}`)
       .then(function (response) {
@@ -34,7 +53,7 @@ const ListMovieType = () => {
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-    scrollRef.current.scrollIntoView({ behavior: 'smooth' });
+    smoothScroll();
     navigate(`/the-loai/${type}/${pageNumber}`);
   };
 

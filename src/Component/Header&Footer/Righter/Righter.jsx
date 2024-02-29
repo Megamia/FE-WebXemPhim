@@ -24,7 +24,7 @@ const Righter = () => {
 
                 </div>
                 <div>
-                    <img src='../img/gif.gif' alt="video" className="w-[100%]" />
+                    <img src='../../img/gif.gif' alt="video" className="w-[100%]" />
 
                 </div>
             </div>

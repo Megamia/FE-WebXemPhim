@@ -18,16 +18,12 @@ import ListMovieType from './Component/ListMovie/ListMovieType';
 import NewMovie from './Component/ListMovie/NewMovie';
 import MovieBox from './Component/Detail/MovieBox';
 import MovieDetail from './Component/Detail/MovieDetail';
-<<<<<<< HEAD
 import Login from './Component/User/Login/login';
 import VideoDetail from './Component/Detail/VideoDetail';
-=======
-import Login from './Component/User/Login/Login';
 import Test1 from './Component/Test/Test1';
 import Test2 from './Component/Test/Test2';
 import Test3 from './Component/Test/Test3';
 import ProfileCHA from './Component/User/ProfileCHA/ProfileCHA';
->>>>>>> a93bfc40a32ef4b828f045d9ca0fd8b3001a8899
 
 function App() { 
   return (
@@ -52,7 +48,6 @@ function App() {
             <Route path="/Test1" element={<Test1 />} />
             <Route path="/Test2" element={<Test2 />} />
             <Route path="/Test3" element={<Test3 />} />
-
             <Route path="/Test" element={<Test />} />
             <Route path="/UserMNGM" element={<UserMNGM />} />
             <Route path="/phim-moi" element={<NewMovie/>} />
@@ -62,8 +57,8 @@ function App() {
             <Route path="/the-loai/:type" element={<ListMovieType/>} />
             <Route path="/the-loai/:type/:page" element={<ListMovieType/>} />
             <Route path="/MovieBox/:movieid" element={<MovieBox />} />
-            <Route path="/phim/:url" element={<MovieDetail />} />
-            <Route path="/phim/:url/:id" element={<VideoDetail />} />
+            <Route path="/phim/:url" element={<MovieDetail/>} />
+            <Route path="/phim/:movieurl/:videourl" element={<VideoDetail/>} />
           </Routes>
         </PayPalScriptProvider>
       </Router>

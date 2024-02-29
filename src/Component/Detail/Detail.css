@@ -19,7 +19,7 @@
     border-color: transparent transparent #B5E745 transparent;
     transform: rotate(180deg);
 }
-a:hover{
+.a:hover{
     opacity: 0.7;
 }
 
