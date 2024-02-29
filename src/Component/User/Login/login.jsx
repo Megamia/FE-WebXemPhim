@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import "./login.css";
+import "./Login.css";
 import { useNavigate } from "react-router-dom";
 // import NotificationModal from "./NotificationModal";
 import axios from "axios";
 import Header from "../../Header&Footer/Header/Header";
 import Footer from "../../Header&Footer/Footer/Footer";
 import Notification from "../../Home/Notification/Nontification";
+import styles from './style.module.scss'
 
 const Login = () => {
     const navigate = useNavigate();
@@ -44,7 +45,7 @@ const Login = () => {
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
     };
-    
+
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -63,9 +64,9 @@ const Login = () => {
                 window.scrollTo(0, 0);
                 if (User === 'admin') {
                     navigate("/UserMNGM");
-                  } else {
-                    navigate("/Profile");
-                  }
+                } else {
+                    navigate("/ProfileCHA");
+                }
                 return;
             }
 
@@ -82,7 +83,6 @@ const Login = () => {
     //SIGNUP//
     const handleSignup = async (event) => {
         event.preventDefault();
-
         try {
             const response = await axios.post('http://localhost:4000/api/signup', {
                 username,
@@ -94,11 +94,11 @@ const Login = () => {
 
             console.log('Signup successful:', response.data);
             alert('Đăng kí thành công');
-            window.location.href = '/login';
+            handleLoginClick();
 
         } catch (error) {
             console.error('Error signing up:', error);
-            alert('Người dùng đã tồn tại');
+            alert('Đăng kí thất bại ');
         }
     };
     const [isSignUpActive, setIsSignUpActive] = useState(false);
@@ -125,9 +125,9 @@ const Login = () => {
                                     <form action="#" className="bg-white flex items-center justify-center flex-col px-[50px] h-full text-center">
                                         <h1 className="font-bold m-0">Create Account</h1>
                                         <div className="social-container">
-                                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="social"><i className="fab fa-facebook-f"></i></a>
-                                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="social"><i className="fab fa-google-plus-g"></i></a>
-                                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="social"><i className="fab fa-linkedin-in"></i></a>
+                                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className={`social ${styles.fb}`}><i className="fab fa-facebook-f"></i></a>
+                                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className={`social ${styles.gg}`}><i className="fab fa-google-plus-g"></i></a>
+                                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className={`social ${styles.lk}`}><i className="fab fa-linkedin-in"></i></a>
                                         </div>
                                         <span className="text-[15px] mb-[10px]">or use your email for registration</span>
                                         <input
@@ -189,9 +189,9 @@ const Login = () => {
                                     <form action="#" className="bg-white flex items-center justify-center flex-col px-[50px] h-full text-center">
                                         <h1 className="font-bold m-0">Sign in</h1>
                                         <div className="social-container">
-                                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="social"><i className="fab fa-facebook-f"></i></a>
-                                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="social"><i className="fab fa-google-plus-g"></i></a>
-                                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className="social"><i className="fab fa-linkedin-in"></i></a>
+                                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className={`social ${styles.fb}`}><i className="fab fa-facebook-f"></i></a>
+                                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className={`social ${styles.gg}`}><i className="fab fa-google-plus-g"></i></a>
+                                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" className={`social ${styles.lk}`}><i className="fab fa-linkedin-in"></i></a>
                                         </div>
                                         <span className="text-[15px] mb-[10px]">or use your account</span>
                                         <input

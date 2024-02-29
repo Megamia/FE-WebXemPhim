@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../../Header&Footer/Header/Header';
-import Footer from '../../Header&Footer/Footer/Footer';
 import { useNavigate } from 'react-router-dom';
-import { FaUser } from "react-icons/fa";
+import styles from './style.module.scss'
 import axios from 'axios';
+
 
 const Profile = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -12,6 +11,7 @@ const Profile = () => {
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [currentPage, setCurrentPage] = useState('Profile');
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -66,53 +66,18 @@ const Profile = () => {
         console.error('Lỗi khi cập nhật thông tin:', error);
         alert("Sửa thông tin thất bại");
       });
-
   };
-
   return (
-    <div>
-      <div>
-        <Header />
-      </div>
-      <div className="flex flex-col mt-[100px] p-[35px]">
-        <div className='flex flex-row flex-1'>
-          <div className="flex flex-col w-[300px] px-[20px]">
-            <div className="flex flex-col items-center mb-[30px]">
-              <img src="../../img/AVT/03ebd625cc0b9d636256ecc44c0ea324.jpg" alt="?" className="w-[50%]" />
-              <div className='flex text-black'>
-                {fullname}
-              </div>
-              <div className='flex text-black'>
-                {email}
-              </div>
+      
+      <div className="flex flex-col flex-1 px-[35px] bg-white">
+        <div className='flex flex-row '>
+          <div className='main flex flex-col '>
+            <div >
+              <span className="hover:underline text-xl font-bold">
+                Cài đặt profile
+              </span>
             </div>
-            <div className='px-[60px]'>
-              <div className='flex flex-row items-center'>
-                <FaUser className='mr-[10px]' /> Profile
-              </div>
-              <div className='flex flex-row items-center'>
-                <FaUser className='mr-[10px]' /> Profile
-              </div>
-              <div className='flex flex-row items-center'>
-                <FaUser className='mr-[10px]' /> Profile
-              </div>
-              <div className='flex flex-row items-center'>
-                <FaUser className='mr-[10px]' /> Profile
-              </div>
-              <div className='flex flex-row items-center'>
-                <FaUser className='mr-[10px]' /> Profile
-              </div>
-              <div className='flex flex-row items-center'>
-                <FaUser className='mr-[10px]' /> Profile
-              </div>
-            </div>
-          </div>
-
-          <div className='flex flex-col flex-1 '>
-            <p className="hover:underline text-xl font-bold">
-              Cài đặt profile
-            </p>
-            <div className='flex flex-col flex-1 py-[30px]'>
+            <div className='flex flex-col py-[30px]'>
               <div className="flex flex-col flex-1 bg-white px-[60px] border-none ">
                 <div className="flex justify-between py-[16px]">
                   <div className="flex flex-1 flex-row items-center">
@@ -121,7 +86,7 @@ const Profile = () => {
                       type="input"
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
-                      className="border-[2px] border-gray-300 focus:outline-none py-[5px] px-[10px] flex flex-1 rounded-[5px]"
+                      className="border-[2px] border-[#40BABD] focus:outline-none py-[5px] px-[10px] flex flex-1 rounded-[5px]"
                     />
                   </div>
                 </div>
@@ -132,7 +97,7 @@ const Profile = () => {
                       type="input"
                       value={fullname}
                       onChange={(e) => setFullname(e.target.value)}
-                      className="border-[2px] border-gray-300 focus:outline-none py-[5px] px-[10px] flex flex-1 rounded-[5px]"
+                      className="border-[2px] border-[#40BABD] focus:outline-none py-[5px] px-[10px] flex flex-1 rounded-[5px]"
                     />
                   </div>
                 </div>
@@ -143,7 +108,7 @@ const Profile = () => {
                       type="input"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="border-[2px] border-gray-300 focus:outline-none py-[5px] px-[10px] flex flex-1 rounded-[5px]"
+                      className="border-[2px] border-[#40BABD] focus:outline-none py-[5px] px-[10px] flex flex-1 rounded-[5px]"
                     />
                   </div>
                 </div>
@@ -154,7 +119,7 @@ const Profile = () => {
                       type="text"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="border-[2px] border-gray-300 focus:outline-none py-[5px] px-[10px] flex flex-1 rounded-[5px]"
+                      className="border-[2px] border-[#40BABD] focus:outline-none py-[5px] px-[10px] flex flex-1 rounded-[5px]"
                     />
                   </div>
                 </div>
@@ -175,10 +140,6 @@ const Profile = () => {
           </button>
         </div>
       </div>
-      <div>
-        <Footer />
-      </div>
-    </div>
   );
 };
 

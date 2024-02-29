@@ -60,7 +60,7 @@ const Slider1 = () => {
         beforeChange: (current, next) => {
             handleDotClick(next);
             setCurrentSlide(next);
-          },
+        },
     };
 
     const handleDotClick = (index) => {

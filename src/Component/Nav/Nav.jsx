@@ -188,7 +188,7 @@ const Nav = () => {
                 </div>
                 {isLoggedIn ? (
                     <NavLink
-                        to="/Profile"
+                        to="/ProfileCHA"
                         className="hidden md:flex md:items-center text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center"
                         activeClassName="hidden"
                     >
