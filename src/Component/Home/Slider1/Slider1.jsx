@@ -74,7 +74,7 @@ const Slider1 = () => {
                 {images.map((image, index) => {
                     const information = informations.find(info => info.id === image.id);
                     return (
-                        <div className="relative" key={index}>
+                        <div className="relative overflow-hidden rounded" key={index}>
                             <div className="bg-black absolute top-0 left-0 opacity-40 w-[60%] h-[100%] flex px-[20px] py-[10px] flex-col" />
 
                             <div className=" absolute top-0 left-0  w-[60%] h-[100%] flex px-[20px] py-[10px] flex-col">

@@ -19,6 +19,7 @@ import NewMovie from './Component/ListMovie/NewMovie';
 import MovieBox from './Component/Detail/MovieBox';
 import MovieDetail from './Component/Detail/MovieDetail';
 import Login from './Component/User/Login/login';
+import VideoDetail from './Component/Detail/VideoDetail';
 
 function App() { 
   return (
@@ -49,6 +50,7 @@ function App() {
             <Route path="/the-loai/:type/:page" element={<ListMovieType/>} />
             <Route path="/MovieBox/:movieid" element={<MovieBox />} />
             <Route path="/phim/:url" element={<MovieDetail />} />
+            <Route path="/phim/:url/:id" element={<VideoDetail />} />
           </Routes>
         </PayPalScriptProvider>
       </Router>

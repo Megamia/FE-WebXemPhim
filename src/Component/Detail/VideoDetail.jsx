@@ -16,7 +16,7 @@ import { FacebookProvider, Comments } from 'react-facebook';
 
 import "./Detail.css";
 
-const MovieDetail = () => {
+const VideoDetail = () => {
     const [activeTab, setActiveTab] = useState(0);
     const [movieData, setMovieData] = useState([]);
     const [typeData, setTypeData] = useState([]);
@@ -205,4 +205,4 @@ const MovieDetail = () => {
     );
 };
 
-export default MovieDetail;
+export default VideoDetail;

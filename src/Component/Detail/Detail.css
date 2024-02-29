@@ -1,5 +1,42 @@
+/*MovieBox*/
 .img-moviebox {
     position: relative;
     padding-bottom: 147%;
 }
 
+/*MovieDetail*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.arrow-down::after {
+    content: "";
+    position: absolute;
+    left: 46%;
+    bottom: -14px;
+    border-style: solid;
+    border-width: 6px;
+    border-color: transparent transparent #B5E745 transparent;
+    transform: rotate(180deg);
+}
+a:hover{
+    opacity: 0.7;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale3d(0.3, 0.3, 0.3);
+    }
+
+    to {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@layer utilities {
+    .animate-zoomIn {
+        animation-name: zoomIn;
+        animation-duration: 0.24s;
+        animation-fill-mode: both;
+    }
+}

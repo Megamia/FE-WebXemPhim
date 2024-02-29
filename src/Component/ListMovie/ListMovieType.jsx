@@ -5,6 +5,7 @@ import Header from '../Header&Footer/Header/Header';
 import Notification from '../Home/Notification/Nontification';
 import Footer from '../Header&Footer/Footer/Footer';
 import Righter from '../Header&Footer/Righter/Righter';
+import MovieBox from '../Detail/MovieBox';
 
 const ListMovieType = () => {
   const { page, type } = useParams();
@@ -45,11 +46,11 @@ const ListMovieType = () => {
     <div className="bg-[#263238]">
       <Header />
       <div className="bg-[#253238] flex  justify-center">
-        <div className="w-[1280px]  justify-center flex-col bg-[#141414] p-[20px] mt-[130px] rounded">
+        <div className="md:max-w-[1280px] w-full justify-center flex-col bg-[#141414] p-[20px] mt-[130px] rounded">
           <Notification />
-          <div className="w-full flex">
-            <div ref={scrollRef} className="w-full flex-row bg-[#141414]">
-              <div className="flex w-full justify-center mt-4 mb-4 relative left-[-10px]">
+          <div className="w-full table table-fixed">
+            <div ref={scrollRef} className="w-full lg:table-cell flex-row bg-[#141414]">
+              <div className="flex w-full justify-center mt-4 mb-4 relative lg:left-[-10px]">
                 {movieData.length > moviesPerPage && (
                   <nav className="w-full">
                     <ul className="pagination w-full flex justify-center">
@@ -130,25 +131,13 @@ const ListMovieType = () => {
                 )}
               </div>
               <div className="flex w-full">
-                <ul className="flex w-full flex-wrap relative left-[-10px]">
+                <ul className="flex w-full flex-wrap relative lg:left-[-10px]">
                   {currentMovies.map((movie) => (
-                    <li key={movie.movieid} className="w-1/5 mb-5 px-[10px]">
-                      <a className="block w-full" href="/#">
-                        <div>
-                          <img
-                            className="w-[200px] flex justify-center rounded"
-                            src={`../../upload/poster/${movie.poster}`}
-                            alt="Movie Avatar"
-                          />
-                        </div>
-                        <span className="text-white flex justify-center capitalize">{movie.moviename}</span>
-                        <span className="text-[#7D7D7D] flex justify-center text-[13px]">Lượt xem: {movie.views}</span>
-                      </a>
-                    </li>
+                    <MovieBox key={movie.movieid} movie={movie} />
                   ))}
                 </ul>
               </div>
-              <div className="flex w-full justify-center relative left-[-10px]">
+              <div className="flex w-full justify-center relative lg:left-[-10px]">
                 {movieData.length > moviesPerPage && (
                   <nav className="w-full">
                     <ul className="pagination w-full flex justify-center">
@@ -229,7 +218,7 @@ const ListMovieType = () => {
                 )}
               </div>
             </div>
-            <div className=" flex justify-end ">
+            <div className=" lg:table-cell align-top w-[300px] ">
               <Righter />
             </div>
           </div>

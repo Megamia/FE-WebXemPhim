@@ -12,23 +12,24 @@ const Home = () => {
     <div className="bg-[#263238] ">
       <Header />
       <div className="bg-[#253238] flex  justify-center ">
-        <div className="w-[1280px] justify-center flex-col bg-[#141414] p-[20px] mt-[130px] rounded">
+        <div className="md:max-w-[1280px] w-full justify-center flex-col bg-[#141414] p-[20px] mt-[130px] rounded">
           <Notification />
           <div className="mx-[-10px] ">
             <Slider10 />
           </div>
-          <div className="flex flex-row ">
-            <div className="flex-row w-2/3 flex-1 pt-[20px]">
-              <div className="mr-[20px]">
+          <div className="table table-fixed w-full">
+            <div className="flex-row lg:table-cell pt-[20px] align-top">
+              <div className="lg:mr-[20px] rounded">
               <Slider1/> 
               </div>
             </div>
-            <div className=" flex justify-end ">
+            <div className="lg:table-cell w-[300px]">
               <Righter />
             </div>
           </div>
         </div>
       </div>
+      {/* <Catalog/> */}
       <div className="w-full  mt-[20px] ">
         <Footer />
       </div>
