@@ -18,11 +18,12 @@ import ListMovieType from './Component/ListMovie/ListMovieType';
 import NewMovie from './Component/ListMovie/NewMovie';
 import MovieBox from './Component/Detail/MovieBox';
 import MovieDetail from './Component/Detail/MovieDetail';
-import Login from './Component/User/Login/login';
+import Login from './Component/User/Login/Login';
 import VideoDetail from './Component/Detail/VideoDetail';
 import Test1 from './Component/Test/Test1';
 import Test2 from './Component/Test/Test2';
 import Test3 from './Component/Test/Test3';
+import Page2 from './Component/User/ProfileCHA/Page2/Page2';
 import ProfileCHA from './Component/User/ProfileCHA/ProfileCHA';
 import NewList from './Component/Home/List1/NewList';
 
@@ -49,6 +50,7 @@ function App() {
             <Route path="/Test1" element={<Test1 />} />
             <Route path="/Test2" element={<Test2 />} />
             <Route path="/Test3" element={<Test3 />} />
+            <Route path="/Page2" element={<Page2 />} />
             <Route path="/Test" element={<Test />} />
             <Route path="/UserMNGM" element={<UserMNGM />} />
             <Route path="/phim-moi" element={<NewMovie/>} />

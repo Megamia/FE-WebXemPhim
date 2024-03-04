@@ -8,8 +8,8 @@ import { IoMdMail } from "react-icons/io";
 import styles from './style.module.scss'
 import axios from 'axios';
 import Profile from './ProfileCON/Profile';
-import Test2 from '../../Test/Test2';
 import Test3 from '../../Test/Test3';
+import Page2 from './Page2/Page2';
 
 const ProfileCHA = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -17,6 +17,7 @@ const ProfileCHA = () => {
     const [username, setUsername] = useState('');
     const [fullname, setFullname] = useState('');
     const [email, setEmail] = useState('');
+    const [pasword, setPasword] = useState('');
     const [phone, setPhone] = useState('');
     const [currentPage, setCurrentPage] = useState('Profile');
     const navigate = useNavigate();
@@ -51,6 +52,7 @@ const ProfileCHA = () => {
                     setUsername(response.data.userInfo.username);
                     setFullname(response.data.userInfo.fullname);
                     setEmail(response.data.userInfo.email);
+                    setPasword(response.data.userInfo.pasword);
                     setPhone(response.data.userInfo.phone);
                 })
                 .catch(error => {
@@ -63,6 +65,7 @@ const ProfileCHA = () => {
             username: username,
             fullname: fullname,
             email: email,
+            pasword: pasword,
             phone: phone
         })
             .then(response => {
@@ -82,7 +85,7 @@ const ProfileCHA = () => {
             case 'Profile':
                 return <Profile />;
             case 'Test2':
-                return <Test2 />;
+                return <Page2 />;
             case 'Test3':
                 return <Test3 />;
             default:
@@ -100,10 +103,13 @@ const ProfileCHA = () => {
                         <div className="flex flex-col items-center mb-[30px]">
                             <img src="../../img/AVT/03ebd625cc0b9d636256ecc44c0ea324.jpg" alt="?" className="w-[50%]" />
                             <div className='flex text-black mt-[10px]'>
-                                {fullname}
+                                {fullname !== null && fullname !== '' ? fullname : "User didn't set fullname"}
                             </div>
                             <div className='flex text-black mt-[10px]'>
-                                {email}
+                                {email !== null && email !== '' ? email : "User didn't set email"}
+                            </div>
+                            <div className='flex text-black mt-[10px]'>
+                                {phone !== null && phone !== '' ? phone : "User didn't set phone"}
                             </div>
                         </div>
                         <div className=''>

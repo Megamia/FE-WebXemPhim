@@ -10,6 +10,7 @@ const Profile = () => {
   const [username, setUsername] = useState('');
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
   const [currentPage, setCurrentPage] = useState('Profile');
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ const Profile = () => {
           setUsername(response.data.userInfo.username);
           setFullname(response.data.userInfo.fullname);
           setEmail(response.data.userInfo.email);
+          setPassword(response.data.userInfo.password);
           setPhone(response.data.userInfo.phone);
         })
         .catch(error => {
@@ -56,6 +58,7 @@ const Profile = () => {
       username: username,
       fullname: fullname,
       email: email,
+      password: password,
       phone: phone
     })
       .then(response => {
@@ -68,78 +71,93 @@ const Profile = () => {
       });
   };
   return (
-      
-      <div className="flex flex-col flex-1 px-[35px] bg-white">
-        <div className='flex flex-row '>
-          <div className='main flex flex-col '>
-            <div >
-              <span className="hover:underline text-xl font-bold">
-                Cài đặt profile
-              </span>
+
+    <div className="flex flex-col flex-1 px-[35px] bg-white">
+      <div className='flex flex-row '>
+        <div className='main flex flex-col '>
+          <div >
+            <span className="hover:underline text-xl font-bold">
+              Cài đặt profile
+            </span>
+          </div>
+          <div className='flex flex-row py-[30px]'>
+            <div className="flex flex-col flex-1 bg-white px-[60px] border-none ">
+              
+              <div className="flex justify-between py-[16px]">
+                <div className="flex flex-1 flex-row items-center">
+                  <span className="text-xl font-semibold mr-[30px] w-[130px]">Fullname</span>
+                  <input
+                    type="input"
+                    value={fullname}
+                    onChange={(e) => setFullname(e.target.value)}
+                    className="border-[2px] border-[#40BABD] focus:outline-none py-[5px] px-[10px] flex flex-1 rounded-[5px]"
+                  />
+                </div>
+              </div>
+              <div className="flex justify-between py-[16px]">
+                <div className="flex flex-1 flex-row items-center">
+                  <span className="text-xl font-semibold mr-[30px] w-[130px]">Email</span>
+                  <input
+                    type="input"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="border-[2px] border-[#40BABD] focus:outline-none py-[5px] px-[10px] flex flex-1 rounded-[5px]"
+                  />
+                </div>
+              </div>
+
+              <div className="flex justify-between py-[16px]">
+                <div className="flex flex-1 flex-row items-center">
+                  <span className="text-xl font-semibold mr-[30px] w-[130px]">Số điện thoại</span>
+                  <input
+                    type="text"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="border-[2px] border-[#40BABD] focus:outline-none py-[5px] px-[10px] flex flex-1 rounded-[5px]"
+                  />
+                </div>
+              </div>
             </div>
-            <div className='flex flex-col py-[30px]'>
-              <div className="flex flex-col flex-1 bg-white px-[60px] border-none ">
-                <div className="flex justify-between py-[16px]">
-                  <div className="flex flex-1 flex-row items-center">
-                    <span className="text-xl font-semibold mr-[30px] w-[130px]">Username</span>
-                    <input
-                      type="input"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                      className="border-[2px] border-[#40BABD] focus:outline-none py-[5px] px-[10px] flex flex-1 rounded-[5px]"
-                    />
-                  </div>
+            <div className='flex flex-col flex1'>
+            <div className="flex justify-between py-[16px]">
+                <div className="flex flex-1 flex-row items-center">
+                  <span className="text-xl font-semibold mr-[30px] w-[130px]">Username</span>
+                  <input
+                    type="input"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="border-[2px] border-[#40BABD] focus:outline-none py-[5px] px-[10px] flex flex-1 rounded-[5px]"
+                  />
                 </div>
-                <div className="flex justify-between py-[16px]">
-                  <div className="flex flex-1 flex-row items-center">
-                    <span className="text-xl font-semibold mr-[30px] w-[130px]">Fullname</span>
-                    <input
-                      type="input"
-                      value={fullname}
-                      onChange={(e) => setFullname(e.target.value)}
-                      className="border-[2px] border-[#40BABD] focus:outline-none py-[5px] px-[10px] flex flex-1 rounded-[5px]"
-                    />
-                  </div>
-                </div>
-                <div className="flex justify-between py-[16px]">
-                  <div className="flex flex-1 flex-row items-center">
-                    <span className="text-xl font-semibold mr-[30px] w-[130px]">Email</span>
-                    <input
-                      type="input"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="border-[2px] border-[#40BABD] focus:outline-none py-[5px] px-[10px] flex flex-1 rounded-[5px]"
-                    />
-                  </div>
-                </div>
-                <div className="flex justify-between py-[16px]">
-                  <div className="flex flex-1 flex-row items-center">
-                    <span className="text-xl font-semibold mr-[30px] w-[130px]">Số điện thoại</span>
-                    <input
-                      type="text"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      className="border-[2px] border-[#40BABD] focus:outline-none py-[5px] px-[10px] flex flex-1 rounded-[5px]"
-                    />
-                  </div>
+              </div>
+              <div className="flex justify-between py-[16px]">
+                <div className="flex flex-1 flex-row items-center">
+                  <span className="text-xl font-semibold mr-[30px] w-[130px]">Password</span>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="border-[2px] border-[#40BABD] focus:outline-none py-[5px] px-[10px] flex flex-1 rounded-[5px]"
+                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="flex items-center justify-evenly " >
-          <button onClick={handleUpdate}>
-            <div className='bg-[#EF4444] p-[10px] rounded-full border border-solid border-red-500 text-white font-bold hover:bg-[#3EA6FF]'>
-              Lưu thông tin
-            </div>
-          </button>
-          <button onClick={handleLogout}>
-            <div className='bg-[#EF4444] p-[10px] rounded-full border border-solid border-red-500 text-white font-bold hover:bg-[#3EA6FF]'>
-              Đăng xuất
-            </div>
-          </button>
-        </div>
       </div>
+      <div className="flex items-center justify-evenly " >
+        <button onClick={handleUpdate}>
+          <div className='bg-[#EF4444] p-[10px] rounded-full border border-solid border-red-500 text-white font-bold hover:bg-[#3EA6FF]'>
+            Lưu thông tin
+          </div>
+        </button>
+        <button onClick={handleLogout}>
+          <div className='bg-[#EF4444] p-[10px] rounded-full border border-solid border-red-500 text-white font-bold hover:bg-[#3EA6FF]'>
+            Đăng xuất
+          </div>
+        </button>
+      </div>
+    </div>
   );
 };
 
