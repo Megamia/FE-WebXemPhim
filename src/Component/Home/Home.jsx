@@ -11,14 +11,14 @@ const Home = () => {
   return (
     <div className="bg-[#263238] ">
       <Header />
-      <div className="bg-[#253238] flex  justify-center ">
-        <div className="md:max-w-[1280px] w-full justify-center flex-col bg-[#141414] p-[20px] mt-[130px] rounded">
+      <div className="bg-[#253238] flex justify-center ">
+        <div className="md:max-w-[1280px] w-full justify-center flex-col bg-[#141414] p-[20px] mt-[100px] xl:mt-[120px] xl:rounded">
           <Notification />
           <div className="mx-[-10px] ">
             <Slider10 />
           </div>
           <div className="table table-fixed w-full">
-            <div className="flex-row lg:table-cell pt-[20px] align-top">
+            <div className="flex-row lg:table-cell pt-[20px] align-top h-[59.9vh]">
               <div className="lg:mr-[20px] rounded">
               <Slider1/> 
               </div>
@@ -30,7 +30,7 @@ const Home = () => {
         </div>
       </div>
       {/* <Catalog/> */}
-      <div className="w-full  mt-[20px] ">
+      <div className="w-full xl:mt-[20px] flex justify-center">
         <Footer />
       </div>
     </div>

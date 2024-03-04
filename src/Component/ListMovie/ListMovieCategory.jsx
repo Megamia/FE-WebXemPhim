@@ -64,10 +64,10 @@ const ListMovieCategory = () => {
     <div className="bg-[#263238]">
       <Header />
       <div className="bg-[#253238] flex  justify-center">
-        <div className="md:max-w-[1280px] w-full  justify-center flex-col bg-[#141414] p-[20px] mt-[130px] rounded">
+        <div className="md:max-w-[1280px] w-full  justify-center flex-col bg-[#141414] p-[20px] mt-[100px] xl:mt-[120px] xl:rounded">
           <Notification />
           <div className="w-full table table-fixed">
-            <div ref={scrollRef} className="w-full lg:table-cell flex-row bg-[#141414]">
+            <div ref={scrollRef} className="w-full lg:table-cell flex-row bg-[#141414] h-[65.7vh]">
               <div className="flex w-full justify-center mt-4 mb-4 relative lg:left-[-10px]">
                 {movieData.length > moviesPerPage && (
                   <nav className="w-full">
@@ -243,7 +243,7 @@ const ListMovieCategory = () => {
         </div>
       </div>
       {/* <Catalog/> */}
-      <div className="w-full  mt-[20px] ">
+      <div className="w-full xl:mt-[20px] flex justify-center ">
         <Footer />
       </div>
     </div>

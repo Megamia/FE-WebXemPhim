@@ -24,10 +24,11 @@ import Test1 from './Component/Test/Test1';
 import Test2 from './Component/Test/Test2';
 import Test3 from './Component/Test/Test3';
 import ProfileCHA from './Component/User/ProfileCHA/ProfileCHA';
+import NewList from './Component/Home/List1/NewList';
 
 function App() { 
   return (
-    <div className="App">
+    <div className="App bg-[#253238]">
       <Router>
         <PayPalScriptProvider options={{ "clientId": process.env.REACT_APP_PAYPAL_CLIENT_ID  }}>
           <Routes>
@@ -59,6 +60,7 @@ function App() {
             <Route path="/MovieBox/:movieid" element={<MovieBox />} />
             <Route path="/phim/:url" element={<MovieDetail/>} />
             <Route path="/phim/:movieurl/:videourl" element={<VideoDetail/>} />
+            <Route path="/NewList" element={<NewList/>} />
           </Routes>
         </PayPalScriptProvider>
       </Router>

@@ -24,7 +24,7 @@ const Header = () => {
         isHeaderVisible ? "opacity-100" : "opacity-0 invisible"
       }`}
     >
-      <Nav />
+      <Nav/>
     </div>
   );
 };

@@ -19,7 +19,7 @@ const Footer = () => {
         alert('Clm bình tĩnh đi đã làm đâu');
     }
     return (
-        <div className=" bottom-0 left-0 w-full h-[550px] bg-black pt-[30px]">
+        <div className=" bottom-0 left-0 w-full h-[550px] bg-black pt-[30px] md:max-w-[1280px] xl:rounded">
             <div className="flex h-[400px] ml-[50px] mr-[50px] border-gray-600 border-b-2">
                 <div className="w-[40%] flex flex-col mt-[30px] overflow-hidden">
                     <div className="w-[15%] h-auto ">

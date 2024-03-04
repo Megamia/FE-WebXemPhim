@@ -50,11 +50,11 @@ const MovieDetail = () => {
         <div className="bg-[#263238]">
             <Header />
             <div className="bg-[#253238] flex justify-center w-full ">
-                <div className="w-full md:max-w-[1280px] justify-center rounded flex-col bg-[#141414] p-[20px] mt-[130px] max-w-[1280px]">
+                <div className="w-full md:max-w-[1280px] justify-center rounded flex-col bg-[#141414] p-[20px] mt-[100px] xl:mt-[120px] xl:rounded">
                     <Notification />
                     <div className="table table-fixed w-full">
                         {movieData && movieData.map((movie) => (
-                            <main className="pt-[20px] lg:table-cell lg:pr-[20px] flex-row">
+                            <main className="pt-[20px] lg:table-cell lg:pr-[20px] flex-row h-[65.7vh]">
                                 <article key={movie.id} className='bg-cover min-h-[300px] bg-center bg-no-repeat rounded p-5 relative z-1 w-auto' style={{ backgroundImage: `url(../../upload/background/${movie.background})` }}>
                                     <header className="relative z-10 md:pl-[200px] md:flex-raw text-center md:text-justify">
                                         <h1 className='text-[#B5E745] text-[35px] font-semibold md:truncate'>{movie.moviename}</h1>
@@ -112,7 +112,7 @@ const MovieDetail = () => {
                                                     &nbsp;
                                                     {videoData.slice(0, 4).map((video) => (
                                                         <div className='bg-[#B5E745] text-white rounded mr-[5px] mt-[-3px]' key={video.videoid}>
-                                                            <a href={`/phim/${url}/${video.videourl}-${video.videoid}`}>
+                                                            <a href={`/phim/${url}/tap-${video.videoname}-${video.videoid}`}>
                                                                 <div className=' hover:bg-[#B5E745] hover:text-[#4C4C4C] font-semibold capitalize bg-[#4C4C4C] m-[1px] px-[7px] py-[2px]  text-white rounded'>{video.videoname}</div>
                                                             </a>
                                                         </div>
@@ -197,7 +197,7 @@ const MovieDetail = () => {
                     </div>
                 </div>
             </div>
-            <div className="w-full mt-[20px]">
+            <div className="w-full xl:mt-[20px] flex justify-center">
                 <Footer />
             </div>
         </div >

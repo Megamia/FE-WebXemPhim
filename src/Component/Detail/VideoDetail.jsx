@@ -11,62 +11,62 @@ import { MdOutlineSlowMotionVideo } from "react-icons/md";
 import { FacebookProvider, Comments } from 'react-facebook';
 
 const VideoDetail = () => {
-    const { movieurl } = useParams();
+    const { movieurl, videourl } = useParams();
     const [movieData, setMovieData] = useState([]);
     const [listvideoData, setListVideoData] = useState([]);
     const [videoData, setVideoData] = useState([]);
     const navigate = useNavigate();
-    const location = useLocation();
-    const pathname = location.pathname;
-    const id = pathname.split('-').pop();
+    const movieid = movieurl.split('-a').pop();
+    const videoid = videourl.split('-').pop();
     const scrollRef = useRef();
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/api/video/${id}`)
+        axios.get(`http://localhost:4000/api/phim/${movieid}/${videoid}`)
             .then(function (response) {
                 console.log(response.data);
                 setMovieData(response.data.movies);
                 setListVideoData(response.data.listvideos);
                 setVideoData(response.data.videos);
-                const videoUrl = response.data.videos[0].videourl;
-                navigate(`/phim/${movieurl}/${videoUrl}-${id}`);
+                const videoUrl = response.data.videos[0].videoname;
+                const movieUrl = response.data.movies[0].movieurl;
+                navigate(`/phim/${movieUrl}-a${movieid}/tap-${videoUrl}-${videoid}`);
             })
             .catch(function (error) {
                 console.log(error);
                 navigate('/not-found');
             });
-    }, [id, movieurl, navigate]);
+    }, [movieid, videoid, navigate]);
 
     useEffect(() => {
         const smoothScroll = () => {
-          const currentScrollPosition = window.pageYOffset;
-          const targetScrollPosition = scrollRef.current.offsetTop;
-          const distance = targetScrollPosition - currentScrollPosition;
-          const duration = 2500;
-          const startTime = performance.now();
-          const scrollStep = timestamp => {
-            const elapsedTime = timestamp - startTime;
-            const progress = Math.min(elapsedTime / duration, 1);
-            const easeProgress = easeOutQuart(progress);
-            window.scrollTo(0, currentScrollPosition + distance * easeProgress);
-            if (elapsedTime < duration) {
-              requestAnimationFrame(scrollStep);
-            }
-          };
-          requestAnimationFrame(scrollStep);
+            const currentScrollPosition = window.pageYOffset;
+            const targetScrollPosition = scrollRef.current.offsetTop - 80;
+            const distance = targetScrollPosition - currentScrollPosition;
+            const duration = 2500;
+            const startTime = performance.now();
+            const scrollStep = timestamp => {
+                const elapsedTime = timestamp - startTime;
+                const progress = Math.min(elapsedTime / duration, 1);
+                const easeProgress = easeOutQuart(progress);
+                window.scrollTo(0, currentScrollPosition + distance * easeProgress);
+                if (elapsedTime < duration) {
+                    requestAnimationFrame(scrollStep);
+                }
+            };
+            requestAnimationFrame(scrollStep);
         };
-        const easeOutQuart = t => 1 - (--t) * t * t * t; 
+        const easeOutQuart = t => 1 - (--t) * t * t * t;
         smoothScroll();
-      }, []);
+    }, []);
 
     return (
         <div className="bg-[#263238]">
             <Header />
             <div className="bg-[#253238] flex justify-center w-full ">
-                <div className="w-full md:max-w-[1280px] justify-center rounded flex-col bg-[#141414] p-[20px] mt-[130px] max-w-[1280px]">
+                <div className="w-full md:max-w-[1280px] justify-center flex-col bg-[#141414] p-[20px] mt-[100px] xl:mt-[120px] xl:rounded">
                     <Notification />
                     <div ref={scrollRef} className="table table-fixed w-full">
-                        <main className="pt-[20px] lg:table-cell lg:pr-[20px] flex-row">
+                        <main className="pt-[20px] lg:table-cell lg:pr-[20px] flex-row h-[65.7vh]">
                             {videoData && videoData.map((video) => (
                                 <div className='mb-[20px] pt-[55%] w-full relative '>
                                     <div className='block'>
@@ -79,8 +79,8 @@ const VideoDetail = () => {
                                 <div className='relative flex-wrap flex w-full'>
                                     {listvideoData && listvideoData.map((listvideo) => (
                                         <div className=' text-white bg-transparent mr-[5px]'>
-                                            <a href={`/phim/${movieurl}/${listvideo.videourl}-${listvideo.videoid}`}>
-                                                <div key={listvideo.videoid} className={`font-semibold m-[1px] px-3 py-1 text-[18px] text-white rounded ${listvideo.videoid == id ? 'bg-[#E62117]' : 'bg-[#252525] hover:bg-[#E87D7F] hover:text-[#702526]'}`}>{listvideo.videoname}</div>
+                                            <a href={`/phim/${movieurl}/tap-${listvideo.videoname}-${listvideo.videoid}`}>
+                                                <div key={listvideo.videoid} className={`font-semibold m-[1px] px-3 py-1 text-[18px] text-white rounded ${listvideo.videoid == videoid ? 'bg-[#E62117]' : 'bg-[#252525] hover:bg-[#E87D7F] hover:text-[#702526]'}`}>{listvideo.videoname}</div>
                                             </a>
                                         </div>
                                     ))}
@@ -128,7 +128,7 @@ const VideoDetail = () => {
                     </div>
                 </div>
             </div>
-            <div className="w-full mt-[20px]">
+            <div className="w-full xl:mt-[20px] flex justify-center">
                 <Footer />
             </div>
         </div >

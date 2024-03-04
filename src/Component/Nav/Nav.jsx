@@ -31,8 +31,8 @@ const Nav = () => {
       };
 
     return (
-        <div className="w-full relative">
-            <div className="flex items-center h-[100px] top-0 z-50 bg-black ">
+        <div className="w-full relative bg-black flex justify-center ">
+            <div className="flex items-center h-[100px] top-0 z-50 bg-black w-full md:max-w-[1350px]">
                 <NavLink to="/Home" className="h-full w-[100px] flex items-center justify-center ml-[40px] mr-[40px]">
                     <div className="flex justify-center h-[85%]">
                         <img src="../../img/logoPage.png" alt="logo" className="h-auto max-h-[100%]" />
@@ -93,7 +93,7 @@ const Nav = () => {
                     </button>
 
                     <button className={`w-1/5  ${styles.menu}`}>
-                        <NavLink to="/MovieBox" className="text-white text-2xl ">
+                        <NavLink to="/NewList" className="text-white text-2xl ">
                             Thể loại
                         </NavLink>
                         <div className={styles.submenu}>
