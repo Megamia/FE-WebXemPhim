@@ -8,8 +8,8 @@ import { IoMdMail } from "react-icons/io";
 import styles from './style.module.scss'
 import axios from 'axios';
 import Profile from './ProfileCON/Profile';
-import Test2 from '../../Test/Test2';
 import Test3 from '../../Test/Test3';
+import Page2 from './Page2/Page2';
 
 const ProfileCHA = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -52,7 +52,7 @@ const ProfileCHA = () => {
                     setUsername(response.data.userInfo.username);
                     setFullname(response.data.userInfo.fullname);
                     setEmail(response.data.userInfo.email);
-                    setEmail(response.data.userInfo.pasword);
+                    setPasword(response.data.userInfo.pasword);
                     setPhone(response.data.userInfo.phone);
                 })
                 .catch(error => {
@@ -85,7 +85,7 @@ const ProfileCHA = () => {
             case 'Profile':
                 return <Profile />;
             case 'Test2':
-                return <Test2 />;
+                return <Page2 />;
             case 'Test3':
                 return <Test3 />;
             default:
