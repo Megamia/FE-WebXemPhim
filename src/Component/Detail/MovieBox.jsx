@@ -27,8 +27,8 @@ const MovieBox = ({ movie }) => {
                             </div>
                         </div>
                     ) : (
-                        <div className="absolute bottom-[20%] w-full bg-[#AA2121] ">
-                            <p className="text-white px-4 py-1">Sắp chiếu</p>
+                        <div className="absolute bottom-[50%] w-full flex bg-[#AA2121] justify-center">
+                            <p className="text-white px-4 py-1 font-semibold text-[18px]">Sắp chiếu</p>
                         </div>
                     )}
 

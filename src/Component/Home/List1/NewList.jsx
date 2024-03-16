@@ -1,14 +1,14 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import MovieBox from "../../Detail/MovieBox";
 
 
-const NewList = () => {
+const NewList = ({ id }) => {
     const [movieData, setMovieData] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:4000/api/movie');
+                const response = await axios.get(`http://localhost:4000/api/${id}`);
                 const sortedMovies = response.data.movies
                     .slice(0, 10);
                 setMovieData(sortedMovies);
@@ -17,7 +17,7 @@ const NewList = () => {
             }
         };
         fetchData();
-    }, []);
+    }, [id]);
 
     return (
         <div className="flex w-full">

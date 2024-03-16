@@ -18,7 +18,7 @@ import ListMovieType from './Component/ListMovie/ListMovieType';
 import NewMovie from './Component/ListMovie/NewMovie';
 import MovieBox from './Component/Detail/MovieBox';
 import MovieDetail from './Component/Detail/MovieDetail';
-import Login from './Component/User/Login/Login';
+import Login from './Component/User/Login/login';
 import VideoDetail from './Component/Detail/VideoDetail';
 import Test1 from './Component/Test/Test1';
 import Test2 from './Component/Test/Test2';
@@ -29,7 +29,7 @@ import NewList from './Component/Home/List1/NewList';
 
 function App() { 
   return (
-    <div className="App bg-[#253238]">
+    <div className="App bg-[#253238] h-screen">
       <Router>
         <PayPalScriptProvider options={{ "clientId": process.env.REACT_APP_PAYPAL_CLIENT_ID  }}>
           <Routes>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Login.css";
+import "./login.css";
 import { useNavigate } from "react-router-dom";
 // import NotificationModal from "./NotificationModal";
 import axios from "axios";
@@ -25,17 +25,17 @@ const Login = () => {
         document.title = "Đăng nhập";
     }, []);
 
-    useEffect(() => {
-        const storedLoggedInStatus = localStorage.getItem("isLoggedIn");
-        if (storedLoggedInStatus === "true") {
-            setIsLoggedIn(true);
-        }
-    }, []);
-    useEffect(() => {
-        if (isLoggedIn) {
-            sessionStorage.setItem('isLoggedIn', 'true');
-        }
-    }, [isLoggedIn]);
+    // useEffect(() => {
+    //     const storedLoggedInStatus = localStorage.getItem("isLoggedIn");
+    //     if (storedLoggedInStatus === "true") {
+    //         setIsLoggedIn(true);
+    //     }
+    // }, []);
+    // useEffect(() => {
+    //     if (isLoggedIn) {
+    //         sessionStorage.setItem('isLoggedIn', 'true');
+    //     }
+    // }, [isLoggedIn]);
 
     //login//
     const handleUserChange = (event) => {
@@ -57,9 +57,9 @@ const Login = () => {
 
             if (response.status === 200) {
                 const token = response.data.token;
-                localStorage.setItem("token", token);
-                localStorage.setItem("isLoggedIn", "true");
-                setIsLoggedIn(true);
+                document.cookie = `token=${token}; path=/; secure;`;
+                // localStorage.setItem("isLoggedIn", "true");
+                // setIsLoggedIn(true);
                 alert("Đăng nhập thành công");
                 window.scrollTo(0, 0);
                 if (User === 'admin') {
@@ -242,7 +242,7 @@ const Login = () => {
                         </div>
                     </div>
                 </div>
-                <div className="w-full  mt-[20px] ">
+                <div className="w-full xl:mt-[20px] flex justify-center ">
                     <Footer />
                 </div>
             </div>

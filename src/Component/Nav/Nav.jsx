@@ -5,27 +5,27 @@ import { faUserCheck } from "@fortawesome/free-solid-svg-icons";
 import styles from './style.module.scss';
 
 const Nav = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const isLoggedIn = document.cookie.includes("token=");
     const handleVideoClick = (event) => {
         event.preventDefault();
         const videoUrl = event.currentTarget.getAttribute('href');
         window.location.href = videoUrl;
     };
-    const handleLogin = () => {
-        setIsLoggedIn(true);
-        localStorage.setItem('isLoggedIn', true);
-    };
+    // const handleLogin = () => {
+    //     setIsLoggedIn(true);
+    //     localStorage.setItem('isLoggedIn', true);
+    // };
 
-    const handleLogout = () => {
-        setIsLoggedIn(false);
-        localStorage.removeItem('isLoggedIn');
-    };
-    useEffect(() => {
-        const loggedInStatus = localStorage.getItem('isLoggedIn');
-        if (loggedInStatus) {
-            setIsLoggedIn(true);
-        }
-    }, []);
+    // const handleLogout = () => {
+    //     setIsLoggedIn(false);
+    //     localStorage.removeItem('isLoggedIn');
+    // };
+    // useEffect(() => {
+    //     const loggedInStatus = localStorage.getItem('isLoggedIn');
+    //     if (loggedInStatus) {
+    //         setIsLoggedIn(true);
+    //     }
+    // }, []);
     const handleLoginClick = () => {
         window.scrollTo(0, 300);
       };
@@ -33,7 +33,7 @@ const Nav = () => {
     return (
         <div className="w-full relative bg-black flex justify-center ">
             <div className="flex items-center h-[100px] top-0 z-50 bg-black w-full md:max-w-[1350px]">
-                <NavLink to="/Home" className="h-full w-[100px] flex items-center justify-center ml-[40px] mr-[40px]">
+                <NavLink to="/#" className="h-full w-[100px] flex items-center justify-center ml-[40px] mr-[40px]">
                     <div className="flex justify-center h-[85%]">
                         <img src="../../img/logoPage.png" alt="logo" className="h-auto max-h-[100%]" />
                     </div>
@@ -42,7 +42,7 @@ const Nav = () => {
                 <div className=" hidden md:flex justify-center flex-1 h-[100%] ">
 
                     <button className="w-1/5">
-                        <NavLink to="/Home" className="text-white text-2xl ">
+                        <NavLink to="/#" className="text-white text-2xl ">
                             Trang chủ
                         </NavLink>
                     </button>

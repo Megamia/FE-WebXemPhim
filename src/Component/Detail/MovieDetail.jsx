@@ -12,6 +12,7 @@ import { MdVideoCall } from "react-icons/md";
 import { IoMdPhotos } from "react-icons/io";
 import { FaRegCircleDot } from "react-icons/fa6";
 import { FacebookProvider, Comments } from 'react-facebook';
+import Rating from './Rating/Rating';
 import "./Detail.css";
 
 const MovieDetail = () => {
@@ -54,7 +55,7 @@ const MovieDetail = () => {
                     <Notification />
                     <div className="table table-fixed w-full">
                         {movieData && movieData.map((movie) => (
-                            <main className="pt-[20px] lg:table-cell lg:pr-[20px] flex-row h-[65.7vh]">
+                            <main className="pt-[20px] lg:table-cell lg:pr-[20px] flex-row">
                                 <article key={movie.id} className='bg-cover min-h-[300px] bg-center bg-no-repeat rounded p-5 relative z-1 w-auto' style={{ backgroundImage: `url(../../upload/background/${movie.background})` }}>
                                     <header className="relative z-10 md:pl-[200px] md:flex-raw text-center md:text-justify">
                                         <h1 className='text-[#B5E745] text-[35px] font-semibold md:truncate'>{movie.moviename}</h1>
@@ -70,12 +71,18 @@ const MovieDetail = () => {
                                             {movie.moviedescribe}
                                         </div>
                                     </header>
-                                    <footer className="relative z-10 ml-[200px] pt-5 border-gray-400 bg-transparent border-t-[1px] ">
-                                        <p className="flex items-center text-white font-semibold text-[14px] mt-5">
-                                            <FaRegClock className="text-[#999C9A] mr-1" /><span className="mr-4">{movie.time}</span>
-                                            <FaRegCalendarAlt className="text-[#999C9A] mr-1" /><span className="mr-4">{movie.release_year}</span>
-                                            <BsFillEyeFill className="text-[#999C9A] mr-1" /><span className="mr-4">{movie.views} Lượt Xem</span>
-                                        </p>
+                                    <footer className="relative flex items-center z-10 xl:ml-[200px] xl:mt-0 mt-[100px] pt-5 border-gray-400 bg-transparent border-t-[1px] ">
+                                        <div className=' border-gray-400 border-r-[1px] pr-[50px] w-auto'>
+                                            <Rating />
+                                            <div className='text-white font-semibold'>( 4,5/5 từ 10 thành viên )</div>
+                                        </div>
+                                        <div className='flex justify-center w-full'>
+                                            <p className="flex items-center text-white font-semibold text-[14px] ml-[17px]">
+                                                <FaRegClock className="text-[#999C9A] mr-1" /><span className="mr-4">{movie.time}</span>
+                                                <FaRegCalendarAlt className="text-[#999C9A] mr-1" /><span className="mr-4">{movie.release_year}</span>
+                                                <BsFillEyeFill className="text-[#999C9A] mr-1" /><span className="mr-4">{movie.views} Lượt Xem</span>
+                                            </p>
+                                        </div>
                                     </footer>
                                     <div className="absolute inset-0 bg-black opacity-65 rounded"></div>
                                 </article>
@@ -197,7 +204,7 @@ const MovieDetail = () => {
                     </div>
                 </div>
             </div>
-            <div className="w-full xl:mt-[20px] flex justify-center">
+            <div className="w-full xl:mt-[20px] flex justify-center h-full">
                 <Footer />
             </div>
         </div >

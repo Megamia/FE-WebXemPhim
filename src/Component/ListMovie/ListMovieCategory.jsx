@@ -12,7 +12,7 @@ const ListMovieCategory = () => {
   const navigate = useNavigate();
   const [movieData, setMovieData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [moviesPerPage] = useState(2);
+  const [moviesPerPage] = useState(15);
   const scrollRef = useRef();
   const smoothScroll = () => {
     const currentScrollPosition = window.pageYOffset;
@@ -34,7 +34,7 @@ const ListMovieCategory = () => {
   const easeOutQuart = t => 1 - (--t) * t * t * t;
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/api/category-movie/${category}`)
+    axios.get(`http://localhost:4000/api/danh-muc/${category}`)
       .then(function (response) {
         // Handle the data when a successful response is received from the API
         console.log(response.data); // Log the data to the console
@@ -44,6 +44,7 @@ const ListMovieCategory = () => {
         // Handle any errors
         console.log(error);
       });
+      window.scrollTo(0, 0);
   }, [category]);
 
   useEffect(() => {
@@ -67,7 +68,7 @@ const ListMovieCategory = () => {
         <div className="md:max-w-[1280px] w-full  justify-center flex-col bg-[#141414] p-[20px] mt-[100px] xl:mt-[120px] xl:rounded">
           <Notification />
           <div className="w-full table table-fixed">
-            <div ref={scrollRef} className="w-full lg:table-cell flex-row bg-[#141414] h-[65.7vh]">
+            <div ref={scrollRef} className="w-full lg:table-cell flex-row bg-[#141414]">
               <div className="flex w-full justify-center mt-4 mb-4 relative lg:left-[-10px]">
                 {movieData.length > moviesPerPage && (
                   <nav className="w-full">

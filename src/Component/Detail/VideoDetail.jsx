@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-import { useNavigate, useLocation, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Header from '../Header&Footer/Header/Header';
 import Notification from '../Home/Notification/Nontification';
 import Footer from '../Header&Footer/Footer/Footer';
@@ -9,6 +9,7 @@ import { FaRegClock, FaRegCalendarAlt } from "react-icons/fa";
 import { BsFillEyeFill } from "react-icons/bs";
 import { MdOutlineSlowMotionVideo } from "react-icons/md";
 import { FacebookProvider, Comments } from 'react-facebook';
+import Rating from './Rating/Rating';
 
 const VideoDetail = () => {
     const { movieurl, videourl } = useParams();
@@ -19,6 +20,18 @@ const VideoDetail = () => {
     const movieid = movieurl.split('-a').pop();
     const videoid = videourl.split('-').pop();
     const scrollRef = useRef();
+
+    const incrementViews = async () => {
+        try {
+          const data = { movieId: movieid };
+          const response = await axios.post('http://localhost:4000/api/views', data);
+          if (response.data.success) {
+      
+          }
+        } catch (error) {
+          console.error('Lỗi khi cập nhật số lượt xem từ API: ', error);
+        }
+      };
 
     useEffect(() => {
         axios.get(`http://localhost:4000/api/phim/${movieid}/${videoid}`)
@@ -58,6 +71,11 @@ const VideoDetail = () => {
         const easeOutQuart = t => 1 - (--t) * t * t * t;
         smoothScroll();
     }, []);
+    
+    const handlePlayVideo = () => {
+        incrementViews();
+      };
+    
 
     return (
         <div className="bg-[#263238]">
@@ -66,11 +84,11 @@ const VideoDetail = () => {
                 <div className="w-full md:max-w-[1280px] justify-center flex-col bg-[#141414] p-[20px] mt-[100px] xl:mt-[120px] xl:rounded">
                     <Notification />
                     <div ref={scrollRef} className="table table-fixed w-full">
-                        <main className="pt-[20px] lg:table-cell lg:pr-[20px] flex-row h-[65.7vh]">
+                        <main className="pt-[20px] lg:table-cell lg:pr-[20px] flex-row">
                             {videoData && videoData.map((video) => (
-                                <div className='mb-[20px] pt-[55%] w-full relative '>
+                                <div className='mb-[20px] pt-[55%] w-full relative'>
                                     <div className='block'>
-                                        <iframe width="560" height="315" className='absolute w-full h-full top-0 left-0 rounded' src={`${video.urlserver}`} frameborder="0" allowfullscreen=""></iframe>
+                                        <iframe onLoad={handlePlayVideo} title="Video Player" width="560" height="315" className='absolute w-full h-full top-0 left-0 rounded' src={`${video.urlserver}`} frameborder="0" allowfullscreen=""></iframe>
                                     </div>
                                 </div>
                             ))}
@@ -89,30 +107,36 @@ const VideoDetail = () => {
 
                             {movieData && movieData.map((movie) => (
                                 <>
-                                    <article key={movie.id} className='bg-cover min-h-[300px] bg-center bg-no-repeat rounded p-5 relative z-1 w-auto' style={{ backgroundImage: `url(../../upload/background/${movie.background})` }}>
-                                        <header className="relative z-10 md:pl-[200px] md:flex-raw text-center md:text-justify">
-                                            <h1 className='text-[#B5E745] text-[35px] font-semibold md:truncate'>{movie.moviename}</h1>
-                                            <h2 className='text-white text-[20px] font-semibold md:truncate pb-2'>{movie.moviesubname}</h2>
-                                            <div className="md:absolute md:top-0 md:left-0 flex justify-center ">
-                                                <img
-                                                    className="w-[180px] h-[260px] object-cover rounded"
-                                                    src={`../../upload/poster/${movie.poster}`}
-                                                    alt="Movie Avatar"
-                                                />
-                                            </div>
-                                            <div className="text-[#C0BBBD] font-semibold mb-[50px]">
-                                                {movie.moviedescribe}
-                                            </div>
-                                        </header>
-                                        <footer className="relative z-10 ml-[200px] pt-5 border-gray-400 bg-transparent border-t-[1px] ">
-                                            <p className="flex items-center text-white font-semibold text-[14px] mt-5">
+                                     <article key={movie.id} className='bg-cover min-h-[300px] bg-center bg-no-repeat rounded p-5 relative z-1 w-auto' style={{ backgroundImage: `url(../../upload/background/${movie.background})` }}>
+                                    <header className="relative z-10 md:pl-[200px] md:flex-raw text-center md:text-justify">
+                                        <h1 className='text-[#B5E745] text-[35px] font-semibold md:truncate'>{movie.moviename}</h1>
+                                        <h2 className='text-white text-[20px] font-semibold md:truncate pb-2'>{movie.moviesubname}</h2>
+                                        <div className="md:absolute md:top-0 md:left-0 flex justify-center ">
+                                            <img
+                                                className="w-[180px] h-[260px] object-cover rounded"
+                                                src={`../../upload/poster/${movie.poster}`}
+                                                alt="Movie Avatar"
+                                            />
+                                        </div>
+                                        <div className="text-[#C0BBBD] font-semibold mb-[50px]">
+                                            {movie.moviedescribe}
+                                        </div>
+                                    </header>
+                                    <footer className="relative flex items-center z-10 xl:ml-[200px] xl:mt-0 mt-[100px] pt-5 border-gray-400 bg-transparent border-t-[1px] ">
+                                        <div className=' border-gray-400 border-r-[1px] pr-[50px] w-auto'>
+                                            <Rating />
+                                            <div className='text-white font-semibold'>( 4,5/5 từ 10 thành viên )</div>
+                                        </div>
+                                        <div className='flex justify-center w-full'>
+                                            <p className="flex items-center text-white font-semibold text-[14px] ml-[17px]">
                                                 <FaRegClock className="text-[#999C9A] mr-1" /><span className="mr-4">{movie.time}</span>
                                                 <FaRegCalendarAlt className="text-[#999C9A] mr-1" /><span className="mr-4">{movie.release_year}</span>
                                                 <BsFillEyeFill className="text-[#999C9A] mr-1" /><span className="mr-4">{movie.views} Lượt Xem</span>
                                             </p>
-                                        </footer>
-                                        <div className="absolute inset-0 bg-black opacity-65 rounded"></div>
-                                    </article>
+                                        </div>
+                                    </footer>
+                                    <div className="absolute inset-0 bg-black opacity-65 rounded"></div>
+                                </article>
                                     <div className='bg-white mt-[20px] rounded'>
                                         <FacebookProvider appId="265046719974622">
                                             <Comments href={`http://192.168.1.21:3000/phim/commentfacebook/${movie.movieid}`} width="100%" numPosts={5} locale="vi_VN" />

@@ -6,6 +6,7 @@ import Notification from "./Notification/Nontification";
 import Slider10 from "./Slider10/Slider10";
 import Righter from "../Header&Footer/Righter/Righter";
 import Slider1 from "./Slider1/Slider1";
+import TableList from "./List1/TableList";
 
 const Home = () => {
   return (
@@ -18,9 +19,12 @@ const Home = () => {
             <Slider10 />
           </div>
           <div className="table table-fixed w-full">
-            <div className="flex-row lg:table-cell pt-[20px] align-top h-[59.9vh]">
+            <div className="flex-row lg:table-cell pt-[20px] align-top">
               <div className="lg:mr-[20px] rounded">
-              <Slider1/> 
+                <Slider1 />
+              </div>
+              <div>
+                <TableList />
               </div>
             </div>
             <div className="lg:table-cell w-[300px]">

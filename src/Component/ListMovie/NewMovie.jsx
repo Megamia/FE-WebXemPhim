@@ -18,8 +18,9 @@ const NewMovie = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/movie');
+        const response = await axios.get('http://localhost:4000/api/phim-moi');
         setMovieData(response.data.movies);
+        window.scrollTo(0, 0);
       } catch (error) {
         console.log(error);
       }
@@ -46,7 +47,7 @@ const NewMovie = () => {
     requestAnimationFrame(scrollStep);
   };
   const easeOutQuart = t => 1 - (--t) * t * t * t;
-  
+
   useEffect(() => {
     setCurrentPage(parseInt(page, 10) || 1);
   }, [page]);
@@ -68,7 +69,7 @@ const NewMovie = () => {
         <div className="w-[1280px] justify-center flex-col bg-[#141414] p-[20px] mt-[100px] xl:mt-[120px] xl:rounded">
           <Notification />
           <div className="w-full table table-fixed">
-            <div ref={scrollRef} className="w-full lg:table-cell flex-row bg-[#141414] h-[65.7vh]">
+            <div ref={scrollRef} className="w-full lg:table-cell flex-row bg-[#141414]">
               <div className="flex w-full justify-center mt-4 mb-4 relative lg:left-[-10px]">
                 {movieData.length > moviesPerPage && (
                   <nav className="w-full">
@@ -106,7 +107,7 @@ const NewMovie = () => {
                           );
                         }
                         if (totalPages <= 4) {
-                          const pageNumber = totalPages - 3 + index + 1;
+                          const pageNumber = index + 1;
                           return (
                             <li
                               className="page-item bg-[#212527] w-[40px] h-[40px] rounded flex justify-center m-1 text-[#78909C] text-[18px] font-bold hover:bg-[#B5E745] hover:text-white"
@@ -193,7 +194,7 @@ const NewMovie = () => {
                           );
                         }
                         if (totalPages <= 4) {
-                          const pageNumber = totalPages - 3 + index + 1;
+                          const pageNumber = index + 1;
                           return (
                             <li
                               className="page-item bg-[#212527] w-[40px] h-[40px] rounded flex justify-center m-1 text-[#78909C] text-[18px] font-bold hover:bg-[#B5E745] hover:text-white"
