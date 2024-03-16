@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./login.css";
+import "./style.css";
 import { useNavigate } from "react-router-dom";
 // import NotificationModal from "./NotificationModal";
 import axios from "axios";
@@ -37,7 +37,7 @@ const Login = () => {
     //     }
     // }, [isLoggedIn]);
 
-    //login//
+    //LOGIN//
     const handleUserChange = (event) => {
         setUser(event.target.value);
     };
@@ -62,11 +62,7 @@ const Login = () => {
                 // setIsLoggedIn(true);
                 alert("Đăng nhập thành công");
                 window.scrollTo(0, 0);
-                if (User === 'admin') {
-                    navigate("/UserMNGM");
-                } else {
-                    navigate("/ProfileCHA");
-                }
+                navigate("/ProfileCHA");             
                 return;
             }
 

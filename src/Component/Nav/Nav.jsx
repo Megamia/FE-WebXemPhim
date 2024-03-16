@@ -55,21 +55,21 @@ const Nav = () => {
                             <ul className="bg-white w-[100px]  ">
                                 <li>
                                     <button className=" w-[100%] flex left-0">
-                                        <NavLink to="/UserMNGM" className="">
+                                        <NavLink to="/" className="">
                                             Theo năm
                                         </NavLink>
                                     </button>
                                 </li>
                                 <li>
                                     <button className=" w-[100%] flex left-0">
-                                        <NavLink to="/Error404" className="">
+                                        <NavLink to="/" className="">
                                             Theo mùa
                                         </NavLink>
                                     </button>
                                 </li>
                                 <li>
                                     <button className=" w-[100%] flex left-0">
-                                        <NavLink to="/Error404" className="">
+                                        <NavLink to="/" className="">
                                             Theo ngày
                                         </NavLink>
                                     </button>
@@ -93,7 +93,7 @@ const Nav = () => {
                     </button>
 
                     <button className={`w-1/5  ${styles.menu}`}>
-                        <NavLink to="/NewList" className="text-white text-2xl ">
+                        <NavLink to="/" className="text-white text-2xl ">
                             Thể loại
                         </NavLink>
                         <div className={styles.submenu}>
@@ -158,7 +158,7 @@ const Nav = () => {
                     </button>
 
                     <button className="w-1/5">
-                        <NavLink to="/Test" className="text-white text-2xl">
+                        <NavLink to="/ExPage" className="text-white text-2xl">
                             Thư viện
                         </NavLink>
                     </button>

@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import Header from "../../Header&Footer/Header/Header";
 import Footer from "../../Header&Footer/Footer/Footer";
 import { useNavigate } from "react-router-dom";
-import { FaUser,FaListAlt,FaDonate } from "react-icons/fa";
+import { FaUser, FaListAlt, FaDonate } from "react-icons/fa";
+import { RiAdminFill } from "react-icons/ri";
 import styles from "./style.module.scss";
 import axios from "axios";
 import Profile from "./ProfileCON/Profile";
 import Test3 from "../../Test/Test3";
+import Cookies from "js-cookie";
+import UserMNGM from "../../Admin/UserMNGM";
+import Page3 from "./Page3/Page3";
 import Page2 from "./Page2/Page2";
-import Cookies from 'js-cookie';
 
 const ProfileCHA = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -38,7 +41,7 @@ const ProfileCHA = () => {
     //   setIsLoggedIn(true);
     // }
 
-    const storedToken = Cookies.get('token');
+    const storedToken = Cookies.get("token");
     if (storedToken) {
       axios
         .get("http://localhost:4000/api/profile", {
@@ -81,15 +84,30 @@ const ProfileCHA = () => {
     setCurrentPage(page);
   };
   const renderPage = () => {
-    switch (currentPage) {
-      case "Profile":
-        return <Profile />;
-      case "Test2":
-        return <Page2 />;
-      case "Test3":
-        return <Test3 />;
-      default:
-        return null;
+    if (username === "admin") {
+      switch (currentPage) {
+        case "Profile":
+          return <Profile />;
+        case "UserMNGM":
+          return <UserMNGM />;
+        case "Page2":
+          return <Page2 />;
+        case "Page3":
+          return <Page3 />;
+        default:
+          return null;
+      }
+    } else {
+      switch (currentPage) {
+        case "Profile":
+          return <Profile />;
+        case "UserMNGM":
+          return <UserMNGM />;
+        case "Page3":
+          return <Page3 />;
+        default:
+          return null;
+      }
     }
   };
   return (
@@ -134,20 +152,31 @@ const ProfileCHA = () => {
                         <FaUser className=" mr-[10px] " />
                         <span className="">Profile</span>
                       </li>
+                      {username === "admin" && (
+                        <li
+                          className={`${
+                            currentPage === "UserMNGM" ? styles.active : ""
+                          } flex flex-1 flex-row items-center`}
+                          onClick={() => handlePageChange("UserMNGM")}
+                        >
+                          <RiAdminFill className=" mr-[10px] " />
+                          <span className="">Admin Page</span>
+                        </li>
+                      )}
                       <li
                         className={`${
-                          currentPage === "Test2" ? styles.active : ""
+                          currentPage === "Page2" ? styles.active : ""
                         } flex flex-1 flex-row items-center`}
-                        onClick={() => handlePageChange("Test2")}
+                        onClick={() => handlePageChange("Page2")}
                       >
                         <FaListAlt className=" mr-[10px] " />
                         <span className="">Follow Movie</span>
                       </li>
                       <li
                         className={`${
-                          currentPage === "Test3" ? styles.active : ""
+                          currentPage === "Page3" ? styles.active : ""
                         } flex flex-1 flex-row items-center`}
-                        onClick={() => handlePageChange("Test3")}
+                        onClick={() => handlePageChange("Page3")}
                       >
                         <FaDonate className=" mr-[10px] " />
                         <span className="">Donate history</span>
@@ -157,8 +186,8 @@ const ProfileCHA = () => {
                 </div>
               </div>
             </div>
-            <div className=" flex flex-1 h-full bg-white">
-              <div className="flex flex-1 my-[35px]">{renderPage()}</div>
+            <div className=" flex flex-1 bg-white min-w-[970px] py-[30px]">
+              {renderPage()}
             </div>
           </div>
         </div>

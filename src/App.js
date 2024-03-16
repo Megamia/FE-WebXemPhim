@@ -18,7 +18,7 @@ import ListMovieType from './Component/ListMovie/ListMovieType';
 import NewMovie from './Component/ListMovie/NewMovie';
 import MovieBox from './Component/Detail/MovieBox';
 import MovieDetail from './Component/Detail/MovieDetail';
-import Login from './Component/User/Login/login';
+import Login from './Component/User/Login/Login';
 import VideoDetail from './Component/Detail/VideoDetail';
 import Test1 from './Component/Test/Test1';
 import Test2 from './Component/Test/Test2';

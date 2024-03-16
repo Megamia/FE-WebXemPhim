@@ -1,10 +1,9 @@
-import React from 'react';
+import React from "react";
 
 const Page2 = () => {
   return (
-    <div className='flex justify-center items-center text-black h-screen'>
-      
-
+    <div className="flex flex-col flex-1 px-[35px] bg-white">
+      <span>Page2</span>
     </div>
   );
 };
