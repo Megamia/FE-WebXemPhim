@@ -49,6 +49,7 @@ const Login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        
         try {
             const response = await axios.post("http://localhost:4000/api/login", {
                 username: User,
@@ -79,6 +80,10 @@ const Login = () => {
     //SIGNUP//
     const handleSignup = async (event) => {
         event.preventDefault();
+        if (username === "admin") {
+            alert("Không được đăng kí với username=admin");
+            return;
+          }
         try {
             const response = await axios.post('http://localhost:4000/api/signup', {
                 username,
@@ -91,10 +96,9 @@ const Login = () => {
             console.log('Signup successful:', response.data);
             alert('Đăng kí thành công');
             handleLoginClick();
-
         } catch (error) {
             console.error('Error signing up:', error);
-            alert('Đăng kí thất bại ');
+            alert('Người dùng đã tồn tại ', error);
         }
     };
     const [isSignUpActive, setIsSignUpActive] = useState(false);

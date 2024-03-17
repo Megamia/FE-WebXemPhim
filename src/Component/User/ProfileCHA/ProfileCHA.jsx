@@ -12,6 +12,7 @@ import Cookies from "js-cookie";
 import UserMNGM from "../../Admin/UserMNGM";
 import Page3 from "./Page3/Page3";
 import Page2 from "./Page2/Page2";
+import "./Profile.css";
 
 const ProfileCHA = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -84,30 +85,17 @@ const ProfileCHA = () => {
     setCurrentPage(page);
   };
   const renderPage = () => {
-    if (username === "admin") {
-      switch (currentPage) {
-        case "Profile":
-          return <Profile />;
-        case "UserMNGM":
-          return <UserMNGM />;
-        case "Page2":
-          return <Page2 />;
-        case "Page3":
-          return <Page3 />;
-        default:
-          return null;
-      }
-    } else {
-      switch (currentPage) {
-        case "Profile":
-          return <Profile />;
-        case "UserMNGM":
-          return <UserMNGM />;
-        case "Page3":
-          return <Page3 />;
-        default:
-          return null;
-      }
+    switch (currentPage) {
+      case "Profile":
+        return <Profile />;
+      case "UserMNGM":
+        return <UserMNGM />;
+      case "Page2":
+        return <Page2 />;
+      case "Page3":
+        return <Page3 />;
+      default:
+        return null;
     }
   };
   return (
@@ -115,29 +103,38 @@ const ProfileCHA = () => {
       <Header />
       <div className="bg-[#253238] flex  justify-center">
         <div className="md:max-w-[1280px] w-full justify-center flex-col bg-[#141414] p-[20px] mt-[130px] rounded">
-          <div className="flex flex-row p-[35px] bg-[#F9F9FB] rounded ">
-            <div className="flex flex-col w-[300px] border-r-[2px] border-[#F9F9FB] bg-white ">
+          <div className="flex flex-row p-[5px] bg-[263238] rounded ">
+            <div className="flex flex-col w-[300px] border-r-[1px] border-[#F9F9FB] bg-[#263238] rounded-tl-[4px] rounded-bl-[4px]">
               <div className="flex flex-col my-[35px]">
-                <div className="flex flex-col items-center mb-[30px]">
+                <div className="flex flex-col items-center mb-[30px] bg-[#263238]">
                   <img
                     src="../../img/AVT/03ebd625cc0b9d636256ecc44c0ea324.jpg"
                     alt="?"
                     className="w-[50%]"
                   />
-                  <div className="flex text-black mt-[10px]">
-                    {fullname !== null && fullname !== ""
-                      ? fullname
-                      : "User didn't set fullname"}
+                  <div className="flex text-white mt-[10px]">
+                    Fullname:
+                    <span className="ml-[5px] text-block">
+                      {fullname !== null && fullname !== ""
+                        ? fullname
+                        : "User didn't set fullname"}
+                    </span>
                   </div>
-                  <div className="flex text-black mt-[10px]">
-                    {email !== null && email !== ""
-                      ? email
-                      : "User didn't set email"}
+                  <div className="flex text-white mt-[10px]">
+                    Email:
+                    <span className="ml-[5px] text-block">
+                      {email !== null && email !== ""
+                        ? email
+                        : "User didn't set email"}
+                    </span>
                   </div>
-                  <div className="flex text-black mt-[10px]">
-                    {phone !== null && phone !== ""
-                      ? phone
-                      : "User didn't set phone"}
+                  <div className="flex text-white mt-[10px]">
+                    Phone number:
+                    <span className="ml-[5px] text-block">
+                      {phone !== null && phone !== ""
+                        ? phone
+                        : "User didn't set phone"}
+                    </span>
                   </div>
                 </div>
                 <div className="">
@@ -186,7 +183,7 @@ const ProfileCHA = () => {
                 </div>
               </div>
             </div>
-            <div className=" flex flex-1 bg-white min-w-[970px] py-[30px]">
+            <div className=" flex flex-1 bg-[#263238] min-w-[970px] py-[30px] rounded-br-[4px] rounded-tr-[4px]">
               {renderPage()}
             </div>
           </div>

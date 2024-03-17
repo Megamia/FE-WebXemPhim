@@ -8,7 +8,7 @@ const Page3 = () => {
   
   
   return (
-    <div className="flex flex-col flex-1 px-[35px] bg-white">
+    <div className="flex flex-col flex-1 px-[35px] bg-[#263238] text-white">
       <span>Page3</span>
     </div>
   );
