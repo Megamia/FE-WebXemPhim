@@ -6,27 +6,43 @@ import Paypal from "./Paypal";
 const Donate = () => {
   const [selectedPrice, setSelectedPrice] = useState(null);
   const [showPaypal, setShowPaypal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [description, setDescription] = useState("");
 
   const handlePriceChange = (price) => {
+    const chosenProduct = products.find((product) => product.price === price);
     setSelectedPrice(price);
-    setShowPaypal(true);
+    setDescription(chosenProduct.description); // Set description here
+    setShowModal(true);
+  };
+  
+
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
+  };
+
+  const handleDescriptionSubmit = () => {
+    // Validate description (optional)
+
+    setShowModal(false); // Close description modal
+    setShowPaypal(true); // Open Paypal modal with description
   };
 
   const products = [
     {
       price: "1.99",
       image: "../../img/donate1.jpg",
-      description: "Nghèo thế?",
+      description: "Đáy xã hội",
     },
     {
       price: "3.99",
       image: "../../img/donate2.jpg",
-      description: "Cũng ra gì đấy",
+      description: "Thường dân",
     },
     {
       price: "5.99",
       image: "../../img/donate3.jpg",
-      description: "Em yêu anh",
+      description: "Quý tộc",
     },
   ];
 
@@ -44,8 +60,9 @@ const Donate = () => {
                 {products.map((product) => (
                   <div className="px-[30px]">
                     <div
-                      className={`text-white cursor-pointer ${selectedPrice === product.price ? "border-red-500" : ""
-                        }`}
+                      className={`text-white cursor-pointer ${
+                        selectedPrice === product.price ? "border-red-500" : ""
+                      }`}
                       key={product.price}
                       onClick={() => handlePriceChange(product.price)}
                     >
@@ -64,10 +81,38 @@ const Donate = () => {
                       )}
                     </div>
                   </div>
-
                 ))}
               </div>
             </div>
+            {showModal && (
+              <div className="fixed z-40 inset-0 overflow-y-auto ">
+                <div className="flex justify-center items-center h-full p-4 bg-gray-500 bg-opacity-75">
+                  <div className="w-full max-w-md bg-white rounded-lg shadow-xl p-6">
+                    <h2 className="text-xl font-medium mb-4">
+                      Bạn thực sự muốn donate gói "{description}" này chứ?
+                    </h2>
+
+                    <div className="flex mt-4 justify-between items-center">
+                      <button
+                        className="bg-gray-300 w-[150px] text-black p-2 rounded-md"
+                        onClick={() => setShowModal(false)}
+                      >
+                        Đéo
+                      </button>
+                      <button
+                        className="bg-red-500 w-[150px] text-white p-2 rounded-md ml-2"
+                        onClick={() => {
+                          // Lưu mô tả
+                          handleDescriptionSubmit();
+                        }}
+                      >
+                        Chuẩn cmnl
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
         <div className="w-full mt-4">
