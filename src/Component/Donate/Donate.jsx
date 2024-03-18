@@ -115,7 +115,7 @@ const Donate = () => {
             )}
           </div>
         </div>
-        <div className="w-full mt-4">
+        <div className="w-full mt-4 flex justify-center">
           <Footer />
         </div>
       </div>

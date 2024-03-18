@@ -164,12 +164,12 @@ const Profile = () => {
                   {showPassword ? (
                     <FaRegEyeSlash
                       onClick={toggleShowPassword}
-                      className="eye-icon text-white ml-[-25px]"
+                      className="eye-icon text-white cursor-pointer ml-[-25px]"
                     />
                   ) : (
                     <FaRegEye
                       onClick={toggleShowPassword}
-                      className="eye-icon text-white ml-[-25px]"
+                      className="eye-icon text-white cursor-pointer ml-[-25px]"
                     />
                   )}
                 </div>
