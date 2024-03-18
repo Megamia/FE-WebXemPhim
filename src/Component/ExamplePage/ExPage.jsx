@@ -15,7 +15,7 @@ const ExPage = () => {
 
                 </div>
             </div>
-            <div className="w-full  mt-[20px] ">
+            <div className="w-full mt-[20px] flex justify-center">
                 <Footer />
             </div>
         </div>
