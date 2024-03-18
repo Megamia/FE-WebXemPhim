@@ -15,8 +15,8 @@ const TableList = () => {
       <div className="w-full flex text-[19px] pb-[10px] items-center">
         <div className="bg-[#A3182A] text-white flex items-center h-[40px] px-[10px] rounded">MỚI CẬP NHẬT<FaChevronRight className="text-[15px] ml-[10px]"/></div>
         <button
-          className={`text-white p-5 ${
-            selectedId === "phim-moi" ? "text-[#F43822]" : ""
+          className={`p-5 ${
+            selectedId === "phim-moi" ? "text-[#F43822]" : "text-white "
           }`}
           value="phim-moi"
           onClick={() => handleLinkClick("phim-moi")}
@@ -24,8 +24,8 @@ const TableList = () => {
           Tất Cả
         </button>
         <button
-          className={`text-white p-5 ${
-            selectedId === "danh-muc/phim-le" ? "text-[#F43822]" : ""
+          className={`p-5 ${
+            selectedId === "danh-muc/phim-le" ? "text-[#F43822]" : "text-white "
           }`}
           value="phim-le"
           onClick={() => handleLinkClick("danh-muc/phim-le")}
@@ -33,8 +33,8 @@ const TableList = () => {
           Phim Lẻ
         </button>
         <button
-          className={`text-white p-5 ${
-            selectedId === "danh-muc/phim-bo" ? "text-[#F43822]" : ""
+          className={`p-5 ${
+            selectedId === "danh-muc/phim-bo" ? "text-[#F43822]" : "text-white "
           }`}
           value="phim-bo"
           onClick={() => handleLinkClick("danh-muc/phim-bo")}
