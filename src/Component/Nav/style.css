@@ -1,0 +1,22 @@
+.submenu {
+  background-color: white;
+  color: black;
+  flex: 1;
+  flex-direction: column;
+  position: absolute;
+  top: 70%;
+  /* padding-inline: 15px; */
+  min-width: 25%;
+
+  ul{
+
+  }
+  ul li {
+    display: column;
+        max-width: 300px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-inline:15px
+  }
+}
