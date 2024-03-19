@@ -9,7 +9,6 @@ import axios from "axios";
 const Nav = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [moviename, setmoviename] = useState([]);
 
   const isLoggedIn = document.cookie.includes("token=");
   const handleVideoClick = (event) => {
@@ -69,7 +68,7 @@ const clickcc = () =>{
 
   return (
     <div className="w-full relative flex justify-center ">
-      <div className="flex items-center h-[100px] top-0 z-50 bg-black w-full md:max-w-[1280px]">
+      <div className="flex items-center h-[100px] top-0 z-50 bg-black w-full md:max-w-[1280px] rounded">
         <NavLink
           to="/#"
           className="h-full w-[100px] flex items-center justify-center mx-[10px]"
