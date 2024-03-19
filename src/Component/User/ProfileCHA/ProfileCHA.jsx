@@ -9,7 +9,7 @@ import axios from "axios";
 import Profile from "./ProfileCON/Profile";
 import Test3 from "../../Test/Test3";
 import Cookies from "js-cookie";
-import UserMNGM from "../../Admin/UserMNGM";
+import SiderBar from "../../Admin/SiderBar/SiderBar";
 import Page3 from "./Page3/Page3";
 import Page2 from "./Page2/Page2";
 import "./Profile.css";
@@ -81,6 +81,9 @@ const ProfileCHA = () => {
   //       alert("Sửa thông tin thất bại");
   //     });
   // };
+  const handleClick= () =>{
+    navigate("/SiderBar");
+  }
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -88,8 +91,8 @@ const ProfileCHA = () => {
     switch (currentPage) {
       case "Profile":
         return <Profile />;
-      case "UserMNGM":
-        return <UserMNGM />;
+      case "SiderBar":
+        return <SiderBar />;
       case "Page2":
         return <Page2 />;
       case "Page3":
@@ -152,9 +155,9 @@ const ProfileCHA = () => {
                       {username === "admin" && (
                         <li
                           className={`${
-                            currentPage === "UserMNGM" ? styles.active : ""
+                            currentPage === "SiderBar" ? styles.active : ""
                           } flex flex-1 flex-row items-center`}
-                          onClick={() => handlePageChange("UserMNGM")}
+                          onClick={(handleClick) }
                         >
                           <RiAdminFill className=" mr-[10px] " />
                           <span className="">Admin Page</span>

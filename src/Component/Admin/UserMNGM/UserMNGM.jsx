@@ -104,7 +104,7 @@ const UserMNGM = () => {
                       </div>
                     </button>
                   ) : (
-                    <p className="py-[10px] flex">Can't delete</p>
+                    <p className="py-[10px] flex justify-center">Can't delete</p>
                   )
                 )}
               </div>

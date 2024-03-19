@@ -13,7 +13,7 @@ import ListMovieCategory from './Component/ListMovie/ListMovieCategory';
 import Righter from './Component/Header&Footer/Righter/Righter';
 import Donate from './Component/Donate/Donate';
 import Test from './Component/Test/Test';
-import UserMNGM from './Component/Admin/UserMNGM';
+import UserMNGM from './Component/Admin/UserMNGM/UserMNGM';
 import ListMovieType from './Component/ListMovie/ListMovieType';
 import NewMovie from './Component/ListMovie/NewMovie';
 import MovieBox from './Component/Detail/MovieBox';
@@ -26,10 +26,11 @@ import Test3 from './Component/Test/Test3';
 import Page2 from './Component/User/ProfileCHA/Page2/Page2';
 import ProfileCHA from './Component/User/ProfileCHA/ProfileCHA';
 import NewList from './Component/Home/List1/NewList';
+import SiderBar from './Component/Admin/SiderBar/SiderBar';
 
 function App() { 
   return (
-    <div className="App bg-[#253238] h-screen">
+    <div className="App  h-screen">
       <Router>
         <PayPalScriptProvider options={{ "clientId": process.env.REACT_APP_PAYPAL_CLIENT_ID  }}>
           <Routes>
@@ -52,6 +53,7 @@ function App() {
             <Route path="/Test3" element={<Test3 />} />
             <Route path="/Page2" element={<Page2 />} />
             <Route path="/Test" element={<Test />} />
+            <Route path="/SiderBar" element={<SiderBar />} />
             <Route path="/UserMNGM" element={<UserMNGM />} />
             <Route path="/phim-moi" element={<NewMovie/>} />
             <Route path="/phim-moi/:page" element={<NewMovie/>} />
