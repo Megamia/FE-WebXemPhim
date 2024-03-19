@@ -14,7 +14,6 @@ const Profile = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [phone, setPhone] = useState("");
-  const [currentPage, setCurrentPage] = useState("Profile");
   const navigate = useNavigate();
 
   const toggleShowPassword = () => {

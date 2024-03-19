@@ -1,19 +1,24 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Home from "../../Home/Home";
 import UserMNGM from "../UserMNGM/UserMNGM";
+import Test from "../../Test/Test";
 import styles from "./style.module.scss";
 const SiderBar = () => {
-    const [currentPage, setCurrentPage] = useState("Home");
+    const navigate= useNavigate();
+    const [currentPage, setCurrentPage] = useState("Test");
     const renderPage = () => {
         switch (currentPage) {
             case "Profile":
                 return <Home />;
             case "SiderBar":
                 return <Home />;
-            case "Page2":
-                return <Home />;
+            case "Test":
+                return <Test />;
             case "UserMNGM":
                 return <UserMNGM />;
+                case "Home":
+                return <Home />;
             default:
                 return null;
         }
@@ -21,6 +26,9 @@ const SiderBar = () => {
     const handlePageChange = (page) => {
         setCurrentPage(page);
     };
+    const BackHome = () =>{
+        navigate("/Home");
+    }
     return (
         <div className="flex flex-row flex-1 h-screen">
             <div className="flex flex-col w-[300px] px-[30px] py-[50px]">
@@ -39,16 +47,15 @@ const SiderBar = () => {
                         <li className={`${currentPage === "SiderBar" ? styles.active : ""
                             }  `}
                             onClick={() => handlePageChange("SiderBar")}> Donate</li>
-                        <li className={`${currentPage === "Page2" ? styles.active : ""
+                        <li className={`${currentPage === "Test" ? styles.active : ""
                             }   `}
-                            onClick={() => handlePageChange("Page2")}>Type</li>
+                            onClick={() => handlePageChange("Test")}>Test</li>
                         <li className={`${currentPage === "UserMNGM" ? styles.active : ""
                             }  `}
                             onClick={() => handlePageChange("UserMNGM")}>UserMNGM</li>
-
+                        <li 
+                            onClick={(BackHome)}> Home</li>
                     </ul>
-
-
                 </div>
             </div >
             <div className="flex flex-1 flex-col ">

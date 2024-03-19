@@ -1,14 +1,42 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCheck } from "@fortawesome/free-solid-svg-icons";
+import { RiLogoutBoxLine, RiAdminFill } from "react-icons/ri";
+import { FaRegUserCircle } from "react-icons/fa";
 import styles from "./style.module.scss";
 import "./style.css";
 import axios from "axios";
+import Cookies from "js-cookie";
+import SiderBar from "./../Admin/SiderBar/SiderBar";
 
 const Nav = () => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  const [username, setUsername] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [open, setOpen] = useState(false);
+  const hanldeProfile = () => {
+    alert("Đang ở Profile còn gì nữa");
+  };
+  const hanldeProfile2 = () => {
+    alert("Vẫn là Profile nhưng ở dưới cái trên");
+  };
+  const hanldeAdminPage = () => {
+    navigate("/SiderBar");
+  };
+  const handleHover = () => {
+    setOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    setOpen(false);
+  };
+  const handleLogout = () => {
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    navigate("/Home");
+  };
 
   const isLoggedIn = document.cookie.includes("token=");
   const handleVideoClick = (event) => {
@@ -44,9 +72,9 @@ const Nav = () => {
       }
     }
   };
-const clickcc = () =>{
-  alert("Xem thêm cc");
-}
+  const clickcc = () => {
+    alert("Xem thêm cc");
+  };
   // const handleLogin = () => {
   //     setIsLoggedIn(true);
   //     localStorage.setItem('isLoggedIn', true);
@@ -62,6 +90,24 @@ const clickcc = () =>{
   //         setIsLoggedIn(true);
   //     }
   // }, []);
+  useEffect(() => {
+    const storedToken = Cookies.get("token");
+    if (storedToken) {
+      axios
+        .get("http://localhost:4000/api/profile", {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        })
+        .then((response) => {
+          setUser(response.data.userInfo);
+          setUsername(response.data.userInfo.username);
+        })
+        .catch((error) => {
+          console.error("Error fetching user profile:", error);
+        });
+    }
+  }, []);
   const handleLoginClick = () => {
     window.scrollTo(0, 300);
   };
@@ -235,21 +281,25 @@ const clickcc = () =>{
                   <li key={index}>{name}</li>
                 ))}
                 {searchResults.length > 0 && (
-        <div className="flex justify-center items-center p-[10px] bg-[#B5E745] text-black font-bold cursor-pointer hover:bg-[#A2D63A]">
-          {/* <button>
-            <NavLink> Xem thêm</NavLink>
-          </button> */}
-          <button onClick={clickcc}>
-            <NavLink> Xem thêm</NavLink>
-          </button>
-        </div>
-      )}
+                  <div className="flex justify-center items-center p-[10px] bg-[#B5E745] text-black font-bold cursor-pointer hover:bg-[#A2D63A]">
+                    {/* <button>
+                      <NavLink> Xem thêm</NavLink>
+                    </button> */}
+                    <button onClick={clickcc}>
+                      <NavLink> Xem thêm</NavLink>
+                    </button>
+                  </div>
+                )}
               </ul>
             </div>
           )}
         </div>
 
-        <div className="block md:hidden">
+        <div
+          className="block md:hidden"
+          onMouseEnter={handleHover}
+          onMouseLeave={handleMouseLeave}
+        >
           <button className="flex items-center justify-center bg-transparent p-1 rounded-md ml-6 md:ml-0 md:absolute md:right-4 md:top-4 text-white">
             <svg
               className="w-6 h-6"
@@ -263,28 +313,109 @@ const clickcc = () =>{
               <path d="M3 12h18M3 6h18M3 18h18"></path>
             </svg>
           </button>
+          <div
+            className={`dropdown submenuUser bg-white ${
+              open ? "active" : "inactive"
+            }`}
+            onMouseEnter={handleHover}
+            onMouseLeave={handleMouseLeave}
+          >
+            <ul className="">
+              <DropdownItem
+                icon={<FaRegUserCircle />}
+                name="Profile"
+                onClick={hanldeProfile}
+              />
+              <DropdownItem
+                icon={<FaRegUserCircle />}
+                name="Profile"
+                onClick={hanldeProfile2}
+              />
+              {username === "admin" && (
+                <DropdownItem
+                  icon={<RiAdminFill />}
+                  name="Admin"
+                  onClick={hanldeAdminPage}
+                />
+              )}
+              <DropdownItem
+                icon={<RiLogoutBoxLine />}
+                name="Logout"
+                onClick={handleLogout}
+              />
+            </ul>
+          </div>
         </div>
         {isLoggedIn ? (
-          <NavLink
-            to="/ProfileCHA"
-            className="hidden md:flex md:items-center text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center"
-            activeClassName="hidden"
-          >
-            <FontAwesomeIcon icon={faUserCheck} className="text-2xl" />
-          </NavLink>
+          <div className="hidden relative w-[50px] md:flex md:items-center text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center">
+            <NavLink to="/ProfileCHA">
+              <FontAwesomeIcon
+                icon={faUserCheck}
+                className="text-2xl"
+                onMouseEnter={handleHover}
+                onMouseLeave={handleMouseLeave}
+              />
+            </NavLink>
+
+            <div
+              className={`dropdown submenuUser bg-white ${
+                open ? "active" : "inactive"
+              }`}
+              onMouseEnter={handleHover}
+              onMouseLeave={handleMouseLeave}
+            >
+              <ul className="">
+                <DropdownItem
+                  icon={<FaRegUserCircle />}
+                  name="Profile"
+                  onClick={hanldeProfile}
+                />
+                <DropdownItem
+                  icon={<FaRegUserCircle />}
+                  name="Profile"
+                  onClick={hanldeProfile2}
+                />
+                {username === "admin" && (
+                  <DropdownItem
+                    icon={<RiAdminFill />}
+                    name="Admin"
+                    onClick={hanldeAdminPage}
+                  />
+                )}
+                <DropdownItem
+                  icon={<RiLogoutBoxLine />}
+                  name="Logout"
+                  onClick={handleLogout}
+                />
+              </ul>
+            </div>
+          </div>
         ) : (
+          <div className="hidden md:flex  md:items-center bg-red-600 hover:bg-gray-600 text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center w-[150px] h-[40px]">
           <NavLink
             to="/Login"
-            className="hidden md:flex md:items-center bg-red-600 hover:bg-gray-600 text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center w-[150px] h-[40px]"
             activeClassName="hidden "
             onClick={handleLoginClick}
           >
             <span className="mx-auto">Đăng Nhập</span>
           </NavLink>
+          </div>
         )}
       </div>
     </div>
   );
 };
+
+function DropdownItem({ icon, name, onClick }) {
+  return (
+    <li
+      className="flex flex-row items-center gap-[10px] cursor-pointer"
+      onClick={onClick}
+    >
+      {icon && <span>{icon}</span>}
+      {name && <span>{name}</span>}
+    </li>
+  );
+}
 
 export default Nav;

@@ -1,22 +1,52 @@
-.submenu {
+.submenuUser {
   background-color: white;
   color: black;
   flex: 1;
   flex-direction: column;
   position: absolute;
-  top: 70%;
-  /* padding-inline: 15px; */
-  min-width: 25%;
+  top: 200%;
 
-  ul{
-
+  ul {
+    z-index: 2;
+    border: 2px solid #b5e745;
+    background-color: white;
   }
   ul li {
     display: column;
-        max-width: 300px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        margin-inline:15px
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-inline:15px;
+    padding-block:5px;
   }
+  ul li span{
+    /* padding-inline:15px; */
+  }
+  ul::before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: 40%;
+    border-style: solid;
+    border-width: 7px;
+    border-color: transparent transparent #b5e745 transparent;
+  }
+
+  ul li:hover {
+    background-color: #b5e745;
+  }
+}
+
+.dropdown.inactive {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, visibility 0.5s ease, transform 0.9s ease;
+}
+
+.dropdown.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.4s ease;
 }
