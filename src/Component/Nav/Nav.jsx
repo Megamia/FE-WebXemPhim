@@ -3,15 +3,51 @@ import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCheck } from "@fortawesome/free-solid-svg-icons";
 import styles from "./style.module.scss";
+import "./style.css";
+import axios from "axios";
 
 const Nav = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [moviename, setmoviename] = useState([]);
+
   const isLoggedIn = document.cookie.includes("token=");
   const handleVideoClick = (event) => {
     event.preventDefault();
     const videoUrl = event.currentTarget.getAttribute("href");
     window.location.href = videoUrl;
   };
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
+  const handleSearchSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.get(
+        `http://localhost:4000/api/find?search=${searchTerm}`
+      );
+      const names = response.data.names.map((item) => item.moviename);
+      setSearchResults(names);
+      console.log("Tìm được tên phim");
+      // Tiếp tục xử lý tên tìm được ở đây
+    } catch (error) {
+      console.error(error);
+      console.log("Không được tên phim");
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      const inputValue = event.target.value.trim();
+      if (inputValue !== "") {
+        handleSearchSubmit(event);
+      }
+    }
+  };
+const clickcc = () =>{
+  alert("Xem thêm cc");
+}
   // const handleLogin = () => {
   //     setIsLoggedIn(true);
   //     localStorage.setItem('isLoggedIn', true);
@@ -187,8 +223,31 @@ const Nav = () => {
             type="text"
             id="search-input"
             placeholder="Tìm kiếm: Tên Việt, tên Nhật, ...."
-            className="w-full rounded-full px-4 py-2 border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
+            value={searchTerm}
+            onKeyDown={handleKeyDown}
+            onChange={handleSearchChange}
+            className="w-full rounded-full px-4 py-2 z-10 relative border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
           />
+          {searchResults && (
+            <div className="submenu">
+              <ul>
+                {searchResults.slice(0, 5).map((name, index) => (
+                  // HIỂN THỊ TOÀN BỘ NAME //          {searchResults.map((name, index) => (
+                  <li key={index}>{name}</li>
+                ))}
+                {searchResults.length > 0 && (
+        <div className="flex justify-center items-center p-[10px] bg-[#B5E745] text-black font-bold cursor-pointer hover:bg-[#A2D63A]">
+          {/* <button>
+            <NavLink> Xem thêm</NavLink>
+          </button> */}
+          <button onClick={clickcc}>
+            <NavLink> Xem thêm</NavLink>
+          </button>
+        </div>
+      )}
+              </ul>
+            </div>
+          )}
         </div>
 
         <div className="block md:hidden">
