@@ -32,11 +32,11 @@ const Nav = () => {
   };
 
   return (
-    <div className="w-full relative bg-black flex justify-center ">
-      <div className="flex items-center h-[100px] top-0 z-50 bg-black w-full md:max-w-[1350px]">
+    <div className="w-full relative flex justify-center ">
+      <div className="flex items-center h-[100px] top-0 z-50 bg-black w-full md:max-w-[1280px]">
         <NavLink
           to="/#"
-          className="h-full w-[100px] flex items-center justify-center ml-[40px] mr-[40px]"
+          className="h-full w-[100px] flex items-center justify-center mx-[10px]"
         >
           <div className="flex justify-center h-[85%]">
             <img
