@@ -75,10 +75,6 @@ const Login = () => {
     }
   };
 
-  window.addEventListener('beforeunload', function(event) {
-    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-  });
-
   //SIGNUP//
   const handleSignup = async (event) => {
     event.preventDefault();
@@ -100,7 +96,11 @@ const Login = () => {
       handleLoginClick();
     } catch (error) {
       console.error("Error signing up:", error);
-      alert("Người dùng đã tồn tại ", error);
+      if (username === "admin") {
+        alert("Không được đăng kí với username=admin");
+      } else {
+        alert("Người dùng đã tồn tại!");
+      }
     }
   };
   const [isSignUpActive, setIsSignUpActive] = useState(false);

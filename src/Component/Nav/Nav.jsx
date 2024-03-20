@@ -52,6 +52,7 @@ const Nav = () => {
   };
 
   const isLoggedIn = document.cookie.includes("token=");
+
   const handleVideoClick = (event) => {
     event.preventDefault();
     const videoUrl = event.currentTarget.getAttribute("href");
@@ -70,10 +71,11 @@ const Nav = () => {
       const names = response.data.names.map((item) => item.moviename);
       setSearchResults(names);
       console.log("Tìm được tên phim");
-      // Tiếp tục xử lý tên tìm được ở đây
+      alert("Tìm được tên phim");
     } catch (error) {
       console.error(error);
-      console.log("Không được tên phim");
+      console.log("Không được tên phim do " +error);
+      alert("Không được tên phim");
     }
   };
 
@@ -82,6 +84,9 @@ const Nav = () => {
       const inputValue = event.target.value.trim();
       if (inputValue !== "") {
         handleSearchSubmit(event);
+      } else{
+        alert("Vui lòng nhập tên phim cần tìm!");
+        setSearchResults(false);
       }
     }
   };
@@ -288,14 +293,14 @@ const Nav = () => {
             onChange={handleSearchChange}
             className="w-full rounded-full px-4 py-2 z-10 relative border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
           />
-          {searchResults && (
-            <div className="submenu">
+          {searchResults && searchResults.length > 0 &&  (
+            <div className={`submenufind `}>
               <ul>
                 {searchResults.slice(0, 5).map((name, index) => (
                   // HIỂN THỊ TOÀN BỘ NAME //          {searchResults.map((name, index) => (
                   <li key={index}>{name}</li>
                 ))}
-                {searchResults.length > 0 && (
+                {searchResults.length > 5 && (
                   <div className="flex justify-center items-center p-[10px] bg-[#B5E745] text-black font-bold cursor-pointer hover:bg-[#A2D63A]">
                     {/* <button>
                       <NavLink> Xem thêm</NavLink>
