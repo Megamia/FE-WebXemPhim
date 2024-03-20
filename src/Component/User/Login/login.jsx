@@ -75,6 +75,10 @@ const Login = () => {
     }
   };
 
+  window.addEventListener('beforeunload', function(event) {
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  });
+
   //SIGNUP//
   const handleSignup = async (event) => {
     event.preventDefault();
