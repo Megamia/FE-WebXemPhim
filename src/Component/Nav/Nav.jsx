@@ -19,6 +19,8 @@ const Nav = () => {
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
   const [open3, setOpen3] = useState(false);
+  const [open4, setOpen4] = useState(false);
+
   const hanldeProfile = () => {
     alert("Đang ở Profile còn gì nữa");
   };
@@ -45,6 +47,12 @@ const Nav = () => {
   };
   const handleMouseLeave3 = () => {
     setOpen3(false);
+  };
+  const handleHover4 = () => {
+    setOpen4(true);
+  };
+  const handleMouseLeave4 = () => {
+    setOpen4(false);
   };
   const handleLogout = () => {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -74,7 +82,7 @@ const Nav = () => {
       alert("Tìm được tên phim");
     } catch (error) {
       console.error(error);
-      console.log("Không được tên phim do " +error);
+      console.log("Không được tên phim do " + error);
       alert("Không được tên phim");
     }
   };
@@ -84,7 +92,7 @@ const Nav = () => {
       const inputValue = event.target.value.trim();
       if (inputValue !== "") {
         handleSearchSubmit(event);
-      } else{
+      } else {
         alert("Vui lòng nhập tên phim cần tìm!");
         setSearchResults(false);
       }
@@ -153,12 +161,19 @@ const Nav = () => {
             </NavLink>
           </button>
 
-          <button className={`w-1/5  ${styles.menu}`}onMouseEnter={handleHover3}
-              onMouseLeave={handleMouseLeave3}>
+          <button
+            className={`w-1/5  ${styles.menu}`}
+            onMouseEnter={handleHover3}
+            onMouseLeave={handleMouseLeave3}
+          >
             <NavLink to="/phim-moi" className="text-white text-2xl ">
               Top phim
             </NavLink>
-            <div className={`submenu ${styles.submenu, open3 ? "active" : "inactive"}`} >
+            <div
+              className={`submenu ${
+                (styles.submenu, open3 ? "active" : "inactive")
+              }`}
+            >
               <ul className="bg-white  ">
                 <li>
                   <button className=" ">
@@ -170,7 +185,7 @@ const Nav = () => {
                 <li>
                   <button className="  ">
                     <NavLink to="/" className="">
-                      Theo mùa thu năm ấy
+                      Theo mùa
                     </NavLink>
                   </button>
                 </li>
@@ -199,12 +214,19 @@ const Nav = () => {
             </div>
           </button>
 
-          <button className={`w-1/5  ${styles.menu}`}onMouseEnter={handleHover2}
-              onMouseLeave={handleMouseLeave2}>
+          <button
+            className={`w-1/5  ${styles.menu}`}
+            onMouseEnter={handleHover2}
+            onMouseLeave={handleMouseLeave2}
+          >
             <NavLink to="/" className="text-white text-2xl ">
               Thể loại
             </NavLink>
-            <div className={`submenu ${styles.submenu, open2 ? "active" : "inactive"}`} >
+            <div
+              className={`submenu ${
+                (styles.submenu, open2 ? "active" : "inactive")
+              }`}
+            >
               <ul className="bg-white  ">
                 <li>
                   <button className=" ">
@@ -291,21 +313,27 @@ const Nav = () => {
             value={searchTerm}
             onKeyDown={handleKeyDown}
             onChange={handleSearchChange}
+            onMouseEnter={handleHover4}
+            onMouseLeave={handleMouseLeave4}
             className="w-full rounded-full px-4 py-2 z-10 relative border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
           />
-          {searchResults && searchResults.length > 0 &&  (
-            <div className={`submenufind `}>
-              <ul>
+          {searchResults && searchResults.length > 0 && (
+            <div
+              className={`submenufind ${open4 ? "active" : "inactive"}`}
+              onMouseEnter={handleHover4}
+              onMouseLeave={handleMouseLeave4}
+            >
+              <ul className="rounded">
                 {searchResults.slice(0, 5).map((name, index) => (
                   // HIỂN THỊ TOÀN BỘ NAME //          {searchResults.map((name, index) => (
-                  <li key={index}>{name}</li>
+                  <li className="" key={index}>{name}</li>
                 ))}
                 {searchResults.length > 5 && (
-                  <div className="flex justify-center items-center p-[10px] bg-[#B5E745] text-black font-bold cursor-pointer hover:bg-[#A2D63A]">
+                  <div className="flex justify-center rounded-b-[0.25rem] items-center p-[10px] bg-[#B5E745] text-black font-bold cursor-pointer hover:bg-[#A2D63A]">
                     {/* <button>
                       <NavLink> Xem thêm</NavLink>
                     </button> */}
-                    <button onClick={clickcc}>
+                    <button className="" onClick={clickcc}>
                       <NavLink> Xem thêm</NavLink>
                     </button>
                   </div>
@@ -412,13 +440,13 @@ const Nav = () => {
           </div>
         ) : (
           <div className="hidden md:flex  md:items-center bg-red-600 hover:bg-gray-600 text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center w-[150px] h-[40px]">
-          <NavLink
-            to="/Login"
-            activeClassName="hidden "
-            onClick={handleLoginClick}
-          >
-            <span className="mx-auto">Đăng Nhập</span>
-          </NavLink>
+            <NavLink
+              to="/Login"
+              activeClassName="hidden "
+              onClick={handleLoginClick}
+            >
+              <span className="mx-auto">Đăng Nhập</span>
+            </NavLink>
           </div>
         )}
       </div>

@@ -14,7 +14,7 @@
         z-index: 2;
         border: 2px solid #B5E745;
         background-color: white;
-       
+
     }
 
     li {
@@ -39,20 +39,20 @@
         padding-left: 10px;
         font-weight: 500;
         white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100px;
     }
 }
 
 .menu {
     position: relative;
-    
+
 }
 
 .menu:hover {
     display: block;
-    
+
 }
 
 // .submenu {
@@ -91,18 +91,18 @@
     visibility: hidden;
     transform: translateY(-20px);
     transition: opacity 0.3s ease, visibility 0.5s ease, transform 0.9s ease;
-  }
-  
-  .submenu.active {
+}
+
+.submenu.active {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
     transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.4s ease;
-  }
-  
+}
+
 
 .menu:hover .submenu {
     display: block;
     position: relative;
-    
+
 }
