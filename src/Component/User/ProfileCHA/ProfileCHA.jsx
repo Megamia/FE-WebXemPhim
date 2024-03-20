@@ -108,7 +108,7 @@ const ProfileCHA = () => {
               <div className="flex flex-col my-[35px]">
                 <div className="flex flex-col items-center mb-[30px] bg-[#263238]">
                   <img
-                    src="../../img/AVT/03ebd625cc0b9d636256ecc44c0ea324.jpg"
+                    src="../../img/AVT/03ebd625cc0b9d636256ecc44c0ea324.png"
                     alt="?"
                     className="w-[50%]"
                   />

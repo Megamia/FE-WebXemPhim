@@ -73,8 +73,7 @@ const MovieDetail = () => {
                                     </header>
                                     <footer className="relative flex items-center z-10 xl:ml-[200px] xl:mt-0 mt-[100px] pt-5 border-gray-400 bg-transparent border-t-[1px] ">
                                         <div className=' border-gray-400 border-r-[1px] pr-[50px] w-auto'>
-                                            <Rating />
-                                            <div className='text-white font-semibold'>( 4,5/5 từ 10 thành viên )</div>
+                                            <Rating movieId={id}/>
                                         </div>
                                         <div className='flex justify-center w-full'>
                                             <p className="flex items-center text-white font-semibold text-[14px] ml-[17px]">
