@@ -17,6 +17,8 @@ const Nav = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const [open3, setOpen3] = useState(false);
   const hanldeProfile = () => {
     alert("Đang ở Profile còn gì nữa");
   };
@@ -29,9 +31,20 @@ const Nav = () => {
   const handleHover = () => {
     setOpen(true);
   };
-
   const handleMouseLeave = () => {
     setOpen(false);
+  };
+  const handleHover2 = () => {
+    setOpen2(true);
+  };
+  const handleMouseLeave2 = () => {
+    setOpen2(false);
+  };
+  const handleHover3 = () => {
+    setOpen3(true);
+  };
+  const handleMouseLeave3 = () => {
+    setOpen3(false);
   };
   const handleLogout = () => {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -135,11 +148,12 @@ const Nav = () => {
             </NavLink>
           </button>
 
-          <button className={`w-1/5  ${styles.menu}`}>
+          <button className={`w-1/5  ${styles.menu}`}onMouseEnter={handleHover3}
+              onMouseLeave={handleMouseLeave3}>
             <NavLink to="/phim-moi" className="text-white text-2xl ">
               Top phim
             </NavLink>
-            <div className={styles.submenu}>
+            <div className={`submenu ${styles.submenu, open3 ? "active" : "inactive"}`} >
               <ul className="bg-white  ">
                 <li>
                   <button className=" ">
@@ -180,11 +194,12 @@ const Nav = () => {
             </div>
           </button>
 
-          <button className={`w-1/5  ${styles.menu}`}>
+          <button className={`w-1/5  ${styles.menu}`}onMouseEnter={handleHover2}
+              onMouseLeave={handleMouseLeave2}>
             <NavLink to="/" className="text-white text-2xl ">
               Thể loại
             </NavLink>
-            <div className={styles.submenu}>
+            <div className={`submenu ${styles.submenu, open2 ? "active" : "inactive"}`} >
               <ul className="bg-white  ">
                 <li>
                   <button className=" ">
