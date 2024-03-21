@@ -22,6 +22,7 @@ const Nav = () => {
   const [open4, setOpen4] = useState(false);
 
   const hanldeProfile = () => {
+    navigate("/ProfileCHA");
     alert("Đang ở Profile còn gì nữa");
   };
   const hanldeProfile2 = () => {
@@ -78,12 +79,18 @@ const Nav = () => {
       );
       const names = response.data.names.map((item) => item.moviename);
       setSearchResults(names);
-      console.log("Tìm được tên phim");
-      alert("Tìm được tên phim");
+      
+      if (names.length > 0) {
+        console.log("Tìm được phim");
+        alert("Tìm được phim với tên: " + names.join(", "));
+      } else {
+        console.log("Không tìm được phim");
+        alert("Không tìm được phim với tên: " + searchTerm);
+      }
     } catch (error) {
       console.error(error);
-      console.log("Không được tên phim do " + error);
-      alert("Không được tên phim");
+      console.log("Không được phim do " + error);
+      alert("Không được phim với tên: " + searchTerm);
     }
   };
 
@@ -170,9 +177,8 @@ const Nav = () => {
               Top phim
             </NavLink>
             <div
-              className={`submenu ${
-                (styles.submenu, open3 ? "active" : "inactive")
-              }`}
+              className={`submenu ${(styles.submenu, open3 ? "active" : "inactive")
+                }`}
             >
               <ul className="bg-white  ">
                 <li>
@@ -223,9 +229,8 @@ const Nav = () => {
               Thể loại
             </NavLink>
             <div
-              className={`submenu ${
-                (styles.submenu, open2 ? "active" : "inactive")
-              }`}
+              className={`submenu ${(styles.submenu, open2 ? "active" : "inactive")
+                }`}
             >
               <ul className="bg-white  ">
                 <li>
@@ -362,9 +367,8 @@ const Nav = () => {
             </svg>
           </button>
           <div
-            className={`dropdown submenuUser bg-white ${
-              open ? "active" : "inactive"
-            }`}
+            className={`dropdown submenuUser bg-white ${open ? "active" : "inactive"
+              }`}
             onMouseEnter={handleHover}
             onMouseLeave={handleMouseLeave}
           >
@@ -406,9 +410,8 @@ const Nav = () => {
             </NavLink>
 
             <div
-              className={`dropdown submenuUser bg-white ${
-                open ? "active" : "inactive"
-              }`}
+              className={`dropdown submenuUser bg-white ${open ? "active" : "inactive"
+                }`}
               onMouseEnter={handleHover}
               onMouseLeave={handleMouseLeave}
             >

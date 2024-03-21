@@ -53,7 +53,7 @@ const VideoDetail = () => {
     useEffect(() => {
         const smoothScroll = () => {
             const currentScrollPosition = window.pageYOffset;
-            const targetScrollPosition = scrollRef.current.offsetTop - 80;
+            const targetScrollPosition = scrollRef.current.offsetTop - 25;
             const distance = targetScrollPosition - currentScrollPosition;
             const duration = 2500;
             const startTime = performance.now();
