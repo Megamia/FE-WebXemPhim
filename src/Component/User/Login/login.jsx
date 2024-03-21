@@ -7,6 +7,8 @@ import Header from "../../Header&Footer/Header/Header";
 import Footer from "../../Header&Footer/Footer/Footer";
 import Notification from "../../Home/Notification/Nontification";
 import styles from "./style.module.scss";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -20,6 +22,58 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
   const [phone, setPhone] = useState("");
+
+  const danhnhapthatbai = () => {
+    toast.error("Đăng nhập thất bại", {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+
+  const dangnhapthanhcong = () => {
+    toast.success("Đăng nhập thành công", {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+
+  const danhkythanhcong = () => {
+    toast.success("Đăng ký thành công", {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+
+  const nguoidungtontai = () => {
+    toast.error("Người dùng đã tồn tại", {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
 
   useEffect(() => {
     document.title = "Đăng nhập";
@@ -57,21 +111,24 @@ const Login = () => {
 
       if (response.status === 200) {
         const token = response.data.token;
-        document.cookie = `token=${token}; path=/; secure;`;
+        const d = new Date();
+        d.setTime(d.getTime() + 1 * 60 * 60 * 1000); // 1 giờ
+        const expires = "expires=" + d.toUTCString();
+        document.cookie = `token=${token}; ${expires}; path=/; secure;`;
         // localStorage.setItem("isLoggedIn", "true");
         // setIsLoggedIn(true);
-        alert("Đăng nhập thành công");
+        dangnhapthanhcong();
         window.scrollTo(0, 0);
         navigate("/ProfileCHA");
         return;
       }
 
       setIsLoggedIn(false);
-      alert("Đăng nhập thất bại");
+      danhnhapthatbai();
     } catch (error) {
       console.error("Error querying the database:", error);
       setIsLoggedIn(false);
-      alert("Đăng nhập thất bại");
+      danhnhapthatbai();
     }
   };
 
@@ -92,11 +149,11 @@ const Login = () => {
       });
 
       console.log("Signup successful:", response.data);
-      alert("Đăng kí thành công");
+      danhkythanhcong();
       handleLoginClick();
     } catch (error) {
       console.error("Error signing up:", error);
-      alert("Người dùng đã tồn tại ", error);
+      nguoidungtontai();
     }
   };
   const [isSignUpActive, setIsSignUpActive] = useState(false);
@@ -108,7 +165,6 @@ const Login = () => {
   const handleLoginClick = () => {
     setIsSignUpActive(false);
   };
-
   return (
     <>
       <div className="bg-[#263238]">
@@ -306,6 +362,7 @@ const Login = () => {
           <Footer />
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };

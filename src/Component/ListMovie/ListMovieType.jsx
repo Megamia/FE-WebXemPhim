@@ -238,7 +238,7 @@ const ListMovieType = () => {
                 )}
               </div>
             </div>
-            <div className=" lg:table-cell align-top w-[300px] ">
+            <div className=" lg:table-cell align-top lg:w-[300px] w-full ">
               <Righter />
             </div>
           </div>

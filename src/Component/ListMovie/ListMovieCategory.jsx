@@ -152,7 +152,7 @@ const ListMovieCategory = () => {
               <div className="flex w-full">
                 <ul className="flex w-full flex-wrap relative lg:left-[-10px]">
                   {currentMovies.map((movie) => (
-                   <MovieBox key={movie.movieid} movie={movie} />
+                   <MovieBox key={movie.movieid} movie={movie}/>
                   ))}
                 </ul>
               </div>
@@ -237,7 +237,7 @@ const ListMovieCategory = () => {
                 )}
               </div>
             </div>
-            <div className=" lg:table-cell align-top w-[300px] ">
+            <div className=" lg:table-cell align-top lg:w-[300px] w-full ">
               <Righter />
             </div>
           </div>

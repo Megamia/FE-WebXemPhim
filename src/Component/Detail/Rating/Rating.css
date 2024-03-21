@@ -2,8 +2,8 @@
 
 :root {
   --tran: all 0.5s ease 0s;
-  --dark: #1c2429;
-  --back: #1d659f;
+  --dark: #141414;
+  --back: #1F282D;
 }
 
 * { outline: none; }
@@ -19,7 +19,7 @@
 .number:hover ~ .star:has(:checked),
 .star:hover ~ .star:has(~ .star :checked),
 .star:hover ~ .star:has(:checked) {
-  --star: #1c619c;
+  --star: #1F282D;
 }
 
 
@@ -66,7 +66,7 @@
   padding: 4px;
   cursor: pointer;
   transition: var(--tran);
-  background: radial-gradient(circle at 50% 50%, #1c5e98 4px, #fff0 calc(4px + 0.5px) 100%);
+  background: radial-gradient(circle at 50% 50%, #253238 4px, #fff0 calc(4px + 0.5px) 100%);
 }
 
 .star input,
@@ -97,7 +97,14 @@
   background: var(--star);
 }
 
-
+.text-rating:before{
+  position: absolute;
+  font-size: 12px;
+  white-space: nowrap;
+  font-weight: bold;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
 .number-rating:before {
   content: "0";
@@ -161,6 +168,29 @@ body:has(.star:nth-child(5):hover) .star-rating .number-rating:before {
 
 body:has(.star:nth-child(6):hover) .star-rating .number-rating:before {
   content: "5" !important;
+}
+
+
+
+
+body:has(.star:nth-child(2):hover) .text-rating:before {
+  content: "Dở tệ" !important;
+}
+
+body:has(.star:nth-child(3):hover) .text-rating:before {
+  content: "Không hay" !important;
+}
+
+body:has(.star:nth-child(4):hover) .text-rating:before {
+  content: "Bình thường" !important;
+}
+
+body:has(.star:nth-child(5):hover) .text-rating:before {
+  content: "Xem được" !important;
+}
+
+body:has(.star:nth-child(6):hover) .text-rating:before {
+  content: "Rất hay" !important;
 }
 
 

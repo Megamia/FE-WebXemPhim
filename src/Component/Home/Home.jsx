@@ -27,7 +27,7 @@ const Home = () => {
                 <TableList />
               </div>
             </div>
-            <div className="lg:table-cell w-[300px]">
+            <div className="lg:table-cell lg:w-[300px] w-full">
               <Righter />
             </div>
           </div>
