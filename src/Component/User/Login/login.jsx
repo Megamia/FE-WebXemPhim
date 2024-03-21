@@ -153,7 +153,11 @@ const Login = () => {
       handleLoginClick();
     } catch (error) {
       console.error("Error signing up:", error);
-      nguoidungtontai();
+      if (username === "admin") {
+        alert("Không được đăng kí với username=admin");
+      } else {
+        nguoidungtontai();
+      }
     }
   };
   const [isSignUpActive, setIsSignUpActive] = useState(false);

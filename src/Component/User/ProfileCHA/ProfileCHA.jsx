@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import Header from "../../Header&Footer/Header/Header";
 import Footer from "../../Header&Footer/Footer/Footer";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +24,7 @@ const ProfileCHA = () => {
   const [phone, setPhone] = useState("");
   const [currentPage, setCurrentPage] = useState("Profile");
   const navigate = useNavigate();
+  const scrollRef = useRef();
 
   // const handleLogout = () => {
   //   setIsLoggedIn(false);
@@ -35,6 +36,29 @@ const ProfileCHA = () => {
   useEffect(() => {
     document.title = "Thông tin cá nhân";
   }, []);
+
+  useEffect(() => {
+    const smoothScroll = () => {
+        const currentScrollPosition = window.pageYOffset;
+        const targetScrollPosition = scrollRef.current.offsetTop + 115;
+        const distance = targetScrollPosition - currentScrollPosition;
+        const duration = 2500;
+        const startTime = performance.now();
+        const scrollStep = timestamp => {
+            const elapsedTime = timestamp - startTime;
+            const progress = Math.min(elapsedTime / duration, 1);
+            const easeProgress = easeOutQuart(progress);
+            window.scrollTo(0, currentScrollPosition + distance * easeProgress);
+            if (elapsedTime < duration) {
+                requestAnimationFrame(scrollStep);
+            }
+        };
+        requestAnimationFrame(scrollStep);
+    };
+    const easeOutQuart = t => 1 - (--t) * t * t * t;
+    smoothScroll();
+}, []);
+
   useEffect(() => {
     // const storedLoggedInStatus = localStorage.getItem("isLoggedIn");
 
@@ -104,7 +128,7 @@ const ProfileCHA = () => {
   return (
     <div className="bg-[#263238]">
       <Header />
-      <div className="bg-[#253238] flex  justify-center">
+      <div ref={scrollRef} className="bg-[#253238] flex  justify-center">
         <div className="md:max-w-[1280px] w-full justify-center flex-col bg-[#141414] p-[20px] mt-[130px] rounded">
           <div className="flex flex-row p-[5px] bg-[263238] rounded ">
             <div className="flex flex-col w-[300px] border-r-[1px] border-[#F9F9FB] bg-[#263238] rounded-tl-[4px] rounded-bl-[4px]">

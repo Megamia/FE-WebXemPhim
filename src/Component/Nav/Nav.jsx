@@ -17,7 +17,12 @@ const Nav = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const [open3, setOpen3] = useState(false);
+  const [open4, setOpen4] = useState(false);
+
   const hanldeProfile = () => {
+    navigate("/ProfileCHA");
     alert("Đang ở Profile còn gì nữa");
   };
   const hanldeProfile2 = () => {
@@ -29,9 +34,26 @@ const Nav = () => {
   const handleHover = () => {
     setOpen(true);
   };
-
   const handleMouseLeave = () => {
     setOpen(false);
+  };
+  const handleHover2 = () => {
+    setOpen2(true);
+  };
+  const handleMouseLeave2 = () => {
+    setOpen2(false);
+  };
+  const handleHover3 = () => {
+    setOpen3(true);
+  };
+  const handleMouseLeave3 = () => {
+    setOpen3(false);
+  };
+  const handleHover4 = () => {
+    setOpen4(true);
+  };
+  const handleMouseLeave4 = () => {
+    setOpen4(false);
   };
   const handleLogout = () => {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -39,6 +61,7 @@ const Nav = () => {
   };
 
   const isLoggedIn = document.cookie.includes("token=");
+
   const handleVideoClick = (event) => {
     event.preventDefault();
     const videoUrl = event.currentTarget.getAttribute("href");
@@ -56,11 +79,18 @@ const Nav = () => {
       );
       const names = response.data.names.map((item) => item.moviename);
       setSearchResults(names);
-      console.log("Tìm được tên phim");
-      // Tiếp tục xử lý tên tìm được ở đây
+      
+      if (names.length > 0) {
+        console.log("Tìm được phim");
+        alert("Tìm được phim với tên: " + names.join(", "));
+      } else {
+        console.log("Không tìm được phim");
+        alert("Không tìm được phim với tên: " + searchTerm);
+      }
     } catch (error) {
       console.error(error);
-      console.log("Không được tên phim");
+      console.log("Không được phim do " + error);
+      alert("Không được phim với tên: " + searchTerm);
     }
   };
 
@@ -69,6 +99,9 @@ const Nav = () => {
       const inputValue = event.target.value.trim();
       if (inputValue !== "") {
         handleSearchSubmit(event);
+      } else {
+        alert("Vui lòng nhập tên phim cần tìm!");
+        setSearchResults(false);
       }
     }
   };
@@ -135,11 +168,18 @@ const Nav = () => {
             </NavLink>
           </button>
 
-          <button className={`w-1/5  ${styles.menu}`}>
+          <button
+            className={`w-1/5  ${styles.menu}`}
+            onMouseEnter={handleHover3}
+            onMouseLeave={handleMouseLeave3}
+          >
             <NavLink to="/phim-moi" className="text-white text-2xl ">
               Top phim
             </NavLink>
-            <div className={styles.submenu}>
+            <div
+              className={`submenu ${(styles.submenu, open3 ? "active" : "inactive")
+                }`}
+            >
               <ul className="bg-white  ">
                 <li>
                   <button className=" ">
@@ -151,7 +191,7 @@ const Nav = () => {
                 <li>
                   <button className="  ">
                     <NavLink to="/" className="">
-                      Theo mùa thu năm ấy
+                      Theo mùa
                     </NavLink>
                   </button>
                 </li>
@@ -180,11 +220,18 @@ const Nav = () => {
             </div>
           </button>
 
-          <button className={`w-1/5  ${styles.menu}`}>
+          <button
+            className={`w-1/5  ${styles.menu}`}
+            onMouseEnter={handleHover2}
+            onMouseLeave={handleMouseLeave2}
+          >
             <NavLink to="/" className="text-white text-2xl ">
               Thể loại
             </NavLink>
-            <div className={styles.submenu}>
+            <div
+              className={`submenu ${(styles.submenu, open2 ? "active" : "inactive")
+                }`}
+            >
               <ul className="bg-white  ">
                 <li>
                   <button className=" ">
@@ -271,21 +318,27 @@ const Nav = () => {
             value={searchTerm}
             onKeyDown={handleKeyDown}
             onChange={handleSearchChange}
+            onMouseEnter={handleHover4}
+            onMouseLeave={handleMouseLeave4}
             className="w-full rounded-full px-4 py-2 z-10 relative border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
           />
-          {searchResults && (
-            <div className="submenu">
-              <ul>
+          {searchResults && searchResults.length > 0 && (
+            <div
+              className={`submenufind ${open4 ? "active" : "inactive"}`}
+              onMouseEnter={handleHover4}
+              onMouseLeave={handleMouseLeave4}
+            >
+              <ul className="rounded">
                 {searchResults.slice(0, 5).map((name, index) => (
                   // HIỂN THỊ TOÀN BỘ NAME //          {searchResults.map((name, index) => (
-                  <li key={index}>{name}</li>
+                  <li className="" key={index}>{name}</li>
                 ))}
-                {searchResults.length > 0 && (
-                  <div className="flex justify-center items-center p-[10px] bg-[#B5E745] text-black font-bold cursor-pointer hover:bg-[#A2D63A]">
+                {searchResults.length > 5 && (
+                  <div className="flex justify-center rounded-b-[0.25rem] items-center p-[10px] bg-[#B5E745] text-black font-bold cursor-pointer hover:bg-[#A2D63A]">
                     {/* <button>
                       <NavLink> Xem thêm</NavLink>
                     </button> */}
-                    <button onClick={clickcc}>
+                    <button className="" onClick={clickcc}>
                       <NavLink> Xem thêm</NavLink>
                     </button>
                   </div>
@@ -314,9 +367,8 @@ const Nav = () => {
             </svg>
           </button>
           <div
-            className={`dropdown submenuUser bg-white ${
-              open ? "active" : "inactive"
-            }`}
+            className={`dropdown submenuUser bg-white ${open ? "active" : "inactive"
+              }`}
             onMouseEnter={handleHover}
             onMouseLeave={handleMouseLeave}
           >
@@ -358,9 +410,8 @@ const Nav = () => {
             </NavLink>
 
             <div
-              className={`dropdown submenuUser bg-white ${
-                open ? "active" : "inactive"
-              }`}
+              className={`dropdown submenuUser bg-white ${open ? "active" : "inactive"
+                }`}
               onMouseEnter={handleHover}
               onMouseLeave={handleMouseLeave}
             >
@@ -391,14 +442,14 @@ const Nav = () => {
             </div>
           </div>
         ) : (
-          <div className="hidden md:flex  md:items-center bg-red-600 hover:bg-gray-600 text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center w-[150px] h-[40px]">
-          <NavLink
-            to="/Login"
-            activeClassName="hidden "
-            onClick={handleLoginClick}
-          >
-            <span className="mx-auto">Đăng Nhập</span>
-          </NavLink>
+          <div className="hidden md:flex  md:items-center bg-red-600 hover:bg-gray-600 text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center w-[150px] h-[40px] cursor-pointer">
+            <NavLink
+              to="/Login"
+              activeClassName="hidden "
+              onClick={handleLoginClick}
+            >
+              <span className="mx-auto">Đăng Nhập</span>
+            </NavLink>
           </div>
         )}
       </div>

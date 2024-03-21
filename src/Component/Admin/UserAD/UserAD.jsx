@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const UserMNGM = () => {
+const UserAD = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -116,4 +116,4 @@ const UserMNGM = () => {
   );
 };
 
-export default UserMNGM;
+export default UserAD;
