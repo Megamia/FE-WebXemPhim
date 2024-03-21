@@ -442,7 +442,7 @@ const Nav = () => {
             </div>
           </div>
         ) : (
-          <div className="hidden md:flex  md:items-center bg-red-600 hover:bg-gray-600 text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center w-[150px] h-[40px]">
+          <div className="hidden md:flex  md:items-center bg-red-600 hover:bg-gray-600 text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center w-[150px] h-[40px] cursor-pointer">
             <NavLink
               to="/Login"
               activeClassName="hidden "

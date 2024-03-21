@@ -1,22 +1,23 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Home from "../../Home/Home";
-import UserMNGM from "../UserMNGM/UserMNGM";
+import UserAD from "../UserAD/UserAD";
 import Test from "../../Test/Test";
 import styles from "./style.module.scss";
+import "./style.css";
 const SiderBar = () => {
     const navigate= useNavigate();
     const [currentPage, setCurrentPage] = useState("Test");
     const renderPage = () => {
         switch (currentPage) {
             case "Profile":
-                return <Home />;
+                return <UserAD />;
             case "SiderBar":
-                return <Home />;
+                return <UserAD />;
             case "Test":
                 return <Test />;
-            case "UserMNGM":
-                return <UserMNGM />;
+            case "UserAD":
+                return <UserAD />;
                 case "Home":
                 return <Home />;
             default:
@@ -30,17 +31,17 @@ const SiderBar = () => {
         navigate("/Home");
     }
     return (
-        <div className="flex flex-row flex-1 h-screen">
-            <div className="flex flex-col w-[300px] px-[30px] py-[50px]">
-                <div className="flex justify-center items-center">
+        <div className="flex flex-row flex-1 h-screen bg-[#263238] text-white">
+            <div className="flex flex-col w-[300px] border-r-white border-r-[2px]">
+                <div className="flex justify-center items-center pt-[50px]">
                     <img
                         src="../../img/AVT/03ebd625cc0b9d636256ecc44c0ea324.jpg"
                         alt="?"
                         className="w-[70%] h-auto"
                     />
                 </div>
-                <div>
-                    <ul className="flex flex-1 flex-col gap-[10px]">
+                <div className="render">
+                    <ul className="flex flex-1 flex-col">
                         <li className={`${currentPage === "Profile" ? styles.active : ""
                             } `}
                             onClick={() => handlePageChange("Profile")}> Movie</li>
@@ -50,25 +51,22 @@ const SiderBar = () => {
                         <li className={`${currentPage === "Test" ? styles.active : ""
                             }   `}
                             onClick={() => handlePageChange("Test")}>Test</li>
-                        <li className={`${currentPage === "UserMNGM" ? styles.active : ""
+                        <li className={`${currentPage === "UserAD" ? styles.active : ""
                             }  `}
-                            onClick={() => handlePageChange("UserMNGM")}>UserMNGM</li>
+                            onClick={() => handlePageChange("UserAD")}>Management User</li>
                         <li 
                             onClick={(BackHome)}> Home</li>
                     </ul>
                 </div>
             </div >
             <div className="flex flex-1 flex-col ">
-                <div className="h-[100px]">
+                <div className="h-[100px] border-b-[2px] border-b-white pt-[20px] pl-[35px]">
                     <span>Hello Admin</span>
                 </div>
                 <div className="flex flex-1">
                     {renderPage()}
                 </div>
             </div>
-
-
-
         </div>
     )
 }

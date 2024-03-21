@@ -13,7 +13,7 @@ import ListMovieCategory from './Component/ListMovie/ListMovieCategory';
 import Righter from './Component/Header&Footer/Righter/Righter';
 import Donate from './Component/Donate/Donate';
 import Test from './Component/Test/Test';
-import UserMNGM from './Component/Admin/UserMNGM/UserMNGM';
+import UserAD from './Component/Admin/UserAD/UserAD';
 import ListMovieType from './Component/ListMovie/ListMovieType';
 import NewMovie from './Component/ListMovie/NewMovie';
 import MovieBox from './Component/Detail/MovieBox';
@@ -54,7 +54,7 @@ function App() {
             <Route path="/Page2" element={<Page2 />} />
             <Route path="/Test" element={<Test />} />
             <Route path="/SiderBar" element={<SiderBar />} />
-            <Route path="/UserMNGM" element={<UserMNGM />} />
+            <Route path="/UserAD" element={<UserAD />} />
             <Route path="/phim-moi" element={<NewMovie/>} />
             <Route path="/phim-moi/:page" element={<NewMovie/>} />
             <Route path="/danh-muc/:category" element={<ListMovieCategory/>} />

@@ -1,0 +1,6 @@
+.render{
+    ul li{
+        padding-block: 10px;
+        padding-inline: 30px;
+    }
+}

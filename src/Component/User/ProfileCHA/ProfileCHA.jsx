@@ -40,7 +40,7 @@ const ProfileCHA = () => {
   useEffect(() => {
     const smoothScroll = () => {
         const currentScrollPosition = window.pageYOffset;
-        const targetScrollPosition = scrollRef.current.offsetTop + 110;
+        const targetScrollPosition = scrollRef.current.offsetTop + 115;
         const distance = targetScrollPosition - currentScrollPosition;
         const duration = 2500;
         const startTime = performance.now();
