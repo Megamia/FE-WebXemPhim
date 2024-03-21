@@ -99,6 +99,11 @@ const Login = () => {
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
+  function delay(ms) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  }
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -118,6 +123,7 @@ const Login = () => {
         // localStorage.setItem("isLoggedIn", "true");
         // setIsLoggedIn(true);
         dangnhapthanhcong();
+        await delay(2000);
         window.scrollTo(0, 0);
         navigate("/ProfileCHA");
         return;

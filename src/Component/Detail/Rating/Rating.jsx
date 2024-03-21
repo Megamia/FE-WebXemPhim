@@ -20,8 +20,9 @@ const Rating = (props) => {
   };
   const handleDescriptionSubmit = () => {
     // Validate description (optional)
-    setShowModal(false); // Close description modal // Open Paypal modal with description
+    setShowModal(false); 
     navigate("/Login");
+    window.scrollTo(0, 0);
   };
   const danhgiaroi = () => {
     toast.error("Bạn đã đánh giá rồi. Đừng spam nữa!", {
