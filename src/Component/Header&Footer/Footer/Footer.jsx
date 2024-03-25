@@ -29,12 +29,12 @@ const Footer = () => {
                     </div>
                     <div className=" w-auto h-auto">
                         <div className="flex flex-col text-left">
-                            <span className="text-white text-[20px] mt-[30px]">Địa chỉ: 123 Trần Duy Hưng, Hong Kong, California, Trung tâm kiểm soát động vật hoang dã, New York,dwajkdah ưqjdhqk</span>
-                            <span className="text-white text-[20px] mt-[30px]">Số điện thoại: 113</span>
+                            <span className="text-white text-[20px] mt-[30px]">Địa chỉ: 384/17 Huỳnh Văn Bánh, Phường 14, Quận Phú Nhuận, Thành phố Hồ Chí Minh, Việt Nam</span>
+                            <span className="text-white text-[20px] mt-[30px]">Số điện thoại: 678-136-7092</span>
                             <div className="w-auto h-auto mt-[30px]">
                                 <span className="text-white text-[20px] ">Email: </span>
                                 <NavLink to="/Hacking" className="text-orange-600 text-[20px] mt-[30px]">
-                                    <span>Bấmvàobayacc@gmail.com</span>
+                                    <span>TrumBomHangVN@gmail.com</span>
                                 </NavLink>
                             </div>
                         </div>
