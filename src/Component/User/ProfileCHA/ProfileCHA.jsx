@@ -10,9 +10,9 @@ import Profile from "./ProfileCON/Profile";
 import Test3 from "../../Test/Test3";
 import Cookies from "js-cookie";
 import SiderBar from "../../Admin/SiderBar/SiderBar";
-import Page3 from "./Page3/Page3";
 import Page2 from "./Page2/Page2";
 import "./Profile.css";
+import DonateHistory from "./DonateHistory/DonateHistory";
 
 const ProfileCHA = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -119,8 +119,8 @@ const ProfileCHA = () => {
         return <SiderBar />;
       case "Page2":
         return <Page2 />;
-      case "Page3":
-        return <Page3 />;
+      case "DonateHistory":
+        return <DonateHistory />;
       default:
         return null;
     }
@@ -198,9 +198,9 @@ const ProfileCHA = () => {
                       </li>
                       <li
                         className={`${
-                          currentPage === "Page3" ? styles.active : ""
+                          currentPage === "DonateHistory" ? styles.active : ""
                         } flex flex-1 flex-row items-center`}
-                        onClick={() => handlePageChange("Page3")}
+                        onClick={() => handlePageChange("DonateHistory")}
                       >
                         <FaDonate className=" mr-[10px] " />
                         <span className="">Donate history</span>

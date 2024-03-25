@@ -22,10 +22,11 @@ const Donate = () => {
         console.log(error);
       });
   }, []);
+
   const handlePriceChange = (price) => {
     const chosenProduct = donateData.find((product) => product.price === price);
     setSelectedPrice(price);
-    setDescription(chosenProduct.description); // Set description here
+    setDescription(chosenProduct.description); 
     setShowModal(true);
     setShowPaypal(false);
   };
