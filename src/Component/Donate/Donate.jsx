@@ -71,7 +71,7 @@ const Donate = () => {
         <div className="bg-[#253238] flex justify-center">
           <div className="w-[1280px] justify-center flex-col bg-[#141414] p-[20px] mt-[130px] rounded">
             <div className="flex justify-center">
-              <p className="text-4xl text-white">Chọn mức Donate: </p>
+              <p className="text-4xl text-white">Chọn gói bạn muốn Donate: </p>
             </div>
             <div className="flex flex-col items-center ">
               <div className="flex flex-row mt-[30px]">
@@ -86,7 +86,7 @@ const Donate = () => {
                       <img
                         src={`../../img/${product.img}`}
                         alt={`$${product.price}`}
-                        className="w-[200px] h-[300px] "
+                        className="w-[200px] h-[300px] rounded "
                       />
                       <span className="text-white flex justify-center mt-[10px]">
                         ${product.price}
