@@ -15,12 +15,21 @@ const DonateHistory = () => {
           },
         })
         .then((response) => {
-          setDonates(response.data.history); // Chỉnh sửa: Lấy dữ liệu từ response.data.history
+          setDonates(response.data.history);
         })
         .catch((error) => {
           console.error("Error fetching donate history:", error);
         });
     }
+  }, []);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -30,13 +39,21 @@ const DonateHistory = () => {
           <div className="flex flex-1 flex-row justify-between  text-[25px] text-white ">
             <div className="flex flex-col  ">
               <span>STT</span>
-              <div className="text-[15px] ">
+              <div className="text-[15px] flex justify-center">
                 {donates.length > 0 ? (
-                  donates.map((donate, index) => (
-                    <div key={donate.donatehistoryid}>{index + 1}</div>
-                  ))
+                  isLoading ? (
+                    <div>Loading...</div>
+                  ) : (
+                    donates.map((donate, index) => (
+                      <div key={donate.donatehistoryid}>{index + 1}</div>
+                    ))
+                  )
                 ) : (
-                  <div>Loading...</div>
+                  isLoading ? (
+                    <div>Loading...</div>
+                  ) : (
+                    <div>No data</div>
+                  )
                 )}
               </div>
             </div>
@@ -44,48 +61,80 @@ const DonateHistory = () => {
             <div className="flex flex-col  ">
               <span>Name</span>
               <div className="text-[15px] ">
-                {donates.length > 0 ? (
-                  donates.map((donate) => (
-                    <div key={donate.donatehistoryid}>{donate.donatename}</div>
-                  ))
+              {donates.length > 0 ? (
+                  isLoading ? (
+                    <div>Loading...</div>
+                  ) : (
+                    donates.map((donate, index) => (
+                      <div key={donate.donatehistoryid}>{donate.donatename}</div>
+                    ))
+                  )
                 ) : (
-                  <div>Loading...</div>
+                  isLoading ? (
+                    <div>Loading...</div>
+                  ) : (
+                    <div>No data</div>
+                  )
                 )}
               </div>
             </div>
             <div className="flex flex-col ">
               <span>Price</span>
               <div className="text-[15px] ">
-                {donates.length > 0 ? (
-                  donates.map((donate) => (
-                    <div key={donate.donatehistoryid}>{donate.price}</div>
-                  ))
+              {donates.length > 0 ? (
+                  isLoading ? (
+                    <div>Loading...</div>
+                  ) : (
+                    donates.map((donate, index) => (
+                      <div key={donate.donatehistoryid}>{donate.price}</div>
+                    ))
+                  )
                 ) : (
-                  <div>Loading...</div>
+                  isLoading ? (
+                    <div>Loading...</div>
+                  ) : (
+                    <div>No data</div>
+                  )
                 )}
               </div>
             </div>
             <div className="flex flex-col ">
-              <span>Mô tả</span>
+              <span>Mô tả gói</span>
               <div className="text-[15px] ">
-                {donates.length > 0 ? (
-                  donates.map((donate) => (
-                    <div key={donate.donatehistoryid}>{donate.description}</div>
-                  ))
+              {donates.length > 0 ? (
+                  isLoading ? (
+                    <div>Loading...</div>
+                  ) : (
+                    donates.map((donate, index) => (
+                      <div key={donate.donatehistoryid}>{donate.description}</div>
+                    ))
+                  )
                 ) : (
-                  <div>Loading...</div>
+                  isLoading ? (
+                    <div>Loading...</div>
+                  ) : (
+                    <div>No data</div>
+                  )
                 )}
               </div>
             </div>
             <div className="flex flex-col ">
               <span>Thời gian donate</span>
               <div className="text-[15px] ">
-                {donates.length > 0 ? (
-                  donates.map((donate) => (
-                    <div key={donate.donatehistoryid}>{donate.date}</div>
-                  ))
+              {donates.length > 0 ? (
+                  isLoading ? (
+                    <div>Loading...</div>
+                  ) : (
+                    donates.map((donate, index) => (
+                      <div key={donate.donatehistoryid}>{donate.date}</div>
+                    ))
+                  )
                 ) : (
-                  <div>Loading...</div>
+                  isLoading ? (
+                    <div>Loading...</div>
+                  ) : (
+                    <div>No data</div>
+                  )
                 )}
               </div>
             </div>
