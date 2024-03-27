@@ -10,14 +10,17 @@
     z-index: 2;
     border: 2px solid #b5e745;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap:0
   }
   ul li {
-    display: column;
+    display: flex;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    padding-inline: 15px;
-    padding-block: 5px;
+    padding-inline: 10px;
+    padding-block: 10px;
   }
   ul li span {
     padding-inline: 2px;
@@ -108,14 +111,17 @@
   /* left: 15%; */
 
   ul {
+    border-radius:5px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap:0;
     flex-direction: row;
     min-width: 430px;
     white-space: nowrap;
   }
 
   ul li {
+    border-radius:5px;
     padding: 15px;
   }
 

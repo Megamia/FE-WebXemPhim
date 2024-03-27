@@ -9,15 +9,15 @@ import 'slick-carousel/slick/slick-theme.css';
 import styles from './style.module.scss'
 const Slider1 = () => {
     const [images, setImages] = useState([
-        { id: 1, img: process.env.PUBLIC_URL + '/img/anya.png' },
+        { id: 1, img: process.env.PUBLIC_URL + '/img/anya.jpg' },
         { id: 2, img: process.env.PUBLIC_URL + '/img/asuna.png' },
-        { id: 3, img: process.env.PUBLIC_URL + '/img/rem.png' },
-        { id: 4, img: process.env.PUBLIC_URL + '/img/anya.png' },
+        { id: 3, img: process.env.PUBLIC_URL + '/img/rem.jpg' },
+        { id: 4, img: process.env.PUBLIC_URL + '/img/anya.jpg' },
         { id: 5, img: process.env.PUBLIC_URL + '/img/asuna.png' },
-        { id: 6, img: process.env.PUBLIC_URL + '/img/rem.png' },
-        { id: 7, img: process.env.PUBLIC_URL + '/img/anya.png' },
+        { id: 6, img: process.env.PUBLIC_URL + '/img/rem.jpg' },
+        { id: 7, img: process.env.PUBLIC_URL + '/img/anya.jpg' },
         { id: 8, img: process.env.PUBLIC_URL + '/img/asuna.png' },
-        { id: 9, img: process.env.PUBLIC_URL + '/img/rem.png' },
+        { id: 9, img: process.env.PUBLIC_URL + '/img/rem.jpg' },
     ]);
     const [informations, setInformations] = useState([
         { id: 1, name: 'Spy x Family', star: 1, date: "01/01/1111", intro: 'Mỗi người đều có một phần bí mật của mình mà họ không thể cho ai khác biết.Vào thời điểm mà tất cả các quốc gia trên thế giới đang tham gia vào một cuộc chiến tranh thông tin khốc liệt xảy ra sau những cánh cửa đóng kín, Ostania và Westalis đã ở trong tình trạng chiến tranh lạnh với nhau trong nhiều thập kỷ.Bộ phận Tập trung vào phía Đông của Dịch vụ Tình báo Westalis (WISE) cử điệp viên tài năng nhất của họ, "Twilight", theo mật vụ tối mật để điều tra các chuyển động của Donovan Desmond, chủ tịch Đảng Thống nhất Quốc gia của Ostania, người đang đe dọa các nỗ lực hòa bình giữa hai quốc gia.Nhiệm vụ này được gọi là "Chiến dịch Strix."Nó bao gồm "tập hợp một gia đình trong một tuần để xâm nhập vào các cuộc tụ họp xã hội được tổ chức bởi ngôi trường ưu tú mà con trai Desmond theo học.""Twilight" lấy nhân dạng của bác sĩ tâm thần Loid Forger và bắt đầu tìm kiếm các thành viên trong gia đình. Nhưng Anya, cô con gái mà anh nhận nuôi, hóa ra lại có khả năng đọc được suy nghĩ của mọi người, trong khi vợ anh Yor lại là một sát thủ! Vì lợi ích riêng mỗi người đều giữ kín những bí mật này, họ bắt đầu sống cùng nhau và không để lộ danh tính thật của mình với nhau.Hòa bình thế giới giờ đây nằm trong tay của gia đình mới này khi họ dấn thân vào một cuộc phiêu lưu đầy bất ngờ.', studio: 'Wit Studio, CloverWorks', category: ' Anime bộ, Shounen, Comedy, Action,' },
@@ -46,7 +46,7 @@ const Slider1 = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: false,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 3000,
         customPaging: (i) => (
             <li key={i}>
@@ -137,7 +137,7 @@ const Slider1 = () => {
                                     </button>
                                 </div>
                             </div>
-                            <img src={image.img} alt={`Slide ${index + 1}`} className="cursor-pointer" />
+                            <img src={image.img} alt={`Slide ${index + 1}`} className="cursor-pointer w-[1000px] h-[500px]" />
                         </div>
                     );
                 })}
