@@ -143,12 +143,11 @@ const Footer = () => {
             </span>
           </NavLink>
         </div>
-        <div className="w-2/3 hidden sm:flex items-center justify-end">
+        <div className="social w-2/3 hidden sm:flex items-center justify-end">
           <span className="text-white text-[20px] mr-4 hidden lg:flex">
             Theo dõi mạng xã hội:
           </span>
           <div className="mr-4">
-
           <ul>
             <li class="item">
               <a href="#">
@@ -157,7 +156,7 @@ const Footer = () => {
             </li>
             <li class="item">
               <a href="#">
-                <i class="fa-brands fa-linkedin icon"></i>
+                <i class="fa-brands fa-facebook icon"></i>
               </a>
             </li>
             <li class="item">

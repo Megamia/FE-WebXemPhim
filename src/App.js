@@ -69,7 +69,6 @@ function App() {
             <Route path="/phim/:movieurl/:videourl" element={<VideoDetail/>} />
             <Route path="/Admin/Movie" element={<MovieAD/>} />
             <Route path="/NewList" element={<NewList/>} />
-            <Route path="/MovieAD" element={<MovieAD/>} />
 
           </Routes>
         </PayPalScriptProvider>

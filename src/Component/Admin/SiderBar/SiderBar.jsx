@@ -6,6 +6,7 @@ import Test from "../../Test/Test";
 import MovieAD from "../MovieAD/MovieAD";
 import styles from "./style.module.scss";
 import "./style.css";
+
 const SiderBar = () => {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState("MovieAD");
