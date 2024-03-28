@@ -22,7 +22,7 @@ const Footer = () => {
   return (
     <div className=" bottom-0 left-0 w-full h-[550px] bg-black pt-[30px] md:max-w-[1280px] xl:rounded">
       <div className="flex h-[400px] ml-[50px] mr-[50px] border-gray-600 border-b-2">
-        <div className="w-[40%] flex flex-col mt-[30px] overflow-hidden">
+        <div className="md:w-[40%] flex flex-col overflow-hidden w-full">
           <div className="w-[15%] h-auto ">
             <NavLink to="/Home" onClick={handleScrollToTop}>
               <img
@@ -34,7 +34,7 @@ const Footer = () => {
           </div>
           <div className=" w-auto h-auto">
             <div className="flex flex-col text-left">
-              <span className="text-white text-[20px] mt-[30px]">
+              <span className="text-white text-[20px] mt-[25px]">
                 Địa chỉ: 384/17 Huỳnh Văn Bánh, Phường 14, Quận Phú Nhuận, Thành
                 phố Hồ Chí Minh, Việt Nam
               </span>
@@ -54,11 +54,11 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="w-full flex flex-1 justify-end overflow-hidden">
+        <div className="w-full flex flex-1 ml-[30px] justify-between overflow-hidden hidden md:flex">
           {/*NỘI DUNG*/}
-          <div className="w-1/4 h-full flex-col items-center text-left hidden md:flex">
+          <div className=" h-full flex-col items-center text-left ">
             <div className="w-auto flex flex-col">
-              <span className="text-white text-[30px] mb-[30px]">
+              <span className="text-white text-[30px] mb-[20px] truncate">
                 Thông tin
               </span>
               <div className=" my-[15px]">
@@ -80,9 +80,9 @@ const Footer = () => {
           </div>
 
           {/*DỊCH VỤ*/}
-          <div className="w-1/4 h-full flex-col items-center text-left mr-[60px] hidden md:flex">
+          <div className=" h-full flex-col items-center text-left hidden md:flex">
             <div className="w-auto flex flex-col">
-              <span className="text-white text-left text-[30px] mb-[30px]">
+              <span className="text-white text-left text-[30px] mb-[20px] truncate">
                 Dịch vụ
               </span>
               <div className="inline-block my-[15px] text-left">
@@ -104,9 +104,9 @@ const Footer = () => {
           </div>
 
           {/*HỖ TRỢ*/}
-          <div className="w-2/5 h-full flex-col items-center text-left hidden md:flex">
-            <div className=" flex flex-col">
-              <span className="text-white text-left text-[30px] mb-[30px]">
+          <div className="w-1/3 h-full flex-col items-center text-left ml-[30px] hidden md:flex">
+            <div className="w-full flex flex-col">
+              <span className="text-white text-left text-[30px] mb-[20px] truncate">
                 Hỗ trợ
               </span>
               <div className="inline-block my-[15px] text-left">
