@@ -12,6 +12,7 @@ const MovieBox = ({ movie }) => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
+        
         <div className="relative w-full h-full">
           <div className="img-moviebox">
             <img

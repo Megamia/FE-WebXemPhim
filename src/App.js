@@ -27,6 +27,7 @@ import Page2 from './Component/User/ProfileCHA/Page2/Page2';
 import ProfileCHA from './Component/User/ProfileCHA/ProfileCHA';
 import NewList from './Component/Home/List1/NewList';
 import SiderBar from './Component/Admin/SiderBar/SiderBar';
+import MovieAD from './Component/Admin/MovieAD/MovieAD';
 
 function App() { 
   return (
@@ -64,6 +65,7 @@ function App() {
             <Route path="/MovieBox/:movieid" element={<MovieBox />} />
             <Route path="/phim/:url" element={<MovieDetail/>} />
             <Route path="/phim/:movieurl/:videourl" element={<VideoDetail/>} />
+            <Route path="/Admin/Movie" element={<MovieAD/>} />
             <Route path="/NewList" element={<NewList/>} />
           </Routes>
         </PayPalScriptProvider>

@@ -9,6 +9,8 @@ import "./style.css";
 import axios from "axios";
 import Cookies from "js-cookie";
 import SiderBar from "./../Admin/SiderBar/SiderBar";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Nav = () => {
   const navigate = useNavigate();
@@ -20,6 +22,31 @@ const Nav = () => {
   const [open2, setOpen2] = useState(false);
   const [open3, setOpen3] = useState(false);
   const [open4, setOpen4] = useState(false);
+
+  const timkiemthatbai = (mess) => {
+    toast.error(`Không tìm được phim với tên: ${mess}`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+  const nhapdetimkiem = () => {
+    toast.error(`Vui lòng nhập tên phim cần tìm!`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
 
   const hanldeProfile = () => {
     navigate("/ProfileCHA");
@@ -77,20 +104,22 @@ const Nav = () => {
       const response = await axios.get(
         `http://localhost:4000/api/find?search=${searchTerm}`
       );
-      const names = response.data.names.map((item) => item.moviename);
-      setSearchResults(names);
-      
-      if (names.length > 0) {
+      const movies = response.data.movies;
+      setSearchResults(movies);
+
+      if (movies.length > 0) {
         console.log("Tìm được phim");
-        alert("Tìm được phim với tên: " + names.join(", "));
+        // alert("Tìm được phim với tên: " + names.join(", "));
       } else {
         console.log("Không tìm được phim");
-        alert("Không tìm được phim với tên: " + searchTerm);
+        // alert("Không tìm được phim với tên: " + searchTerm);
+        timkiemthatbai(searchTerm);
       }
     } catch (error) {
       console.error(error);
       console.log("Không được phim do " + error);
-      alert("Không được phim với tên: " + searchTerm);
+      // alert("Không được phim với tên: " + searchTerm);
+      timkiemthatbai(searchTerm);
     }
   };
 
@@ -100,7 +129,8 @@ const Nav = () => {
       if (inputValue !== "") {
         handleSearchSubmit(event);
       } else {
-        alert("Vui lòng nhập tên phim cần tìm!");
+        // alert("Vui lòng nhập tên phim cần tìm!");
+        nhapdetimkiem();
         setSearchResults(false);
       }
     }
@@ -177,8 +207,9 @@ const Nav = () => {
               Top phim
             </NavLink>
             <div
-              className={`submenu ${(styles.submenu, open3 ? "active" : "inactive")
-                }`}
+              className={`submenu ${
+                (styles.submenu, open3 ? "active" : "inactive")
+              }`}
             >
               <ul className="bg-white  ">
                 <li>
@@ -229,8 +260,9 @@ const Nav = () => {
               Thể loại
             </NavLink>
             <div
-              className={`submenu ${(styles.submenu, open2 ? "active" : "inactive")
-                }`}
+              className={`submenu ${
+                (styles.submenu, open2 ? "active" : "inactive")
+              }`}
             >
               <ul className="bg-white  ">
                 <li>
@@ -328,13 +360,29 @@ const Nav = () => {
               onMouseEnter={handleHover4}
               onMouseLeave={handleMouseLeave4}
             >
-              <ul className="rounded">
-                {searchResults.slice(0, 5).map((name, index) => (
+              <ul className="rounded py-[5px]">
+                {searchResults.slice(0, 5).map((movie, index) => (
                   // HIỂN THỊ TOÀN BỘ NAME //          {searchResults.map((name, index) => (
-                  <li className="" key={index}>{name}</li>
+                  <a href={`/phim/${movie.movieurl}-a${movie.movieid}`}>
+                    <li
+                      className="h-[70px] relative flex flex-row border-b-[1px] items-center p-[5px]"
+                      key={index}
+                    >
+                      <div className=" w-[40px] h-[100%] relative flex-none ">
+                        <img
+                          className="absolute top-0 left-0 w-full h-full object-cover rounded"
+                          src={`../../upload/poster/${movie.poster}`}
+                          alt="Movie Avatar"
+                        />
+                      </div>
+                      <span className="flex-grow truncate ml-2">
+                        {movie.moviename}
+                      </span>
+                    </li>
+                  </a>
                 ))}
                 {searchResults.length > 5 && (
-                  <div className="flex justify-center rounded-b-[0.25rem] items-center p-[10px] bg-[#B5E745] text-black font-bold cursor-pointer hover:bg-[#A2D63A]">
+                  <div className="flex justify-center items-center p-[10px] bg-[#B5E745] text-black font-bold cursor-pointer hover:bg-[#A2D63A]">
                     {/* <button>
                       <NavLink> Xem thêm</NavLink>
                     </button> */}
@@ -367,8 +415,9 @@ const Nav = () => {
             </svg>
           </button>
           <div
-            className={`dropdown submenuUser bg-white ${open ? "active" : "inactive"
-              }`}
+            className={`dropdown submenuUser bg-white ${
+              open ? "active" : "inactive"
+            }`}
             onMouseEnter={handleHover}
             onMouseLeave={handleMouseLeave}
           >
@@ -410,8 +459,9 @@ const Nav = () => {
             </NavLink>
 
             <div
-              className={`dropdown submenuUser bg-white ${open ? "active" : "inactive"
-                }`}
+              className={`dropdown submenuUser bg-white ${
+                open ? "active" : "inactive"
+              }`}
               onMouseEnter={handleHover}
               onMouseLeave={handleMouseLeave}
             >
@@ -453,6 +503,7 @@ const Nav = () => {
           </div>
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 };

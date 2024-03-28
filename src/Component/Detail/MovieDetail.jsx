@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../Header&Footer/Header/Header";
 import Notification from "../Home/Notification/Nontification";
 import Footer from "../Header&Footer/Footer/Footer";
