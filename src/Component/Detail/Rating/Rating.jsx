@@ -206,7 +206,6 @@ const Rating = (props) => {
                 <button
                   className="bg-red-500 w-[150px] text-white p-2 rounded-md ml-2"
                   onClick={() => {
-                    // Lưu mô tả
                     handleDescriptionSubmit();
                   }}
                 >

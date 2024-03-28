@@ -32,7 +32,7 @@ const UserAD = () => {
     <div className="flex flex-col flex-1 px-[35px] bg-[#263238] ">
       <div className="flex flex-row flex-1">
         <div className="main flex flex-col flex-1">
-          <div className="flex flex-1 flex-row justify-between text-black text-[25px] text-white ">
+          <div className="flex flex-1 flex-row justify-between  text-[25px] text-white ">
             <div className="flex flex-col  ">
               <span>Username</span>
               <div className="text-[15px] ">

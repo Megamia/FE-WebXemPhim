@@ -1,14 +1,63 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 const Paypal = (props) => {
   const { product } = props;
   const [paidFor, setPaidFor] = useState(false);
   const [error, setError] = useState(null);
+  const [donatename, setDonateName] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const [date, setDate] = useState("");
 
-  const handleApprove = (orderID) => {
+  const handleApprove = async (orderID) => {
     setPaidFor(true);
+    const storedToken = Cookies.get("token");
+    if (storedToken) {
+      try {
+        const response = await axios.post(
+          "http://localhost:4000/api/history",
+          {
+            price: product.price,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${storedToken}`,
+            },
+          }
+        );
+        console.log("Đẩy price thành công:", response.data);
+      } catch (error) {
+        console.error("Đẩy price thất bại", error);
+        setError("Lỗi khi gửi giá sản phẩm đến backend");
+      }
+    }
   };
+  useEffect(() => {
+    const fetchData = async () => {
+      const storedToken = Cookies.get("token");
+      if (storedToken) {
+        try {
+          const response = await axios.get("http://localhost:4000/api/history", {
+            headers: {
+              Authorization: `Bearer ${storedToken}`,
+            },
+          });
+          setDonateName(response.data.donatename);
+          setPrice(response.data.price);
+          setDescription(response.data.description);
+          setDate(response.data.date);
+        } catch (error) {
+          console.error("Error fetching user profile:", error);
+        }
+      }
+    };
+  
+    fetchData();
+  }, []);
+  
 
   if (paidFor) {
     alert(`Cảm ơn vì đã donate $${product.price}`);
@@ -39,8 +88,8 @@ const Paypal = (props) => {
                   value: product.price,
                 },
                 payee: {
-                  email_address: "sb-duksl29334917@business.example.com" // Email nhận tiền
-                }
+                  email_address: "sb-duksl29334917@business.example.com", // Email nhận tiền
+                },
               },
             ],
           });
@@ -50,7 +99,7 @@ const Paypal = (props) => {
           console.log("order", order);
           handleApprove(data.orderID);
         }}
-        onCancel={() => { }}
+        onCancel={() => {}}
         onError={(err) => {
           setError(err);
           console.log("Failed");
