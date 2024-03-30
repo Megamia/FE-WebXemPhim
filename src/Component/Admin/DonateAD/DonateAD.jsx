@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./MovieAD.css";
+import "./DonateAD.css";
 import DataTable, { defaultThemes } from "react-data-table-component";
 import { VscError } from "react-icons/vsc";
-import MovieDetailAD from "./MoiveDetailAD";
-import MovieAddAD from "./MoiveAddAD";
-import MovieEditAD from "./MoiveEditAD";
 import { RiAddCircleLine } from "react-icons/ri";
-import { MdDeleteForever, MdEdit,MdOutlineNotes } from "react-icons/md";
+import { MdDeleteForever, MdEdit, MdOutlineNotes } from "react-icons/md";
+import DonateHistoryAD from "./DonateHistoryAD";
+import DonateAddAD from "./DonateAddAD";
 
-const MovieAD = () => {
+const DonateAD = () => {
   const [data, setData] = useState([]);
-  const [typedata, settypeData] = useState([]);
-  const [categorydata, setcategoryData] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [selectedData, setSelectedData] = useState(null);
   const [selected, setSelected] = useState(0);
   const [showProgressPending, setShowProgressPending] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
@@ -60,63 +57,54 @@ const MovieAD = () => {
   };
   const columns = [
     {
-      name: "Poster",
+      name: "Ảnh",
       cell: (row) => (
-        <img
-          src={`../../upload/poster/${row.poster}`}
-          alt="?"
-          className="w-[100px]"
-        />
+        <img src={`../../img/${row.img}`} alt="?" className="w-[100px]" />
       ),
       maxWidth: "100px",
     },
     {
-      name: "Tên Phim",
-      cell: (row) => row.moviename,
-      selector: (row) => row.moviename,
+      name: "Tên Donate",
+      cell: (row) => row.donatename,
+      selector: (row) => row.donatename,
       sortable: true,
     },
     {
-      name: "Tên Khác",
-      cell: (row) => row.moviesubname,
-      selector: (row) => row.moviesubname,
+      name: "Giá",
+      cell: (row) => row.price,
+      selector: (row) => row.price,
       sortable: true,
     },
     {
-      name: "Năm",
-      cell: (row) => row.release_year,
-      selector: (row) => row.release_year,
+      name: "Mô tả",
+      cell: (row) => row.description,
+      selector: (row) => row.description,
       sortable: true,
-      maxWidth: "5px",
-    },
-    {
-      name: "Lượt Xem",
-      selector: (row) => row.views,
-      cell: (row) => row.views,
-      sortable: true,
-      maxWidth: "5px",
     },
     {
       name: "Action",
       cell: (row) => (
         <div className="pl-[10px]">
           <button
-            onClick={() => handleDelete(row.movieid)}
+            onClick={() => handleDelete(row.donateid)}
             className="bg-red-500 hover:bg-red-600 text-white py-1 px-2 flex items-center rounded mr-1"
           >
-            <MdDeleteForever className="mr-1"/>Delete
+            <MdDeleteForever className="mr-1" />
+            Delete
           </button>
           <button
-            onClick={() => handleEdit(row.movieid)}
+            onClick={() => handleEdit(row.donateid)}
             className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 flex items-center rounded mt-1"
           >
-            <MdEdit className="mr-1"/>Edit
+            <MdEdit className="mr-1" />
+            Edit
           </button>
           <button
-            onClick={() => handleDetail(row.movieid)}
+            onClick={() => handleHistory(row.donateid)}
             className="bg-gray-500 hover:bg-gray-600 text-white py-1 px-2 flex items-center rounded mt-1"
           >
-            <MdOutlineNotes className="mr-1"/>Detail
+            <MdOutlineNotes className="mr-1" />
+            History
           </button>
         </div>
       ),
@@ -133,52 +121,52 @@ const MovieAD = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/admin/movie");
-      setData(response.data.movies);
+      const response = await axios.get(
+        "http://localhost:4000/api/admin/donate"
+      );
+      setData(response.data.donates);
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
   };
 
   const handleAdd = async (e) => {
-    setSelectedMovie(true);
+    setSelectedData(true);
     setSelected(2);
   };
 
-  const handleDelete = async (movieId) => {
-    const confirmDelete = window.confirm("Bạn có chắc chắn muốn xóa phim này?");
-    if (confirmDelete) {
-      try {
-        await axios.delete(`http://localhost:4000/api/admin/movie/${movieId}`);
-        fetchData(); // Sau khi xóa, gọi lại fetchData để cập nhật danh sách phim
-      } catch (error) {
-        console.error("Error deleting item: ", error);
-      }
-    }
+  const handleDelete = async (donateid) => {
+    // const confirmDelete = window.confirm("Bạn có chắc chắn muốn xóa phim này?");
+    // if (confirmDelete) {
+    //   try {
+    //     await axios.delete(`http://localhost:4000/api/admin/movie/${movieId}`);
+    //     fetchData(); // Sau khi xóa, gọi lại fetchData để cập nhật danh sách phim
+    //   } catch (error) {
+    //     console.error("Error deleting item: ", error);
+    //   }
+    // }
   };
 
-  const handleEdit = async (movieid) => {
-    try {
-      const response = await axios.get(
-        `http://localhost:4000/api/phim/${movieid}`
-      );
-      setSelectedMovie(response.data.movies);
-      settypeData(response.data.types);
-      setcategoryData(response.data.categories);
-      setSelected(3);
-    } catch (error) {
-      console.error("Error getting movie details: ", error);
-    }
+  const handleEdit = async (donateid) => {
+    // try {
+    //   const response = await axios.get(
+    //     `http://localhost:4000/api/phim/${movieid}`
+    //   );
+    //   selectedData(response.data.movies);
+    //   settypeData(response.data.types);
+    //   setcategoryData(response.data.categories);
+    //   setSelected(3);
+    // } catch (error) {
+    //   console.error("Error getting movie details: ", error);
+    // }
   };
 
-  const handleDetail = async (movieid) => {
+  const handleHistory = async (donateid) => {
     try {
       const response = await axios.get(
-        `http://localhost:4000/api/phim/${movieid}`
+        `http://localhost:4000/api/admin/donate/${donateid}`
       );
-      setSelectedMovie(response.data.movies);
-      settypeData(response.data.types);
-      setcategoryData(response.data.categories);
+      setSelectedData(response.data.donates);
       setSelected(1);
     } catch (error) {
       console.error("Error getting movie details: ", error);
@@ -187,7 +175,7 @@ const MovieAD = () => {
 
   const handleCloseSelected = () => {
     setSelected(0);
-    setSelectedMovie(null);
+    setSelectedData(null);
     fetchData();
   };
   useEffect(() => {
@@ -200,15 +188,15 @@ const MovieAD = () => {
 
   useEffect(() => {
     const result = data.filter((item) => {
-      const movieName = item.moviename ? item.moviename.toLowerCase() : "";
-      const movieSubName = item.moviesubname
-        ? item.moviesubname.toLowerCase()
+      const donatename = item.donatename ? item.donatename.toLowerCase() : "";
+      const description = item.description
+        ? item.description.toLowerCase()
         : "";
-      const releaseYear = item.release_year ? item.release_year.toString() : "";
+      const price = item.price ? item.price.toString() : "";
       return (
-        movieName.includes(searchTerm.toLowerCase()) ||
-        movieSubName.includes(searchTerm.toLowerCase()) ||
-        releaseYear.includes(searchTerm.toLowerCase())
+        donatename.includes(searchTerm.toLowerCase()) ||
+        description.includes(searchTerm.toLowerCase()) ||
+        price.includes(searchTerm.toLowerCase())
       );
     });
     setFilter(result);
@@ -221,7 +209,7 @@ const MovieAD = () => {
     <div className="bg-white text-black p-5 w-full">
       <div className="react-data-table-component">
         <DataTable
-          title="Danh Sách Phim"
+          title="Danh Sách Donate"
           columns={columns}
           data={filter}
           pagination
@@ -238,7 +226,8 @@ const MovieAD = () => {
                   className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded flex items-center "
                   onClick={handleAdd}
                 >
-                  <RiAddCircleLine className="mr-1"/>Add
+                  <RiAddCircleLine className="mr-1" />
+                  Add
                 </button>
               </div>
               <div className="flex items-center mb-4">
@@ -262,25 +251,20 @@ const MovieAD = () => {
       </div>
       <div
         className={`fixed inset-0 flex items-center justify-center thanhbar ${
-          selectedMovie ? "block" : "hidden"
+          selectedData ? "block" : "hidden"
         }`}
       >
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="relative bg-transparent">
           {selected == 1 &&
-            selectedMovie &&
-            selectedMovie.map((movie) => (
-              <MovieDetailAD
-                key={movie.movieid}
-                movie={movie}
-                typedata={typedata}
-                categorydata={categorydata}
-              />
+            selectedData &&
+            selectedData.map((donate) => (
+              <DonateHistoryAD key={donate.donateid} donate={donate} />
             ))}
-          {selected == 2 && selectedMovie && (
-            <MovieAddAD handleCloseSelected={handleCloseSelected}/>
+          {selected == 2 && selectedData && (
+            <DonateAddAD handleCloseSelected={handleCloseSelected} />
           )}
-          {selected == 3 &&
+          {/* {selected == 3 &&
             selectedMovie &&
             selectedMovie.map((movie) => (
               <MovieEditAD
@@ -290,7 +274,7 @@ const MovieAD = () => {
                 categorydata={categorydata}
                 handleCloseSelected={handleCloseSelected}
               />
-            ))}
+            ))} */}
           <button
             className="absolute top-0 -right-10 text-[35px] z-20 text-white rounded hover:text-orange-600"
             onClick={handleCloseSelected}
@@ -303,4 +287,4 @@ const MovieAD = () => {
   );
 };
 
-export default MovieAD;
+export default DonateAD;

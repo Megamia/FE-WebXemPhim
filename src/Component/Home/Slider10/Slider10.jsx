@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from './style.module.scss';
+import './slider10.css';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -45,15 +45,28 @@ const Slider10 = () => {
     arrows: true,
     prevArrow: <CustomPrevArrow />,
     nextArrow: <CustomNextArrow />,
-    appendDots: (dots) => (
-      <div>
-        <ul className={styles.customDots}>{dots}</ul>
-      </div>
-    ),
-
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 6,
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 4,
+        }
+      },
+    ],
+    // appendDots: (dots) => (
+    //   <div>
+    //     <ul className={styles.customDots}>{dots}</ul>
+    //   </div>
+    // ),
     afterChange: (slideIndex) => {
       setCurrentSlide(slideIndex);
-      setIsPaused(false); // Khi thay đổi slide, kích hoạt Slider tự động trượt lại
+      setIsPaused(false);
     },
   };
 

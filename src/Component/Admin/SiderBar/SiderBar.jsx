@@ -4,6 +4,7 @@ import Home from "../../Home/Home";
 import UserAD from "../UserAD/UserAD";
 import Test from "../../Test/Test";
 import MovieAD from "../MovieAD/MovieAD";
+import DonateAD from "../DonateAD/DonateAD";
 import styles from "./style.module.scss";
 import "./style.css";
 
@@ -12,8 +13,8 @@ const SiderBar = () => {
   const [currentPage, setCurrentPage] = useState("MovieAD");
   const renderPage = () => {
     switch (currentPage) {
-      case "Profile":
-        return <UserAD />;
+      case "DonateAD":
+        return <DonateAD />;
       case "SiderBar":
         return <UserAD />;
       case "MovieAD":
@@ -46,10 +47,12 @@ const SiderBar = () => {
           <div className="render">
             <ul className="flex flex-1 flex-col">
               <li
-                className={`${currentPage === "MovieAD" ? styles.active : ""} `}
-                onClick={() => handlePageChange("MovieAD")}
+                className={`${
+                  currentPage === "DonateAD" ? styles.active : ""
+                } `}
+                onClick={() => handlePageChange("DonateAD")}
               >
-                Movie
+                Donate
               </li>
               <li
                 className={`${

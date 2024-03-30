@@ -10,7 +10,7 @@ import TableList from "./List1/TableList";
 
 const Home = () => {
   return (
-    <div className="bg-[#263238] ">
+    <div className="bg-[#263238]">
       <Header />
       <div className="bg-[#253238] flex justify-center ">
         <div className="md:max-w-[1280px] w-full justify-center flex-col bg-[#141414] p-[20px] mt-[100px] xl:mt-[120px] xl:rounded">
