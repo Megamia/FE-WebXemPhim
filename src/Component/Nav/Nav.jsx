@@ -177,7 +177,7 @@ const Nav = () => {
 
   return (
     <div className="w-full relative flex justify-center ">
-      <div className="flex items-center h-[100px] top-0 z-50 bg-black w-full md:max-w-[1280px] rounded">
+      <div className="flex items-center h-[100px] top-0 z-50 bg-black w-full md:max-w-[1280px] justify-between md:justify-center rounded">
         <NavLink
           to="/#"
           className="h-full w-[100px] flex items-center justify-center mx-[10px]"
@@ -398,10 +398,10 @@ const Nav = () => {
 
         <div
           className="block md:hidden"
-          onMouseEnter={handleHover}
-          onMouseLeave={handleMouseLeave}
+          // onMouseEnter={handleHover}
+          // onMouseLeave={handleMouseLeave}
         >
-          <button className="flex items-center justify-center bg-transparent p-1 rounded-md ml-6 md:ml-0 md:absolute md:right-4 md:top-4 text-white">
+          <button className="flex items-center justify-center bg-transparent p-1 rounded-md ml-[5px] mr-[20px] md:ml-0 md:absolute md:right-4 md:top-4 text-white">
             <svg
               className="w-6 h-6"
               viewBox="0 0 24 24"
