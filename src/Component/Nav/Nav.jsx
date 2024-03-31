@@ -50,10 +50,9 @@ const Nav = () => {
 
   const hanldeProfile = () => {
     navigate("/ProfileCHA");
-    alert("Đang ở Profile còn gì nữa");
   };
   const hanldeProfile2 = () => {
-    alert("Vẫn là Profile nhưng ở dưới cái trên");
+    navigate("/ProfileCHA");
   };
   const hanldeAdminPage = () => {
     navigate("/SiderBar");
