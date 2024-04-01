@@ -51,8 +51,9 @@ const MovieDetail = () => {
           },
         })
         .then((response) => {
+          const isFollow = response.data.isFollow;
           if (response.status === 200) {
-            setActive(!active);
+            setActive(isFollow);
             alert("Đã thêm vào danh sách yêu thích");
           } else {
             // Xử lý lỗi nếu cần
@@ -74,11 +75,11 @@ const MovieDetail = () => {
           },
         })
         .then((response) => {
+          const isFollow = response.data.isFollow;
           if (response.status === 200) {
-            setActive(!active);
+            setActive(isFollow);
             alert("Đã xóa khỏi danh sách yêu thích");
           } else {
-            // Xử lý lỗi nếu cần
           }
         })
         .catch((error) => {
@@ -88,34 +89,49 @@ const MovieDetail = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4000/api/phim/check${id}`)
-      .then((response) => {
-        if (response.status === 200) {
-          setActive(active);
+    const storedToken = Cookies.get("token");
+  
+    if (storedToken) {
+      Promise.all([
+        axios.get(`http://localhost:4000/api/phim/check/${id}`, {
+          headers: {
+            Authorization: `Bearer ${storedToken}`, 
+          },
+        }),
+        axios.get(`http://localhost:4000/api/phim/${id}`)
+      ])
+      .then(([checkResponse, movieResponse]) => {
+        if (checkResponse.status === 200) {
+          const isFollow = checkResponse.data.isFollow;
+          setActive(isFollow);
+          if (isFollow) {
+            // alert("setActive: true");
+          } else {
+            // setActive(!isFollow);
+            // alert("setActive: false");
+          }
+        } else {
+          console.log("Có lỗi khi kiểm tra");
+        }
+  
+        if (movieResponse.status === 200) {
+          setMovieData(movieResponse.data.movies);
+          setTypeData(movieResponse.data.types);
+          setCategoryData(movieResponse.data.categories);
+          setVideoData(movieResponse.data.videos);
+          const movieUrl = movieResponse.data.movies[0].movieurl;
+          navigate(`/phim/${movieUrl}-a${id}`);
+        } else {
+          console.log("Có lỗi khi lấy dữ liệu phim");
+          navigate("/not-found");
         }
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch((error) => {
+        console.log("Lỗi: " + error);
       });
-  }, [id]);
-  useEffect(() => {
-    axios
-      .get(`http://localhost:4000/api/phim/${id}`)
-      .then(function (response) {
-        console.log(response.data);
-        setMovieData(response.data.movies);
-        setTypeData(response.data.types);
-        setCategoryData(response.data.categories);
-        setVideoData(response.data.videos);
-        const movieUrl = response.data.movies[0].movieurl;
-        navigate(`/phim/${movieUrl}-a${id}`);
-      })
-      .catch(function (error) {
-        console.log(error);
-        navigate("/not-found");
-      });
+    }
   }, [id, navigate]);
+  
 
   return (
     <div className="bg-[#263238]">
