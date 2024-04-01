@@ -29,10 +29,11 @@ import NewList from './Component/Home/List1/NewList';
 import SiderBar from './Component/Admin/SiderBar/SiderBar';
 import MovieAD from './Component/Admin/MovieAD/MovieAD';
 import EX from './Component/ExamplePage/EX';
+import Follow from './Component/User/Follow/Follow';
 
 function App() { 
   return (
-    <div className="App h-screen bg-[#253238]">
+    <div className="App h-screen ">
       <Router>
         <PayPalScriptProvider options={{ "clientId": process.env.REACT_APP_PAYPAL_CLIENT_ID  }}>
           <Routes>
@@ -51,6 +52,7 @@ function App() {
             <Route path="/Righter" element={<Righter />} />
             <Route path="/Slider1" element={<Righter />} />
             <Route path="/Donate" element={<Donate />} />
+            <Route path="/Follow" element={<Follow />} />
             <Route path="/Test1" element={<Test1 />} />
             <Route path="/Test2" element={<Test2 />} />
             <Route path="/Test3" element={<Test3 />} />

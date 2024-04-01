@@ -52,7 +52,7 @@ const Nav = () => {
     navigate("/ProfileCHA");
   };
   const hanldeProfile2 = () => {
-    navigate("/ProfileCHA");
+    navigate("/Test1");
   };
   const hanldeAdminPage = () => {
     navigate("/SiderBar");

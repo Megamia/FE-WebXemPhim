@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../Header&Footer/Header/Header";
 import Notification from "../Home/Notification/Nontification";
 import Footer from "../Header&Footer/Footer/Footer";
 import Righter from "../Header&Footer/Righter/Righter";
-import { FaRegClock, FaRegCalendarAlt } from "react-icons/fa";
+import {
+  FaRegClock,
+  FaRegCalendarAlt,
+  FaRegBookmark,
+  FaBookmark,
+} from "react-icons/fa";
 import { BsFillEyeFill } from "react-icons/bs";
 import { HiDocumentText } from "react-icons/hi2";
 import { MdVideoCall } from "react-icons/md";
@@ -14,6 +18,8 @@ import { FaRegCircleDot } from "react-icons/fa6";
 import { FacebookProvider, Comments } from "react-facebook";
 import Rating from "./Rating/Rating";
 import "./Detail.css";
+import Cookies from "js-cookie";
+import axios from "axios";
 
 const MovieDetail = () => {
   const { url } = useParams();
@@ -22,12 +28,77 @@ const MovieDetail = () => {
   const [typeData, setTypeData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
   const [videoData, setVideoData] = useState([]);
+  const [active, setActive] = useState("");
   const navigate = useNavigate();
   const id = url.split("-a").pop();
+
   const handleTabClick = (index) => {
     setActiveTab(index);
   };
 
+  // const ChangState = () => {
+  //   setActive(!active);
+  //   console.log(!active);
+  // };
+
+  const add = async () => {
+    const storedToken = Cookies.get("token");
+    if (storedToken) {
+      axios
+        .post(`http://localhost:4000/api/phim/add/${id}`, null, {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            setActive(!active);
+            alert("Đã thêm vào danh sách yêu thích");
+          } else {
+            // Xử lý lỗi nếu cần
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+
+  const del = async () => {
+    const storedToken = Cookies.get("token");
+    if (storedToken) {
+      axios
+        .post(`http://localhost:4000/api/phim/del/${id}`, null, {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            setActive(!active);
+            alert("Đã xóa khỏi danh sách yêu thích");
+          } else {
+            // Xử lý lỗi nếu cần
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4000/api/phim/check${id}`)
+      .then((response) => {
+        if (response.status === 200) {
+          setActive(active);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [id]);
   useEffect(() => {
     axios
       .get(`http://localhost:4000/api/phim/${id}`)
@@ -75,6 +146,19 @@ const MovieDetail = () => {
                         src={`../../upload/poster/${movie.poster}`}
                         alt="Movie Avatar"
                       />
+                      <div className="fill-red-500 text-[40px] absolute ml-[15%] md:absolute md:ml-[55%]">
+                        {!active ? (
+                          <FaRegBookmark
+                            className="fill-blue-500 cursor-pointer"
+                            onClick={add}
+                          />
+                        ) : (
+                          <FaBookmark
+                            className="fill-blue-500 cursor-pointer"
+                            onClick={del}
+                          />
+                        )}
+                      </div>
                     </div>
                     <div className="text-[#C0BBBD] font-semibold mb-[50px]">
                       {movie.moviedescribe}

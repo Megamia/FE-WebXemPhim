@@ -13,6 +13,7 @@ import SiderBar from "../../Admin/SiderBar/SiderBar";
 import Page2 from "./Page2/Page2";
 import "./Profile.css";
 import DonateHistory from "./DonateHistory/DonateHistory";
+import Follow from "../Follow/Follow";
 
 const ProfileCHA = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -121,6 +122,8 @@ const ProfileCHA = () => {
         return <Page2 />;
       case "DonateHistory":
         return <DonateHistory />;
+        case "Follow":
+        return <Follow />;
       default:
         return null;
     }
@@ -204,6 +207,15 @@ const ProfileCHA = () => {
                       >
                         <FaDonate className=" mr-[10px] " />
                         <span className="">Donate history</span>
+                      </li>
+                      <li
+                        className={`${
+                          currentPage === "Follow" ? styles.active : ""
+                        } flex flex-1 flex-row items-center`}
+                        onClick={() => handlePageChange("Follow")}
+                      >
+                        <FaDonate className=" mr-[10px] " />
+                        <span className="">Follow</span>
                       </li>
                     </ul>
                   </div>
