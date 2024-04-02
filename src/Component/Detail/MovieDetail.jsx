@@ -18,7 +18,6 @@ import { FaRegCircleDot } from "react-icons/fa6";
 import { FacebookProvider, Comments } from "react-facebook";
 import Rating from "./Rating/Rating";
 import "./Detail.css";
-import Cookies from "js-cookie";
 import axios from "axios";
 
 const MovieDetail = () => {
@@ -294,7 +293,7 @@ const MovieDetail = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-white mt-[20px]">
+                <div className="bg-white mt-[20px] rounded">
                   <FacebookProvider appId="265046719974622">
                     <Comments
                       href={`http://26.227.56.79:3000/phim/commentfacebook/${movie.movieid}`}
