@@ -27,6 +27,7 @@ const MovieDetail = () => {
   const [typeData, setTypeData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
   const [videoData, setVideoData] = useState([]);
+  const [active, setActive] = useState(false);
   const navigate = useNavigate();
   const id = url.split("-a").pop();
 
@@ -34,27 +35,28 @@ const MovieDetail = () => {
     setActiveTab(index);
   };
 
+  const click=()=>{
+    setActive(!active);
+  }
+ 
+
   useEffect(() => {
-    axios.get(`http://localhost:4000/api/phim/${id}`)
-      .then((movieResponse) => { 
-        if (movieResponse.status === 200) {
-          const { movies, types, categories, videos } = movieResponse.data;
-          setMovieData(movies);
-          setTypeData(types);
-          setCategoryData(categories);
-          setVideoData(videos);
-          const movieUrl = movies[0].movieurl;
-          navigate(`/phim/${movieUrl}-a${id}`);
-        } else {
-          console.log("Có lỗi khi lấy dữ liệu phim");
-          navigate("/not-found");
-        }
+    axios
+      .get(`http://localhost:4000/api/phim/${id}`)
+      .then(function (response) {
+        console.log(response.data);
+        setMovieData(response.data.movies);
+        setTypeData(response.data.types);
+        setCategoryData(response.data.categories);
+        setVideoData(response.data.videos);
+        const movieUrl = response.data.movies[0].movieurl;
+        navigate(`/phim/${movieUrl}-a${id}`);
       })
-      .catch((error) => {
-        console.log("Lỗi: " + error);
-        navigate("/error"); // Xử lý lỗi trong trường hợp catch
+      .catch(function (error) {
+        console.log(error);
+        navigate("/not-found");
       });
-  }, [id, navigate, setMovieData, setTypeData, setCategoryData, setVideoData]);
+  }, [id, navigate]);
   
 
   return (
@@ -87,17 +89,17 @@ const MovieDetail = () => {
                         alt="Movie Avatar"
                       />
                       <div className="fill-red-500 text-[40px] absolute ml-[15%] md:absolute md:ml-[55%]">
-                        {/* {!active ? (
+                        {!active ? (
                           <FaRegBookmark
                             className="fill-blue-500 cursor-pointer"
-                            onClick={add}
+                            onClick={click}
                           />
                         ) : (
                           <FaBookmark
                             className="fill-blue-500 cursor-pointer"
-                            onClick={del}
+                            onClick={click}
                           />
-                        )} */}
+                        )}
                       </div>
                     </div>
                     <div className="text-[#C0BBBD] font-semibold mb-[50px]">
