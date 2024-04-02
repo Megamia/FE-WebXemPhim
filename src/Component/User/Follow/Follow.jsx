@@ -1,75 +1,47 @@
-// import React, { useState } from "react";
-// import { FaRegBookmark, FaBookmark } from "react-icons/fa";
-// import Cookies from "js-cookie";
-// import axios from "axios";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
 
-// const Follow = () => {
-//   const [active, setActive] = useState("");
+const Follow = () => {
+  const [movies, setMovies] = useState([]);
 
-//   const add = () => {
-//     const storedToken = Cookies.get("token");
-//     if (storedToken) {
-//       axios
-//         .post(
-//           "http://localhost:4000/api/insert/:movieId",
-//           {
-//             movieid: movieid,
-//             userid: userid,
-//           },
-//           {
-//             headers: {
-//               Authorization: `Bearer ${storedToken}`,
-//             },
-//           }
-//         )
-//         .then((response) => {
-//           if (response.status === 200) {
-//             setActive(!active);
-//           } else {
-//           }
-//         })
-//         .catch((error) => {
-//           console.error(error);
-//         });
-//     }
-//   };
-//   const del = () => {
-//     const storedToken = Cookies.get("token");
-//     if (storedToken) {
-//       axios
-//         .post(
-//           "http://localhost:4000/api/insert/:movieId",
-//           {
-//             movieid: movieid,
-//             userid: userid,
-//           },
-//           {
-//             headers: {
-//               Authorization: `Bearer ${storedToken}`,
-//             },
-//           }
-//         )
-//         .then((response) => {
-//           if (response.status === 200) {
-//             setActive(!active);
-//           } else {
-//           }
-//         })
-//         .catch((error) => {
-//           console.error(error);
-//         });
-//     }
-//   };
+  useEffect(() => {
+    const fetchMovies = async () => {
+      const storedToken = Cookies.get("token");
 
-//   return (
-//     <div className="flex justify-center items-center text-black h-screen gap-[30px]">
-//       {active ? (
-//         <FaRegBookmark onClick={add} />
-//       ) : (
-//         <FaBookmark className="fill-red-500" onClick={del} />
-//       )}
-//     </div>
-//   );
-// };
+      try {
+        const response = await axios.get("http://localhost:4000/api/follow", {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        });
+        console.log(response.data);
+        setMovies(response.data);
+      } catch (error) {
+        console.error("Error retrieving movies:", error);
+      }
+    };
 
-// export default Follow;
+    fetchMovies();
+  }, []);
+
+  return (
+    <div className="flex flex-1 justify-center text-white flex-col">
+      <span>Followed:</span>
+      <div className="flex flex-col">
+        <div>
+          <span>Movie</span>
+        </div>
+        <div>
+          {movies.map((movie) => (
+            <div key={movie?.followid} className="py-[10px]">
+              {movie.movieid}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Follow;

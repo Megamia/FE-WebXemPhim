@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../Header&Footer/Header/Header";
 import Notification from "../Home/Notification/Nontification";
@@ -19,6 +19,7 @@ import { FacebookProvider, Comments } from "react-facebook";
 import Rating from "./Rating/Rating";
 import "./Detail.css";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const MovieDetail = () => {
   const { url } = useParams();
@@ -30,15 +31,81 @@ const MovieDetail = () => {
   const [active, setActive] = useState(false);
   const navigate = useNavigate();
   const id = url.split("-a").pop();
+  const [movieId, setMovieId] = useState(null);
 
   const handleTabClick = (index) => {
     setActiveTab(index);
   };
 
-  const click=()=>{
-    setActive(!active);
-  }
- 
+  const add = async () => {
+    const storedToken = Cookies.get("token");
+    if (storedToken) {
+      axios
+        .post(`http://localhost:4000/api/follow/add/${id}`, null, {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        })
+        .then((response) => {
+          const isFollow = response.data.isFollow;
+          if (response.status === 200) {
+            setActive(isFollow);
+            alert("Đã thêm vào danh sách yêu thích");
+          //   alert("Đã thêm vào danh sách yêu thích");
+          // } else {
+            // Xử lý lỗi nếu cần
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+
+  const del = async () => {
+    const storedToken = Cookies.get("token");
+    if (storedToken) {
+      axios
+        .post(`http://localhost:4000/api/follow/del/${id}`, null, {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        })
+        .then((response) => {
+          const isFollow = response.data.isFollow;
+          if (response.status === 200) {
+            setActive(isFollow);
+            alert("Đã xóa khỏi danh sách yêu thích");
+          //   alert("Đã thêm vào danh sách yêu thích");
+          // } else {
+            // Xử lý lỗi nếu cần
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+
+  useEffect(() => {
+    const storedToken = Cookies.get("token");
+    if (movieId && storedToken) {
+      axios
+        .get(`http://localhost:4000/api/follow/${movieId}`, {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        })
+        .then(function (response) {
+          console.log("Data lấy được: " + response.data);
+          setActive(!active);
+        })
+        .catch(function (error) {
+          console.log("Không lấy được data từ sql: " + error);
+          // navigate("/not-found");
+        });
+    }
+  }, [movieId]);
 
   useEffect(() => {
     axios
@@ -51,13 +118,15 @@ const MovieDetail = () => {
         setVideoData(response.data.videos);
         const movieUrl = response.data.movies[0].movieurl;
         navigate(`/phim/${movieUrl}-a${id}`);
+        setMovieId(id);
       })
       .catch(function (error) {
         console.log(error);
         navigate("/not-found");
       });
   }, [id, navigate]);
-  
+
+ 
 
   return (
     <div className="bg-[#263238]">
@@ -92,12 +161,12 @@ const MovieDetail = () => {
                         {!active ? (
                           <FaRegBookmark
                             className="fill-blue-500 cursor-pointer"
-                            onClick={click}
+                            onClick={add}
                           />
                         ) : (
                           <FaBookmark
                             className="fill-blue-500 cursor-pointer"
-                            onClick={click}
+                            onClick={del}
                           />
                         )}
                       </div>
