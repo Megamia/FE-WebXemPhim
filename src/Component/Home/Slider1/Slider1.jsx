@@ -75,7 +75,7 @@ const Slider1 = () => {
               className="relative overflow-hidden rounded h-[500px] "
               key={index}
             >
-              <div className="bg-black absolute top-[-10px] left-[-10px] blur opacity-70 w-[60%] h-[110%] flex px-[20px] py-[10px] flex-col" />
+              <div className="bg-black absolute top-[-10px] left-[-10px] blur opacity-60 w-[60%] h-[110%] flex px-[20px] py-[10px] flex-col" />
 
               <div className=" absolute top-0 left-0  w-[60%] h-[100%] flex px-[20px] py-[10px] flex-col">
                 {/*NAME*/}

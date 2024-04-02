@@ -33,7 +33,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-      {/* <Catalog/> */}
       <div className="w-full xl:mt-[20px] flex justify-center">
         <Footer />
       </div>

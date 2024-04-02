@@ -2,18 +2,38 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Home from "../../Home/Home";
 import UserAD from "../UserAD/UserAD";
-import Test from "../../Test/Test";
 import MovieAD from "../MovieAD/MovieAD";
 import DonateAD from "../DonateAD/DonateAD";
 import styles from "./style.module.scss";
 import "./style.css";
 import Cookies from "js-cookie";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const SiderBar = () => {
   const navigate = useNavigate();
   const [isAdmin, setIsAdmin] = useState(false);
   const [currentPage, setCurrentPage] = useState("Movie");
+  const [showImage, setShowImage] = useState(false);
+
+  function delay(ms) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  }
+  const Deny = () => {
+    toast.error("Từ chối truy cập", {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+
   const renderPage = () => {
     switch (currentPage) {
       case "Donate":
@@ -32,40 +52,40 @@ const SiderBar = () => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData=async()=>{
-    const storedToken = Cookies.get("token");
-    if (storedToken) {
-      axios
-        .get("http://localhost:4000/api/profile", {
+  const fetchData = async () => {
+    try {
+      const storedToken = Cookies.get("token");
+      if (storedToken) {
+        const response = await axios.get("http://localhost:4000/api/profile", {
           headers: {
             Authorization: `Bearer ${storedToken}`,
           },
-        })
-        .then((response) => {
-          if (response.status === 200) {
-            const userInfo = response.data.userInfo;
-            const isAdmin = userInfo.isAdmin;
-
-            if (isAdmin) {
-              setIsAdmin(isAdmin);
-              // alert("Chào mừng admin");
-            } else {
-              alert("Bạn không có quyền truy cập vào trang này!");
-              navigate("/Home");
-            }
-          }
-        })
-        .catch((error) => {
-          console.error("Lỗi khi lấy thông tin người dùng:", error);
         });
-    } else {
-      alert("Bạn phải đăng nhập trước");
-      navigate("/Home");
+
+        if (response.status === 200) {
+          const isAdmin = response.data.userInfo.isAdmin;
+          if (isAdmin) {
+            setIsAdmin(isAdmin);
+            // alert("Chào mừng admin");
+          } else {
+            Deny();
+            await delay(3000);
+            navigate("/Home");
+          }
+        }
+      } else {
+        Deny();
+        await delay(3000);
+        navigate("/Home");
+      }
+    } catch (error) {
+      console.error("Lỗi khi lấy thông tin người dùng:", error);
     }
-  }
+  };
+
+  fetchData();
+}, []);
+
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -131,8 +151,9 @@ const SiderBar = () => {
           </div>
         </div>
       ) : (
-        <img src="/img/mêm.jpg" alt="Sếck" />
+        showImage && <img src="/img/mêm.jpg" alt="Sếck" />
       )}
+    <ToastContainer />
     </div>
   );
 };

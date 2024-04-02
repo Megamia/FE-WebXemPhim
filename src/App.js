@@ -2,15 +2,15 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import './App.css';
-import Hometest from './Component/Home/Hometest';
+// import Hometest from './Component/Home/Hometest';
 import Error404 from './Component/Error404/Error404';
 import Home from './Component/Home/Home';
 import Profile from './Component/User/ProfileCHA/ProfileCON/Profile';
 import ExPage from './Component/ExamplePage/ExPage';
 import Hacking from './Component/Hacking/Hacking';
-import Slider from './Component/Home/Slider10/Slider10';
+// import Slider from './Component/Home/Slider10/Slider10';
 import ListMovieCategory from './Component/ListMovie/ListMovieCategory';
-import Righter from './Component/Header&Footer/Righter/Righter';
+// import Righter from './Component/Header&Footer/Righter/Righter';
 import Donate from './Component/Donate/Donate';
 import Test from './Component/Test/Test';
 import UserAD from './Component/Admin/UserAD/UserAD';
@@ -40,7 +40,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="*" element={<Error404 />} />
             <Route path="/Home" element={<Home />} />
-            <Route path="/Hometest" element={<Hometest />} />
+            {/* <Route path="/Hometest" element={<Hometest />} /> */}
             <Route path="/Login" element={<Login />} />
             <Route path="/not-found" element={<Error404 />} />
             <Route path="/ProfileCHA" element={<ProfileCHA />} />
@@ -48,9 +48,9 @@ function App() {
             <Route path="/ExPage" element={<ExPage />} />
             <Route path="/EX" element={<EX />} />
             <Route path="/Hacking" element={<Hacking />} />
-            <Route path="/Slider" element={<Slider />} />
-            <Route path="/Righter" element={<Righter />} />
-            <Route path="/Slider1" element={<Righter />} />
+            {/* <Route path="/Slider" element={<Slider />} /> */}
+            {/* <Route path="/Righter" element={<Righter />} /> */}
+            {/* <Route path="/Slider1" element={<Righter />} /> */}
             <Route path="/Donate" element={<Donate />} />
             <Route path="/Follow" element={<Follow />} />
             <Route path="/Test1" element={<Test1 />} />
