@@ -7,6 +7,7 @@ import { RiAddCircleLine } from "react-icons/ri";
 import { MdDeleteForever, MdEdit, MdOutlineNotes } from "react-icons/md";
 import DonateHistoryAD from "./DonateHistoryAD";
 import DonateAddAD from "./DonateAddAD";
+import DonateEditAD from "./DonateEditAD";
 
 const DonateAD = () => {
   const [data, setData] = useState([]);
@@ -136,29 +137,31 @@ const DonateAD = () => {
   };
 
   const handleDelete = async (donateid) => {
-    // const confirmDelete = window.confirm("Bạn có chắc chắn muốn xóa phim này?");
-    // if (confirmDelete) {
-    //   try {
-    //     await axios.delete(`http://localhost:4000/api/admin/movie/${movieId}`);
-    //     fetchData(); // Sau khi xóa, gọi lại fetchData để cập nhật danh sách phim
-    //   } catch (error) {
-    //     console.error("Error deleting item: ", error);
-    //   }
-    // }
+    const confirmDelete = window.confirm(
+      "Bạn có chắc chắn muốn xóa donate này?"
+    );
+    if (confirmDelete) {
+      try {
+        await axios.delete(
+          `http://localhost:4000/api/admin/donate/${donateid}`
+        );
+        fetchData(); // Sau khi xóa, gọi lại fetchData để cập nhật danh sách phim
+      } catch (error) {
+        console.error("Error deleting item: ", error);
+      }
+    }
   };
 
   const handleEdit = async (donateid) => {
-    // try {
-    //   const response = await axios.get(
-    //     `http://localhost:4000/api/phim/${movieid}`
-    //   );
-    //   selectedData(response.data.movies);
-    //   settypeData(response.data.types);
-    //   setcategoryData(response.data.categories);
-    //   setSelected(3);
-    // } catch (error) {
-    //   console.error("Error getting movie details: ", error);
-    // }
+    try {
+      const response = await axios.get(
+        `http://localhost:4000/api/admin/donate/${donateid}`
+      );
+      setSelectedData(response.data.donates);
+      setSelected(3);
+    } catch (error) {
+      console.error("Error getting movie details: ", error);
+    }
   };
 
   const handleHistory = async (donateid) => {
@@ -264,17 +267,15 @@ const DonateAD = () => {
           {selected == 2 && selectedData && (
             <DonateAddAD handleCloseSelected={handleCloseSelected} />
           )}
-          {/* {selected == 3 &&
-            selectedMovie &&
-            selectedMovie.map((movie) => (
-              <MovieEditAD
-                key={movie.movieid}
-                movie={movie}
-                typedata={typedata}
-                categorydata={categorydata}
+          {selected == 3 &&
+            selectedData &&
+            selectedData.map((donate) => (
+              <DonateEditAD
+                key={donate.donateid}
+                donate={donate}
                 handleCloseSelected={handleCloseSelected}
               />
-            ))} */}
+            ))}
           <button
             className="absolute top-0 -right-10 text-[35px] z-20 text-white rounded hover:text-orange-600"
             onClick={handleCloseSelected}

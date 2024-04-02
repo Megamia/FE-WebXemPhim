@@ -18,7 +18,6 @@ import { FaRegCircleDot } from "react-icons/fa6";
 import { FacebookProvider, Comments } from "react-facebook";
 import Rating from "./Rating/Rating";
 import "./Detail.css";
-import Cookies from "js-cookie";
 import axios from "axios";
 
 const MovieDetail = () => {
@@ -28,7 +27,6 @@ const MovieDetail = () => {
   const [typeData, setTypeData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
   const [videoData, setVideoData] = useState([]);
-  const [active, setActive] = useState("");
   const navigate = useNavigate();
   const id = url.split("-a").pop();
 
@@ -36,90 +34,16 @@ const MovieDetail = () => {
     setActiveTab(index);
   };
 
-  // const ChangState = () => {
-  //   setActive(!active);
-  //   console.log(!active);
-  // };
-
-  const add = async () => {
-    const storedToken = Cookies.get("token");
-    if (storedToken) {
-      axios
-        .post(`http://localhost:4000/api/phim/add/${id}`, null, {
-          headers: {
-            Authorization: `Bearer ${storedToken}`,
-          },
-        })
-        .then((response) => {
-          const isFollow = response.data.isFollow;
-          if (response.status === 200) {
-            setActive(isFollow);
-            alert("Đã thêm vào danh sách yêu thích");
-          } else {
-            // Xử lý lỗi nếu cần
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  };
-
-  const del = async () => {
-    const storedToken = Cookies.get("token");
-    if (storedToken) {
-      axios
-        .post(`http://localhost:4000/api/phim/del/${id}`, null, {
-          headers: {
-            Authorization: `Bearer ${storedToken}`,
-          },
-        })
-        .then((response) => {
-          const isFollow = response.data.isFollow;
-          if (response.status === 200) {
-            setActive(isFollow);
-            alert("Đã xóa khỏi danh sách yêu thích");
-          } else {
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  };
-
   useEffect(() => {
-    const storedToken = Cookies.get("token");
-  
-    if (storedToken) {
-      Promise.all([
-        axios.get(`http://localhost:4000/api/phim/check/${id}`, {
-          headers: {
-            Authorization: `Bearer ${storedToken}`, 
-          },
-        }),
-        axios.get(`http://localhost:4000/api/phim/${id}`)
-      ])
-      .then(([checkResponse, movieResponse]) => {
-        if (checkResponse.status === 200) {
-          const isFollow = checkResponse.data.isFollow;
-          setActive(isFollow);
-          if (isFollow) {
-            // alert("setActive: true");
-          } else {
-            // setActive(!isFollow);
-            // alert("setActive: false");
-          }
-        } else {
-          console.log("Có lỗi khi kiểm tra");
-        }
-  
+    axios.get(`http://localhost:4000/api/phim/${id}`)
+      .then((movieResponse) => { 
         if (movieResponse.status === 200) {
-          setMovieData(movieResponse.data.movies);
-          setTypeData(movieResponse.data.types);
-          setCategoryData(movieResponse.data.categories);
-          setVideoData(movieResponse.data.videos);
-          const movieUrl = movieResponse.data.movies[0].movieurl;
+          const { movies, types, categories, videos } = movieResponse.data;
+          setMovieData(movies);
+          setTypeData(types);
+          setCategoryData(categories);
+          setVideoData(videos);
+          const movieUrl = movies[0].movieurl;
           navigate(`/phim/${movieUrl}-a${id}`);
         } else {
           console.log("Có lỗi khi lấy dữ liệu phim");
@@ -128,9 +52,9 @@ const MovieDetail = () => {
       })
       .catch((error) => {
         console.log("Lỗi: " + error);
+        navigate("/error"); // Xử lý lỗi trong trường hợp catch
       });
-    }
-  }, [id, navigate]);
+  }, [id, navigate, setMovieData, setTypeData, setCategoryData, setVideoData]);
   
 
   return (
@@ -163,7 +87,7 @@ const MovieDetail = () => {
                         alt="Movie Avatar"
                       />
                       <div className="fill-red-500 text-[40px] absolute ml-[15%] md:absolute md:ml-[55%]">
-                        {!active ? (
+                        {/* {!active ? (
                           <FaRegBookmark
                             className="fill-blue-500 cursor-pointer"
                             onClick={add}
@@ -173,7 +97,7 @@ const MovieDetail = () => {
                             className="fill-blue-500 cursor-pointer"
                             onClick={del}
                           />
-                        )}
+                        )} */}
                       </div>
                     </div>
                     <div className="text-[#C0BBBD] font-semibold mb-[50px]">
@@ -367,7 +291,7 @@ const MovieDetail = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-white mt-[20px]">
+                <div className="bg-white mt-[20px] rounded">
                   <FacebookProvider appId="265046719974622">
                     <Comments
                       href={`http://26.227.56.79:3000/phim/commentfacebook/${movie.movieid}`}

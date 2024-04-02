@@ -47,15 +47,21 @@ const Slider10 = () => {
     nextArrow: <CustomNextArrow />,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 7,
+        }
+      },
+      {
+        breakpoint: 1124,
         settings: {
           slidesToShow: 6,
         }
       },
       {
-        breakpoint: 600,
+        breakpoint: 940,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 5,
         }
       },
     ],
