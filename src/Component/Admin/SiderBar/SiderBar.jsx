@@ -32,8 +32,11 @@ const SiderBar = () => {
   };
 
   useEffect(() => {
-    const storedToken = Cookies.get("token");
+    fetchData();
+  }, []);
 
+  const fetchData=async()=>{
+    const storedToken = Cookies.get("token");
     if (storedToken) {
       axios
         .get("http://localhost:4000/api/profile", {
@@ -62,7 +65,7 @@ const SiderBar = () => {
       alert("Bạn phải đăng nhập trước");
       navigate("/Home");
     }
-  }, []);
+  }
 
   const handlePageChange = (page) => {
     setCurrentPage(page);

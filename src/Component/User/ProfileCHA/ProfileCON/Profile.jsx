@@ -5,7 +5,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const Profile = () => {
+const Profile = ({fetchData}) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [username, setUsername] = useState("");
@@ -29,12 +29,6 @@ const Profile = () => {
     document.title = "Thông tin cá nhân";
   }, []);
   useEffect(() => {
-    // const storedLoggedInStatus = localStorage.getItem("isLoggedIn");
-
-    // if (storedLoggedInStatus === "true") {
-    //   setIsLoggedIn(true);
-    // }
-
     const storedToken = Cookies.get("token");
     if (storedToken) {
       axios
@@ -76,6 +70,7 @@ const Profile = () => {
       )
       .then((response) => {
         console.log("Thông tin đã được cập nhật thành công:", response.data);
+        fetchData();
         alert("Sửa thông tin thành công");
       })
       .catch((error) => {

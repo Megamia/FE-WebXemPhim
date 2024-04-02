@@ -61,12 +61,10 @@ const ProfileCHA = () => {
 }, []);
 
   useEffect(() => {
-    // const storedLoggedInStatus = localStorage.getItem("isLoggedIn");
+    fetchData();
+  }, []);
 
-    // if (storedLoggedInStatus === "true") {
-    //   setIsLoggedIn(true);
-    // }
-
+  const fetchData=async()=>{
     const storedToken = Cookies.get("token");
     if (storedToken) {
       axios
@@ -87,7 +85,7 @@ const ProfileCHA = () => {
           console.error("Error fetching user profile:", error);
         });
     }
-  }, []);
+  }
   // const handleUpdate = () => {
   //   axios
   //     .post("http://localhost:4000/api/profile", {
@@ -115,7 +113,7 @@ const ProfileCHA = () => {
   const renderPage = () => {
     switch (currentPage) {
       case "Profile":
-        return <Profile />;
+        return <Profile fetchData={fetchData}/>;
       case "SiderBar":
         return <SiderBar />;
       case "Page2":
