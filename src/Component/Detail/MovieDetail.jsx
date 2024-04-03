@@ -16,6 +16,11 @@ import { MdVideoCall } from "react-icons/md";
 import { IoMdPhotos } from "react-icons/io";
 import { FaRegCircleDot } from "react-icons/fa6";
 import { FacebookProvider, Comments } from "react-facebook";
+import {
+  MdBookmarkRemove,
+  MdOutlineBookmarkAdd,
+  MdBookmarkAdded,
+} from "react-icons/md";
 import Rating from "./Rating/Rating";
 import "./Detail.css";
 import axios from "axios";
@@ -32,7 +37,15 @@ const MovieDetail = () => {
   const navigate = useNavigate();
   const id = url.split("-a").pop();
   const [movieId, setMovieId] = useState(null);
+  const [isHovered, setIsHovered] = useState(false);
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
   const handleTabClick = (index) => {
     setActiveTab(index);
   };
@@ -51,11 +64,10 @@ const MovieDetail = () => {
           if (response.status === 200) {
             setActive(isFollow);
             alert("Đã thêm vào danh sách yêu thích");
-          //   alert("Đã thêm vào danh sách yêu thích");
-          // } else {
+            //   alert("Đã thêm vào danh sách yêu thích");
+            // } else {
             // Xử lý lỗi nếu cần
-          }
-          else{
+          } else {
             setActive(isFollow);
           }
         })
@@ -79,8 +91,8 @@ const MovieDetail = () => {
           if (response.status === 200) {
             setActive(isFollow);
             alert("Đã xóa khỏi danh sách yêu thích");
-          //   alert("Đã thêm vào danh sách yêu thích");
-          // } else {
+            //   alert("Đã thêm vào danh sách yêu thích");
+            // } else {
             // Xử lý lỗi nếu cần
           }
         })
@@ -103,9 +115,9 @@ const MovieDetail = () => {
           const isFollow = response.data.isFollow;
           if (response.status === 200) {
             setActive(isFollow);
-          console.log("Data lấy được: " + response.data);
-        }
-      })
+            console.log("Data lấy được: " + response.data);
+          }
+        })
         .catch(function (error) {
           console.log("Không lấy được data từ sql: " + error);
           // navigate("/not-found");
@@ -131,8 +143,6 @@ const MovieDetail = () => {
         navigate("/not-found");
       });
   }, [id, navigate]);
-
- 
 
   return (
     <div className="bg-[#263238]">
@@ -163,18 +173,44 @@ const MovieDetail = () => {
                         src={`${process.env.REACT_APP_API_URL}/upload/poster/${movie.poster}`}
                         alt="Movie Avatar"
                       />
-                      <div className="fill-red-500 text-[40px] absolute ml-[15%] md:absolute md:ml-[55%]">
-                        {!active ? (
-                          <FaRegBookmark
-                            className="fill-blue-500 cursor-pointer"
-                            onClick={add}
-                          />
-                        ) : (
-                          <FaBookmark
-                            className="fill-blue-500 cursor-pointer"
-                            onClick={del}
-                          />
-                        )}
+                      <div className="fill-red-500 text-[40px] absolute  md:absolute w-full ">
+                        <div className="  absolute opacity-50 bg-black w-full h-full z-5"></div>
+                        <div className="py-[10px] pl-[3%]  relative  z-10">
+                          {!active ? (
+                            <div
+                              className="flex flex-row items-center cursor-pointer "
+                              onClick={add}
+                            >
+                              <MdOutlineBookmarkAdd className="fill-blue-500  mr-[5px]" />
+                              <p className="text-[18px] text-white font-bold">
+                                {" "}
+                                Chưa theo dõi
+                              </p>
+                            </div>
+                          ) : (
+                            <div
+                              className="flex flex-row items-center "
+                              onMouseEnter={handleMouseEnter}
+                              onMouseLeave={handleMouseLeave}
+                            >
+                              {isHovered ? (
+                                <div onClick={del} className=" flex flex-row items-center cursor-pointer">
+                                  <MdBookmarkRemove className="fill-blue-500 mr-[10px]" />
+                                  <p className="text-[18px] text-white font-bold">
+                                    Bỏ theo dõi
+                                  </p>
+                                </div>
+                              ) : (
+                                <div onClick={del} className=" flex flex-row items-center cursor-pointer">
+                                  <MdBookmarkAdded className="fill-blue-500  mr-[10px]" />
+                                  <p className="text-[18px] text-white font-bold">
+                                    Đã theo dõi
+                                  </p>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                     <div className="text-[#C0BBBD] font-semibold mb-[50px]">
