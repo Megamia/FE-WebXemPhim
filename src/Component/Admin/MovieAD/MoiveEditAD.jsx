@@ -265,7 +265,7 @@ const MovieEditAD = ({
             />
             <img
               src={
-                `../../upload/poster/${posterFile}` || "../../img/default.jpg"
+                `${process.env.REACT_APP_API_URL}/upload/poster/${posterFile}` || "../../img/default.jpg"
               }
               alt="Poster Preview"
               className="min-w-[150px] max-w-[150px] rounded border border-gray-300"
@@ -287,7 +287,7 @@ const MovieEditAD = ({
             />
             <img
               src={
-                `../../upload/background/${backgroundFile}` ||
+                `${process.env.REACT_APP_API_URL}/upload/background/${backgroundFile}` ||
                 "../../img/default.jpg"
               }
               alt="Background Preview"

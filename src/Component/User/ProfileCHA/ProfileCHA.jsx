@@ -116,12 +116,12 @@ const ProfileCHA = () => {
         return <Profile fetchData={fetchData}/>;
       case "SiderBar":
         return <SiderBar />;
-      case "Page2":
-        return <Page2 />;
+      case "Follow":
+        return <Follow />;
       case "DonateHistory":
         return <DonateHistory />;
-        case "Follow":
-        return <Follow />;
+        // case "Follow":
+        // return <Follow />;
       default:
         return null;
     }
@@ -132,7 +132,7 @@ const ProfileCHA = () => {
       <div ref={scrollRef} className="bg-[#253238] flex  justify-center">
         <div className="md:max-w-[1280px] w-full justify-center flex-col bg-[#141414] p-[20px] mt-[130px] rounded">
           <div className="flex flex-row p-[5px] bg-[263238] rounded ">
-            <div className="flex flex-col w-[300px] border-r-[1px] border-[#F9F9FB] bg-[#263238] rounded-tl-[4px] rounded-bl-[4px]">
+            <div className="flex flex-col max-w-[300px] border-r-[1px] border-[#F9F9FB] bg-[#263238] rounded-tl-[4px] rounded-bl-[4px]">
               <div className="flex flex-col my-[35px]">
                 <div className="flex flex-col items-center mb-[30px] bg-[#263238]">
                   <img
@@ -190,9 +190,9 @@ const ProfileCHA = () => {
                       )}
                       <li
                         className={`${
-                          currentPage === "Page2" ? styles.active : ""
+                          currentPage === "Follow" ? styles.active : ""
                         } flex flex-1 flex-row items-center`}
-                        onClick={() => handlePageChange("Page2")}
+                        onClick={() => handlePageChange("Follow")}
                       >
                         <FaListAlt className=" mr-[10px] " />
                         <span className="">Follow Movie</span>
@@ -206,7 +206,7 @@ const ProfileCHA = () => {
                         <FaDonate className=" mr-[10px] " />
                         <span className="">Donate history</span>
                       </li>
-                      <li
+                      {/* <li
                         className={`${
                           currentPage === "Follow" ? styles.active : ""
                         } flex flex-1 flex-row items-center`}
@@ -214,13 +214,13 @@ const ProfileCHA = () => {
                       >
                         <FaDonate className=" mr-[10px] " />
                         <span className="">Follow</span>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                 </div>
               </div>
             </div>
-            <div className=" flex flex-1 bg-[#263238] min-w-[970px] py-[30px] rounded-br-[4px] rounded-tr-[4px]">
+            <div className=" flex flex-1 bg-[#263238] w-full py-[30px] rounded-br-[4px] rounded-tr-[4px]">
               {renderPage()}
             </div>
           </div>

@@ -147,7 +147,7 @@ const MovieDetail = () => {
                   key={movie.id}
                   className="bg-cover min-h-[300px] bg-center bg-no-repeat rounded p-5 relative z-1 w-auto"
                   style={{
-                    backgroundImage: `url(../../upload/background/${movie.background})`,
+                    backgroundImage: `url(${process.env.REACT_APP_API_URL}/upload/background/${movie.background})`,
                   }}
                 >
                   <header className="relative z-10 md:pl-[200px] md:flex-raw text-center md:text-justify">
@@ -160,7 +160,7 @@ const MovieDetail = () => {
                     <div className="md:absolute md:top-0 md:left-0 flex justify-center ">
                       <img
                         className="w-[180px] h-[260px] object-cover rounded"
-                        src={`../../upload/poster/${movie.poster}`}
+                        src={`${process.env.REACT_APP_API_URL}/upload/poster/${movie.poster}`}
                         alt="Movie Avatar"
                       />
                       <div className="fill-red-500 text-[40px] absolute ml-[15%] md:absolute md:ml-[55%]">
@@ -201,7 +201,7 @@ const MovieDetail = () => {
                 <div className="bg-[#1F282D] w-full rounded">
                   <div className="bg-[#141414] w-full px-[10px] pt-[20px] mb-[20px] flex relative">
                     <div
-                      className={`px-[3px] font-semibold text-[15px] flex pb-[20px] mr-[40px] relative mb-[-1px] ${
+                      className={`px-[3px] cursor-pointer font-semibold text-[15px] flex pb-[20px] mr-[40px] relative mb-[-1px] ${
                         activeTab === 0
                           ? "border-[#B5E745] border-b-4 text-[#B5E745] arrow-down"
                           : "text-white"
@@ -216,7 +216,7 @@ const MovieDetail = () => {
                       Thông tin phim
                     </div>
                     <div
-                      className={`px-[3px] font-semibold text-[15px] flex pb-[20px] mr-[40px] relative mb-[-1px] ${
+                      className={`px-[3px] cursor-pointer font-semibold text-[15px] flex pb-[20px] mr-[40px] relative mb-[-1px] ${
                         activeTab === 1
                           ? "border-[#B5E745] border-b-4 text-[#B5E745] arrow-down"
                           : "text-white"
@@ -231,7 +231,7 @@ const MovieDetail = () => {
                       Trailer
                     </div>
                     <div
-                      className={`px-[3px] font-semibold text-[15px] flex pb-[20px] mr-[40px] relative mb-[-1px] ${
+                      className={`px-[3px] cursor-pointer font-semibold text-[15px] flex pb-[20px] mr-[40px] relative mb-[-1px] ${
                         activeTab === 2
                           ? "border-[#B5E745] border-b-4 text-[#B5E745] arrow-down"
                           : "text-white"
@@ -362,7 +362,7 @@ const MovieDetail = () => {
                       <div className="block">
                         <img
                           className=" w-full bg-cover rounded"
-                          src={`../../upload/background/${movie.background}`}
+                          src={`${process.env.REACT_APP_API_URL}/upload/background/${movie.background}`}
                         ></img>
                       </div>
                     </div>

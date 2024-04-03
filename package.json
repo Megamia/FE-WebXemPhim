@@ -37,6 +37,7 @@
     "sass": "^1.69.7",
     "slick-carousel": "^1.8.1",
     "svgo": "^3.0.2",
+    "sweetalert2": "^11.10.7",
     "web-vitals": "^2.1.4",
     "workbox-background-sync": "^6.6.0"
   },

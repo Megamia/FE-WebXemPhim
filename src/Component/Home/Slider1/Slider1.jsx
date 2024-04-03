@@ -178,7 +178,7 @@ const Slider1 = () => {
                 </div>
               </div>
               <img
-                src={`../../upload/background/${movie.background}`}
+                src={`${process.env.REACT_APP_API_URL}/upload/background/${movie.background}`}
                 alt={`Slide ${index + 1}`}
                 className=" w-[100%] h-[100%] object-cover"
               />

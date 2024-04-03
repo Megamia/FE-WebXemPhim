@@ -63,7 +63,7 @@ const MovieAD = () => {
       name: "Poster",
       cell: (row) => (
         <img
-          src={`../../upload/poster/${row.poster}`}
+          src={`${process.env.REACT_APP_API_URL}/upload/poster/${row.poster}`}
           alt="?"
           className="w-[100px]"
         />

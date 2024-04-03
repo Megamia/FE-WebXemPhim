@@ -8,6 +8,7 @@ import Footer from "../../Header&Footer/Footer/Footer";
 import Notification from "../../Home/Notification/Nontification";
 import styles from "./style.module.scss";
 import { ToastContainer, toast } from "react-toastify";
+import Swal from 'sweetalert2'
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
@@ -22,32 +23,32 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
   const [phone, setPhone] = useState("");
+  const Swal = require('sweetalert2')
+  // const danhnhapthatbai = () => {
+  //   toast.error("Đăng nhập thất bại", {
+  //     position: "bottom-center",
+  //     autoClose: 2000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //     theme: "colored",
+  //   });
+  // };
 
-  const danhnhapthatbai = () => {
-    toast.error("Đăng nhập thất bại", {
-      position: "bottom-center",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
-  };
-
-  const dangnhapthanhcong = () => {
-    toast.success("Đăng nhập thành công", {
-      position: "bottom-center",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
-  };
+  // const dangnhapthanhcong = () => {
+  //   toast.success("Đăng nhập thành công", {
+  //     position: "bottom-center",
+  //     autoClose: 2000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //     theme: "colored",
+  //   });
+  // };
 
   const danhkythanhcong = () => {
     toast.success("Đăng ký thành công", {
@@ -104,7 +105,6 @@ const Login = () => {
       setTimeout(resolve, ms);
     });
   }
-
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -122,7 +122,8 @@ const Login = () => {
         document.cookie = `token=${token}; ${expires}; path=/; secure;`;
         // localStorage.setItem("isLoggedIn", "true");
         // setIsLoggedIn(true);
-        dangnhapthanhcong();
+        // dangnhapthanhcong();
+        Swal.fire("Đăng nhập thành công!");
         await delay(2000);
         window.scrollTo(0, 0);
         navigate("/ProfileCHA");
@@ -130,11 +131,14 @@ const Login = () => {
       }
 
       setIsLoggedIn(false);
-      danhnhapthatbai();
+      // danhnhapthatbai();
+  Swal.fire("Đăng nhập thất bại!");
+
     } catch (error) {
       console.error("Error querying the database:", error);
       setIsLoggedIn(false);
-      danhnhapthatbai();
+      // danhnhapthatbai();
+      Swal.fire("Đăng nhập thất bại!");
     }
   };
 
