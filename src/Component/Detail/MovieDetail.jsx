@@ -55,6 +55,9 @@ const MovieDetail = () => {
           // } else {
             // Xử lý lỗi nếu cần
           }
+          else{
+            setActive(isFollow);
+          }
         })
         .catch((error) => {
           console.error(error);
@@ -97,9 +100,12 @@ const MovieDetail = () => {
           },
         })
         .then(function (response) {
+          const isFollow = response.data.isFollow;
+          if (response.status === 200) {
+            setActive(isFollow);
           console.log("Data lấy được: " + response.data);
-          setActive(!active);
-        })
+        }
+      })
         .catch(function (error) {
           console.log("Không lấy được data từ sql: " + error);
           // navigate("/not-found");
