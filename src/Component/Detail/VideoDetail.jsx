@@ -139,7 +139,7 @@ const VideoDetail = () => {
                       key={movie.id}
                       className="bg-cover min-h-[300px] bg-center bg-no-repeat rounded p-5 relative z-1 w-auto"
                       style={{
-                        backgroundImage: `url(../../upload/background/${movie.background})`,
+                        backgroundImage: `url(${process.env.REACT_APP_API_URL}/upload/background/${movie.background})`,
                       }}
                     >
                       <header className="relative z-10 md:pl-[200px] md:flex-raw text-center md:text-justify">
@@ -152,7 +152,7 @@ const VideoDetail = () => {
                         <div className="md:absolute md:top-0 md:left-0 flex justify-center ">
                           <img
                             className="w-[180px] h-[260px] object-cover rounded"
-                            src={`../../upload/poster/${movie.poster}`}
+                            src={`${process.env.REACT_APP_API_URL}/upload/poster/${movie.poster}`}
                             alt="Movie Avatar"
                           />
                         </div>

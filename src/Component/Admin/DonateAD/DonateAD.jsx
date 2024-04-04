@@ -72,7 +72,7 @@ const DonateAD = () => {
     },
     {
       name: "Giá",
-      cell: (row) => row.price,
+      cell: (row) => <>{row.price} $</>,
       selector: (row) => row.price,
       sortable: true,
     },

@@ -16,7 +16,7 @@ const MovieBox2 = ({ movie }) => {
           <div className="img-moviebox">
             <img
               className="absolute top-0 left-0 w-full h-full object-cover rounded"
-              src={`../../upload/poster/${movie.poster}`}
+              src={`${process.env.REACT_APP_API_URL}/upload/poster/${movie.poster}`}
               alt="Movie Avatar"
             />
             <div

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../Header&Footer/Header/Header";
 import Notification from "../Home/Notification/Nontification";
@@ -16,9 +16,15 @@ import { MdVideoCall } from "react-icons/md";
 import { IoMdPhotos } from "react-icons/io";
 import { FaRegCircleDot } from "react-icons/fa6";
 import { FacebookProvider, Comments } from "react-facebook";
+import {
+  MdBookmarkRemove,
+  MdOutlineBookmarkAdd,
+  MdBookmarkAdded,
+} from "react-icons/md";
 import Rating from "./Rating/Rating";
 import "./Detail.css";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const MovieDetail = () => {
   const { url } = useParams();
@@ -30,15 +36,94 @@ const MovieDetail = () => {
   const [active, setActive] = useState(false);
   const navigate = useNavigate();
   const id = url.split("-a").pop();
+  const [movieId, setMovieId] = useState(null);
+  const [isHovered, setIsHovered] = useState(false);
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
   const handleTabClick = (index) => {
     setActiveTab(index);
   };
 
-  const click=()=>{
-    setActive(!active);
-  }
- 
+  const add = async () => {
+    const storedToken = Cookies.get("token");
+    if (storedToken) {
+      axios
+        .post(`http://localhost:4000/api/follow/add/${id}`, null, {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        })
+        .then((response) => {
+          const isFollow = response.data.isFollow;
+          if (response.status === 200) {
+            setActive(isFollow);
+            alert("Đã thêm vào danh sách yêu thích");
+            //   alert("Đã thêm vào danh sách yêu thích");
+            // } else {
+            // Xử lý lỗi nếu cần
+          } else {
+            setActive(isFollow);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+
+  const del = async () => {
+    const storedToken = Cookies.get("token");
+    if (storedToken) {
+      axios
+        .post(`http://localhost:4000/api/follow/del/${id}`, null, {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        })
+        .then((response) => {
+          const isFollow = response.data.isFollow;
+          if (response.status === 200) {
+            setActive(isFollow);
+            alert("Đã xóa khỏi danh sách yêu thích");
+            //   alert("Đã thêm vào danh sách yêu thích");
+            // } else {
+            // Xử lý lỗi nếu cần
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+
+  useEffect(() => {
+    const storedToken = Cookies.get("token");
+    if (movieId && storedToken) {
+      axios
+        .get(`http://localhost:4000/api/follow/${movieId}`, {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        })
+        .then(function (response) {
+          const isFollow = response.data.isFollow;
+          if (response.status === 200) {
+            setActive(isFollow);
+            console.log("Data lấy được: " + response.data);
+          }
+        })
+        .catch(function (error) {
+          console.log("Không lấy được data từ sql: " + error);
+          // navigate("/not-found");
+        });
+    }
+  }, [movieId]);
 
   useEffect(() => {
     axios
@@ -51,13 +136,13 @@ const MovieDetail = () => {
         setVideoData(response.data.videos);
         const movieUrl = response.data.movies[0].movieurl;
         navigate(`/phim/${movieUrl}-a${id}`);
+        setMovieId(id);
       })
       .catch(function (error) {
         console.log(error);
         navigate("/not-found");
       });
   }, [id, navigate]);
-  
 
   return (
     <div className="bg-[#263238]">
@@ -72,7 +157,7 @@ const MovieDetail = () => {
                   key={movie.id}
                   className="bg-cover min-h-[300px] bg-center bg-no-repeat rounded p-5 relative z-1 w-auto"
                   style={{
-                    backgroundImage: `url(../../upload/background/${movie.background})`,
+                    backgroundImage: `url(${process.env.REACT_APP_API_URL}/upload/background/${movie.background})`,
                   }}
                 >
                   <header className="relative z-10 md:pl-[200px] md:flex-raw text-center md:text-justify">
@@ -85,21 +170,47 @@ const MovieDetail = () => {
                     <div className="md:absolute md:top-0 md:left-0 flex justify-center ">
                       <img
                         className="w-[180px] h-[260px] object-cover rounded"
-                        src={`../../upload/poster/${movie.poster}`}
+                        src={`${process.env.REACT_APP_API_URL}/upload/poster/${movie.poster}`}
                         alt="Movie Avatar"
                       />
-                      <div className="fill-red-500 text-[40px] absolute ml-[15%] md:absolute md:ml-[55%]">
-                        {!active ? (
-                          <FaRegBookmark
-                            className="fill-blue-500 cursor-pointer"
-                            onClick={click}
-                          />
-                        ) : (
-                          <FaBookmark
-                            className="fill-blue-500 cursor-pointer"
-                            onClick={click}
-                          />
-                        )}
+                      <div className="fill-red-500 text-[40px] absolute  md:absolute w-full ">
+                        <div className="  absolute opacity-50 bg-black w-full h-full z-5"></div>
+                        <div className="py-[10px] pl-[3%]  relative  z-10">
+                          {!active ? (
+                            <div
+                              className="flex flex-row items-center cursor-pointer "
+                              onClick={add}
+                            >
+                              <MdOutlineBookmarkAdd className="fill-blue-500  mr-[5px]" />
+                              <p className="text-[18px] text-white font-bold">
+                                {" "}
+                                Chưa theo dõi
+                              </p>
+                            </div>
+                          ) : (
+                            <div
+                              className="flex flex-row items-center "
+                              onMouseEnter={handleMouseEnter}
+                              onMouseLeave={handleMouseLeave}
+                            >
+                              {isHovered ? (
+                                <div onClick={del} className=" flex flex-row items-center cursor-pointer">
+                                  <MdBookmarkRemove className="fill-blue-500 mr-[10px]" />
+                                  <p className="text-[18px] text-white font-bold">
+                                    Bỏ theo dõi
+                                  </p>
+                                </div>
+                              ) : (
+                                <div onClick={del} className=" flex flex-row items-center cursor-pointer">
+                                  <MdBookmarkAdded className="fill-blue-500  mr-[10px]" />
+                                  <p className="text-[18px] text-white font-bold">
+                                    Đã theo dõi
+                                  </p>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                     <div className="text-[#C0BBBD] font-semibold mb-[50px]">
@@ -126,7 +237,7 @@ const MovieDetail = () => {
                 <div className="bg-[#1F282D] w-full rounded">
                   <div className="bg-[#141414] w-full px-[10px] pt-[20px] mb-[20px] flex relative">
                     <div
-                      className={`px-[3px] font-semibold text-[15px] flex pb-[20px] mr-[40px] relative mb-[-1px] ${
+                      className={`px-[3px] cursor-pointer font-semibold text-[15px] flex pb-[20px] mr-[40px] relative mb-[-1px] ${
                         activeTab === 0
                           ? "border-[#B5E745] border-b-4 text-[#B5E745] arrow-down"
                           : "text-white"
@@ -141,7 +252,7 @@ const MovieDetail = () => {
                       Thông tin phim
                     </div>
                     <div
-                      className={`px-[3px] font-semibold text-[15px] flex pb-[20px] mr-[40px] relative mb-[-1px] ${
+                      className={`px-[3px] cursor-pointer font-semibold text-[15px] flex pb-[20px] mr-[40px] relative mb-[-1px] ${
                         activeTab === 1
                           ? "border-[#B5E745] border-b-4 text-[#B5E745] arrow-down"
                           : "text-white"
@@ -156,7 +267,7 @@ const MovieDetail = () => {
                       Trailer
                     </div>
                     <div
-                      className={`px-[3px] font-semibold text-[15px] flex pb-[20px] mr-[40px] relative mb-[-1px] ${
+                      className={`px-[3px] cursor-pointer font-semibold text-[15px] flex pb-[20px] mr-[40px] relative mb-[-1px] ${
                         activeTab === 2
                           ? "border-[#B5E745] border-b-4 text-[#B5E745] arrow-down"
                           : "text-white"
@@ -287,7 +398,7 @@ const MovieDetail = () => {
                       <div className="block">
                         <img
                           className=" w-full bg-cover rounded"
-                          src={`../../upload/background/${movie.background}`}
+                          src={`${process.env.REACT_APP_API_URL}/upload/background/${movie.background}`}
                         ></img>
                       </div>
                     </div>

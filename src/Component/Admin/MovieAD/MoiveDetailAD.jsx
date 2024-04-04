@@ -81,7 +81,7 @@ const MovieDetailAD = ({ movie, typedata, categorydata }) => {
         <div className="table-cell pr-[20px]">
           <p className="font-bold">Poster</p>
           <img
-            src={`../../upload/poster/${movie.poster}`}
+            src={`${process.env.REACT_APP_API_URL}/upload/poster/${movie.poster}`}
             alt="?"
             className="w-[150px]  rounded"
           />
@@ -89,7 +89,7 @@ const MovieDetailAD = ({ movie, typedata, categorydata }) => {
         <div className="table-cell">
           <p className=" font-bold">Background</p>
           <img
-            src={`../../upload/background/${movie.background}`}
+            src={`${process.env.REACT_APP_API_URL}/upload/background/${movie.background}`}
             alt="?"
             className="rounded"
           />
