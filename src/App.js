@@ -58,7 +58,7 @@ function App() {
             <Route path="/Test3" element={<Test3 />} />
             <Route path="/Page2" element={<Page2 />} />
             <Route path="/Test" element={<Test />} />
-            <Route path="/SiderBar" element={<SiderBar />} />
+            <Route path="/AdminPage" element={<SiderBar />} />
             <Route path="/UserAD" element={<UserAD />} />
             <Route path="/phim-moi" element={<NewMovie/>} />
             <Route path="/phim-moi/:page" element={<NewMovie/>} />

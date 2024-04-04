@@ -107,7 +107,7 @@ const ProfileCHA = () => {
   //     });
   // };
   const handleClick= () =>{
-    navigate("/SiderBar");
+    navigate("/AdminPage");
   }
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -116,8 +116,6 @@ const ProfileCHA = () => {
     switch (currentPage) {
       case "Profile":
         return <Profile />;
-      case "SiderBar":
-        return <SiderBar />;
       case "Page2":
         return <Page2 />;
       case "DonateHistory":
