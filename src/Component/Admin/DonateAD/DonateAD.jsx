@@ -236,7 +236,7 @@ const DonateAD = () => {
               <div className="flex items-center mb-4">
                 <input
                   type="text"
-                  placeholder="Tìm kiếm phim..."
+                  placeholder="Tìm kiếm donate..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="py-2 px-4 border border-gray-300 rounded mr-2"

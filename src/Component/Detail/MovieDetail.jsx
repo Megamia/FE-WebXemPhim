@@ -4,17 +4,13 @@ import Header from "../Header&Footer/Header/Header";
 import Notification from "../Home/Notification/Nontification";
 import Footer from "../Header&Footer/Footer/Footer";
 import Righter from "../Header&Footer/Righter/Righter";
-import {
-  FaRegClock,
-  FaRegCalendarAlt,
-  FaRegBookmark,
-  FaBookmark,
-} from "react-icons/fa";
+import { FaRegClock, FaRegCalendarAlt } from "react-icons/fa";
 import { BsFillEyeFill } from "react-icons/bs";
 import { HiDocumentText } from "react-icons/hi2";
 import { MdVideoCall } from "react-icons/md";
 import { IoMdPhotos } from "react-icons/io";
 import { FaRegCircleDot } from "react-icons/fa6";
+import Swal from "sweetalert2";
 import { FacebookProvider, Comments } from "react-facebook";
 import {
   MdBookmarkRemove,
@@ -63,7 +59,7 @@ const MovieDetail = () => {
           const isFollow = response.data.isFollow;
           if (response.status === 200) {
             setActive(isFollow);
-            alert("Đã thêm vào danh sách yêu thích");
+            // alert("Đã thêm vào danh sách yêu thích");
             //   alert("Đã thêm vào danh sách yêu thích");
             // } else {
             // Xử lý lỗi nếu cần
@@ -74,6 +70,19 @@ const MovieDetail = () => {
         .catch((error) => {
           console.error(error);
         });
+    } else {
+      Swal.fire({
+        title: "Bạn phải đăng nhập trước khi theo dõi phim!",
+        icon: "warning",
+        showCancelButton: true, // Hiển thị nút "Cancel"
+        confirmButtonText: "OK",
+        cancelButtonText: "Cancel", // Đặt văn bản cho nút "Cancel"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.scrollTo(0, 0);
+          navigate("/login");
+        }
+      });
     }
   };
 
@@ -90,7 +99,7 @@ const MovieDetail = () => {
           const isFollow = response.data.isFollow;
           if (response.status === 200) {
             setActive(isFollow);
-            alert("Đã xóa khỏi danh sách yêu thích");
+            // alert("Đã xóa khỏi danh sách yêu thích");
             //   alert("Đã thêm vào danh sách yêu thích");
             // } else {
             // Xử lý lỗi nếu cần
@@ -160,31 +169,31 @@ const MovieDetail = () => {
                     backgroundImage: `url(${process.env.REACT_APP_API_URL}/upload/background/${movie.background})`,
                   }}
                 >
-                  <header className="relative z-10 md:pl-[200px] md:flex-raw text-center md:text-justify">
+                  <header className="relative z-10 md:pl-[200px] min-h-[200px] md:flex-raw text-center md:text-justify">
                     <h1 className="text-[#B5E745] text-[35px] font-semibold md:truncate">
                       {movie.moviename}
                     </h1>
                     <h2 className="text-white text-[20px] font-semibold md:truncate pb-2">
                       {movie.moviesubname}
                     </h2>
-                    <div className="md:absolute md:top-0 md:left-0 flex justify-center ">
+                    <div className="md:absolute relative md:top-0 md:left-0 flex justify-center ">
                       <img
                         className="w-[180px] h-[260px] object-cover rounded"
                         src={`${process.env.REACT_APP_API_URL}/upload/poster/${movie.poster}`}
                         alt="Movie Avatar"
                       />
-                      <div className="fill-red-500 text-[40px] absolute  md:absolute w-full ">
-                        <div className="  absolute opacity-50 bg-black w-full h-full z-5"></div>
-                        <div className="py-[10px] pl-[3%]  relative  z-10">
+                      <div className="text-[25px] absolute top-2 md:left-2 rounded">
+                        <div className="absolute opacity-60 bg-black w-full h-full z-5 rounded"></div>
+                        <div className="relative z-10 p-1">
                           {!active ? (
                             <div
-                              className="flex flex-row items-center cursor-pointer "
+                              className="flex flex-row items-center cursor-pointer"
                               onClick={add}
                             >
-                              <MdOutlineBookmarkAdd className="fill-blue-500  mr-[5px]" />
-                              <p className="text-[18px] text-white font-bold">
+                              <MdOutlineBookmarkAdd className="fill-blue-500 mr-[5px]" />
+                              <p className="text-[14px] text-white font-semibold mr-[3px]">
                                 {" "}
-                                Chưa theo dõi
+                                Theo dõi
                               </p>
                             </div>
                           ) : (
@@ -194,16 +203,22 @@ const MovieDetail = () => {
                               onMouseLeave={handleMouseLeave}
                             >
                               {isHovered ? (
-                                <div onClick={del} className=" flex flex-row items-center cursor-pointer">
-                                  <MdBookmarkRemove className="fill-blue-500 mr-[10px]" />
-                                  <p className="text-[18px] text-white font-bold">
+                                <div
+                                  onClick={del}
+                                  className=" flex flex-row items-center cursor-pointer"
+                                >
+                                  <MdBookmarkRemove className="fill-blue-500 mr-[5px]" />
+                                  <p className="text-[14px] text-white font-semibold mr-[3px]">
                                     Bỏ theo dõi
                                   </p>
                                 </div>
                               ) : (
-                                <div onClick={del} className=" flex flex-row items-center cursor-pointer">
-                                  <MdBookmarkAdded className="fill-blue-500  mr-[10px]" />
-                                  <p className="text-[18px] text-white font-bold">
+                                <div
+                                  onClick={del}
+                                  className=" flex flex-row items-center cursor-pointer"
+                                >
+                                  <MdBookmarkAdded className="fill-blue-500  mr-[5px]" />
+                                  <p className="text-[14px] text-white font-semibold mr-[3px]">
                                     Đã theo dõi
                                   </p>
                                 </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import axios from "axios";
 import Cookies from "js-cookie";
+import Swal from "sweetalert2";
 
 const Paypal = (props) => {
   const { product } = props;
@@ -60,7 +61,12 @@ const Paypal = (props) => {
   
 
   if (paidFor) {
-    alert(`Cảm ơn vì đã donate $${product.price}`);
+    Swal.fire({
+      title: "Thank You !",
+      text: `Cảm ơn vì đã donate ${product.price} $`,
+      icon: "success"
+    });
+    // alert(`Cảm ơn vì đã donate $${product.price}`);
   }
 
   if (error) {

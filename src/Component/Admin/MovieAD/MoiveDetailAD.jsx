@@ -23,7 +23,7 @@ const MovieDetailAD = ({ movie, typedata, categorydata }) => {
           <p className="font-bold">Studio</p>
           <p className="w-full text-gray-600">{movie.author}</p>
         </div>
-        <div className="flex flex-">
+        <div className="flex flex-col">
           <p className="font-bold">Năm phát hành</p>
           <p className="w-full text-gray-600">{movie.release_year}</p>
         </div>

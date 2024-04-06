@@ -38,7 +38,7 @@ const MovieBox = ({ movie }) => {
             Lượt xem: {movie.views}
           </span>
           {movie.videoname ? (
-            <div className="absolute top-1 right-1">
+            <div className="absolute top-1 right-1 ">
               <div className="relative w-[70px] h-[60px] flex flex-col justify-center items-center rounded-[50%] font-semibold text-white">
                 <p className="mt-[2px] text-[10px] z-20">TẬP</p>
                 <p className="mt-[-8px] font-bold text-[20px] z-20">
@@ -51,7 +51,7 @@ const MovieBox = ({ movie }) => {
               </div>
             </div>
           ) : (
-            <div className="absolute bottom-[50%] w-full flex bg-[#AA2121] justify-center">
+            <div className={`absolute bottom-[50%] w-full flex bg-[#AA2121] justify-center ${isHovered ? "animate-fadeOut" : "animate-fadeIn"}`}>
               <p className="text-white px-4 py-1 font-semibold text-[18px]">
                 Sắp chiếu
               </p>

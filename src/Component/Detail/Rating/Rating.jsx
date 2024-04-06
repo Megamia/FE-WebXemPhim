@@ -5,25 +5,15 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
 
 const Rating = (props) => {
   const { movieId } = props;
   const [refreshCount, setRefreshCount] = useState(0);
   const [ratingValue, setRatingValue] = useState(null);
   const [ratingData, setRatingData] = useState([]);
-  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
   const movieid = parseInt(movieId);
-  const handleRefuse = () => {
-    setShowModal(false);
-    setRatingValue(0);
-  };
-  const handleDescriptionSubmit = () => {
-    // Validate description (optional)
-    setShowModal(false); 
-    navigate("/Login");
-    window.scrollTo(0, 0);
-  };
   const danhgiaroi = () => {
     toast.error("Bạn đã đánh giá rồi. Đừng spam nữa!", {
       position: "bottom-center",
@@ -87,7 +77,18 @@ const Rating = (props) => {
           setRefreshCount(refreshCount + 1);
         }
       } else {
-        setShowModal(true);
+        Swal.fire({
+          title: "Bạn phải đăng nhập trước khi đánh giá phim!",
+          icon: "warning",
+          showCancelButton: true, // Hiển thị nút "Cancel"
+          confirmButtonText: "OK",
+          cancelButtonText: "Cancel", // Đặt văn bản cho nút "Cancel"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.scrollTo(0, 0);
+            navigate("/Login");
+          }
+        });
       }
     } catch (error) {
       console.error("Error querying the database:", error);
@@ -188,34 +189,6 @@ const Rating = (props) => {
           </div>
         ))}
       <div class="text-rating"></div>
-      {showModal && (
-        <div className="fixed z-40 inset-0 overflow-y-auto ">
-          <div className="flex justify-center items-center h-full p-4 bg-gray-500 bg-opacity-75">
-            <div className="w-full max-w-md bg-white rounded-lg shadow-xl p-6">
-              <h2 className="text-xl font-medium mb-4 text-black">
-                Bạn phải đăng nhập trước khi đánh giá!
-              </h2>
-
-              <div className="flex mt-4 justify-between items-center">
-                <button
-                  className="bg-gray-300 w-[150px] text-black p-2 rounded-md"
-                  onClick={handleRefuse}
-                >
-                  Không
-                </button>
-                <button
-                  className="bg-red-500 w-[150px] text-white p-2 rounded-md ml-2"
-                  onClick={() => {
-                    handleDescriptionSubmit();
-                  }}
-                >
-                  Đồng ý
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
       <ToastContainer />
     </div>
   );

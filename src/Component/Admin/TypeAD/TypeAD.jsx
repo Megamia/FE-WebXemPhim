@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./MovieAD.css";
+import "./TypeAD.css";
 import DataTable, { defaultThemes } from "react-data-table-component";
 import { VscError } from "react-icons/vsc";
-import MovieDetailAD from "./MoiveDetailAD";
-import MovieAddAD from "./MoiveAddAD";
-import MovieEditAD from "./MoiveEditAD";
 import { RiAddCircleLine } from "react-icons/ri";
-import { MdDeleteForever, MdEdit,MdOutlineNotes } from "react-icons/md";
+import { MdDeleteForever, MdEdit, MdOutlineNotes } from "react-icons/md";
+import TypeAddAD from "./TypeAddAD";
+import TypeEditAD from "./TypeEditAD";
 
-const MovieAD = () => {
+const TypeAD = () => {
   const [data, setData] = useState([]);
-  const [typedata, settypeData] = useState([]);
-  const [categorydata, setcategoryData] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [selectedData, setSelectedData] = useState(null);
   const [selected, setSelected] = useState(0);
   const [showProgressPending, setShowProgressPending] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
@@ -60,63 +57,47 @@ const MovieAD = () => {
   };
   const columns = [
     {
-      name: "Poster",
-      cell: (row) => (
-        <img
-          src={`../../upload/poster/${row.poster}`}
-          alt="?"
-          className="w-[100px]"
-        />
-      ),
+      name: "ID",
+      cell: (row) => row.typeid,
+      selector: (row) => row.typeid,
       maxWidth: "100px",
     },
     {
-      name: "Tên Phim",
-      cell: (row) => row.moviename,
-      selector: (row) => row.moviename,
+      name: "Tên Thể Loại",
+      cell: (row) => row.typename,
+      selector: (row) => row.typename,
       sortable: true,
     },
     {
-      name: "Tên Khác",
-      cell: (row) => row.moviesubname,
-      selector: (row) => row.moviesubname,
+      name: "URL",
+      cell: (row) => (
+        <a
+          href={`the-loai/${row.typeurl}`}
+          className="hover:text-blue-500 underline"
+        >
+          {process.env.REACT_APP_WEB_URL}/the-loai/{row.typeurl}
+        </a>
+      ),
+      selector: (row) => row.typeurl,
       sortable: true,
-    },
-    {
-      name: "Năm",
-      cell: (row) => row.release_year,
-      selector: (row) => row.release_year,
-      sortable: true,
-      maxWidth: "5px",
-    },
-    {
-      name: "Lượt Xem",
-      selector: (row) => row.views,
-      cell: (row) => row.views,
-      sortable: true,
-      maxWidth: "5px",
     },
     {
       name: "Action",
       cell: (row) => (
-        <div className="pl-[10px]">
+        <div className="pl-[10px] py-[5px]">
           <button
-            onClick={() => handleDelete(row.movieid)}
+            onClick={() => handleDelete(row.typeid)}
             className="bg-red-500 hover:bg-red-600 text-white py-1 px-2 flex items-center rounded mr-1"
           >
-            <MdDeleteForever className="mr-1"/>Delete
+            <MdDeleteForever className="mr-1" />
+            Delete
           </button>
           <button
-            onClick={() => handleEdit(row.movieid)}
+            onClick={() => handleEdit(row.typeid)}
             className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 flex items-center rounded mt-1"
           >
-            <MdEdit className="mr-1"/>Edit
-          </button>
-          <button
-            onClick={() => handleDetail(row.movieid)}
-            className="bg-gray-500 hover:bg-gray-600 text-white py-1 px-2 flex items-center rounded mt-1"
-          >
-            <MdOutlineNotes className="mr-1"/>Detail
+            <MdEdit className="mr-1" />
+            Edit
           </button>
         </div>
       ),
@@ -133,23 +114,29 @@ const MovieAD = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/admin/movie");
-      setData(response.data.movies);
+      const response = await axios.get(
+        "http://localhost:4000/api/admin/type"
+      );
+      setData(response.data.types);
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
   };
 
   const handleAdd = async (e) => {
-    setSelectedMovie(true);
+    setSelectedData(true);
     setSelected(2);
   };
 
-  const handleDelete = async (movieId) => {
-    const confirmDelete = window.confirm("Bạn có chắc chắn muốn xóa phim này?");
+  const handleDelete = async (typeid) => {
+    const confirmDelete = window.confirm(
+      "Bạn có chắc chắn muốn xóa thể loại này?"
+    );
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:4000/api/admin/movie/${movieId}`);
+        await axios.delete(
+          `http://localhost:4000/api/admin/type/${typeid}`
+        );
         fetchData(); // Sau khi xóa, gọi lại fetchData để cập nhật danh sách phim
       } catch (error) {
         console.error("Error deleting item: ", error);
@@ -157,37 +144,21 @@ const MovieAD = () => {
     }
   };
 
-  const handleEdit = async (movieid) => {
+  const handleEdit = async (typeid) => {
     try {
       const response = await axios.get(
-        `http://localhost:4000/api/phim/${movieid}`
+        `http://localhost:4000/api/admin/type/${typeid}`
       );
-      setSelectedMovie(response.data.movies);
-      settypeData(response.data.types);
-      setcategoryData(response.data.categories);
+      setSelectedData(response.data.types);
       setSelected(3);
     } catch (error) {
-      console.error("Error getting movie details: ", error);
-    }
-  };
-
-  const handleDetail = async (movieid) => {
-    try {
-      const response = await axios.get(
-        `http://localhost:4000/api/phim/${movieid}`
-      );
-      setSelectedMovie(response.data.movies);
-      settypeData(response.data.types);
-      setcategoryData(response.data.categories);
-      setSelected(1);
-    } catch (error) {
-      console.error("Error getting movie details: ", error);
+      console.error("Error getting category details: ", error);
     }
   };
 
   const handleCloseSelected = () => {
     setSelected(0);
-    setSelectedMovie(null);
+    setSelectedData(null);
     fetchData();
   };
   useEffect(() => {
@@ -200,15 +171,15 @@ const MovieAD = () => {
 
   useEffect(() => {
     const result = data.filter((item) => {
-      const movieName = item.moviename ? item.moviename.toLowerCase() : "";
-      const movieSubName = item.moviesubname
-        ? item.moviesubname.toLowerCase()
+      const typename = item.typename
+        ? item.typename.toLowerCase()
         : "";
-      const releaseYear = item.release_year ? item.release_year.toString() : "";
+      const typeurl = item.typeurl
+        ? item.typeurl.toLowerCase()
+        : "";
       return (
-        movieName.includes(searchTerm.toLowerCase()) ||
-        movieSubName.includes(searchTerm.toLowerCase()) ||
-        releaseYear.includes(searchTerm.toLowerCase())
+        typename.includes(searchTerm.toLowerCase()) ||
+        typeurl.includes(searchTerm.toLowerCase())
       );
     });
     setFilter(result);
@@ -221,7 +192,7 @@ const MovieAD = () => {
     <div className="bg-white text-black p-5 w-full">
       <div className="react-data-table-component">
         <DataTable
-          title="Danh Sách Phim"
+          title="Danh Sách Thể Loại"
           columns={columns}
           data={filter}
           pagination
@@ -238,13 +209,14 @@ const MovieAD = () => {
                   className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded flex items-center "
                   onClick={handleAdd}
                 >
-                  <RiAddCircleLine className="mr-1"/>Add
+                  <RiAddCircleLine className="mr-1" />
+                  Add
                 </button>
               </div>
               <div className="flex items-center mb-4">
                 <input
                   type="text"
-                  placeholder="Tìm kiếm phim..."
+                  placeholder="Tìm kiếm thể loại..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="py-2 px-4 border border-gray-300 rounded mr-2"
@@ -262,32 +234,20 @@ const MovieAD = () => {
       </div>
       <div
         className={`fixed inset-0 flex items-center justify-center thanhbar ${
-          selectedMovie ? "block" : "hidden"
+          selectedData ? "block" : "hidden"
         }`}
       >
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="relative bg-transparent">
-          {selected == 1 &&
-            selectedMovie &&
-            selectedMovie.map((movie) => (
-              <MovieDetailAD
-                key={movie.movieid}
-                movie={movie}
-                typedata={typedata}
-                categorydata={categorydata}
-              />
-            ))}
-          {selected == 2 && selectedMovie && (
-            <MovieAddAD handleCloseSelected={handleCloseSelected}/>
+          {selected == 2 && selectedData && (
+            <TypeAddAD handleCloseSelected={handleCloseSelected} />
           )}
           {selected == 3 &&
-            selectedMovie &&
-            selectedMovie.map((movie) => (
-              <MovieEditAD
-                key={movie.movieid}
-                movie={movie}
-                typedata={typedata}
-                categorydata={categorydata}
+            selectedData &&
+            selectedData.map((type) => (
+              <TypeEditAD
+                key={type.typeid}
+                type={type}
                 handleCloseSelected={handleCloseSelected}
               />
             ))}
@@ -303,4 +263,4 @@ const MovieAD = () => {
   );
 };
 
-export default MovieAD;
+export default TypeAD;

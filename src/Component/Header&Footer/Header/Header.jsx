@@ -3,6 +3,7 @@ import Nav from "../../Nav/Nav";
 
 const Header = () => {
   const [isHeaderVisible, setHeaderVisible] = useState(true);
+  
 
   useEffect(() => {
     const handleScroll = () => {

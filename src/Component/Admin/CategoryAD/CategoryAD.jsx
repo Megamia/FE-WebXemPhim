@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./DonateAD.css";
+import "./CategoryAD.css";
 import DataTable, { defaultThemes } from "react-data-table-component";
 import { VscError } from "react-icons/vsc";
 import { RiAddCircleLine } from "react-icons/ri";
-import { MdDeleteForever, MdEdit,MdOutlineNotes } from "react-icons/md";
+import { MdDeleteForever, MdEdit, MdOutlineNotes } from "react-icons/md";
+import CategoryAddAD from "./CategoryAddAD";
+import CategoryEditAD from "./CategoryEditAD";
 
-const DonateAD = () => {
+const CategoryAD = () => {
   const [data, setData] = useState([]);
-  const [typedata, settypeData] = useState([]);
-  const [categorydata, setcategoryData] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [selectedData, setSelectedData] = useState(null);
   const [selected, setSelected] = useState(0);
   const [showProgressPending, setShowProgressPending] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
@@ -57,55 +57,47 @@ const DonateAD = () => {
   };
   const columns = [
     {
-      name: "Ảnh",
-      cell: (row) => (
-        <img
-          src={`../../img/${row.img}`}
-          alt="?"
-          className="w-[100px]"
-        />
-      ),
+      name: "ID",
+      cell: (row) => row.categoryid,
+      selector: (row) => row.categoryid,
       maxWidth: "100px",
     },
     {
-      name: "Tên Donate",
-      cell: (row) => row.donatename,
-      selector: (row) => row.donatename,
+      name: "Tên Danh Mục",
+      cell: (row) => row.categoryname,
+      selector: (row) => row.categoryname,
       sortable: true,
     },
     {
-      name: "Giá",
-      cell: (row) => row.price,
-      selector: (row) => row.price,
-      sortable: true,
-    },
-    {
-      name: "Mô tả",
-      cell: (row) => row.description,
-      selector: (row) => row.description,
+      name: "URL",
+      cell: (row) => (
+        <a
+          href={`danh-muc/${row.categoryurl}`}
+          className="hover:text-blue-500 underline"
+        >
+          {process.env.REACT_APP_WEB_URL}/danh-muc/{row.categoryurl}
+        </a>
+      ),
+      selector: (row) => row.categoryurl,
       sortable: true,
     },
     {
       name: "Action",
       cell: (row) => (
-        <div className="pl-[10px]">
+        <div className="pl-[10px] py-[5px]">
           <button
-            onClick={() => handleDelete(row.donateid)}
+            onClick={() => handleDelete(row.categoryid)}
             className="bg-red-500 hover:bg-red-600 text-white py-1 px-2 flex items-center rounded mr-1"
           >
-            <MdDeleteForever className="mr-1"/>Delete
+            <MdDeleteForever className="mr-1" />
+            Delete
           </button>
           <button
-            onClick={() => handleEdit(row.donateid)}
+            onClick={() => handleEdit(row.categoryid)}
             className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 flex items-center rounded mt-1"
           >
-            <MdEdit className="mr-1"/>Edit
-          </button>
-          <button
-            onClick={() => handleDetail(row.donateid)}
-            className="bg-gray-500 hover:bg-gray-600 text-white py-1 px-2 flex items-center rounded mt-1"
-          >
-            <MdOutlineNotes className="mr-1"/>History
+            <MdEdit className="mr-1" />
+            Edit
           </button>
         </div>
       ),
@@ -122,61 +114,51 @@ const DonateAD = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/admin/donate");
-      setData(response.data.donates);
+      const response = await axios.get(
+        "http://localhost:4000/api/admin/category"
+      );
+      setData(response.data.categories);
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
   };
 
   const handleAdd = async (e) => {
-    setSelectedMovie(true);
+    setSelectedData(true);
     setSelected(2);
   };
 
-  const handleDelete = async (donateid) => {
-    // const confirmDelete = window.confirm("Bạn có chắc chắn muốn xóa phim này?");
-    // if (confirmDelete) {
-    //   try {
-    //     await axios.delete(`http://localhost:4000/api/admin/movie/${movieId}`);
-    //     fetchData(); // Sau khi xóa, gọi lại fetchData để cập nhật danh sách phim
-    //   } catch (error) {
-    //     console.error("Error deleting item: ", error);
-    //   }
-    // }
+  const handleDelete = async (categoryid) => {
+    const confirmDelete = window.confirm(
+      "Bạn có chắc chắn muốn xóa danh mục này?"
+    );
+    if (confirmDelete) {
+      try {
+        await axios.delete(
+          `http://localhost:4000/api/admin/category/${categoryid}`
+        );
+        fetchData(); // Sau khi xóa, gọi lại fetchData để cập nhật danh sách phim
+      } catch (error) {
+        console.error("Error deleting item: ", error);
+      }
+    }
   };
 
-  const handleEdit = async (donateid) => {
-    // try {
-    //   const response = await axios.get(
-    //     `http://localhost:4000/api/phim/${movieid}`
-    //   );
-    //   setSelectedMovie(response.data.movies);
-    //   settypeData(response.data.types);
-    //   setcategoryData(response.data.categories);
-    //   setSelected(3);
-    // } catch (error) {
-    //   console.error("Error getting movie details: ", error);
-    // }
-  };
-
-  const handleDetail = async (donateid) => {
-    // try {
-    //   const response = await axios.get(
-    //     `http://localhost:4000/api/phim/${movieid}`
-    //   );
-    //   setSelectedMovie(response.data.movies);
-    //   settypeData(response.data.types);
-    //   setcategoryData(response.data.categories);
-    //   setSelected(1);
-    // } catch (error) {
-    //   console.error("Error getting movie details: ", error);
-    // }
+  const handleEdit = async (categoryid) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:4000/api/admin/category/${categoryid}`
+      );
+      setSelectedData(response.data.categories);
+      setSelected(3);
+    } catch (error) {
+      console.error("Error getting category details: ", error);
+    }
   };
 
   const handleCloseSelected = () => {
     setSelected(0);
-    setSelectedMovie(null);
+    setSelectedData(null);
     fetchData();
   };
   useEffect(() => {
@@ -189,15 +171,15 @@ const DonateAD = () => {
 
   useEffect(() => {
     const result = data.filter((item) => {
-      const donatename = item.donatename ? item.donatename.toLowerCase() : "";
-      const description = item.description
-        ? item.description.toLowerCase()
+      const categoryname = item.categoryname
+        ? item.categoryname.toLowerCase()
         : "";
-      const price = item.price ? item.price.toString() : "";
+      const categoryurl = item.categoryurl
+        ? item.categoryurl.toLowerCase()
+        : "";
       return (
-        donatename.includes(searchTerm.toLowerCase()) ||
-        description.includes(searchTerm.toLowerCase()) ||
-        price.includes(searchTerm.toLowerCase())
+        categoryname.includes(searchTerm.toLowerCase()) ||
+        categoryurl.includes(searchTerm.toLowerCase())
       );
     });
     setFilter(result);
@@ -210,7 +192,7 @@ const DonateAD = () => {
     <div className="bg-white text-black p-5 w-full">
       <div className="react-data-table-component">
         <DataTable
-          title="Danh Sách Phim"
+          title="Danh Sách Danh Mục"
           columns={columns}
           data={filter}
           pagination
@@ -227,13 +209,14 @@ const DonateAD = () => {
                   className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded flex items-center "
                   onClick={handleAdd}
                 >
-                  <RiAddCircleLine className="mr-1"/>Add
+                  <RiAddCircleLine className="mr-1" />
+                  Add
                 </button>
               </div>
               <div className="flex items-center mb-4">
                 <input
                   type="text"
-                  placeholder="Tìm kiếm phim..."
+                  placeholder="Tìm kiếm danh mục..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="py-2 px-4 border border-gray-300 rounded mr-2"
@@ -251,35 +234,23 @@ const DonateAD = () => {
       </div>
       <div
         className={`fixed inset-0 flex items-center justify-center thanhbar ${
-          selectedMovie ? "block" : "hidden"
+          selectedData ? "block" : "hidden"
         }`}
       >
         <div className="absolute inset-0 bg-black opacity-50" />
         <div className="relative bg-transparent">
-          {/* {selected == 1 &&
-            selectedMovie &&
-            selectedMovie.map((movie) => (
-              <MovieDetailAD
-                key={movie.movieid}
-                movie={movie}
-                typedata={typedata}
-                categorydata={categorydata}
-              />
-            ))}
-          {selected == 2 && selectedMovie && (
-            <MovieAddAD handleCloseSelected={handleCloseSelected}/>
+          {selected == 2 && selectedData && (
+            <CategoryAddAD handleCloseSelected={handleCloseSelected} />
           )}
           {selected == 3 &&
-            selectedMovie &&
-            selectedMovie.map((movie) => (
-              <MovieEditAD
-                key={movie.movieid}
-                movie={movie}
-                typedata={typedata}
-                categorydata={categorydata}
+            selectedData &&
+            selectedData.map((category) => (
+              <CategoryEditAD
+                key={category.categoryid}
+                category={category}
                 handleCloseSelected={handleCloseSelected}
               />
-            ))} */}
+            ))}
           <button
             className="absolute top-0 -right-10 text-[35px] z-20 text-white rounded hover:text-orange-600"
             onClick={handleCloseSelected}
@@ -292,4 +263,4 @@ const DonateAD = () => {
   );
 };
 
-export default DonateAD;
+export default CategoryAD;

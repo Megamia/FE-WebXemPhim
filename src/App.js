@@ -5,7 +5,7 @@ import './App.css';
 // import Hometest from './Component/Home/Hometest';
 import Error404 from './Component/Error404/Error404';
 import Home from './Component/Home/Home';
-import Profile from './Component/User/ProfileCHA/ProfileCON/Profile';
+// import Profile from './Component/User/ProfileCHA/ProfileCON/Profile';
 import ExPage from './Component/ExamplePage/ExPage';
 import Hacking from './Component/Hacking/Hacking';
 // import Slider from './Component/Home/Slider10/Slider10';
@@ -30,6 +30,7 @@ import SiderBar from './Component/Admin/SiderBar/SiderBar';
 import MovieAD from './Component/Admin/MovieAD/MovieAD';
 import EX from './Component/ExamplePage/EX';
 import Follow from './Component/User/Follow/Follow';
+import HotMovie from './Component/ListMovie/HotMovie';
 
 function App() { 
   return (
@@ -43,8 +44,8 @@ function App() {
             {/* <Route path="/Hometest" element={<Hometest />} /> */}
             <Route path="/Login" element={<Login />} />
             <Route path="/not-found" element={<Error404 />} />
-            <Route path="/ProfileCHA" element={<ProfileCHA />} />
-            <Route path="/Profile" element={<Profile />} />
+            <Route path="/Profile" element={<ProfileCHA />} />
+            {/* <Route path="/Profile" element={<Profile />} /> */}
             <Route path="/ExPage" element={<ExPage />} />
             <Route path="/EX" element={<EX />} />
             <Route path="/Hacking" element={<Hacking />} />
@@ -71,7 +72,7 @@ function App() {
             <Route path="/phim/:movieurl/:videourl" element={<VideoDetail/>} />
             <Route path="/Admin/Movie" element={<MovieAD/>} />
             <Route path="/NewList" element={<NewList/>} />
-
+            <Route path="/phim-noi-bat" element={<HotMovie/>} />
           </Routes>
         </PayPalScriptProvider>
       </Router>

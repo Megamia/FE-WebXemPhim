@@ -176,12 +176,12 @@ const Nav = () => {
 
   return (
     <div className="w-full relative flex justify-center ">
-      <div className="flex items-center h-[100px] top-0 z-50 bg-black w-full md:max-w-[1280px] justify-between md:justify-center rounded">
+      <div className="flex items-center h-[100px] top-0 z-50 bg-black w-full md:max-w-[1280px] justify-evenly xl:rounded">
         <NavLink
           to="/#"
-          className="h-full w-[100px] flex items-center justify-center mx-[10px]"
+          className="h-full w-[100px] flex items-center justify-center mr-[2%] ml-[2%]"
         >
-          <div className="flex justify-center h-[85%]">
+          <div className="flex justify-center w-[75px]">
             <img
               src="../../img/logoPage.png"
               alt="logo"
@@ -190,19 +190,19 @@ const Nav = () => {
           </div>
         </NavLink>
 
-        <div className=" hidden md:flex justify-center flex-1 h-[100%] ">
-          <button className="w-1/5">
-            <NavLink to="/#" className="text-white text-2xl ">
+        <div className=" hidden md:flex justify-start gap-7 flex-1 h-[100%] mr-[3.5%]">
+          <button className="hidden items-center lg:flex">
+            <NavLink to="/#" className="text-white text-2xl line-clamp-1">
               Trang chủ
             </NavLink>
           </button>
 
           <button
-            className={`w-1/5  ${styles.menu}`}
+            className={`${styles.menu}`}
             onMouseEnter={handleHover3}
             onMouseLeave={handleMouseLeave3}
           >
-            <NavLink to="/phim-moi" className="text-white text-2xl ">
+            <NavLink to="/" className="text-white text-2xl line-clamp-1">
               Top phim
             </NavLink>
             <div
@@ -234,6 +234,20 @@ const Nav = () => {
                 </li>
                 <li>
                   <button className="">
+                    <NavLink to="/phim-moi" className="">
+                      Phim Mới
+                    </NavLink>
+                  </button>
+                </li>
+                <li>
+                  <button className="">
+                    <NavLink to="/phim-noi-bat" className="">
+                      Phim Nổi Bật
+                    </NavLink>
+                  </button>
+                </li>
+                <li>
+                  <button className="">
                     <NavLink to="/danh-muc/phim-bo" className="">
                       Phim Bộ
                     </NavLink>
@@ -251,11 +265,11 @@ const Nav = () => {
           </button>
 
           <button
-            className={`w-1/5  ${styles.menu}`}
+            className={`${styles.menu}`}
             onMouseEnter={handleHover2}
             onMouseLeave={handleMouseLeave2}
           >
-            <NavLink to="/" className="text-white text-2xl ">
+            <NavLink to="/" className="text-white text-2xl line-clamp-1">
               Thể loại
             </NavLink>
             <div
@@ -264,46 +278,6 @@ const Nav = () => {
               }`}
             >
               <ul className="bg-white  ">
-                <li>
-                  <button className=" ">
-                    <a
-                      className=""
-                      href={process.env.PUBLIC_URL + "/img/cut.mp4"}
-                      onClick={handleVideoClick}
-                    >
-                      Luận loan
-                    </a>
-                  </button>
-                </li>
-                <li>
-                  <button className=" ">
-                    <a
-                      className=""
-                      href={process.env.PUBLIC_URL + "/img/sad.mp4"}
-                      onClick={handleVideoClick}
-                    >
-                      Hentai
-                    </a>
-                  </button>
-                </li>
-                <li>
-                  <button className=" ">
-                    <a
-                      className=""
-                      href={process.env.PUBLIC_URL + "/img/sadboiz.mp4"}
-                      onClick={handleVideoClick}
-                    >
-                      Sẽ gầy
-                    </a>
-                  </button>
-                </li>
-                <li>
-                  <button className=" ">
-                    <NavLink to="/the-loai/drama" className="">
-                      Drama
-                    </NavLink>
-                  </button>
-                </li>
                 <li>
                   <button className=" ">
                     <NavLink to="/the-loai/action" className="">
@@ -320,8 +294,71 @@ const Nav = () => {
                 </li>
                 <li>
                   <button className=" ">
+                    <NavLink to="/the-loai/drama" className="">
+                      Drama
+                    </NavLink>
+                  </button>
+                </li>
+                <li>
+                  <button className=" ">
                     <NavLink to="/the-loai/fantasy" className="">
                       Fantasy
+                    </NavLink>
+                  </button>
+                </li>
+                <li>
+                  <button className=" ">
+                    <NavLink to="/the-loai/horror" className="">
+                      Horror
+                    </NavLink>
+                  </button>
+                </li>
+                <li>
+                  <button className=" ">
+                    <NavLink to="/the-loai/romatic" className="">
+                      Romatic
+                    </NavLink>
+                  </button>
+                </li>
+                <li>
+                  <button className=" ">
+                    <NavLink to="/the-loai/school" className="">
+                      School
+                    </NavLink>
+                  </button>
+                </li>
+                <li>
+                  <button className=" ">
+                    <NavLink to="/the-loai/psychological" className="">
+                      Psychological
+                    </NavLink>
+                  </button>
+                </li>
+                <li>
+                  <button className=" ">
+                    <NavLink to="/the-loai/supernatural" className="">
+                      Supernatural
+                    </NavLink>
+                  </button>
+                </li>
+                <li>
+                  <button className="">
+                    <NavLink to="/the-loai/game" className="">
+                      Game
+                    </NavLink>
+                  </button>
+                </li>
+                <li>
+                  <button className=" ">
+                    <NavLink to="/the-loai/super-power" className="">
+                      Super Power
+                    </NavLink>
+                  </button>
+                </li>
+                <li>
+                  <button className=" ">
+                    <NavLink to="/the-loai/family" className="">
+                      Family
                     </NavLink>
                   </button>
                 </li>
@@ -329,23 +366,23 @@ const Nav = () => {
             </div>
           </button>
 
-          <button className="w-1/5">
+          {/* <button className="w-1/5">
             <NavLink to="/ExPage" className="text-white text-2xl">
               Thư viện
             </NavLink>
-          </button>
+          </button> */}
 
-          <button className="w-1/5">
-            <NavLink to="/Donate" className="text-white text-2xl ">
+          <button className="">
+            <NavLink to="/Donate" className="text-white text-2xl line-clamp-1">
               Donate
             </NavLink>
           </button>
         </div>
-        <div className="w-1/2  sm:w-1/4">
+        <div className="md:w-1/4 w-1/2">
           <input
             type="text"
             id="search-input"
-            placeholder="Tìm kiếm: Tên Việt, tên Nhật, ...."
+            placeholder="Tìm kiếm: Tên phim..."
             value={searchTerm}
             onKeyDown={handleKeyDown}
             onChange={handleSearchChange}
@@ -370,7 +407,7 @@ const Nav = () => {
                       <div className=" w-[40px] h-[100%] relative flex-none ">
                         <img
                           className="absolute top-0 left-0 w-full h-full object-cover rounded"
-                          src={`../../upload/poster/${movie.poster}`}
+                          src={`${process.env.REACT_APP_API_URL}/upload/poster/${movie.poster}`}
                           alt="Movie Avatar"
                         />
                       </div>

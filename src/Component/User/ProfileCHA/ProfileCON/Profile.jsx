@@ -4,6 +4,7 @@ import styles from "./style.module.scss";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import axios from "axios";
 import Cookies from "js-cookie";
+import Swal from "sweetalert2";
 
 const Profile = ({fetchData}) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -71,11 +72,19 @@ const Profile = ({fetchData}) => {
       .then((response) => {
         console.log("Thông tin đã được cập nhật thành công:", response.data);
         fetchData();
-        alert("Sửa thông tin thành công");
+        Swal.fire({
+          text: "Sửa thông tin thành công",
+          icon: "success"
+        });
+        // alert("Sửa thông tin thành công");
       })
       .catch((error) => {
         console.error("Lỗi khi cập nhật thông tin:", error);
-        alert("Sửa thông tin thất bại");
+        Swal.fire({
+          text: "Sửa thông tin thất bại",
+          icon: "error"
+        });
+        // alert("Sửa thông tin thất bại");
       });
   };
   return (

@@ -142,7 +142,7 @@ const VideoDetail = () => {
                         backgroundImage: `url(${process.env.REACT_APP_API_URL}/upload/background/${movie.background})`,
                       }}
                     >
-                      <header className="relative z-10 md:pl-[200px] md:flex-raw text-center md:text-justify">
+                      <header className="relative z-10 md:pl-[200px] min-h-[200px] md:flex-raw text-center md:text-justify">
                         <h1 className="text-[#B5E745] text-[35px] font-semibold md:truncate">
                           {movie.moviename}
                         </h1>

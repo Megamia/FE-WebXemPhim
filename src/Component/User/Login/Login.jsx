@@ -23,32 +23,6 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
   const [phone, setPhone] = useState("");
-  const Swal = require("sweetalert2");
-  // const danhnhapthatbai = () => {
-  //   toast.error("Đăng nhập thất bại", {
-  //     position: "bottom-center",
-  //     autoClose: 2000,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     progress: undefined,
-  //     theme: "colored",
-  //   });
-  // };
-
-  // const dangnhapthanhcong = () => {
-  //   toast.success("Đăng nhập thành công", {
-  //     position: "bottom-center",
-  //     autoClose: 2000,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     progress: undefined,
-  //     theme: "colored",
-  //   });
-  // };
 
   const danhkythanhcong = () => {
     toast.success("Đăng ký thành công", {
@@ -132,7 +106,7 @@ const Login = () => {
         }).then((result) => {
           if (result.isConfirmed || result.isDismissed) {
             window.scrollTo(0, 0);
-            navigate("/ProfileCHA");
+            navigate("/Profile");
           }
         });
         return;
