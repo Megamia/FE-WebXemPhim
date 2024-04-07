@@ -29,10 +29,11 @@ const UserAD = () => {
   };
 
   return (
-    <div className="flex flex-col flex-1 px-[35px] bg-[#263238] ">
-      <div className="flex flex-row flex-1">
+    <div className="flex flex-col flex-1 p-5  bg-white ">
+      <span className="text-[35px] text-black">Các tài khoản của người dùng</span>
+      <div className="flex flex-row flex-1 mt-[20px]">
         <div className="main flex flex-col flex-1">
-          <div className="flex flex-1 flex-row justify-between  text-[25px] text-white ">
+          <div className="flex flex-1 flex-row justify-between  text-[25px] text-black ">
             <div className="flex flex-col  ">
               <span>Username</span>
               <div className="text-[15px] ">
@@ -99,12 +100,14 @@ const UserAD = () => {
                       onClick={() => handleDeleteUser(user.userid)}
                       className="py-[10px]"
                     >
-                      <div className="w-[100%] bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white rounded hover:bg-gradient-to-r hover:from-pink-600 hover:via-purple-600 hover:to-blue-600 transition-colors duration-300">
+                      <div className="w-[100%] bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-black rounded hover:bg-gradient-to-r hover:from-pink-600 hover:via-purple-600 hover:to-blue-600 transition-colors duration-300">
                         Xóa
                       </div>
                     </button>
                   ) : (
-                    <p className="py-[10px] flex justify-center">Can't delete</p>
+                    <p className="py-[10px] flex justify-center">
+                      Can't delete
+                    </p>
                   )
                 )}
               </div>

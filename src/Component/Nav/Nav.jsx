@@ -49,13 +49,13 @@ const Nav = () => {
   };
 
   const hanldeProfile = () => {
-    navigate("/ProfileCHA");
+    navigate("/Profile");
   };
   const hanldeProfile2 = () => {
     navigate("/Test1");
   };
   const hanldeAdminPage = () => {
-    navigate("/SiderBar");
+    navigate("/AdminPage");
   };
   const handleHover = () => {
     setOpen(true);
@@ -485,7 +485,7 @@ const Nav = () => {
         </div>
         {isLoggedIn ? (
           <div className="hidden relative w-[50px] md:flex md:items-center text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center">
-            <NavLink to="/ProfileCHA">
+            <NavLink to="/Profile">
               <FontAwesomeIcon
                 icon={faUserCheck}
                 className="text-2xl"

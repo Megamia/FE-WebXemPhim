@@ -11,11 +11,14 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import TypeAD from "../TypeAD/TypeAD";
+import { MdMovie, MdManageAccounts } from "react-icons/md";
+import { TbCategoryFilled, TbFilters } from "react-icons/tb";
+import { FaDonate, FaHome } from "react-icons/fa";
 
 const SiderBar = () => {
   const navigate = useNavigate();
   const [isAdmin, setIsAdmin] = useState(false);
-  const [currentPage, setCurrentPage] = useState("Movie");
+  const [currentPage, setCurrentPage] = useState("UserAD");
   const [showImage, setShowImage] = useState(false);
 
   function delay(ms) {
@@ -103,62 +106,63 @@ const SiderBar = () => {
     <div className={`w-full flex justify-center bg-black min-h-screen `}>
       {isAdmin ? (
         <div className="flex flex-row flex-1 bg-[#263238]  text-white relative max-w-[1600px]">
-          <div className="flex flex-col w-[300px] border-r-white border-r-[2px]">
+          <div className="render">
             <div className="flex justify-center items-center py-[10px]">
               <img
                 src="../../img/AVT/03ebd625cc0b9d636256ecc44c0ea324.png"
                 alt="?"
-                className="w-[20%] h-auto"
+                className="w-[40%] h-auto"
               />
             </div>
-            <div className="render">
-              <ul className="flex flex-1 flex-col cursor-pointer">
-                <li
-                  className={`${currentPage === "Movie" ? styles.active : ""} `}
-                  onClick={() => handlePageChange("Movie")}
-                >
-                  Movie
-                </li>
-                <li
-                  className={`${
-                    currentPage === "Category" ? styles.active : ""
-                  }  `}
-                  onClick={() => handlePageChange("Category")}
-                >
-                  Category
-                </li>
-                <li
-                  className={`${currentPage === "Type" ? styles.active : ""} `}
-                  onClick={() => handlePageChange("Type")}
-                >
-                  Type
-                </li>
-                <li
-                  className={`${
-                    currentPage === "Donate" ? styles.active : ""
-                  }   `}
-                  onClick={() => handlePageChange("Donate")}
-                >
-                  Donate
-                </li>
-                <li
-                  className={`${
-                    currentPage === "UserAD" ? styles.active : ""
-                  }  `}
-                  onClick={() => handlePageChange("UserAD")}
-                >
-                  Management User
-                </li>
-                <li onClick={BackHome}> Home</li>
-              </ul>
-            </div>
+            <ul className="flex flex-1 flex-col cursor-pointer">
+              <li
+                className={`${currentPage === "UserAD" ? styles.active : ""}  `}
+                onClick={() => handlePageChange("UserAD")}
+              >
+                <MdManageAccounts />
+                <span>Management User</span>
+              </li>
+              <li
+                className={`${currentPage === "Movie" ? styles.active : ""} `}
+                onClick={() => handlePageChange("Movie")}
+              >
+                <MdMovie />
+                <span>Movie</span>
+              </li>
+              <li
+                className={`${
+                  currentPage === "Category" ? styles.active : ""
+                }  `}
+                onClick={() => handlePageChange("Category")}
+              >
+                <TbCategoryFilled />
+                <span>Category</span>
+              </li>
+              <li
+                className={`${currentPage === "Type" ? styles.active : ""} `}
+                onClick={() => handlePageChange("Type")}
+              >
+                <TbFilters />
+                <span>Type</span>
+              </li>
+              <li
+                className={`${
+                  currentPage === "Donate" ? styles.active : ""
+                }   `}
+                onClick={() => handlePageChange("Donate")}
+              >
+                <FaDonate />
+                <span>Donate</span>
+              </li>
+
+              <li onClick={BackHome}>
+                <FaHome />
+                <span>Home</span>{" "}
+              </li>
+            </ul>
           </div>
-          <div className="flex flex-1 flex-col ">
-            <div className="border-b-[2px] h-[50px] items-center flex border-b-white">
-              <span className="p-5">Hello Admin</span>
-            </div>
-            <div className="flex flex-1">{renderPage()}</div>
-          </div>
+
+          <div className="flex flex-1">{renderPage()}</div>
         </div>
       ) : (
         showImage && <img src="/img/mêm.jpg" alt="Sếck" />

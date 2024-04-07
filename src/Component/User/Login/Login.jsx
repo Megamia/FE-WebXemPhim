@@ -183,12 +183,12 @@ const Login = () => {
                   isSignUpActive ? "right-panel-active" : ""
                 }`}
               >
-                <div className="form-container sign-up-container ">
+                <div className="form-container  sign-up-container ">
                   <form
                     action="#"
-                    className="bg-white flex items-center justify-center flex-col px-[50px] h-full text-center"
+                    className="bg-white flex items-center justify-center flex-col px-[50px] h-full text-center signup"
                   >
-                    <h1 className="font-bold m-0">Create Account</h1>
+                    <h1 className="font-bold m-0 text-white">Create Account</h1>
                     <div className="social-container">
                       <a
                         href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
@@ -209,7 +209,7 @@ const Login = () => {
                         <i className="fab fa-linkedin-in"></i>
                       </a>
                     </div>
-                    <span className="text-[15px] mb-[10px]">
+                    <span className="text-[15px] mb-[10px] text-white">
                       or use your email for registration
                     </span>
                     <input
@@ -273,9 +273,9 @@ const Login = () => {
                 <div className="form-container sign-in-container">
                   <form
                     action="#"
-                    className="bg-white flex items-center justify-center flex-col px-[50px] h-full text-center"
+                    className="flex items-center justify-center flex-col px-[50px] h-full text-center login"
                   >
-                    <h1 className="font-bold m-0">Sign in</h1>
+                    <h1 className="font-bold m-0 text-white">Sign in</h1>
                     <div className="social-container">
                       <a
                         href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
@@ -296,7 +296,7 @@ const Login = () => {
                         <i className="fab fa-linkedin-in"></i>
                       </a>
                     </div>
-                    <span className="text-[15px] mb-[10px]">
+                    <span className="text-[15px] mb-[10px] text-white">
                       or use your account
                     </span>
                     <input
@@ -317,7 +317,7 @@ const Login = () => {
                     />
                     <a
                       href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                      className="mb-[10px]"
+                      className="mb-[10px] text-white"
                     >
                       Forgot your password?
                     </a>
