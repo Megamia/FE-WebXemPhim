@@ -34,7 +34,7 @@ import HotMovie from './Component/ListMovie/HotMovie';
 
 function App() { 
   return (
-    <div className="App h-screen ">
+    <div className="App h-screen bg-[#253238]">
       <Router>
         <PayPalScriptProvider options={{ "clientId": process.env.REACT_APP_PAYPAL_CLIENT_ID  }}>
           <Routes>

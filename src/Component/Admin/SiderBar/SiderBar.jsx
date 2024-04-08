@@ -100,7 +100,7 @@ const SiderBar = () => {
     setCurrentPage(page);
   };
   const BackHome = () => {
-    navigate("/Home");
+    navigate("/");
   };
   return (
     <div className={`w-full flex justify-center bg-black min-h-screen `}>

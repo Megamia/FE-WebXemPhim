@@ -202,7 +202,7 @@ const Nav = () => {
             onMouseEnter={handleHover3}
             onMouseLeave={handleMouseLeave3}
           >
-            <NavLink to="/" className="text-white text-2xl line-clamp-1">
+            <NavLink className="text-white text-2xl line-clamp-1">
               Top phim
             </NavLink>
             <div
@@ -269,7 +269,7 @@ const Nav = () => {
             onMouseEnter={handleHover2}
             onMouseLeave={handleMouseLeave2}
           >
-            <NavLink to="/" className="text-white text-2xl line-clamp-1">
+            <NavLink className="text-white text-2xl line-clamp-1">
               Thể loại
             </NavLink>
             <div
