@@ -148,28 +148,28 @@ const Footer = () => {
             Theo dõi mạng xã hội:
           </span>
           <div className="mr-4">
-          <ul>
-            <li class="item">
-              <a href="#">
-                <i class="fa-brands fa-instagram icon"></i>
-              </a>
-            </li>
-            <li class="item">
-              <a href="#">
-                <i class="fa-brands fa-facebook icon"></i>
-              </a>
-            </li>
-            <li class="item">
-              <a href="#">
-                <i class="fa-brands fa-youtube icon"></i>
-              </a>
-            </li>
-            <li class="item">
-              <a href="#">
-                <i class="fa-brands fa-x-twitter icon"></i>
-              </a>
-            </li>
-          </ul>
+            <ul>
+              <li class="item">
+                <a href="#">
+                  <i class="fa-brands fa-instagram icon"></i>
+                </a>
+              </li>
+              <li class="item">
+                <a href="#">
+                  <i class="fa-brands fa-facebook icon"></i>
+                </a>
+              </li>
+              <li class="item">
+                <a href="#">
+                  <i class="fa-brands fa-youtube icon"></i>
+                </a>
+              </li>
+              <li class="item">
+                <a href="#">
+                  <i class="fa-brands fa-x-twitter icon"></i>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
         <a href="/#" onClick={handleScrollToTop}>
