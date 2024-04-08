@@ -186,8 +186,20 @@ footer {
   background-size: cover;
 }
 .signup{
-	background-image: url("../../../../public/img/Irelia.jpg");
+	background-image: url("../../../../public/img/yasuo.jpg");
   width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.welcome{
+  background-image: url("../../../../public/img/ahri.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.hello{
+  background-image: url("../../../../public/img/lilia.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

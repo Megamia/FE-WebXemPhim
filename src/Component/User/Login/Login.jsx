@@ -331,26 +331,26 @@ const Login = () => {
                 </div>
                 <div className="overlay-container">
                   <div className="overlay">
-                    <div className="overlay-panel overlay-left">
+                    <div className="overlay-panel overlay-left welcome">
                       <h1 className="font-bold m-0">Welcome Back!</h1>
                       <p className="text-sm font-light leading-5 tracking-wider my-20">
                         To keep connected with us please login with your
                         personal info
                       </p>
                       <button
-                        className=" bg-red-500 border-white text-white font-bold text-xs uppercase py-3 px-12 rounded-full border border-solid  transition-transform duration-80 ease-in focus:outline-none active:scale-95"
+                        className=" bg-red-500 border-red-500 text-white font-bold text-xs uppercase py-3 px-12 rounded-full border border-solid  transition-transform duration-80 ease-in focus:outline-none active:scale-95"
                         onClick={handleLoginClick}
                       >
                         Sign In
                       </button>
                     </div>
-                    <div className="overlay-panel overlay-right">
+                    <div className="overlay-panel overlay-right hello">
                       <h1 className="font-bold m-0">Hello, Friend!</h1>
                       <p className="text-sm font-light leading-5 tracking-wider my-20">
                         Enter your personal details and start journey with us
                       </p>
                       <button
-                        className=" bg-red-500 border-white text-white font-bold text-xs uppercase py-3 px-12 rounded-full border border-solid  transition-transform duration-80 ease-in focus:outline-none active:scale-95"
+                        className=" bg-red-500 border-red-500 text-white font-bold text-xs uppercase py-3 px-12 rounded-full border border-solid  transition-transform duration-80 ease-in focus:outline-none active:scale-95"
                         onClick={handleSignUpClick}
                       >
                         Sign Up
