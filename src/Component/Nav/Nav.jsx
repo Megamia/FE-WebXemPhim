@@ -190,7 +190,7 @@ const Nav = () => {
           </div>
         </NavLink>
 
-        <div className=" hidden md:flex justify-start gap-7 flex-1 h-[100%] mr-[3.5%]">
+        <div className=" hidden md:flex justify-start gap-5 flex-1 h-[100%] mr-[2%]">
           <button className="hidden items-center lg:flex">
             <NavLink to="/#" className="text-white text-2xl line-clamp-1">
               Trang chủ
@@ -371,7 +371,11 @@ const Nav = () => {
               Thư viện
             </NavLink>
           </button> */}
-
+          <button className="">
+            <NavLink to="/sap-chieu" className="text-white text-2xl line-clamp-1">
+              Sắp chiếu
+            </NavLink>
+          </button>
           <button className="">
             <NavLink to="/Donate" className="text-white text-2xl line-clamp-1">
               Donate
@@ -484,7 +488,7 @@ const Nav = () => {
           </div>
         </div>
         {isLoggedIn ? (
-          <div className="hidden relative w-[50px] md:flex md:items-center text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center">
+          <div className="hidden relative w-[50px] md:flex md:items-center text-white font-bold rounded-md mr-[2%] ml-[2%] justify-center">
             <NavLink to="/Profile">
               <FontAwesomeIcon
                 icon={faUserCheck}
@@ -528,7 +532,7 @@ const Nav = () => {
             </div>
           </div>
         ) : (
-          <div className="hidden md:flex  md:items-center bg-red-600 hover:bg-gray-600 text-white font-bold rounded-md mr-[3.5%] ml-[3.5%] justify-center w-[150px] h-[40px] cursor-pointer">
+          <div className="hidden md:flex  md:items-center bg-red-600 hover:bg-gray-600 text-white font-bold rounded-md mr-[3.5%] ml-[2%] justify-center w-[150px] h-[40px] cursor-pointer">
             <NavLink
               to="/Login"
               activeClassName="hidden "

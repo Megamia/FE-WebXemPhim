@@ -7,7 +7,7 @@ import Slider10 from "./Slider10/Slider10";
 import Righter from "../Header&Footer/Righter/Righter";
 import Slider1 from "./Slider1/Slider1";
 import TableList from "./List1/TableList";
-
+import ComingSoonList from "./List1/ComingSoonList";
 const Home = () => {
   return (
     <div className="bg-[#263238]">
@@ -25,6 +25,9 @@ const Home = () => {
               </div>
               <div>
                 <TableList />
+              </div>
+              <div className="mt-5 mb-1">
+                <ComingSoonList />
               </div>
             </div>
             <div className="lg:table-cell lg:w-[300px] w-full">

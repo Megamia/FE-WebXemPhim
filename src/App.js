@@ -31,6 +31,7 @@ import MovieAD from './Component/Admin/MovieAD/MovieAD';
 import EX from './Component/ExamplePage/EX';
 import Follow from './Component/User/Follow/Follow';
 import HotMovie from './Component/ListMovie/HotMovie';
+import ComingSoon from './Component/ListMovie/ComingSoon';
 
 function App() { 
   return (
@@ -73,6 +74,8 @@ function App() {
             <Route path="/Admin/Movie" element={<MovieAD/>} />
             <Route path="/NewList" element={<NewList/>} />
             <Route path="/phim-noi-bat" element={<HotMovie/>} />
+            <Route path="/sap-chieu/:page" element={<ComingSoon/>} />
+            <Route path="/sap-chieu" element={<ComingSoon/>} />
           </Routes>
         </PayPalScriptProvider>
       </Router>
