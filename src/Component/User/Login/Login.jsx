@@ -83,7 +83,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:4000/api/login", {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/login`, {
         username: User,
         password: Password,
       });
@@ -140,7 +140,7 @@ const Login = () => {
       return;
     }
     try {
-      const response = await axios.post("http://localhost:4000/api/signup", {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/signup`, {
         username,
         fullname,
         email,

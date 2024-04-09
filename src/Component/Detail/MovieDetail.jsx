@@ -50,7 +50,7 @@ const MovieDetail = () => {
     const storedToken = Cookies.get("token");
     if (storedToken) {
       axios
-        .post(`http://localhost:4000/api/follow/add/${id}`, null, {
+        .post(`${process.env.REACT_APP_API_URL}/api/follow/add/${id}`, null, {
           headers: {
             Authorization: `Bearer ${storedToken}`,
           },
@@ -90,7 +90,7 @@ const MovieDetail = () => {
     const storedToken = Cookies.get("token");
     if (storedToken) {
       axios
-        .post(`http://localhost:4000/api/follow/del/${id}`, null, {
+        .post(`${process.env.REACT_APP_API_URL}/api/follow/del/${id}`, null, {
           headers: {
             Authorization: `Bearer ${storedToken}`,
           },
@@ -115,7 +115,7 @@ const MovieDetail = () => {
     const storedToken = Cookies.get("token");
     if (movieId && storedToken) {
       axios
-        .get(`http://localhost:4000/api/follow/${movieId}`, {
+        .get(`${process.env.REACT_APP_API_URL}/api/follow/${movieId}`, {
           headers: {
             Authorization: `Bearer ${storedToken}`,
           },
@@ -136,7 +136,7 @@ const MovieDetail = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/phim/${id}`)
+      .get(`${process.env.REACT_APP_API_URL}/api/phim/${id}`)
       .then(function (response) {
         console.log(response.data);
         setMovieData(response.data.movies);

@@ -18,7 +18,7 @@ const NewMovie = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/phim-moi');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/phim-moi`);
         setMovieData(response.data.movies);
         window.scrollTo(0, 0);
       } catch (error) {

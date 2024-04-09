@@ -8,6 +8,7 @@ import MovieAddAD from "./MoiveAddAD";
 import MovieEditAD from "./MoiveEditAD";
 import { RiAddCircleLine } from "react-icons/ri";
 import { MdDeleteForever, MdEdit,MdOutlineNotes } from "react-icons/md";
+import VideoList from "./VideoAD/VideoList";
 
 const MovieAD = () => {
   const [data, setData] = useState([]);
@@ -75,12 +76,14 @@ const MovieAD = () => {
       cell: (row) => row.moviename,
       selector: (row) => row.moviename,
       sortable: true,
+      maxWidth: "270px",
     },
     {
       name: "Tên Khác",
       cell: (row) => row.moviesubname,
       selector: (row) => row.moviesubname,
       sortable: true,
+      maxWidth: "270px",
     },
     {
       name: "Năm",
@@ -95,6 +98,10 @@ const MovieAD = () => {
       cell: (row) => row.views,
       sortable: true,
       maxWidth: "5px",
+    },
+    {
+      name:"Tập Phim",
+      cell: (row) => (<VideoList movieid={row.movieid} />),
     },
     {
       name: "Action",
@@ -133,7 +140,7 @@ const MovieAD = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/admin/movie");
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/admin/movie`);
       setData(response.data.movies);
     } catch (error) {
       console.error("Error fetching data: ", error);
@@ -149,7 +156,7 @@ const MovieAD = () => {
     const confirmDelete = window.confirm("Bạn có chắc chắn muốn xóa phim này?");
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:4000/api/admin/movie/${movieId}`);
+        await axios.delete(`${process.env.REACT_APP_API_URL}/api/admin/movie/${movieId}`);
         fetchData(); // Sau khi xóa, gọi lại fetchData để cập nhật danh sách phim
       } catch (error) {
         console.error("Error deleting item: ", error);
@@ -160,7 +167,7 @@ const MovieAD = () => {
   const handleEdit = async (movieid) => {
     try {
       const response = await axios.get(
-        `http://localhost:4000/api/phim/${movieid}`
+        `${process.env.REACT_APP_API_URL}/api/phim/${movieid}`
       );
       setSelectedMovie(response.data.movies);
       settypeData(response.data.types);
@@ -174,7 +181,7 @@ const MovieAD = () => {
   const handleDetail = async (movieid) => {
     try {
       const response = await axios.get(
-        `http://localhost:4000/api/phim/${movieid}`
+        `${process.env.REACT_APP_API_URL}/api/phim/${movieid}`
       );
       setSelectedMovie(response.data.movies);
       settypeData(response.data.types);

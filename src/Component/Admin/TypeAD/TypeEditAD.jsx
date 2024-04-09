@@ -14,7 +14,7 @@ const TypeEditAD = ({ handleCloseSelected, type }) => {
         typeurl: typeurl,
       };
       const response = await axios.post(
-        `http://localhost:4000/api/admin/type/edit/${type.typeid}`,
+        `${process.env.REACT_APP_API_URL}/api/admin/type/edit/${type.typeid}`,
         requestData
       );
 

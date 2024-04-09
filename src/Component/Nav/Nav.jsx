@@ -101,7 +101,7 @@ const Nav = () => {
     event.preventDefault();
     try {
       const response = await axios.get(
-        `http://localhost:4000/api/find?search=${searchTerm}`
+        `${process.env.REACT_APP_API_URL}/api/find?search=${searchTerm}`
       );
       const movies = response.data.movies;
       setSearchResults(movies);
@@ -156,7 +156,7 @@ const Nav = () => {
     const storedToken = Cookies.get("token");
     if (storedToken) {
       axios
-        .get("http://localhost:4000/api/profile", {
+        .get(`${process.env.REACT_APP_API_URL}/api/profile`, {
           headers: {
             Authorization: `Bearer ${storedToken}`,
           },

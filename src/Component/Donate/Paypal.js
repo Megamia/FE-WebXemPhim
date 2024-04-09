@@ -19,7 +19,7 @@ const Paypal = (props) => {
     if (storedToken) {
       try {
         const response = await axios.post(
-          "http://localhost:4000/api/history",
+          `${process.env.REACT_APP_API_URL}/api/history`,
           {
             price: product.price,
           },
@@ -41,7 +41,7 @@ const Paypal = (props) => {
       const storedToken = Cookies.get("token");
       if (storedToken) {
         try {
-          const response = await axios.get("http://localhost:4000/api/history", {
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/history`, {
             headers: {
               Authorization: `Bearer ${storedToken}`,
             },

@@ -14,7 +14,7 @@ const CategoryEditAD = ({ handleCloseSelected, category }) => {
         categoryurl: categoryurl,
       };
       const response = await axios.post(
-        `http://localhost:4000/api/admin/category/edit/${category.categoryid}`,
+        `${process.env.REACT_APP_API_URL}/api/admin/category/edit/${category.categoryid}`,
         requestData
       );
 

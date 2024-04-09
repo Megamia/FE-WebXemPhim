@@ -45,10 +45,10 @@ const MovieAddAD = ({ handleCloseSelected }) => {
     const fetchData = async () => {
       try {
         const typesResponse = await axios.get(
-          "http://localhost:4000/api/admin/type"
+          `${process.env.REACT_APP_API_URL}/api/admin/type`
         );
         const categoriesResponse = await axios.get(
-          "http://localhost:4000/api/admin/category"
+          `${process.env.REACT_APP_API_URL}/api/admin/category`
         );
 
         setTypes(typesResponse.data.types);
@@ -93,7 +93,7 @@ const MovieAddAD = ({ handleCloseSelected }) => {
         category: selectedCategory,
       };
       const response = await axios.post(
-        "http://localhost:4000/api/admin/movie/add",
+        `${process.env.REACT_APP_API_URL}/api/admin/movie/add`,
         requestData
       );
 

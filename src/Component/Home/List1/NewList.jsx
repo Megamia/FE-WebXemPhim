@@ -8,7 +8,7 @@ const NewList = ({ id }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:4000/api/${id}`);
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/${id}`);
                 const sortedMovies = response.data.movies
                     .slice(0, 10);
                 setMovieData(sortedMovies);

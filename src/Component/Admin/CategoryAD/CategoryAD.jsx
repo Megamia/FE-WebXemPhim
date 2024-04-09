@@ -115,7 +115,7 @@ const CategoryAD = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:4000/api/admin/category"
+        `${process.env.REACT_APP_API_URL}/api/admin/category`
       );
       setData(response.data.categories);
     } catch (error) {
@@ -135,7 +135,7 @@ const CategoryAD = () => {
     if (confirmDelete) {
       try {
         await axios.delete(
-          `http://localhost:4000/api/admin/category/${categoryid}`
+          `${process.env.REACT_APP_API_URL}/api/admin/category/${categoryid}`
         );
         fetchData(); // Sau khi xóa, gọi lại fetchData để cập nhật danh sách phim
       } catch (error) {
@@ -147,7 +147,7 @@ const CategoryAD = () => {
   const handleEdit = async (categoryid) => {
     try {
       const response = await axios.get(
-        `http://localhost:4000/api/admin/category/${categoryid}`
+        `${process.env.REACT_APP_API_URL}/api/admin/category/${categoryid}`
       );
       setSelectedData(response.data.categories);
       setSelected(3);

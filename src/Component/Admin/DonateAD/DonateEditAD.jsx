@@ -29,7 +29,7 @@ const DonateEditAD = ({ handleCloseSelected, donate }) => {
         price: price,
       };
       const response = await axios.post(
-        `http://localhost:4000/api/admin/donate/edit/${donate.donateid}`,
+        `${process.env.REACT_APP_API_URL}/api/admin/donate/edit/${donate.donateid}`,
         requestData
       );
 

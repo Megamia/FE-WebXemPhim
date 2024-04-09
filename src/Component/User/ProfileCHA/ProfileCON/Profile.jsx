@@ -33,7 +33,7 @@ const Profile = ({fetchData}) => {
     const storedToken = Cookies.get("token");
     if (storedToken) {
       axios
-        .get("http://localhost:4000/api/profile", {
+        .get(`${process.env.REACT_APP_API_URL}/api/profile`, {
           headers: {
             Authorization: `Bearer ${storedToken}`,
           },
@@ -55,7 +55,7 @@ const Profile = ({fetchData}) => {
     const storedToken = Cookies.get("token");
     axios
       .post(
-        "http://localhost:4000/api/profile",
+        `${process.env.REACT_APP_API_URL}/api/profile`,
         {
           username: username,
           fullname: fullname,

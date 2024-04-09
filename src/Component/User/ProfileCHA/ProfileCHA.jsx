@@ -46,7 +46,7 @@ const ProfileCHA = () => {
     const storedToken = Cookies.get("token");
     if (storedToken) {
       axios
-        .get("http://localhost:4000/api/profile", {
+        .get(`${process.env.REACT_APP_API_URL}/api/profile`, {
           headers: {
             Authorization: `Bearer ${storedToken}`,
           },
@@ -72,7 +72,7 @@ const ProfileCHA = () => {
   }
   // const handleUpdate = () => {
   //   axios
-  //     .post("http://localhost:4000/api/profile", {
+  //     .post("${process.env.REACT_APP_API_URL}/api/profile", {
   //       username: username,
   //       fullname: fullname,
   //       email: email,

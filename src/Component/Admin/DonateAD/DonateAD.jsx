@@ -123,7 +123,7 @@ const DonateAD = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:4000/api/admin/donate"
+        `${process.env.REACT_APP_API_URL}/api/admin/donate`
       );
       setData(response.data.donates);
     } catch (error) {
@@ -143,7 +143,7 @@ const DonateAD = () => {
     if (confirmDelete) {
       try {
         await axios.delete(
-          `http://localhost:4000/api/admin/donate/${donateid}`
+          `${process.env.REACT_APP_API_URL}/api/admin/donate/${donateid}`
         );
         fetchData(); // Sau khi xóa, gọi lại fetchData để cập nhật danh sách phim
       } catch (error) {
@@ -155,7 +155,7 @@ const DonateAD = () => {
   const handleEdit = async (donateid) => {
     try {
       const response = await axios.get(
-        `http://localhost:4000/api/admin/donate/${donateid}`
+        `${process.env.REACT_APP_API_URL}/api/admin/donate/${donateid}`
       );
       setSelectedData(response.data.donates);
       setSelected(3);
@@ -167,7 +167,7 @@ const DonateAD = () => {
   const handleHistory = async (donateid) => {
     try {
       const response = await axios.get(
-        `http://localhost:4000/api/admin/donate/${donateid}`
+        `${process.env.REACT_APP_API_URL}/api/admin/donate/${donateid}`
       );
       setSelectedData(response.data.donates);
       setSelected(1);

@@ -29,7 +29,7 @@ const DonateAddAD = ({ handleCloseSelected }) => {
         price: price,
       };
       const response = await axios.post(
-        "http://localhost:4000/api/admin/donate/add",
+        `${process.env.REACT_APP_API_URL}/api/admin/donate/add`,
         requestData
       );
 

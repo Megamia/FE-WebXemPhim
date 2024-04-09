@@ -12,7 +12,7 @@ const CategoryAddAD = ({ handleCloseSelected }) => {
         categoryurl: categoryurl,
       };
       const response = await axios.post(
-        "http://localhost:4000/api/admin/category/add",
+        `${process.env.REACT_APP_API_URL}/api/admin/category/add`,
         requestData
       );
 

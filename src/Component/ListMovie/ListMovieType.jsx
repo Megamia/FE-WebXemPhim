@@ -35,7 +35,7 @@ const ListMovieType = () => {
   const easeOutQuart = t => 1 - (--t) * t * t * t;
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/api/the-loai/${type}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/the-loai/${type}`)
       .then(function (response) {
         // Handle the data when a successful response is received from the API
         console.log(response.data); // Log the data to the console

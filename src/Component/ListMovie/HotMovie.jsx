@@ -18,7 +18,7 @@ const HotMovie = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/noi-bat');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/noi-bat`);
         setMovieData(response.data.movies);
         window.scrollTo(0, 0);
       } catch (error) {

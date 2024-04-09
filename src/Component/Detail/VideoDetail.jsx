@@ -25,7 +25,7 @@ const VideoDetail = () => {
     try {
       const data = { movieId: movieid };
       const response = await axios.post(
-        "http://localhost:4000/api/views",
+        `${process.env.REACT_APP_API_URL}/api/views`,
         data
       );
       if (response.data.success) {
@@ -37,7 +37,7 @@ const VideoDetail = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/phim/${movieid}/${videoid}`)
+      .get(`${process.env.REACT_APP_API_URL}/api/phim/${movieid}/${videoid}`)
       .then(function (response) {
         console.log(response.data);
         setMovieData(response.data.movies);

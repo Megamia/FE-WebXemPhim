@@ -9,7 +9,7 @@ const DonateHistory = () => {
     const storedToken = Cookies.get("token");
     if (storedToken) {
       axios
-        .get("http://localhost:4000/api/history", {
+        .get(`${process.env.REACT_APP_API_URL}/api/history`, {
           headers: {
             Authorization: `Bearer ${storedToken}`,
           },
@@ -39,13 +39,13 @@ const DonateHistory = () => {
           <div className="flex flex-1 flex-row justify-between  text-[25px] text-white ">
             <div className="flex flex-col  ">
               <span>STT</span>
-              <div className="text-[15px] flex justify-center">
+              <div className="flex flex-col text-[15px] justify-center items-center">
                 {donates.length > 0 ? (
                   isLoading ? (
                     <div>Loading...</div>
                   ) : (
                     donates.map((donate, index) => (
-                      <div key={donate.donatehistoryid}>{index + 1}</div>
+                      <div key={donate.donatehistoryid} className="border-b-[1px] mt-1 border-gray-500 w-full flex justify-center">{index + 1}</div>
                     ))
                   )
                 ) : (
@@ -66,7 +66,7 @@ const DonateHistory = () => {
                     <div>Loading...</div>
                   ) : (
                     donates.map((donate, index) => (
-                      <div key={donate.donatehistoryid}>{donate.donatename}</div>
+                      <div key={donate.donatehistoryid}  className="border-b-[1px] mt-1 border-gray-500 w-full">{donate.donatename}</div>
                     ))
                   )
                 ) : (
@@ -86,7 +86,7 @@ const DonateHistory = () => {
                     <div>Loading...</div>
                   ) : (
                     donates.map((donate, index) => (
-                      <div key={donate.donatehistoryid}>{donate.price}</div>
+                      <div key={donate.donatehistoryid} className="border-b-[1px] mt-1 border-gray-500 w-full">{donate.price}</div>
                     ))
                   )
                 ) : (
@@ -106,7 +106,7 @@ const DonateHistory = () => {
                     <div>Loading...</div>
                   ) : (
                     donates.map((donate, index) => (
-                      <div key={donate.donatehistoryid}>{donate.description}</div>
+                      <div key={donate.donatehistoryid} className="border-b-[1px] mt-1 border-gray-500 w-full">{donate.description}</div>
                     ))
                   )
                 ) : (
@@ -118,7 +118,7 @@ const DonateHistory = () => {
                 )}
               </div>
             </div>
-            <div className="flex flex-col ">
+            <div className="flex flex-col">
               <span>Thời gian donate</span>
               <div className="text-[15px] ">
               {donates.length > 0 ? (
@@ -126,7 +126,7 @@ const DonateHistory = () => {
                     <div>Loading...</div>
                   ) : (
                     donates.map((donate, index) => (
-                      <div key={donate.donatehistoryid}>{donate.date}</div>
+                      <div key={donate.donatehistoryid} className="border-b-[1px] mt-1 border-gray-500 w-full">{donate.date}</div>
                     ))
                   )
                 ) : (

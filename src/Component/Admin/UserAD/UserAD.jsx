@@ -7,7 +7,7 @@ const UserAD = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/UserMNGM");
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/UserMNGM`);
         setUsers(response.data);
       } catch (error) {
         console.error("Error retrieving users:", error);
@@ -18,7 +18,7 @@ const UserAD = () => {
   }, []);
   const handleDeleteUser = async (userId) => {
     try {
-      await axios.delete(`http://localhost:4000/api/UserMNGM/${userId}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/UserMNGM/${userId}`);
       setUsers((prevUsers) =>
         prevUsers.filter((user) => user.userid !== userId)
       );

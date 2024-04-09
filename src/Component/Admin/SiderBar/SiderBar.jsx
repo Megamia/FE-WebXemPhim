@@ -64,7 +64,7 @@ const SiderBar = () => {
         const storedToken = Cookies.get("token");
         if (storedToken) {
           const response = await axios.get(
-            "http://localhost:4000/api/profile",
+            `${process.env.REACT_APP_API_URL}/api/profile`,
             {
               headers: {
                 Authorization: `Bearer ${storedToken}`,

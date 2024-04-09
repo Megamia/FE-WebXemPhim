@@ -15,7 +15,7 @@ const DonateHistoryAD = ({ donate }) => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:4000/api/admin/donate/history/${donate.donateid}`
+        `${process.env.REACT_APP_API_URL}/api/admin/donate/history/${donate.donateid}`
       );
       setData(response.data.donates);
     } catch (error) {

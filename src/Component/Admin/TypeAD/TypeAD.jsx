@@ -115,7 +115,7 @@ const TypeAD = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:4000/api/admin/type"
+        `${process.env.REACT_APP_API_URL}/api/admin/type`
       );
       setData(response.data.types);
     } catch (error) {
@@ -135,7 +135,7 @@ const TypeAD = () => {
     if (confirmDelete) {
       try {
         await axios.delete(
-          `http://localhost:4000/api/admin/type/${typeid}`
+          `${process.env.REACT_APP_API_URL}/api/admin/type/${typeid}`
         );
         fetchData(); // Sau khi xóa, gọi lại fetchData để cập nhật danh sách phim
       } catch (error) {
@@ -147,7 +147,7 @@ const TypeAD = () => {
   const handleEdit = async (typeid) => {
     try {
       const response = await axios.get(
-        `http://localhost:4000/api/admin/type/${typeid}`
+        `${process.env.REACT_APP_API_URL}/api/admin/type/${typeid}`
       );
       setSelectedData(response.data.types);
       setSelected(3);
