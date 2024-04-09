@@ -177,7 +177,7 @@ const Login = () => {
           <div className="w-[1280px]  justify-center flex-col bg-[#141414] p-[20px] mt-[130px] rounded">
             <Notification />
 
-            <div className=" flex items-center justify-center bg-[#263238]">
+            <div className=" flex items-center justify-center bg-[#141414]">
               <div
                 className={`container ${
                   isSignUpActive ? "right-panel-active" : ""
@@ -186,7 +186,7 @@ const Login = () => {
                 <div className="form-container  sign-up-container ">
                   <form
                     action="#"
-                    className="bg-white flex items-center justify-center flex-col px-[50px] h-full text-center signup"
+                    className="bg-[#141414] flex items-center justify-center flex-col px-[50px] h-full text-center signup"
                   >
                     <h1 className="font-bold m-0 text-white">Create Account</h1>
                     <div className="social-container">
@@ -273,7 +273,7 @@ const Login = () => {
                 <div className="form-container sign-in-container">
                   <form
                     action="#"
-                    className="flex items-center justify-center flex-col px-[50px] h-full text-center login"
+                    className="bg-[#141414] flex items-center justify-center flex-col px-[50px] h-full text-center login"
                   >
                     <h1 className="font-bold m-0 text-white">Sign in</h1>
                     <div className="social-container">

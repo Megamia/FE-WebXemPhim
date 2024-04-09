@@ -53,9 +53,9 @@ const Donate = () => {
       Swal.fire({
         title: "Bạn phải đăng nhập trước khi theo dõi phim!",
         icon: "warning",
-        showCancelButton: true, // Hiển thị nút "Cancel"
+        showCancelButton: true,
         confirmButtonText: "OK",
-        cancelButtonText: "Cancel", // Đặt văn bản cho nút "Cancel"
+        cancelButtonText: "Cancel",
       }).then((result) => {
         if (result.isConfirmed) {
           window.scrollTo(0, 0);
@@ -79,22 +79,21 @@ const Donate = () => {
                 {donateData.map((product) => (
                   <div className="px-[20px] my-2">
                     <div
-                      className={`text-white cursor-pointer ${
-                        selectedPrice === product.price ? "border-red-500" : ""
-                      }`}
+                      className={`text-white cursor-pointer ${selectedPrice === product.price ? "border-red-500" : ""
+                        }`}
                       key={product.price}
                       onClick={() => handlePriceChange(product.price)}
                     >
                       <img
                         src={`../../img/${product.img}`}
                         alt={`$${product.price}`}
-                        className="w-[200px] h-[300px] rounded "
+                        className="w-[200px] h-[300px] rounded"
                       />
                       <span className="text-white flex justify-center mt-[10px]">
                         ${product.price}
                       </span>
                       {selectedPrice === product.price && showPaypal && (
-                        <div className="mt-[10px] ]">
+                        <div className="mt-[10px]">
                           <Paypal product={product} />
                         </div>
                       )}
