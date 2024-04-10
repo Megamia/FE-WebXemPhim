@@ -18,6 +18,9 @@ const Nav = () => {
   const [username, setUsername] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [data, setData] = useState([]);
+  const [filter, setFilter] = useState([]);
+
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
   const [open3, setOpen3] = useState(false);
@@ -93,19 +96,22 @@ const Nav = () => {
     const videoUrl = event.currentTarget.getAttribute("href");
     window.location.href = videoUrl;
   };
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
+  
 
-  const handleSearchSubmit = async (event) => {
-    event.preventDefault();
+  const handleChange = (event) => {
+    const newSearchTerm = event.target.value;
+    setSearchTerm(newSearchTerm);
+    searchMovies(newSearchTerm);
+  };
+  
+  const searchMovies = async (searchTerm) => {
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/api/find?search=${searchTerm}`
       );
       const movies = response.data.movies;
       setSearchResults(movies);
-
+  
       if (movies.length > 0) {
         console.log("Tìm được phim");
         // alert("Tìm được phim với tên: " + names.join(", "));
@@ -114,6 +120,14 @@ const Nav = () => {
         // alert("Không tìm được phim với tên: " + searchTerm);
         timkiemthatbai(searchTerm);
       }
+  
+      const filteredMovies = movies.filter((movie) => {
+        const regex = new RegExp(searchTerm, "i");
+        const movieName = movie.name ? movie.name.toLowerCase() : "";
+        const movieSubName = movie.subName ? movie.subName.toLowerCase() : "";
+        return regex.test(movieName) || regex.test(movieSubName);
+      });
+      setFilter(filteredMovies);
     } catch (error) {
       console.error(error);
       console.log("Không được phim do " + error);
@@ -122,18 +136,18 @@ const Nav = () => {
     }
   };
 
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      const inputValue = event.target.value.trim();
-      if (inputValue !== "") {
-        handleSearchSubmit(event);
-      } else {
-        // alert("Vui lòng nhập tên phim cần tìm!");
-        nhapdetimkiem();
-        setSearchResults(false);
-      }
-    }
-  };
+  // const handleKeyDown = (event) => {
+  //   if (event.key === "Enter") {
+  //     const inputValue = event.target.value.trim();
+  //     if (inputValue !== "") {
+  //       handleSearchSubmit(event);
+  //     } else {
+  //       // alert("Vui lòng nhập tên phim cần tìm!");
+  //       nhapdetimkiem();
+  //       setSearchResults(false);
+  //     }
+  //   }
+  // };
   const clickcc = () => {
     alert("Xem thêm cc");
   };
@@ -391,8 +405,8 @@ const Nav = () => {
                 id="search-input"
                 placeholder="Tìm kiếm: Tên phim..."
                 value={searchTerm}
-                onKeyDown={handleKeyDown}
-                onChange={handleSearchChange}
+                // onKeyDown={handleKeyDown}
+                onChange={handleChange}
                 onMouseEnter={handleHover4}
                 onMouseLeave={handleMouseLeave4}
                 className="w-[450px] rounded-full px-4 py-2 z-10 relative border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
@@ -404,8 +418,8 @@ const Nav = () => {
               id="search-input"
               placeholder="Tìm kiếm: Tên phim..."
               value={searchTerm}
-              onKeyDown={handleKeyDown}
-              onChange={handleSearchChange}
+              // onKeyDown={handleKeyDown}
+              onChange={handleChange}
               onMouseEnter={handleHover4}
               onMouseLeave={handleMouseLeave4}
               className="w-[300px] rounded-full px-4 py-2 z-10 relative border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
@@ -413,7 +427,7 @@ const Nav = () => {
           )}
           {searchResults && searchResults.length > 0 && (
             <div
-              className={`submenufind ${open4 ? "active" : "inactive"}`}
+              className={`submenufind ${open4 ? "active" : "inactive"} ${isLoggedIn ? "isLogin " : ""}`}
               onMouseEnter={handleHover4}
               onMouseLeave={handleMouseLeave4}
             >

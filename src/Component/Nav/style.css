@@ -12,7 +12,7 @@
     background-color: white;
     display: flex;
     flex-direction: column;
-    gap:0
+    gap: 0;
   }
   ul li {
     display: flex;
@@ -59,6 +59,8 @@
   position: absolute;
   top: 80%;
 
+  
+
   ul {
     /* display: grid; */
     grid-template-columns: repeat(3, 1fr);
@@ -72,7 +74,7 @@
     /* padding: 15px; */
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 320px;
+    width: 300px;
   }
 
   ul li:hover {
@@ -87,6 +89,16 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100px;
+  }
+}
+.isLogin {
+  margin-left: -120px;
+
+  ul li {
+    /* padding: 15px; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 430px;
   }
 }
 
@@ -111,17 +123,17 @@
   /* left: 15%; */
 
   ul {
-    border-radius:5px;
+    border-radius: 5px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap:0;
+    gap: 0;
     flex-direction: row;
     min-width: 430px;
     white-space: nowrap;
   }
 
   ul li {
-    border-radius:5px;
+    border-radius: 5px;
     padding: 15px;
   }
 
