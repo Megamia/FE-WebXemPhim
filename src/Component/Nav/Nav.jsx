@@ -382,18 +382,35 @@ const Nav = () => {
             </NavLink>
           </button>
         </div>
-        <div className="md:w-1/4 w-1/2">
-          <input
-            type="text"
-            id="search-input"
-            placeholder="Tìm kiếm: Tên phim..."
-            value={searchTerm}
-            onKeyDown={handleKeyDown}
-            onChange={handleSearchChange}
-            onMouseEnter={handleHover4}
-            onMouseLeave={handleMouseLeave4}
-            className="w-full rounded-full px-4 py-2 z-10 relative border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
-          />
+        <div className=" md:w-1/4 w-1/2">
+          {isLoggedIn?(
+            <div className=" ml-[-130px]">
+
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Tìm kiếm: Tên phim..."
+                value={searchTerm}
+                onKeyDown={handleKeyDown}
+                onChange={handleSearchChange}
+                onMouseEnter={handleHover4}
+                onMouseLeave={handleMouseLeave4}
+                className="w-[450px] rounded-full px-4 py-2 z-10 relative border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
+              />
+            </div>
+          ):(
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Tìm kiếm: Tên phim..."
+              value={searchTerm}
+              onKeyDown={handleKeyDown}
+              onChange={handleSearchChange}
+              onMouseEnter={handleHover4}
+              onMouseLeave={handleMouseLeave4}
+              className="w-[300px] rounded-full px-4 py-2 z-10 relative border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
+            />
+          )}
           {searchResults && searchResults.length > 0 && (
             <div
               className={`submenufind ${open4 ? "active" : "inactive"}`}
