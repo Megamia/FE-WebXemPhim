@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./footer.css";
 const Footer = () => {
   const handleScrollToTop = (event) => {
@@ -62,17 +62,17 @@ const Footer = () => {
                 Thông tin
               </span>
               <div className=" my-[15px]">
-                <NavLink to="/" className="text-white text-[20px] mt-[30px]">
+                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
                   <span>Trang chủ</span>
                 </NavLink>
               </div>
               <div className="inline-block my-[15px] text-left">
-                <NavLink to="/" className="text-white text-[20px] mt-[30px]">
+                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
                   <span>Phim</span>
                 </NavLink>
               </div>
               <div className="inline-block my-[15px] text-left">
-                <NavLink to="/" className="text-white text-[20px] mt-[30px]">
+                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
                   <span>Series</span>
                 </NavLink>
               </div>
@@ -86,17 +86,17 @@ const Footer = () => {
                 Dịch vụ
               </span>
               <div className="inline-block my-[15px] text-left">
-                <NavLink to="/" className="text-white text-[20px] mt-[30px]">
+                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
                   <span>Trang chủ</span>
                 </NavLink>
               </div>
               <div className="inline-block my-[15px] text-left">
-                <NavLink to="/" className="text-white text-[20px] mt-[30px]">
+                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
                   <span>Blog</span>
                 </NavLink>
               </div>
               <div className="inline-block my-[15px] text-left">
-                <NavLink to="/" className="text-white text-[20px] mt-[30px]">
+                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
                   <span>Nội dung</span>
                 </NavLink>
               </div>
@@ -110,22 +110,22 @@ const Footer = () => {
                 Hỗ trợ
               </span>
               <div className="inline-block my-[15px] text-left">
-                <NavLink to="/" className="text-white  text-[20px] mt-[30px]">
+                <NavLink to="/Home" className="text-white  text-[20px] mt-[30px]">
                   <span>Quyền riêng tư</span>
                 </NavLink>
               </div>
               <div className="inline-block my-[15px] text-left">
-                <NavLink to="/" className="text-white text-[20px] mt-[30px]">
+                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
                   <span>Trách nhiệm người dùng</span>
                 </NavLink>
               </div>
               <div className="inline-block my-[15px] text-left">
-                <NavLink to="/" className="text-white text-[20px] mt-[30px]">
+                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
                   <span>FAQs</span>
                 </NavLink>
               </div>
               <div className="inline-block my-[15px] text-left">
-                <NavLink to="/" className="text-white text-[20px] mt-[30px]">
+                <NavLink to="/Home" className="text-white text-[20px] mt-[30px]">
                   <span>Chính sách và quy trình xử lý khiếu nại</span>
                 </NavLink>
               </div>
@@ -137,7 +137,7 @@ const Footer = () => {
       {/*BOT*/}
       <div className=" h-[70px] mr-[50px] ml-[50px] flex items-center justify-center">
         <div className=" w-1/3 flex">
-          <NavLink to="/#">
+          <NavLink to="/Home">
             <span className="text-white text-[20px] hidden md:block justify-start ml-[50px]">
               Xem phim
             </span>
@@ -150,22 +150,22 @@ const Footer = () => {
           <div className="mr-4">
             <ul>
               <li class="item">
-                <a href="#">
+                <a href="https://www.instagram.com/?hl=vi">
                   <i class="fa-brands fa-instagram icon"></i>
                 </a>
               </li>
               <li class="item">
-                <a href="#">
+                <a href="https://www.facebook.com/?locale=vi_VN">
                   <i class="fa-brands fa-facebook icon"></i>
                 </a>
               </li>
               <li class="item">
-                <a href="#">
+                <a href="https://www.youtube.com/">
                   <i class="fa-brands fa-youtube icon"></i>
                 </a>
               </li>
               <li class="item">
-                <a href="#">
+                <a href="https://twitter.com/?lang=vi">
                   <i class="fa-brands fa-x-twitter icon"></i>
                 </a>
               </li>

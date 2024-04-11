@@ -8,7 +8,7 @@ import styles from "./style.module.scss";
 import "./style.css";
 import axios from "axios";
 import Cookies from "js-cookie";
-import SiderBar from "./../Admin/SiderBar/SiderBar";
+// import SiderBar from "./../Admin/SiderBar/SiderBar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -18,7 +18,7 @@ const Nav = () => {
   const [username, setUsername] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [filter, setFilter] = useState([]);
 
   const [open, setOpen] = useState(false);
@@ -91,19 +91,18 @@ const Nav = () => {
 
   const isLoggedIn = document.cookie.includes("token=");
 
-  const handleVideoClick = (event) => {
-    event.preventDefault();
-    const videoUrl = event.currentTarget.getAttribute("href");
-    window.location.href = videoUrl;
-  };
-  
+  // const handleVideoClick = (event) => {
+  //   event.preventDefault();
+  //   const videoUrl = event.currentTarget.getAttribute("href");
+  //   window.location.href = videoUrl;
+  // };
 
   const handleChange = (event) => {
     const newSearchTerm = event.target.value;
     setSearchTerm(newSearchTerm);
     searchMovies(newSearchTerm);
   };
-  
+
   const searchMovies = async (searchTerm) => {
     try {
       const response = await axios.get(
@@ -111,7 +110,7 @@ const Nav = () => {
       );
       const movies = response.data.movies;
       setSearchResults(movies);
-  
+
       if (movies.length > 0) {
         console.log("Tìm được phim");
         // alert("Tìm được phim với tên: " + names.join(", "));
@@ -120,7 +119,7 @@ const Nav = () => {
         // alert("Không tìm được phim với tên: " + searchTerm);
         timkiemthatbai(searchTerm);
       }
-  
+
       const filteredMovies = movies.filter((movie) => {
         const regex = new RegExp(searchTerm, "i");
         const movieName = movie.name ? movie.name.toLowerCase() : "";
@@ -136,18 +135,18 @@ const Nav = () => {
     }
   };
 
-  // const handleKeyDown = (event) => {
-  //   if (event.key === "Enter") {
-  //     const inputValue = event.target.value.trim();
-  //     if (inputValue !== "") {
-  //       handleSearchSubmit(event);
-  //     } else {
-  //       // alert("Vui lòng nhập tên phim cần tìm!");
-  //       nhapdetimkiem();
-  //       setSearchResults(false);
-  //     }
-  //   }
-  // };
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      const inputValue = event.target.value.trim();
+      if (inputValue !== "") {
+        searchMovies(event);
+      } else {
+        // alert("Vui lòng nhập tên phim cần tìm!");
+        nhapdetimkiem();
+        setSearchResults(false);
+      }
+    }
+  };
   const clickcc = () => {
     alert("Xem thêm cc");
   };
@@ -192,7 +191,7 @@ const Nav = () => {
     <div className="w-full relative flex justify-center ">
       <div className="flex items-center h-[100px] top-0 z-50 bg-black w-full md:max-w-[1280px] justify-evenly xl:rounded">
         <NavLink
-          to="/#"
+          to="/Home"
           className="h-full w-[100px] flex items-center justify-center mr-[2%] ml-[2%]"
         >
           <div className="flex justify-center w-[75px]">
@@ -206,7 +205,7 @@ const Nav = () => {
 
         <div className=" hidden md:flex justify-start gap-5 flex-1 h-[100%] mr-[2%]">
           <button className="hidden items-center lg:flex">
-            <NavLink to="/#" className="text-white text-2xl line-clamp-1">
+            <NavLink to="/Home" className="text-white text-2xl line-clamp-1">
               Trang chủ
             </NavLink>
           </button>
@@ -227,21 +226,21 @@ const Nav = () => {
               <ul className="bg-white  ">
                 <li>
                   <button className=" ">
-                    <NavLink to="/" className="">
+                    <NavLink to="/Home" className="">
                       Theo năm
                     </NavLink>
                   </button>
                 </li>
                 <li>
                   <button className="  ">
-                    <NavLink to="/" className="">
+                    <NavLink to="/Home" className="">
                       Theo mùa
                     </NavLink>
                   </button>
                 </li>
                 <li>
                   <button className=" ">
-                    <NavLink to="/" className="">
+                    <NavLink to="/Home" className="">
                       Theo ngày
                     </NavLink>
                   </button>
@@ -386,7 +385,10 @@ const Nav = () => {
             </NavLink>
           </button> */}
           <button className="">
-            <NavLink to="/sap-chieu" className="text-white text-2xl line-clamp-1">
+            <NavLink
+              to="/sap-chieu"
+              className="text-white text-2xl line-clamp-1"
+            >
               Sắp chiếu
             </NavLink>
           </button>
@@ -397,28 +399,27 @@ const Nav = () => {
           </button>
         </div>
         <div className=" md:w-1/4 w-1/2">
-          {isLoggedIn?(
+          {isLoggedIn ? (
             <div className=" ml-[-130px]">
-
               <input
                 type="text"
                 id="search-input"
                 placeholder="Tìm kiếm: Tên phim..."
                 value={searchTerm}
-                // onKeyDown={handleKeyDown}
+                onKeyDown={handleKeyDown}
                 onChange={handleChange}
                 onMouseEnter={handleHover4}
                 onMouseLeave={handleMouseLeave4}
                 className="w-[450px] rounded-full px-4 py-2 z-10 relative border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
               />
             </div>
-          ):(
+          ) : (
             <input
               type="text"
               id="search-input"
               placeholder="Tìm kiếm: Tên phim..."
               value={searchTerm}
-              // onKeyDown={handleKeyDown}
+              onKeyDown={handleKeyDown}
               onChange={handleChange}
               onMouseEnter={handleHover4}
               onMouseLeave={handleMouseLeave4}
@@ -427,7 +428,9 @@ const Nav = () => {
           )}
           {searchResults && searchResults.length > 0 && (
             <div
-              className={`submenufind ${open4 ? "active" : "inactive"} ${isLoggedIn ? "isLogin " : ""}`}
+              className={`submenufind ${open4 ? "active" : "inactive"} ${
+                isLoggedIn ? "isLogin " : ""
+              }`}
               onMouseEnter={handleHover4}
               onMouseLeave={handleMouseLeave4}
             >
