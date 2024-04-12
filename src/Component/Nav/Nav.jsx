@@ -402,7 +402,7 @@ const Nav = () => {
           {isLoggedIn ? (
             <div className=" ml-[-130px]">
               <input
-                type="text"
+                type="search"
                 id="search-input"
                 placeholder="Tìm kiếm: Tên phim..."
                 value={searchTerm}
@@ -415,7 +415,7 @@ const Nav = () => {
             </div>
           ) : (
             <input
-              type="text"
+              type="search"
               id="search-input"
               placeholder="Tìm kiếm: Tên phim..."
               value={searchTerm}
@@ -522,7 +522,7 @@ const Nav = () => {
           </div>
         </div>
         {isLoggedIn ? (
-          <div className="hidden relative w-[50px] md:flex md:items-center text-white font-bold rounded-md mr-[2%] ml-[2%] justify-center">
+          <div className="hidden relative  w-[50px] md:flex md:items-center text-white font-bold rounded-md mr-[2%] ml-[2%] justify-center">
             <NavLink to="/Profile">
               <FontAwesomeIcon
                 icon={faUserCheck}
