@@ -3,22 +3,32 @@ import { NavLink } from "react-router-dom";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./footer.css";
 const Footer = () => {
+  // const handleScrollToTop = (event) => {
+  //   event.preventDefault();
+  //   const scrollToTop = () => {
+  //     if (window.scrollY !== 0) {
+  //       window.scrollTo({
+  //         top: window.scrollY - 85,
+  //         behavior: "smooth",
+  //       });
+  //       requestAnimationFrame(scrollToTop);
+  //     }
+  //   };
+  //   scrollToTop();
+  // };
   const handleScrollToTop = (event) => {
     event.preventDefault();
+
     const scrollToTop = () => {
-      if (window.scrollY !== 0) {
-        window.scrollTo({
-          top: window.scrollY - 85,
-          behavior: "smooth",
-        });
-        requestAnimationFrame(scrollToTop);
+      const scrollStep = window.pageYOffset / 12;
+      if (window.pageYOffset > 0) {
+        window.requestAnimationFrame(scrollToTop);
+        window.scrollTo(0, window.pageYOffset - scrollStep);
       }
     };
+
     scrollToTop();
   };
-  // const Notification = () =>{
-  //     alert('Chưa làm');
-  // }
   return (
     <div className=" bottom-0 left-0 w-full h-[550px] bg-black pt-[30px] md:max-w-[1280px] xl:rounded">
       <div className="flex h-[400px] ml-[50px] mr-[50px] border-gray-600 border-b-2">
@@ -32,16 +42,16 @@ const Footer = () => {
               />
             </NavLink>
           </div>
-          <div className=" w-auto h-auto">
-            <div className="flex flex-col text-left">
-              <span className="text-white text-[20px] mt-[25px]">
+          <div className=" w-auto h-auto mt-[25px]">
+            <div className="flex flex-col text-left gap-[15px]">
+              <span className="text-white text-[20px] ">
                 Địa chỉ: 384/17 Huỳnh Văn Bánh, Phường 14, Quận Phú Nhuận, Thành
                 phố Hồ Chí Minh, Việt Nam
               </span>
-              <span className="text-white text-[20px] mt-[30px]">
+              <span className="text-white text-[20px] ">
                 Số điện thoại: 678-136-7092
               </span>
-              <div className="w-auto h-auto mt-[30px]">
+              <div className="w-auto h-auto ">
                 <span className="text-white text-[20px] ">Email: </span>
                 <NavLink
                   to="/Hacking"
@@ -172,7 +182,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <a href="/#" onClick={handleScrollToTop}>
+        <button onClick={handleScrollToTop}>
           <div className="w-[40px] h-[40px] bg-lime-500 hover:bg-lime-600 ml-2 rounded flex items-center justify-center">
             <img
               src="../../img/SocialNetworkLogos/arrow-up-solid.svg"
@@ -180,7 +190,7 @@ const Footer = () => {
               className="w-2/3 h-2/3 text-cyan-400"
             />
           </div>
-        </a>
+        </button>
       </div>
     </div>
   );

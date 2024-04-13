@@ -69,7 +69,6 @@ function App() {
           <Routes>
 
             <Route path="/" element={<Test3 />} />      {/*KHÔNG DÙNG THÌ DẬP*/}
-            <Route path="/" element={<Home />} />
             <Route path="*" element={<Error404 />} />
             <Route path="/Home" element={<Home />} />
             {/* <Route path="/Hometest" element={<Hometest />} /> */}
@@ -87,7 +86,6 @@ function App() {
             <Route path="/Follow" element={<Follow />} />
             <Route path="/Test1" element={<Test1 />} />
             <Route path="/Test2" element={<Test2 />} />
-            <Route path="/Test3" element={<Test3 />} />
             <Route path="/Page2" element={<Page2 />} />
             <Route path="/Test" element={<Test />} />
             <Route path="/AdminPage" element={<SiderBar />} />
