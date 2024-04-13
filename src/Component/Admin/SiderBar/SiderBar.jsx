@@ -26,17 +26,23 @@ const SiderBar = () => {
       setTimeout(resolve, ms);
     });
   }
+  
+  let isDeny = false;
+
   const Deny = () => {
-    toast.error("Từ chối truy cập", {
-      position: "bottom-center",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
+    if (!isDeny) {
+      isDeny = true;
+      toast.error("Từ chối truy cập", {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
   };
 
   const renderPage = () => {
@@ -76,14 +82,15 @@ const SiderBar = () => {
             const isAdmin = response.data.userInfo.isAdmin;
             if (isAdmin) {
               setIsAdmin(isAdmin);
-              // alert("Chào mừng admin");
             } else {
+              setShowImage(true);
               Deny();
               await delay(3000);
               navigate("/Home");
             }
           }
         } else {
+          setShowImage(true);
           Deny();
           await delay(3000);
           navigate("/Home");
