@@ -7,11 +7,12 @@ const Test3 = () => {
   const navigate = useNavigate();
 
   const [load, setLoad] = useState(0);
+  const [show, setShow] = useState(false);
   const percentRef = useRef(null);
   const circleRef = useRef(null);
 
   useEffect(() => {
-    const interval = setInterval(update, 60);
+    const interval = setInterval(update, 30);
     return () => clearInterval(interval);
   }, []);
   useEffect(() => {
@@ -25,10 +26,11 @@ const Test3 = () => {
   function update() {
     setLoad((prevLoad) => {
       if (prevLoad === 99) {
+        setShow(true);
         setTimeout(() => {
           setLoad(100);
-        }, 5000);
-        return prevLoad; 
+        }, 4000);
+        return prevLoad;
       } else {
         const newLoad = prevLoad < 100 ? prevLoad + 1 : prevLoad;
         if (percentRef.current) {
@@ -41,7 +43,6 @@ const Test3 = () => {
       }
     });
   }
-  
 
   return (
     <div className="flex flex-col h-[100vh] justify-center items-center gap-4 bg-black">
@@ -54,14 +55,23 @@ const Test3 = () => {
         </p>
       </div>
       {load < 100 ? (
-        load===99?(
-            <span className="text-30px] text-white">Nghẽn mạng do có quá nhiều folder "HỌC TẬP" ở máy của bạn</span>
-        ):(
-        <span className="text-30px] text-white">Đang tải giao diện</span>
+        load === 99 ? (
+          show && 
+          <div className="absolute flex flex-1 h-screen w-full">
+            <img src="/img/loading.webp" alt="loading" className="w-full "/>
+            <span className="absolute  top-[50%] left-[50%] text-[20px] text-red-500">Xem sẽ ít thôi lag vcl</span>
+          </div>
+        ) : (
+          <span className="text-30px] text-white">Đang tải giao diện</span>
         )
       ) : (
         <span className="text-30px] text-white">Đang truy cập trang web</span>
       )}
+      {/* {load <= 99 ? (
+        <span className="text-30px text-white">Đang tải giao diện</span>
+      ) : load === 100 ? (
+        <span className="text-30px text-white">Đang truy cập trang web</span>
+      ) : null} */}
     </div>
   );
 };
