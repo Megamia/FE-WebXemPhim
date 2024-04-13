@@ -203,7 +203,7 @@ const Nav = () => {
           </div>
         </NavLink>
 
-        <div className=" hidden md:flex justify-start gap-5 flex-1 h-[100%] mr-[2%]">
+        <div className=" hidden md:flex justify-start gap-5 h-[100%] mr-[2%]">
           <button className="hidden items-center lg:flex">
             <NavLink to="/Home" className="text-white text-2xl line-clamp-1">
               Trang chủ
@@ -398,9 +398,8 @@ const Nav = () => {
             </NavLink>
           </button>
         </div>
-        <div className=" md:w-1/4 w-1/2">
+        <div className=" md:w-1/4 flex-1 min-w-[200px] w-1/2">
           {isLoggedIn ? (
-            <div className=" ml-[-130px]">
               <input
                 type="search"
                 id="search-input"
@@ -410,21 +409,20 @@ const Nav = () => {
                 onChange={handleChange}
                 onMouseEnter={handleHover4}
                 onMouseLeave={handleMouseLeave4}
-                className="w-[450px] rounded-full px-4 py-2 z-10 relative border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
+                className="w-full rounded-full px-4 py-2 z-10 relative border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
               />
-            </div>
           ) : (
-            <input
-              type="search"
-              id="search-input"
-              placeholder="Tìm kiếm: Tên phim..."
-              value={searchTerm}
-              onKeyDown={handleKeyDown}
-              onChange={handleChange}
-              onMouseEnter={handleHover4}
-              onMouseLeave={handleMouseLeave4}
-              className="w-[300px] rounded-full px-4 py-2 z-10 relative border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
-            />
+              <input
+                type="search"
+                id="search-input"
+                placeholder="Tìm kiếm: Tên phim..."
+                value={searchTerm}
+                onKeyDown={handleKeyDown}
+                onChange={handleChange}
+                onMouseEnter={handleHover4}
+                onMouseLeave={handleMouseLeave4}
+                className="w-full rounded-full px-4 py-2 z-10 relative border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
+              />
           )}
           {searchResults && searchResults.length > 0 && (
             <div
@@ -501,11 +499,11 @@ const Nav = () => {
                 name="Profile"
                 onClick={hanldeProfile}
               />
-              <DropdownItem
+              {/* <DropdownItem
                 icon={<FaRegUserCircle />}
                 name="Profile"
                 onClick={hanldeProfile2}
-              />
+              /> */}
               {username === "admin" && (
                 <DropdownItem
                   icon={<RiAdminFill />}
@@ -545,11 +543,11 @@ const Nav = () => {
                   name="Profile"
                   onClick={hanldeProfile}
                 />
-                <DropdownItem
+                {/* <DropdownItem
                   icon={<FaRegUserCircle />}
                   name="Profile"
                   onClick={hanldeProfile2}
-                />
+                /> */}
                 {username === "admin" && (
                   <DropdownItem
                     icon={<RiAdminFill />}

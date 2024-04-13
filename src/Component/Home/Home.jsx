@@ -15,7 +15,7 @@ const Home = () => {
       <div className="bg-[#253238] flex justify-center ">
         <div className="md:max-w-[1280px] w-full justify-center flex-col bg-[#141414] p-[20px] mt-[100px] xl:mt-[120px] xl:rounded">
           <Notification />
-          <div className="mx-[-10px] ">
+          <div className="w-full">
             <Slider10 />
           </div>
           <div className="table table-fixed w-full">

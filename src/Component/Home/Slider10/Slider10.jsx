@@ -64,12 +64,13 @@ const Slider10 = () => {
           slidesToShow: 5,
         }
       },
+      {
+        breakpoint: 830,
+        settings: {
+          slidesToShow: 4,
+        }
+      },
     ],
-    // appendDots: (dots) => (
-    //   <div>
-    //     <ul className={styles.customDots}>{dots}</ul>
-    //   </div>
-    // ),
     afterChange: (slideIndex) => {
       setCurrentSlide(slideIndex);
       setIsPaused(false);
@@ -92,7 +93,7 @@ const Slider10 = () => {
     }, []);
 
   return (
-    <Slider {...settings} className="px-[2px]">
+    <Slider {...settings} className="">
       {movieData.map((movie) => (
          <MovieBox2 key={movie.movieid} movie={movie} />
       ))}

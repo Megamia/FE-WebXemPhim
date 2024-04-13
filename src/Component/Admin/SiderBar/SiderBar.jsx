@@ -77,7 +77,7 @@ const SiderBar = () => {
         );
 
         if (response.status === 200) {
-          setIsAdmin(isAdmin);
+          setIsAdmin(response.data.userInfo.isAdmin);
         } else if (response.status === 201) {
           setShowImage(true);
           Deny();
@@ -107,7 +107,7 @@ const SiderBar = () => {
   };
   return (
     <div className={`w-full flex justify-center bg-black min-h-screen `}>
-      {isAdmin ? (
+      {isAdmin && isAdmin == 1 ? (  
         <div className="flex flex-row flex-1 bg-[#263238]  text-white relative max-w-[1600px]">
           <div className="render">
             <div className="flex justify-center items-center py-[10px]">
