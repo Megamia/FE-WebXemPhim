@@ -20,14 +20,12 @@ const SiderBar = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [currentPage, setCurrentPage] = useState("UserAD");
   const [showImage, setShowImage] = useState(false);
+  let isDeny = false;
   function delay(ms) {
     return new Promise((resolve) => {
       setTimeout(resolve, ms);
     });
   }
-  
-  let isDeny = false;
-
   const Deny = () => {
     if (!isDeny) {
       isDeny = true;
@@ -77,7 +75,7 @@ const SiderBar = () => {
         );
 
         if (response.status === 200) {
-          setIsAdmin(isAdmin);
+          setIsAdmin(true);
         } else if (response.status === 201) {
           setShowImage(true);
           Deny();
@@ -94,7 +92,6 @@ const SiderBar = () => {
       console.error("Lỗi khi lấy thông tin người dùng:", error);
     }
   };
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -133,8 +130,9 @@ const SiderBar = () => {
                 <span>Movie</span>
               </li>
               <li
-                className={`${currentPage === "Category" ? styles.active : ""
-                  }  `}
+                className={`${
+                  currentPage === "Category" ? styles.active : ""
+                }  `}
                 onClick={() => handlePageChange("Category")}
               >
                 <TbCategoryFilled />
@@ -148,8 +146,9 @@ const SiderBar = () => {
                 <span>Type</span>
               </li>
               <li
-                className={`${currentPage === "Donate" ? styles.active : ""
-                  }   `}
+                className={`${
+                  currentPage === "Donate" ? styles.active : ""
+                }   `}
                 onClick={() => handlePageChange("Donate")}
               >
                 <FaDonate />
