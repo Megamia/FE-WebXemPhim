@@ -20,14 +20,12 @@ const SiderBar = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [currentPage, setCurrentPage] = useState("UserAD");
   const [showImage, setShowImage] = useState(false);
+  let isDeny = false;
   function delay(ms) {
     return new Promise((resolve) => {
       setTimeout(resolve, ms);
     });
   }
-  
-  let isDeny = false;
-
   const Deny = () => {
     if (!isDeny) {
       isDeny = true;
@@ -77,7 +75,7 @@ const SiderBar = () => {
         );
 
         if (response.status === 200) {
-          setIsAdmin(response.data.userInfo.isAdmin);
+          setIsAdmin(true);
         } else if (response.status === 201) {
           setShowImage(true);
           Deny();
@@ -94,7 +92,6 @@ const SiderBar = () => {
       console.error("Lỗi khi lấy thông tin người dùng:", error);
     }
   };
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -107,7 +104,7 @@ const SiderBar = () => {
   };
   return (
     <div className={`w-full flex justify-center bg-black min-h-screen `}>
-      {isAdmin && isAdmin == 1 ? (  
+      {isAdmin? (  
         <div className="flex flex-row flex-1 bg-[#263238]  text-white relative max-w-[1600px]">
           <div className="render">
             <div className="flex justify-center items-center py-[10px]">
@@ -133,8 +130,9 @@ const SiderBar = () => {
                 <span>Movie</span>
               </li>
               <li
-                className={`${currentPage === "Category" ? styles.active : ""
-                  }  `}
+                className={`${
+                  currentPage === "Category" ? styles.active : ""
+                }  `}
                 onClick={() => handlePageChange("Category")}
               >
                 <TbCategoryFilled />
@@ -148,8 +146,9 @@ const SiderBar = () => {
                 <span>Type</span>
               </li>
               <li
-                className={`${currentPage === "Donate" ? styles.active : ""
-                  }   `}
+                className={`${
+                  currentPage === "Donate" ? styles.active : ""
+                }   `}
                 onClick={() => handlePageChange("Donate")}
               >
                 <FaDonate />
