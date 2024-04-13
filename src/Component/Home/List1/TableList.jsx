@@ -46,7 +46,7 @@ const TableList = () => {
         <NewList id={selectedId} />
       </div>
       <div className="text-white w-full text-[25px] flex justify-center pr-[20px]">
-        <Link to={selectedId} className="bg-[#161E21] w-full py-1 ">
+        <Link to={`/${selectedId}`} className="bg-[#161E21] w-full py-1 ">
           <button className="bg-[#161E21] w-full font-sans hover:opacity-50">
             Xem Thêm..
           </button>

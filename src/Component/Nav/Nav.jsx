@@ -8,7 +8,7 @@ import styles from "./style.module.scss";
 import "./style.css";
 import axios from "axios";
 import Cookies from "js-cookie";
-import SiderBar from "./../Admin/SiderBar/SiderBar";
+// import SiderBar from "./../Admin/SiderBar/SiderBar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -18,6 +18,9 @@ const Nav = () => {
   const [username, setUsername] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  // const [data, setData] = useState([]);
+  const [filter, setFilter] = useState([]);
+
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
   const [open3, setOpen3] = useState(false);
@@ -88,17 +91,19 @@ const Nav = () => {
 
   const isLoggedIn = document.cookie.includes("token=");
 
-  const handleVideoClick = (event) => {
-    event.preventDefault();
-    const videoUrl = event.currentTarget.getAttribute("href");
-    window.location.href = videoUrl;
-  };
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
+  // const handleVideoClick = (event) => {
+  //   event.preventDefault();
+  //   const videoUrl = event.currentTarget.getAttribute("href");
+  //   window.location.href = videoUrl;
+  // };
+
+  const handleChange = (event) => {
+    const newSearchTerm = event.target.value;
+    setSearchTerm(newSearchTerm);
+    searchMovies(newSearchTerm);
   };
 
-  const handleSearchSubmit = async (event) => {
-    event.preventDefault();
+  const searchMovies = async (searchTerm) => {
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/api/find?search=${searchTerm}`
@@ -114,6 +119,14 @@ const Nav = () => {
         // alert("Không tìm được phim với tên: " + searchTerm);
         timkiemthatbai(searchTerm);
       }
+
+      const filteredMovies = movies.filter((movie) => {
+        const regex = new RegExp(searchTerm, "i");
+        const movieName = movie.name ? movie.name.toLowerCase() : "";
+        const movieSubName = movie.subName ? movie.subName.toLowerCase() : "";
+        return regex.test(movieName) || regex.test(movieSubName);
+      });
+      setFilter(filteredMovies);
     } catch (error) {
       console.error(error);
       console.log("Không được phim do " + error);
@@ -126,7 +139,7 @@ const Nav = () => {
     if (event.key === "Enter") {
       const inputValue = event.target.value.trim();
       if (inputValue !== "") {
-        handleSearchSubmit(event);
+        searchMovies(event);
       } else {
         // alert("Vui lòng nhập tên phim cần tìm!");
         nhapdetimkiem();
@@ -178,7 +191,7 @@ const Nav = () => {
     <div className="w-full relative flex justify-center ">
       <div className="flex items-center h-[100px] top-0 z-50 bg-black w-full md:max-w-[1280px] justify-evenly xl:rounded">
         <NavLink
-          to="/#"
+          to="/Home"
           className="h-full w-[100px] flex items-center justify-center mr-[2%] ml-[2%]"
         >
           <div className="flex justify-center w-[75px]">
@@ -192,7 +205,7 @@ const Nav = () => {
 
         <div className=" hidden md:flex justify-start gap-5 flex-1 h-[100%] mr-[2%]">
           <button className="hidden items-center lg:flex">
-            <NavLink to="/#" className="text-white text-2xl line-clamp-1">
+            <NavLink to="/Home" className="text-white text-2xl line-clamp-1">
               Trang chủ
             </NavLink>
           </button>
@@ -213,21 +226,21 @@ const Nav = () => {
               <ul className="bg-white  ">
                 <li>
                   <button className=" ">
-                    <NavLink to="/" className="">
+                    <NavLink to="/Home" className="">
                       Theo năm
                     </NavLink>
                   </button>
                 </li>
                 <li>
                   <button className="  ">
-                    <NavLink to="/" className="">
+                    <NavLink to="/Home" className="">
                       Theo mùa
                     </NavLink>
                   </button>
                 </li>
                 <li>
                   <button className=" ">
-                    <NavLink to="/" className="">
+                    <NavLink to="/Home" className="">
                       Theo ngày
                     </NavLink>
                   </button>
@@ -372,7 +385,10 @@ const Nav = () => {
             </NavLink>
           </button> */}
           <button className="">
-            <NavLink to="/sap-chieu" className="text-white text-2xl line-clamp-1">
+            <NavLink
+              to="/sap-chieu"
+              className="text-white text-2xl line-clamp-1"
+            >
               Sắp chiếu
             </NavLink>
           </button>
@@ -382,21 +398,39 @@ const Nav = () => {
             </NavLink>
           </button>
         </div>
-        <div className="md:w-1/4 w-1/2">
-          <input
-            type="text"
-            id="search-input"
-            placeholder="Tìm kiếm: Tên phim..."
-            value={searchTerm}
-            onKeyDown={handleKeyDown}
-            onChange={handleSearchChange}
-            onMouseEnter={handleHover4}
-            onMouseLeave={handleMouseLeave4}
-            className="w-full rounded-full px-4 py-2 z-10 relative border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
-          />
+        <div className=" md:w-1/4 w-1/2">
+          {isLoggedIn ? (
+            <div className=" ml-[-130px]">
+              <input
+                type="search"
+                id="search-input"
+                placeholder="Tìm kiếm: Tên phim..."
+                value={searchTerm}
+                onKeyDown={handleKeyDown}
+                onChange={handleChange}
+                onMouseEnter={handleHover4}
+                onMouseLeave={handleMouseLeave4}
+                className="w-[450px] rounded-full px-4 py-2 z-10 relative border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
+              />
+            </div>
+          ) : (
+            <input
+              type="search"
+              id="search-input"
+              placeholder="Tìm kiếm: Tên phim..."
+              value={searchTerm}
+              onKeyDown={handleKeyDown}
+              onChange={handleChange}
+              onMouseEnter={handleHover4}
+              onMouseLeave={handleMouseLeave4}
+              className="w-[300px] rounded-full px-4 py-2 z-10 relative border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
+            />
+          )}
           {searchResults && searchResults.length > 0 && (
             <div
-              className={`submenufind ${open4 ? "active" : "inactive"}`}
+              className={`submenufind ${open4 ? "active" : "inactive"} ${
+                isLoggedIn ? "isLogin " : ""
+              }`}
               onMouseEnter={handleHover4}
               onMouseLeave={handleMouseLeave4}
             >
@@ -488,7 +522,7 @@ const Nav = () => {
           </div>
         </div>
         {isLoggedIn ? (
-          <div className="hidden relative w-[50px] md:flex md:items-center text-white font-bold rounded-md mr-[2%] ml-[2%] justify-center">
+          <div className="hidden relative  w-[50px] md:flex md:items-center text-white font-bold rounded-md mr-[2%] ml-[2%] justify-center">
             <NavLink to="/Profile">
               <FontAwesomeIcon
                 icon={faUserCheck}

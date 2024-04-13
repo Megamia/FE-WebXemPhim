@@ -20,7 +20,6 @@ const SiderBar = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [currentPage, setCurrentPage] = useState("UserAD");
   const [showImage, setShowImage] = useState(false);
-
   function delay(ms) {
     return new Promise((resolve) => {
       setTimeout(resolve, ms);
@@ -64,42 +63,39 @@ const SiderBar = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const storedToken = Cookies.get("token");
-        if (storedToken) {
-          const response = await axios.get(
-            `${process.env.REACT_APP_API_URL}/api/profile`,
-            {
-              headers: {
-                Authorization: `Bearer ${storedToken}`,
-              },
-            }
-          );
-
-          if (response.status === 200) {
-            const isAdmin = response.data.userInfo.isAdmin;
-            if (isAdmin) {
-              setIsAdmin(isAdmin);
-            } else {
-              setShowImage(true);
-              Deny();
-              await delay(3000);
-              navigate("/Home");
-            }
+  const fetchData = async () => {
+    const storedToken = Cookies.get("token");
+    try {
+      if (storedToken) {
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/profile`,
+          {
+            headers: {
+              Authorization: `Bearer ${storedToken}`,
+            },
           }
-        } else {
+        );
+
+        if (response.status === 200) {
+          setIsAdmin(isAdmin);
+        } else if (response.status === 201) {
           setShowImage(true);
           Deny();
           await delay(3000);
           navigate("/Home");
         }
-      } catch (error) {
-        console.error("Lỗi khi lấy thông tin người dùng:", error);
+      } else {
+        setShowImage(true);
+        Deny();
+        await delay(3000);
+        navigate("/Home");
       }
-    };
+    } catch (error) {
+      console.error("Lỗi khi lấy thông tin người dùng:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -107,7 +103,7 @@ const SiderBar = () => {
     setCurrentPage(page);
   };
   const BackHome = () => {
-    navigate("/");
+    navigate("/Home");
   };
   return (
     <div className={`w-full flex justify-center bg-black min-h-screen `}>
@@ -137,9 +133,8 @@ const SiderBar = () => {
                 <span>Movie</span>
               </li>
               <li
-                className={`${
-                  currentPage === "Category" ? styles.active : ""
-                }  `}
+                className={`${currentPage === "Category" ? styles.active : ""
+                  }  `}
                 onClick={() => handlePageChange("Category")}
               >
                 <TbCategoryFilled />
@@ -153,9 +148,8 @@ const SiderBar = () => {
                 <span>Type</span>
               </li>
               <li
-                className={`${
-                  currentPage === "Donate" ? styles.active : ""
-                }   `}
+                className={`${currentPage === "Donate" ? styles.active : ""
+                  }   `}
                 onClick={() => handlePageChange("Donate")}
               >
                 <FaDonate />
@@ -172,7 +166,7 @@ const SiderBar = () => {
           <div className="flex flex-1">{renderPage()}</div>
         </div>
       ) : (
-        showImage && <img src="/img/mêm.jpg" alt="Sếck" />
+        showImage && <img src="/img/400.jpg" />
       )}
       <ToastContainer />
     </div>
