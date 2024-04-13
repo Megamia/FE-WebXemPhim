@@ -54,7 +54,7 @@ const Test3 = () => {
           <span className="percent">%</span>
         </p>
       </div>
-      {load < 100 ? (
+      {/* {load < 100 ? (
         load === 99 ? (
           show && 
           <div className="absolute flex flex-1 h-screen w-full">
@@ -66,7 +66,7 @@ const Test3 = () => {
         )
       ) : (
         <span className="text-30px] text-white">Đang truy cập trang web</span>
-      )}
+      )} */}
       {/* {load <= 99 ? (
         <span className="text-30px text-white">Đang tải giao diện</span>
       ) : load === 100 ? (
