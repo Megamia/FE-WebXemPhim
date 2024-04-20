@@ -98,3 +98,17 @@
     align-items: center;
     justify-content: center;
   }
+
+  .thanhbar2 ::-webkit-scrollbar {
+    width: 5px; /* Chiều rộng của thanh cuộn */
+    background-color: #3B3A35;
+    border-radius: 10px;
+  }
+  
+  .thanhbar2 ::-webkit-scrollbar-track {
+    background: transparent; /* Màu nền của thanh cuộn */
+  }
+  
+  .thanhbar2 ::-webkit-scrollbar-thumb {
+    background: #B32920; /* Màu của "nút kéo" thanh cuộn */
+  }

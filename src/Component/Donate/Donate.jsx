@@ -6,6 +6,7 @@ import Paypal from "./Paypal";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
+import Loading1 from "../Loading/Loading1";
 
 const Donate = () => {
   const navigate = useNavigate();
@@ -76,30 +77,39 @@ const Donate = () => {
             </div>
             <div className="flex flex-col items-center ">
               <div className="flex flex-wrap mt-[10px] justify-center">
-                {donateData.map((product) => (
-                  <div className="px-[20px] my-2">
-                    <div
-                      className={`text-white cursor-pointer ${selectedPrice === product.price ? "border-red-500" : ""
+                {donateData.length > 0 ? (
+                  donateData.map((product) => (
+                    <div className="px-[20px] my-2">
+                      <div
+                        className={`text-white cursor-pointer ${
+                          selectedPrice === product.price
+                            ? "border-red-500"
+                            : ""
                         }`}
-                      key={product.price}
-                      onClick={() => handlePriceChange(product.price)}
-                    >
-                      <img
-                        src={`../../img/${product.img}`}
-                        alt={`$${product.price}`}
-                        className="w-[200px] h-[300px] rounded"
-                      />
-                      <span className="text-white flex justify-center mt-[10px]">
-                        ${product.price}
-                      </span>
-                      {selectedPrice === product.price && showPaypal && (
-                        <div className="mt-[10px]">
-                          <Paypal product={product} />
-                        </div>
-                      )}
+                        key={product.price}
+                        onClick={() => handlePriceChange(product.price)}
+                      >
+                        <img
+                          src={`../../img/${product.img}`}
+                          alt={`$${product.price}`}
+                          className="w-[200px] h-[300px] rounded"
+                        />
+                        <span className="text-white flex justify-center mt-[10px]">
+                          ${product.price}
+                        </span>
+                        {selectedPrice === product.price && showPaypal && (
+                          <div className="mt-[10px]">
+                            <Paypal product={product} />
+                          </div>
+                        )}
+                      </div>
                     </div>
+                  ))
+                ) : (
+                  <div className="p-10">
+                  <Loading1 />
                   </div>
-                ))}
+                )}
               </div>
             </div>
             {showModal && (

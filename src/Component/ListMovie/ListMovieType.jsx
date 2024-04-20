@@ -1,11 +1,12 @@
-import React, { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
-import Header from '../Header&Footer/Header/Header';
-import Notification from '../Home/Notification/Nontification';
-import Footer from '../Header&Footer/Footer/Footer';
-import Righter from '../Header&Footer/Righter/Righter';
-import MovieBox from '../Detail/MovieBox';
+import React, { useEffect, useState, useRef } from "react";
+import axios from "axios";
+import { useParams, useNavigate } from "react-router-dom";
+import Header from "../Header&Footer/Header/Header";
+import Notification from "../Home/Notification/Nontification";
+import Footer from "../Header&Footer/Footer/Footer";
+import Righter from "../Header&Footer/Righter/Righter";
+import MovieBox from "../Detail/MovieBox";
+import Loading1 from "../Loading/Loading1";
 
 const ListMovieType = () => {
   const { page, type } = useParams();
@@ -21,7 +22,7 @@ const ListMovieType = () => {
     const distance = targetScrollPosition - currentScrollPosition;
     const duration = 500;
     const startTime = performance.now();
-    const scrollStep = timestamp => {
+    const scrollStep = (timestamp) => {
       const elapsedTime = timestamp - startTime;
       const progress = Math.min(elapsedTime / duration, 1);
       const easeProgress = easeOutQuart(progress);
@@ -32,10 +33,11 @@ const ListMovieType = () => {
     };
     requestAnimationFrame(scrollStep);
   };
-  const easeOutQuart = t => 1 - (--t) * t * t * t;
+  const easeOutQuart = (t) => 1 - --t * t * t * t;
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/api/the-loai/${type}`)
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/api/the-loai/${type}`)
       .then(function (response) {
         // Handle the data when a successful response is received from the API
         console.log(response.data); // Log the data to the console
@@ -45,7 +47,7 @@ const ListMovieType = () => {
         // Handle any errors
         console.log(error);
       });
-      window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }, [type]);
 
   useEffect(() => {
@@ -69,85 +71,124 @@ const ListMovieType = () => {
         <div className="md:max-w-[1280px] w-full justify-center flex-col bg-[#141414] p-[20px] mt-[100px] xl:mt-[120px] xl:rounded">
           <Notification />
           <div className="w-full table table-fixed">
-            <div ref={scrollRef} className="w-full lg:table-cell flex-row bg-[#141414]">
+            <div
+              ref={scrollRef}
+              className="w-full lg:table-cell flex-row bg-[#141414]"
+            >
               <div className="flex w-full justify-center mt-4 mb-4 relative lg:left-[-10px]">
-                {movieData.length > moviesPerPage && (
-                  <nav className="w-full">
-                    <ul className="pagination w-full flex justify-center">
-                      <li
-                        className="page-item bg-[#212527] w-auto h-[40px] rounded flex justify-center items-center m-1 text-[#78909C] font-bold p-3"
-                      >
-                        Trang {currentPage} của {Math.ceil(movieData.length / moviesPerPage)}
-                      </li>
-                      <li
-                        className="page-item bg-[#212527] w-[100px] h-[40px] rounded flex justify-center m-1 text-[#78909C] font-bold hover:bg-[#B5E745] hover:text-white"
-                        onClick={() => handlePageChange(1)}
-                        disabled={currentPage === 1}
-                      >
-                        <button className="page-link">
-                          Trang Đầu
-                        </button>
-                      </li>
-                      {Array.from({ length: Math.min(4, Math.ceil(movieData.length / moviesPerPage)) }, (_, index) => {
-                        const totalPages = Math.ceil(movieData.length / moviesPerPage);
-                        if (currentPage > totalPages - 3 && totalPages > 4) {
-                          const pageNumber = totalPages - 4 + index + 1;
-                          return (
-                            <li
-                              className="page-item bg-[#212527] w-[40px] h-[40px] rounded flex justify-center m-1 text-[#78909C] text-[18px] font-bold hover:bg-[#B5E745] hover:text-white"
-                              key={index}
-                            >
-                              <button
-                                className={`page-link rounded w-full ${currentPage === pageNumber ? 'active bg-[red] text-white' : ''}`}
-                                onClick={() => handlePageChange(pageNumber)}
+                {movieData.length > 0 ? (
+                  movieData.length > moviesPerPage && (
+                    <nav className="w-full">
+                      <ul className="pagination w-full flex justify-center">
+                        <li className="page-item bg-[#212527] w-auto h-[40px] rounded flex justify-center items-center m-1 text-[#78909C] font-bold p-3">
+                          Trang {currentPage} của{" "}
+                          {Math.ceil(movieData.length / moviesPerPage)}
+                        </li>
+                        <li
+                          className="page-item bg-[#212527] w-[100px] h-[40px] rounded flex justify-center m-1 text-[#78909C] font-bold hover:bg-[#B5E745] hover:text-white"
+                          onClick={() => handlePageChange(1)}
+                          disabled={currentPage === 1}
+                        >
+                          <button className="page-link">Trang Đầu</button>
+                        </li>
+                        {Array.from(
+                          {
+                            length: Math.min(
+                              4,
+                              Math.ceil(movieData.length / moviesPerPage)
+                            ),
+                          },
+                          (_, index) => {
+                            const totalPages = Math.ceil(
+                              movieData.length / moviesPerPage
+                            );
+                            if (
+                              currentPage > totalPages - 3 &&
+                              totalPages > 4
+                            ) {
+                              const pageNumber = totalPages - 4 + index + 1;
+                              return (
+                                <li
+                                  className="page-item bg-[#212527] w-[40px] h-[40px] rounded flex justify-center m-1 text-[#78909C] text-[18px] font-bold hover:bg-[#B5E745] hover:text-white"
+                                  key={index}
+                                >
+                                  <button
+                                    className={`page-link rounded w-full ${
+                                      currentPage === pageNumber
+                                        ? "active bg-[red] text-white"
+                                        : ""
+                                    }`}
+                                    onClick={() => handlePageChange(pageNumber)}
+                                  >
+                                    {pageNumber}
+                                  </button>
+                                </li>
+                              );
+                            }
+                            if (totalPages <= 4) {
+                              const pageNumber = index + 1;
+                              return (
+                                <li
+                                  className="page-item bg-[#212527] w-[40px] h-[40px] rounded flex justify-center m-1 text-[#78909C] text-[18px] font-bold hover:bg-[#B5E745] hover:text-white"
+                                  key={index}
+                                >
+                                  <button
+                                    className={`page-link rounded w-full ${
+                                      currentPage === pageNumber
+                                        ? "active bg-[red] text-white"
+                                        : ""
+                                    }`}
+                                    onClick={() => handlePageChange(pageNumber)}
+                                  >
+                                    {pageNumber}
+                                  </button>
+                                </li>
+                              );
+                            }
+                            const pageNumber =
+                              currentPage > 2
+                                ? currentPage - 1 + index
+                                : index + 1;
+                            return (
+                              <li
+                                className="page-item bg-[#212527] w-[40px] h-[40px] rounded flex justify-center m-1 text-[#78909C] text-[18px] font-bold hover:bg-[#B5E745] hover:text-white"
+                                key={index}
                               >
-                                {pageNumber}
-                              </button>
-                            </li>
-                          );
-                        }
-                        if (totalPages <= 4) {
-                          const pageNumber = index + 1;
-                          return (
-                            <li
-                              className="page-item bg-[#212527] w-[40px] h-[40px] rounded flex justify-center m-1 text-[#78909C] text-[18px] font-bold hover:bg-[#B5E745] hover:text-white"
-                              key={index}
-                            >
-                              <button
-                                className={`page-link rounded w-full ${currentPage === pageNumber ? 'active bg-[red] text-white' : ''}`}
-                                onClick={() => handlePageChange(pageNumber)}
-                              >
-                                {pageNumber}
-                              </button>
-                            </li>
-                          );
-                        }
-                        const pageNumber = currentPage > 2 ? currentPage - 1 + index : index + 1;
-                        return (
-                          <li
-                            className="page-item bg-[#212527] w-[40px] h-[40px] rounded flex justify-center m-1 text-[#78909C] text-[18px] font-bold hover:bg-[#B5E745] hover:text-white"
-                            key={index}
-                          >
-                            <button
-                              className={`page-link rounded w-full ${currentPage === pageNumber ? 'active bg-[red] text-white' : ''}`}
-                              onClick={() => handlePageChange(pageNumber)}
-                            >
-                              {pageNumber}
-                            </button>
-                          </li>
-                        );
-                      })}
-                      <li
-                        className="page-item bg-[#212527] w-[100px] h-[40px] rounded flex justify-center m-1 text-[#78909C] font-bold hover:bg-[#B5E745] hover:text-white"
-                        onClick={() => handlePageChange(Math.ceil(movieData.length / moviesPerPage))}
-                        disabled={currentPage === Math.ceil(movieData.length / moviesPerPage)}
-                      >
-                        <button className="page-link">
-                          Trang Cuối
-                        </button>
-                      </li>
-                    </ul>
-                  </nav>
+                                <button
+                                  className={`page-link rounded w-full ${
+                                    currentPage === pageNumber
+                                      ? "active bg-[red] text-white"
+                                      : ""
+                                  }`}
+                                  onClick={() => handlePageChange(pageNumber)}
+                                >
+                                  {pageNumber}
+                                </button>
+                              </li>
+                            );
+                          }
+                        )}
+                        <li
+                          className="page-item bg-[#212527] w-[100px] h-[40px] rounded flex justify-center m-1 text-[#78909C] font-bold hover:bg-[#B5E745] hover:text-white"
+                          onClick={() =>
+                            handlePageChange(
+                              Math.ceil(movieData.length / moviesPerPage)
+                            )
+                          }
+                          disabled={
+                            currentPage ===
+                            Math.ceil(movieData.length / moviesPerPage)
+                          }
+                        >
+                          <button className="page-link">Trang Cuối</button>
+                        </li>
+                      </ul>
+                    </nav>
+                  )
+                ) : (
+                  <div className="p-10">
+                    <Loading1 />
+                  </div>
                 )}
               </div>
               <div className="flex w-full">
@@ -161,31 +202,83 @@ const ListMovieType = () => {
                 {movieData.length > moviesPerPage && (
                   <nav className="w-full">
                     <ul className="pagination w-full flex justify-center">
-                      <li
-                        className="page-item bg-[#212527] w-auto h-[40px] rounded flex justify-center items-center m-1 text-[#78909C] font-bold p-3"
-                      >
-                        Trang {currentPage} của {Math.ceil(movieData.length / moviesPerPage)}
+                      <li className="page-item bg-[#212527] w-auto h-[40px] rounded flex justify-center items-center m-1 text-[#78909C] font-bold p-3">
+                        Trang {currentPage} của{" "}
+                        {Math.ceil(movieData.length / moviesPerPage)}
                       </li>
                       <li
                         className="page-item bg-[#212527] w-[100px] h-[40px] rounded flex justify-center m-1 text-[#78909C] font-bold hover:bg-[#B5E745] hover:text-white"
                         onClick={() => handlePageChange(1)}
                         disabled={currentPage === 1}
                       >
-                        <button className="page-link">
-                          Trang Đầu
-                        </button>
+                        <button className="page-link">Trang Đầu</button>
                       </li>
-                      {Array.from({ length: Math.min(4, Math.ceil(movieData.length / moviesPerPage)) }, (_, index) => {
-                        const totalPages = Math.ceil(movieData.length / moviesPerPage);
-                        if (currentPage > totalPages - 3 && totalPages > 4) {
-                          const pageNumber = totalPages - 4 + index + 1;
+                      {Array.from(
+                        {
+                          length: Math.min(
+                            4,
+                            Math.ceil(movieData.length / moviesPerPage)
+                          ),
+                        },
+                        (_, index) => {
+                          const totalPages = Math.ceil(
+                            movieData.length / moviesPerPage
+                          );
+                          if (currentPage > totalPages - 3 && totalPages > 4) {
+                            const pageNumber = totalPages - 4 + index + 1;
+                            return (
+                              <li
+                                className="page-item bg-[#212527] w-[40px] h-[40px] rounded flex justify-center m-1 text-[#78909C] text-[18px] font-bold hover:bg-[#B5E745] hover:text-white"
+                                key={index}
+                              >
+                                <button
+                                  className={`page-link rounded w-full ${
+                                    currentPage === pageNumber
+                                      ? "active bg-[red] text-white"
+                                      : ""
+                                  }`}
+                                  onClick={() => handlePageChange(pageNumber)}
+                                >
+                                  {pageNumber}
+                                </button>
+                              </li>
+                            );
+                          }
+                          if (totalPages <= 4) {
+                            const pageNumber = index + 1;
+                            return (
+                              <li
+                                className="page-item bg-[#212527] w-[40px] h-[40px] rounded flex justify-center m-1 text-[#78909C] text-[18px] font-bold hover:bg-[#B5E745] hover:text-white"
+                                key={index}
+                              >
+                                <button
+                                  className={`page-link rounded w-full ${
+                                    currentPage === pageNumber
+                                      ? "active bg-[red] text-white"
+                                      : ""
+                                  }`}
+                                  onClick={() => handlePageChange(pageNumber)}
+                                >
+                                  {pageNumber}
+                                </button>
+                              </li>
+                            );
+                          }
+                          const pageNumber =
+                            currentPage > 2
+                              ? currentPage - 1 + index
+                              : index + 1;
                           return (
                             <li
                               className="page-item bg-[#212527] w-[40px] h-[40px] rounded flex justify-center m-1 text-[#78909C] text-[18px] font-bold hover:bg-[#B5E745] hover:text-white"
                               key={index}
                             >
                               <button
-                                className={`page-link rounded w-full ${currentPage === pageNumber ? 'active bg-[red] text-white' : ''}`}
+                                className={`page-link rounded w-full ${
+                                  currentPage === pageNumber
+                                    ? "active bg-[red] text-white"
+                                    : ""
+                                }`}
                                 onClick={() => handlePageChange(pageNumber)}
                               >
                                 {pageNumber}
@@ -193,45 +286,20 @@ const ListMovieType = () => {
                             </li>
                           );
                         }
-                        if (totalPages <= 4) {
-                          const pageNumber = index + 1;
-                          return (
-                            <li
-                              className="page-item bg-[#212527] w-[40px] h-[40px] rounded flex justify-center m-1 text-[#78909C] text-[18px] font-bold hover:bg-[#B5E745] hover:text-white"
-                              key={index}
-                            >
-                              <button
-                                className={`page-link rounded w-full ${currentPage === pageNumber ? 'active bg-[red] text-white' : ''}`}
-                                onClick={() => handlePageChange(pageNumber)}
-                              >
-                                {pageNumber}
-                              </button>
-                            </li>
-                          );
-                        }
-                        const pageNumber = currentPage > 2 ? currentPage - 1 + index : index + 1;
-                        return (
-                          <li
-                            className="page-item bg-[#212527] w-[40px] h-[40px] rounded flex justify-center m-1 text-[#78909C] text-[18px] font-bold hover:bg-[#B5E745] hover:text-white"
-                            key={index}
-                          >
-                            <button
-                              className={`page-link rounded w-full ${currentPage === pageNumber ? 'active bg-[red] text-white' : ''}`}
-                              onClick={() => handlePageChange(pageNumber)}
-                            >
-                              {pageNumber}
-                            </button>
-                          </li>
-                        );
-                      })}
+                      )}
                       <li
                         className="page-item bg-[#212527] w-[100px] h-[40px] rounded flex justify-center m-1 text-[#78909C] font-bold hover:bg-[#B5E745] hover:text-white"
-                        onClick={() => handlePageChange(Math.ceil(movieData.length / moviesPerPage))}
-                        disabled={currentPage === Math.ceil(movieData.length / moviesPerPage)}
+                        onClick={() =>
+                          handlePageChange(
+                            Math.ceil(movieData.length / moviesPerPage)
+                          )
+                        }
+                        disabled={
+                          currentPage ===
+                          Math.ceil(movieData.length / moviesPerPage)
+                        }
                       >
-                        <button className="page-link">
-                          Trang Cuối
-                        </button>
+                        <button className="page-link">Trang Cuối</button>
                       </li>
                     </ul>
                   </nav>

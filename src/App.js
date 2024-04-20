@@ -34,6 +34,7 @@ import Follow from "./Component/User/Follow/Follow";
 import HotMovie from "./Component/ListMovie/HotMovie";
 import ComingSoon from "./Component/ListMovie/ComingSoon";
 import Loading from "./Component/Loading/Loading";
+import Loading1 from "./Component/Loading/Loading1";
 
 function App() {
   const [isBackendReady, setIsBackendReady] = useState(false);
@@ -57,7 +58,7 @@ function App() {
   }, []);
 
   if (!isBackendReady) {
-    return <Loading/>;
+    return <><Loading/></>;
   }
 
   return (

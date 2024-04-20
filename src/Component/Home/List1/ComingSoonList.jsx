@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FaChevronRight } from "react-icons/fa";
 import axios from "axios";
 import MovieBox from "../../Detail/MovieBox";
+import Loading1 from "../../Loading/Loading1";
 
 const ComingSoonList = () => {
   const [movieData, setMovieData] = useState([]);
@@ -32,9 +33,15 @@ const ComingSoonList = () => {
       <div>
         <div className="flex w-full">
           <ul className="flex w-full flex-wrap relative lg:left-[-10px]">
-            {movieData.map((movie) => (
-              <MovieBox key={movie.movieid} movie={movie} />
-            ))}
+            {movieData.length > 0 ? (
+              movieData.map((movie) => (
+                <MovieBox key={movie.movieid} movie={movie} />
+              ))
+            ) : (
+              <div className="h-[600px] flex w-full items-center">
+                <Loading1 />
+              </div>
+            )}
           </ul>
         </div>
       </div>

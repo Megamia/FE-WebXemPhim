@@ -42,7 +42,7 @@ const Rating = (props) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/rating/${movieid}`)
+      .get(`${process.env.REACT_APP_API_URL}/api/rating/${movieid}`)
       .then(function (response) {
         console.log(response.data);
         setRatingData(response.data.ratings);
@@ -59,7 +59,7 @@ const Rating = (props) => {
     try {
       if (storedToken) {
         const response = await axios.post(
-          "http://localhost:4000/api/rating",
+          `${process.env.REACT_APP_API_URL}/api/rating`,
           {
             movieid: movieid,
             value: value,

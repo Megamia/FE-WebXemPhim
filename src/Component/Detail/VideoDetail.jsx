@@ -10,6 +10,7 @@ import { BsFillEyeFill } from "react-icons/bs";
 import { MdOutlineSlowMotionVideo } from "react-icons/md";
 import { FacebookProvider, Comments } from "react-facebook";
 import Rating from "./Rating/Rating";
+import Loading1 from "../Loading/Loading1";
 
 const VideoDetail = () => {
   const { movieurl, videourl } = useParams();
@@ -87,7 +88,7 @@ const VideoDetail = () => {
           <Notification />
           <div ref={scrollRef} className="table table-fixed w-full">
             <main className="pt-[20px] lg:table-cell lg:pr-[20px] flex-row">
-              {videoData &&
+              {videoData.length > 0 ? (
                 videoData.map((video) => (
                   <div className="mb-[20px] pt-[55%] w-full relative">
                     <div className="block">
@@ -103,14 +104,21 @@ const VideoDetail = () => {
                       ></iframe>
                     </div>
                   </div>
-                ))}
+                ))
+              ) : (
+                <div className="mb-[20px] pt-[55%] w-full relative">
+                  <div className="absolute w-full h-full top-[40%] left-0 rounded">
+                    <Loading1 />
+                  </div>
+                </div>
+              )}
               <div className="mb-[20px] w-full relative p-2 bg-[#181D1F] rounded">
                 <div className="text-[#78909C] flex items-center font-semibold pb-1 text-[15px]">
                   <MdOutlineSlowMotionVideo className="text-[20px]" />
                   Tập phim khác
                 </div>
                 <div className="relative flex-wrap flex w-full">
-                  {listvideoData &&
+                  {listvideoData.length > 0 ? (
                     listvideoData.map((listvideo) => (
                       <div className=" text-white bg-transparent mr-[5px]">
                         <a
@@ -128,11 +136,16 @@ const VideoDetail = () => {
                           </div>
                         </a>
                       </div>
-                    ))}
+                    ))
+                  ) : (
+                    <div className="w-[30px]">
+                      <Loading1 />
+                    </div>
+                  )}
                 </div>
               </div>
 
-              {movieData &&
+              {movieData.length > 0 ? (
                 movieData.map((movie) => (
                   <>
                     <article
@@ -156,8 +169,10 @@ const VideoDetail = () => {
                             alt="Movie Avatar"
                           />
                         </div>
-                        <div className="text-[#C0BBBD] font-semibold mb-[50px]">
-                          {movie.moviedescribe}
+                        <div className="thanhbar2 w-full">
+                          <div className="text-[#C0BBBD] font-semibold h-[100px] thanhbar2 overflow-y-auto mb-[10px] pr-2">
+                            {movie.moviedescribe}
+                          </div>
                         </div>
                       </header>
                       <footer className="relative flex items-center z-10 xl:ml-[200px] xl:mt-0 mt-[100px] pt-5 border-gray-400 bg-transparent border-t-[1px] ">
@@ -188,7 +203,12 @@ const VideoDetail = () => {
                       </FacebookProvider>
                     </div>
                   </>
-                ))}
+                ))
+              ) : (
+                <div className="p-10">
+                  <Loading1 />
+                </div>
+              )}
             </main>
 
             <aside className=" lg:table-cell align-top lg:w-[300px] w-full">
