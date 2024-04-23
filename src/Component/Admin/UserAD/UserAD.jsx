@@ -91,6 +91,18 @@ const UserAD = () => {
               </div>
             </div>
             <div className="flex flex-col ">
+              <span>Role</span>
+              <div className="text-[15px] ">
+                {users.map((user) => (
+                  <div key={user?.userid} className="py-[10px]">
+                    {user?.role !== null && user?.role !== ""
+                      ? user?.role
+                      : "No data"}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="flex flex-col ">
               <span>Chỉnh sửa</span>
               <div className="text-[15px] flex flex-col">
                 {users.map((user) =>
