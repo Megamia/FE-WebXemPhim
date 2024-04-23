@@ -17,6 +17,7 @@ const Loading = () => {
         <div className="w-screen h-screen flex">
         <div className="flex-1 flex justify-center items-center">
           <h1 className="font-extrabold text-lg md:text-xl lg:text-2xl xl:text-3xl">Lỗi kết nối đến máy chủ</h1>
+          <img src="../../img/loadvip.gif" />
         </div>
         <div className="">
           <img src="../../img/anhdep.jpg" className="h-screen"/>
