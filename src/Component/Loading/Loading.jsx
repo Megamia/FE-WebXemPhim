@@ -12,20 +12,23 @@ const Loading = () => {
   }, []);
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center">
+    <div className="w-screen h-screen flex justify-center items-center bg-[#1C273A]">
       {isError ? ( // Hiển thị thông báo lỗi nếu isError là true
         <div className="w-screen h-screen flex">
-        <div className="flex-1 flex justify-center items-center">
-          <h1 className="font-extrabold text-lg md:text-xl lg:text-2xl xl:text-3xl">Lỗi kết nối đến máy chủ</h1>
-          <img src="../../img/loadvip.gif" />
+          <div className="flex-1 flex flex-col justify-center items-center">
+            <p className="font-extrabold text-lg md:text-xl lg:text-2xl xl:text-3xl text-white">
+              Đang kết nối đến máy chủ
+            </p>
+            <img src="../../img/loadvip.gif" className="h-[200px] w-auto" alt="" />
+          </div>
+          <div className="">
+            <img src="../../img/anhdep.jpg" className="h-screen" alt="" />
+          </div>
         </div>
-        <div className="">
-          <img src="../../img/anhdep.jpg" className="h-screen"/>
-        </div>
-      </div>
-      ) : ( // Hiển thị màn hình đen với vòng quay loading
-      <div className="w-screen h-screen flex">
-        <div className="loader"></div>
+      ) : (
+        // Hiển thị màn hình đen với vòng quay loading
+        <div className="w-screen h-screen flex">
+          <div className="loader"></div>
         </div>
       )}
     </div>

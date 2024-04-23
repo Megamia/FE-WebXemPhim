@@ -5,25 +5,24 @@
   flex-direction: column;
   position: absolute;
   top: 200%;
-  border-radius: 15px;
+  border-radius: 8px;
 
   ul {
     z-index: 2;
     border: 2px solid #b5e745;
-    background-color: white;
     display: flex;
     flex-direction: column;
     gap: 0;
-    border-radius: 15px;
+    border-radius: 8px;
 
     /*THÊM*/
     :first-child {
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
     }
     :last-child {
-      border-bottom-left-radius: 15px;
-      border-bottom-right-radius: 15px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
     }
     /*THÊM*/
   }
@@ -104,13 +103,19 @@
   }
 }
 .isLogin {
-  margin-left: -120px;
-
   ul li {
     /* padding: 15px; */
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 430px;
+    width: 455px;
+  }
+}
+.notLogin{
+  ul li {
+    /* padding: 15px; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 335px;
   }
 }
 

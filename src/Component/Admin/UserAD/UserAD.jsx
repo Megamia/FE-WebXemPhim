@@ -1,13 +1,26 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import Swal from "sweetalert2";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 const UserAD = () => {
   const [users, setUsers] = useState([]);
+  const [showPassword, setShowPasswod] = useState(false);
+  const [userPasswords, setUserPasswords] = useState({});
+
+  const show = (userId) => {
+    const clickedUser = users.find((user) => user.userid === userId);
+    if (clickedUser) {
+      clickedUser.showPassword = !clickedUser.showPassword;
+      setUsers([...users]);
+    }
+  };
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/UserMNGM`);
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/UserMNGM`
+        );
         setUsers(response.data);
       } catch (error) {
         console.error("Error retrieving users:", error);
@@ -16,21 +29,42 @@ const UserAD = () => {
 
     fetchUsers();
   }, []);
-  const handleDeleteUser = async (userId) => {
-    try {
-      await axios.delete(`${process.env.REACT_APP_API_URL}/api/UserMNGM/${userId}`);
-      setUsers((prevUsers) =>
-        prevUsers.filter((user) => user.userid !== userId)
-      );
-      alert("User đã bị cho ra đảo thành công");
-    } catch (error) {
-      alert("User chưa bị cho ra đảo @@", error);
-    }
+  const handleDeleteUser = (userId) => {
+    Swal.fire({
+      title: "Are you want to remove this user?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete this user!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await axios.delete(
+          `${process.env.REACT_APP_API_URL}/api/UserMNGM/${userId}`
+        );
+        setUsers((prevUsers) =>
+          prevUsers.filter((user) => user.userid !== userId)
+        );
+        Swal.fire({
+          title: "Deleted!",
+          text: "User has been deleted.",
+          icon: "success",
+        });
+      } else {
+        Swal.fire({
+          text: "User has been safe for now.",
+          icon: "error",
+        });
+      }
+    });
   };
 
   return (
     <div className="flex flex-col flex-1 p-5  bg-white ">
-      <span className="text-[35px] text-black">Các tài khoản của người dùng</span>
+      <span className="text-[35px] text-black">
+        Các tài khoản của người dùng
+      </span>
       <div className="flex flex-row flex-1 mt-[20px]">
         <div className="main flex flex-col flex-1">
           <div className="flex flex-1 flex-row justify-between  text-[25px] text-black ">
@@ -70,10 +104,31 @@ const UserAD = () => {
             </div>
             <div className="flex flex-col ">
               <span>Password</span>
-              <div className="text-[15px] ">
+              <div className="text-[15px]">
                 {users.map((user) => (
                   <div key={user?.userid} className="py-[10px]">
-                    {user.password}
+                    {user.username === "admin" ? (
+                      <p>{user.password}</p>
+                    ) : (
+                      <div className="flex flex-row items-center">
+                        {user.showPassword ? (
+                          <span className="flex flex-1">{user.password}</span>
+                        ) : (
+                          <span className="flex flex-1">********</span>
+                        )}
+                        {user.showPassword ? (
+                          <FaEye
+                            onClick={() => show(user.userid)}
+                            className="cursor-pointer"
+                          />
+                        ) : (
+                          <FaEyeSlash
+                            onClick={() => show(user.userid)}
+                            className="cursor-pointer"
+                          />
+                        )}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>

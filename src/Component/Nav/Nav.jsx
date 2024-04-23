@@ -427,7 +427,7 @@ const Nav = () => {
           {searchResults && searchResults.length > 0 && (
             <div
               className={`submenufind ${open4 ? "active" : "inactive"} ${
-                isLoggedIn ? "isLogin " : ""
+                isLoggedIn ? "isLogin " : "notLogin"
               }`}
               onMouseEnter={handleHover4}
               onMouseLeave={handleMouseLeave4}
@@ -487,7 +487,7 @@ const Nav = () => {
             </svg>
           </button>
           <div
-            className={`dropdown submenuUser bg-white ${
+            className={`dropdown submenuUser  ${
               open ? "active" : "inactive"
             }`}
             onMouseEnter={handleHover}
