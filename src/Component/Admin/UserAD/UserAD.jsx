@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { IoIosSwap } from "react-icons/io";
 const UserAD = () => {
   const [users, setUsers] = useState([]);
   const [showPassword, setShowPasswod] = useState(false);
-  const [userPasswords, setUserPasswords] = useState({});
 
   const show = (userId) => {
     const clickedUser = users.find((user) => user.userid === userId);
@@ -14,6 +14,9 @@ const UserAD = () => {
       setUsers([...users]);
     }
   };
+  const swapRole=()=>{
+    alert("Change success");
+  }
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -106,7 +109,7 @@ const UserAD = () => {
               <span>Password</span>
               <div className="text-[15px]">
                 {users.map((user) => (
-                  <div key={user?.userid} className="py-[10px]">
+                  <div key={user?.userid} className="py-[10px] gap-[10px]">
                     {user.username === "admin" ? (
                       <p>{user.password}</p>
                     ) : (
@@ -149,10 +152,16 @@ const UserAD = () => {
               <span>Role</span>
               <div className="text-[15px] ">
                 {users.map((user) => (
-                  <div key={user?.userid} className="py-[10px]">
-                    {user?.role !== null && user?.role !== ""
-                      ? user?.role
-                      : "No data"}
+                  <div
+                    key={user?.userid}
+                    className="py-[10px] flex flex-row items-center gap-[10px]"
+                  >
+                    <p className="flex flex-1">
+                      {user?.role !== null && user?.role !== ""
+                        ? user?.role
+                        : "No data"}
+                    </p>
+                    <IoIosSwap onClick={swapRole} className="cursor-pointer"/>
                   </div>
                 ))}
               </div>
