@@ -16,6 +16,7 @@ const Nav = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [username, setUsername] = useState("");
+  const [role, setRole] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   // const [data, setData] = useState([]);
@@ -177,6 +178,7 @@ const Nav = () => {
         .then((response) => {
           setUser(response.data.userInfo);
           setUsername(response.data.userInfo.username);
+          setRole(response.data.userInfo.role);
         })
         .catch((error) => {
           console.error("Error fetching user profile:", error);
@@ -548,7 +550,7 @@ const Nav = () => {
                   name="Profile"
                   onClick={hanldeProfile2}
                 /> */}
-                {username === "admin" && (
+                {role === "admin" && (
                   <DropdownItem
                     icon={<RiAdminFill />}
                     name="Admin"

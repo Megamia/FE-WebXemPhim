@@ -14,24 +14,49 @@ const UserAD = () => {
       setUsers([...users]);
     }
   };
-  const swapRole=()=>{
-    alert("Change success");
-  }
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/UserMNGM`
-        );
-        setUsers(response.data);
-      } catch (error) {
-        console.error("Error retrieving users:", error);
-      }
-    };
-
     fetchUsers();
   }, []);
+
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/UserMNGM`
+      );
+      setUsers(response.data);
+    } catch (error) {
+      console.error("Error retrieving users:", error);
+    }
+  };
+  const swapRole = (userId) => {
+    Swal.fire({
+      title: "Are you sure to change this user's permissions?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, change this!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await axios.post(
+          `${process.env.REACT_APP_API_URL}/api/UserMNGM/${userId}`
+        );
+        fetchUsers();
+        Swal.fire({
+          title: "Success",
+          text: "This user's premission has been changed",
+          icon: "success",
+        });
+      } else {
+        Swal.fire({
+          text: "This user's premission has been safe for now.",
+          icon: "error",
+        });
+      }
+    });
+  };
   const handleDeleteUser = (userId) => {
     Swal.fire({
       title: "Are you want to remove this user?",
@@ -161,7 +186,10 @@ const UserAD = () => {
                         ? user?.role
                         : "No data"}
                     </p>
-                    <IoIosSwap onClick={swapRole} className="cursor-pointer"/>
+                    <IoIosSwap
+                      onClick={() => swapRole(user.userid)}
+                      className="cursor-pointer"
+                    />
                   </div>
                 ))}
               </div>

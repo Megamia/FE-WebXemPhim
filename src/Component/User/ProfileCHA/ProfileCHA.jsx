@@ -23,6 +23,7 @@ const ProfileCHA = () => {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [pasword, setPasword] = useState("");
+  const [role, setRole] = useState("");
   const [phone, setPhone] = useState("");
   const [currentPage, setCurrentPage] = useState("Profile");
   const navigate = useNavigate();
@@ -58,6 +59,7 @@ const ProfileCHA = () => {
           setEmail(response.data.userInfo.email);
           setPasword(response.data.userInfo.pasword);
           setPhone(response.data.userInfo.phone);
+          setRole(response.data.userInfo.role);
         })
         .catch((error) => {
           console.error("Error fetching user profile:", error);
@@ -161,7 +163,7 @@ const ProfileCHA = () => {
                         <FaUser className=" mr-[10px] " />
                         <span className="">Profile</span>
                       </li>
-                      {username === "admin" && (
+                      {role === "admin" && (
                         <li
                           className={`${
                             currentPage === "SiderBar" ? styles.active : ""
