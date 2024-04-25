@@ -441,7 +441,7 @@ const MovieDetail = () => {
                     <div className="bg-white mt-[20px] rounded">
                       <FacebookProvider appId="265046719974622">
                         <Comments
-                          href={`http://26.227.56.79:3000/phim/commentfacebook/${movie.movieid}`}
+                          href={`https://fe-megami.vercel.app/phim/${movie.movieid}`}
                           width="100%"
                           numPosts={5}
                           locale="vi_VN"
