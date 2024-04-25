@@ -38,7 +38,7 @@ const Righter = () => {
         <div className="bg-white rounded mt-3">
           <FacebookProvider appId="265046719974622">
             <Comments
-              href={`http://26.227.56.79:3000/phim/commentfacebook/`}
+              href={`https://fe-megami.vercel.app/`}
               width="100%"
               numPosts={5}
               locale="vi_VN"
