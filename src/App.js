@@ -23,7 +23,7 @@ import Login from "./Component/User/Login/Login";
 import VideoDetail from "./Component/Detail/VideoDetail";
 import Test1 from "./Component/Test/Test1";
 import Test2 from "./Component/Test/Test2";
-import Test3 from "./Component/Test/Test3";
+// import Test3 from "./Component/Test/Test3";
 import Page2 from "./Component/User/ProfileCHA/Page2/Page2";
 import ProfileCHA from "./Component/User/ProfileCHA/ProfileCHA";
 import NewList from "./Component/Home/List1/NewList";
@@ -34,7 +34,7 @@ import Follow from "./Component/User/Follow/Follow";
 import HotMovie from "./Component/ListMovie/HotMovie";
 import ComingSoon from "./Component/ListMovie/ComingSoon";
 import Loading from "./Component/Loading/Loading";
-import Loading1 from "./Component/Loading/Loading1";
+// import Loading1 from "./Component/Loading/Loading1";
 
 function App() {
   const [isBackendReady, setIsBackendReady] = useState(false);

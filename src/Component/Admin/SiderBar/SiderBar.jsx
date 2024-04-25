@@ -165,7 +165,7 @@ const SiderBar = () => {
           <div className="flex flex-1">{renderPage()}</div>
         </div>
       ) : (
-        showImage && <img src="/img/400.jpg" />
+        showImage && <img src="/img/400.jpg" alt=""/>
       )}
       <ToastContainer />
     </div>

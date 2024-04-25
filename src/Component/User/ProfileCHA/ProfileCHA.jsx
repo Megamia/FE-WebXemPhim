@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Header from "../../Header&Footer/Header/Header";
 import Footer from "../../Header&Footer/Footer/Footer";
 import { useNavigate } from "react-router-dom";
@@ -7,17 +7,17 @@ import { RiAdminFill } from "react-icons/ri";
 import styles from "./style.module.scss";
 import axios from "axios";
 import Profile from "./ProfileCON/Profile";
-import Test3 from "../../Test/Test3";
+// import Test3 from "../../Test/Test3";
 import Cookies from "js-cookie";
 import SiderBar from "../../Admin/SiderBar/SiderBar";
-import Page2 from "./Page2/Page2";
+// import Page2 from "./Page2/Page2";
 import "./Profile.css";
 import DonateHistory from "./DonateHistory/DonateHistory";
 import Follow from "../Follow/Follow";
 import Swal from "sweetalert2";
 
 const ProfileCHA = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [username, setUsername] = useState("");
   const [fullname, setFullname] = useState("");
@@ -25,6 +25,7 @@ const ProfileCHA = () => {
   const [pasword, setPasword] = useState("");
   const [role, setRole] = useState("");
   const [phone, setPhone] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
   const [currentPage, setCurrentPage] = useState("Profile");
   const navigate = useNavigate();
 
@@ -43,7 +44,7 @@ const ProfileCHA = () => {
     fetchData();
   }, []);
 
-  const fetchData=async()=>{
+  const fetchData = async () => {
     const storedToken = Cookies.get("token");
     if (storedToken) {
       axios
@@ -60,18 +61,23 @@ const ProfileCHA = () => {
           setPasword(response.data.userInfo.pasword);
           setPhone(response.data.userInfo.phone);
           setRole(response.data.userInfo.role);
+          if (response.status === 200) {
+            setIsAdmin(true);
+          } else {
+            setIsAdmin(false);
+          }
         })
         .catch((error) => {
           console.error("Error fetching user profile:", error);
         });
-    }else {
+    } else {
       Swal.fire({
         title: "Bạn chưa đăng nhập!",
-        icon: "warning"
+        icon: "warning",
       });
       navigate(`/home`);
     }
-  }
+  };
   // const handleUpdate = () => {
   //   axios
   //     .post("${process.env.REACT_APP_API_URL}/api/profile", {
@@ -90,24 +96,24 @@ const ProfileCHA = () => {
   //       alert("Sửa thông tin thất bại");
   //     });
   // };
-  const handleClick= () =>{
+  const handleClick = () => {
     navigate("/AdminPage");
-  }
+  };
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
   const renderPage = () => {
     switch (currentPage) {
       case "Profile":
-        return <Profile fetchData={fetchData}/>;
+        return <Profile fetchData={fetchData} />;
       case "SiderBar":
         return <SiderBar />;
       case "Follow":
         return <Follow />;
       case "DonateHistory":
         return <DonateHistory />;
-        // case "Follow":
-        // return <Follow />;
+      // case "Follow":
+      // return <Follow />;
       default:
         return null;
     }
@@ -163,12 +169,12 @@ const ProfileCHA = () => {
                         <FaUser className=" mr-[10px] " />
                         <span className="">Profile</span>
                       </li>
-                      {role === "admin" && (
+                      {isAdmin && (
                         <li
                           className={`${
                             currentPage === "SiderBar" ? styles.active : ""
                           } flex flex-1 flex-row items-center`}
-                          onClick={(handleClick) }
+                          onClick={handleClick}
                         >
                           <RiAdminFill className=" mr-[10px] " />
                           <span className="">Admin Page</span>

@@ -17,6 +17,7 @@ const Nav = () => {
   const [user, setUser] = useState(null);
   const [username, setUsername] = useState("");
   const [role, setRole] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   // const [data, setData] = useState([]);
@@ -55,9 +56,9 @@ const Nav = () => {
   const hanldeProfile = () => {
     navigate("/Profile");
   };
-  const hanldeProfile2 = () => {
-    navigate("/Test1");
-  };
+  // const hanldeProfile2 = () => {
+  //   navigate("/Test1");
+  // };
   const hanldeAdminPage = () => {
     navigate("/AdminPage");
   };
@@ -179,6 +180,11 @@ const Nav = () => {
           setUser(response.data.userInfo);
           setUsername(response.data.userInfo.username);
           setRole(response.data.userInfo.role);
+          if (response.status === 200) {
+            setIsAdmin(true);
+          } else {
+            setIsAdmin(false);
+          }
         })
         .catch((error) => {
           console.error("Error fetching user profile:", error);
@@ -402,29 +408,29 @@ const Nav = () => {
         </div>
         <div className=" md:w-1/4 flex-1 min-w-[200px] w-1/2">
           {isLoggedIn ? (
-              <input
-                type="search"
-                id="search-input"
-                placeholder="Tìm kiếm: Tên phim..."
-                value={searchTerm}
-                onKeyDown={handleKeyDown}
-                onChange={handleChange}
-                onMouseEnter={handleHover4}
-                onMouseLeave={handleMouseLeave4}
-                className="w-full rounded-full px-4 py-2 z-10 relative border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
-              />
+            <input
+              type="search"
+              id="search-input"
+              placeholder="Tìm kiếm: Tên phim..."
+              value={searchTerm}
+              onKeyDown={handleKeyDown}
+              onChange={handleChange}
+              onMouseEnter={handleHover4}
+              onMouseLeave={handleMouseLeave4}
+              className="w-full rounded-full px-4 py-2 z-10 relative border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
+            />
           ) : (
-              <input
-                type="search"
-                id="search-input"
-                placeholder="Tìm kiếm: Tên phim..."
-                value={searchTerm}
-                onKeyDown={handleKeyDown}
-                onChange={handleChange}
-                onMouseEnter={handleHover4}
-                onMouseLeave={handleMouseLeave4}
-                className="w-full rounded-full px-4 py-2 z-10 relative border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
-              />
+            <input
+              type="search"
+              id="search-input"
+              placeholder="Tìm kiếm: Tên phim..."
+              value={searchTerm}
+              onKeyDown={handleKeyDown}
+              onChange={handleChange}
+              onMouseEnter={handleHover4}
+              onMouseLeave={handleMouseLeave4}
+              className="w-full rounded-full px-4 py-2 z-10 relative border border-gray-300 focus:outline-none focus:border-blue-500 bg-gray-600 text-white"
+            />
           )}
           {searchResults && searchResults.length > 0 && (
             <div
@@ -489,9 +495,7 @@ const Nav = () => {
             </svg>
           </button>
           <div
-            className={`dropdown submenuUser  ${
-              open ? "active" : "inactive"
-            }`}
+            className={`dropdown submenuUser  ${open ? "active" : "inactive"}`}
             onMouseEnter={handleHover}
             onMouseLeave={handleMouseLeave}
           >
@@ -550,7 +554,7 @@ const Nav = () => {
                   name="Profile"
                   onClick={hanldeProfile2}
                 /> */}
-                {role === "admin" && (
+                {isAdmin && (
                   <DropdownItem
                     icon={<RiAdminFill />}
                     name="Admin"

@@ -321,7 +321,7 @@ const MovieDetail = () => {
                               <FaRegCircleDot className="absolute text-[#B5E745] left-0 top-[8px]" />
                               <strong className="text-white">Tập mới:</strong>
                               &nbsp;
-                              {videoData.slice(0, 4).map((video) => (
+                              {videoData.slice().reverse().slice(0, 4).map((video) => (
                                 <div
                                   className="bg-[#B5E745] text-white rounded mr-[5px] mt-[-3px]"
                                   key={video.videoid}

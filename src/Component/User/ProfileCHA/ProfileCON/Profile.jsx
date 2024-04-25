@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./style.module.scss";
+// import styles from "./style.module.scss";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import axios from "axios";
 import Cookies from "js-cookie";
