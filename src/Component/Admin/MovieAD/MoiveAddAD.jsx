@@ -70,7 +70,7 @@ const MovieAddAD = ({ handleCloseSelected }) => {
     }
   };
 
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState([]);
   const handleRadioChange = (categoryId) => {
     setSelectedCategory(categoryId);
   };
