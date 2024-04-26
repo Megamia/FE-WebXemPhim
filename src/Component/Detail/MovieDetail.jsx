@@ -232,6 +232,26 @@ const MovieDetail = () => {
                               )}
                             </div>
                           </div>
+                          <div className="text-[25px] w-full absolute top-[80%] translate-y-[-50%] rounded">
+                            <div className="relative z-10 w-full">
+                              <div className="absolute opacity-70 bg-red-600 w-full h-full z-5"></div>
+                              {videoData.length > 0 ? (
+                                videoData.slice(0,1).map((video) => (
+                                  <a
+                                    href={`/phim/${url}/tap-${video.videoname}-${video.videoid}`}
+                                  >
+                                    <div className=" relative w-full  flex justify-center font-semibold text-white cursor-pointer">
+                                      XEM PHIM
+                                    </div>
+                                  </a>
+                                ))
+                              ) : (
+                                <div className=" relative w-full  flex justify-center font-semibold text-white">
+                                  SẮP CHIẾU
+                                </div>
+                              )}
+                            </div>
+                          </div>
                         </div>
                         <div className="thanhbar2 w-full">
                           <div className="text-[#C0BBBD] font-semibold h-[100px] thanhbar2 overflow-y-auto mb-[10px] pr-2">
@@ -321,20 +341,24 @@ const MovieDetail = () => {
                               <FaRegCircleDot className="absolute text-[#B5E745] left-0 top-[8px]" />
                               <strong className="text-white">Tập mới:</strong>
                               &nbsp;
-                              {videoData.slice().reverse().slice(0, 4).map((video) => (
-                                <div
-                                  className="bg-[#B5E745] text-white rounded mr-[5px] mt-[-3px]"
-                                  key={video.videoid}
-                                >
-                                  <a
-                                    href={`/phim/${url}/tap-${video.videoname}-${video.videoid}`}
+                              {videoData
+                                .slice()
+                                .reverse()
+                                .slice(0, 4)
+                                .map((video) => (
+                                  <div
+                                    className="bg-[#B5E745] text-white rounded mr-[5px] mt-[-3px]"
+                                    key={video.videoid}
                                   >
-                                    <div className=" hover:bg-[#B5E745] hover:text-[#4C4C4C] font-semibold capitalize bg-[#4C4C4C] m-[1px] px-[7px] py-[2px]  text-white rounded">
-                                      {video.videoname}
-                                    </div>
-                                  </a>
-                                </div>
-                              ))}
+                                    <a
+                                      href={`/phim/${url}/tap-${video.videoname}-${video.videoid}`}
+                                    >
+                                      <div className=" hover:bg-[#B5E745] hover:text-[#4C4C4C] font-semibold capitalize bg-[#4C4C4C] m-[1px] px-[7px] py-[2px]  text-white rounded">
+                                        {video.videoname}
+                                      </div>
+                                    </a>
+                                  </div>
+                                ))}
                             </li>
                             <li className="relative pl-[20px] py-[5px]">
                               <FaRegCircleDot className="absolute text-[#B5E745] left-0 top-[8px]" />
@@ -385,7 +409,7 @@ const MovieDetail = () => {
                             <li className="flex relative pl-[20px] py-[5px]">
                               <FaRegCircleDot className="absolute text-[#B5E745] left-0 top-[8px]" />
                               <strong className="text-white">Số tập:</strong>
-                              &nbsp;{movie.episodes}
+                              &nbsp;{movie.count_video}/{movie.episodes}
                             </li>
                             <li className="flex relative pl-[20px] py-[5px]">
                               <FaRegCircleDot className="absolute text-[#B5E745] left-0 top-[8px]" />
