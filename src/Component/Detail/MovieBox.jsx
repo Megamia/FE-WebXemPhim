@@ -24,7 +24,7 @@ const MovieBox = ({ movie }) => {
         );
         const data = response.data.dataMovie;
         setDataMovie(data);
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -37,9 +37,9 @@ const MovieBox = ({ movie }) => {
       ...prevItems,
       { ...item, dataMovie: dataMovie },
     ]);
-    console.log(MovieId);
-    console.log(dataMovie);
-    console.log(dataMovie[0]);
+    // console.log(MovieId);
+    // console.log(dataMovie);
+    // console.log(dataMovie[0]);
   };
 
   const handleMouseLeave = (item) => {
