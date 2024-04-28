@@ -3,9 +3,8 @@ import "./Detail.css";
 import { FaStar } from "react-icons/fa";
 import { PiPlayCircleThin } from "react-icons/pi";
 import { LuCalendarDays } from "react-icons/lu";
-import { BsCameraReelsFill } from "react-icons/bs";
-import { CiCircleMore } from "react-icons/ci";
 import { GoClock } from "react-icons/go";
+import { BsCameraReelsFill } from "react-icons/bs";
 import axios from "axios";
 
 const MovieBox = ({ movie }) => {

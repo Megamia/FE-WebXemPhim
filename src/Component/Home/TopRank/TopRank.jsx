@@ -1,21 +1,179 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { FaBookmark, FaStar } from "react-icons/fa";
+import { LuCalendarDays } from "react-icons/lu";
+import { GoClock } from "react-icons/go";
 import "./TopRank.css";
+import axios from "axios";
 const TopRank = () => {
-  const [open, setOpen] = useState(false);
-
-  const handleHover = () => {
-    setOpen(true);
+  const [activeTab, setActiveTab] = useState(1);
+  const [dataPhimBo, setDataPhimBo] = useState([]);
+  const [dataPhimLe, setDataPhimLe] = useState([]);
+  const handleTabClick = (index) => {
+    setActiveTab(index);
   };
 
-  const handleMouseLeave = () => {
-    setOpen(false);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/toprank`
+        );
+        const phimBo = response.data.phimbo;
+        setDataPhimBo(phimBo);
+        const phimLe = response.data.phimle;
+        setDataPhimLe(phimLe);
+
+        // console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+  const show = () => {
+    console.log(dataPhimBo);
+    // dataPhimBo.forEach((phimbo) => {
+    //   console.log(phimbo.poster);
+    // });
   };
+
   return (
-    <div className="text-white">
-      <p onMouseEnter={handleHover} onMouseLeave={handleMouseLeave}>
-        Hello World
-      </p>
-      <p className={`details ${open ? "active" : "inactive"}`}>abc</p>
+    <div className="text-white relative  ">
+      <div className="title flex flex-row justify-between items-center border-b-[1px] border-b-gray-500 mb-[10px]">
+        <div className="pb-[10px] ">
+          <p className="uppercase">hot tuần</p>
+        </div>
+        <div
+          onClick={() => handleTabClick(1)}
+          className={` ${
+            activeTab === 1
+              ? "text-red-500 pb-[10px]"
+              : "text-gray-500 pb-[12px]"
+          }`}
+        >
+          <p className="cursor-pointer">TV/Series</p>
+        </div>
+        <div
+          onClick={() => handleTabClick(2)}
+          className={` ${
+            activeTab === 2
+              ? "text-red-500  pb-[10px]"
+              : "text-gray-500 pb-[12px]"
+          }`}
+        >
+          <p className="cursor-pointer">OVA/Movie</p>
+        </div>
+      </div>
+      <div className="content">
+        <div
+          className={` ${activeTab === 1 ? "flex animate-zoomIn" : "hidden"}`}
+        >
+          <div className=" w-full relative ">
+            <ul className="flex flex-col gap-[10px]">
+              {dataPhimBo.map((phimbo, index) => (
+                <li key={phimbo.movieid} className=" ">
+                  <div className="flex  flex-row gap-[10px]">
+                    <div className="img  ">
+                      <div className="absolute">
+                        <FaBookmark className="text-[#B5E745] text-[28px] absolute left-[-8px]" />
+                        <p className="absolute text-black text-[15px] left-[-2px]">
+                          #{index + 1}
+                        </p>
+                      </div>
+                      <div className="w-[80px]">
+                        <img
+                          src={`${process.env.REACT_APP_API_URL}/upload/poster/${phimbo.poster}`}
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div className=" flex-1 flex-col">
+                      <div className="name flex flex-1" onClick={show}>
+                        <p className="text-[15px]">{phimbo.moviename}</p>
+                      </div>
+                      <div className=" detailsTopRank flex flex-row">
+                        <div className="detailsTopRankRate ">
+                          <FaStar />
+                          <p>
+                            {phimbo.average_value ? phimbo.average_value : "??"}
+                          </p>
+                        </div>
+                        <div className="detailsTopRankRate detailsTopRankEpsiodes">
+                          <GoClock />
+                          <p>
+                            {phimbo.count_video}/
+                            {phimbo.episodes ? phimbo.episodes : "??"}
+                          </p>
+                        </div>
+                        <div className="detailsTopRankRate detailsTopRankReleaseYear">
+                          <LuCalendarDays />
+                          <p>
+                            {phimbo.release_year ? phimbo.release_year : "??"}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div
+          className={` ${activeTab === 2 ? "flex animate-zoomIn" : "hidden"}`}
+        >
+          <div className=" w-full relative ">
+            <ul className="flex flex-col gap-[10px]">
+              {dataPhimLe.map((phimle, index) => (
+                <li key={phimle.movieid} className=" ">
+                  <div className="flex  flex-row gap-[10px]">
+                    <div className="img  ">
+                      <div className="absolute">
+                        <FaBookmark className="text-[#B5E745] text-[28px] absolute left-[-8px]" />
+                        <p className="absolute text-black text-[15px] left-[-2px]">
+                          #{index + 1}
+                        </p>
+                      </div>
+                      <div className="w-[80px]">
+                        <img
+                          src={`${process.env.REACT_APP_API_URL}/upload/poster/${phimle.poster}`}
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div className=" flex-1 flex-col">
+                      <div className="name flex flex-1" onClick={show}>
+                        <p className="text-[15px]">{phimle.moviename}</p>
+                      </div>
+                      <div className=" detailsTopRank flex flex-row">
+                        <div className="detailsTopRankRate ">
+                          <FaStar />
+                          <p>
+                            {phimle.average_value ? phimle.average_value : "??"}
+                          </p>
+                        </div>
+                        <div className="detailsTopRankRate detailsTopRankEpsiodes">
+                          <GoClock />
+                          <p>
+                            {phimle.count_video}/
+                            {phimle.episodes ? phimle.episodes : "??"}
+                          </p>
+                        </div>
+                        <div className="detailsTopRankRate detailsTopRankReleaseYear">
+                          <LuCalendarDays />
+                          <p>
+                            {phimle.release_year ? phimle.release_year : "??"}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

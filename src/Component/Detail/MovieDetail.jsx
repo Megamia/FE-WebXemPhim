@@ -443,6 +443,7 @@ const MovieDetail = () => {
                               src={`${movie.trailerurl}`}
                               frameborder="0"
                               allowfullscreen=""
+                              title="#"
                             ></iframe>
                           </div>
                         </div>
@@ -457,6 +458,7 @@ const MovieDetail = () => {
                             <img
                               className=" w-full bg-cover rounded"
                               src={`${process.env.REACT_APP_API_URL}/upload/background/${movie.background}`}
+                              alt=""
                             ></img>
                           </div>
                         </div>

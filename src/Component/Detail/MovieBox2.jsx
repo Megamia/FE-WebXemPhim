@@ -53,6 +53,7 @@ const MovieBox2 = ({ movie }) => {
                 <img
                   className="absolute z-0"
                   src="../../img/—Pngtree—explosion sticker red blast sticker_39456252.png"
+                alt=""
                 />
               </div>
             </div>

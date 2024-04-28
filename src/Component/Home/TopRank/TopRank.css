@@ -1,6 +1,46 @@
-.active{
-    background-color:white;
+.details {
+  .active {
+    background-color: white;
+    position: absolute;
+  }
+  .inactive {
+    background-color: red;
+  }
 }
-.inactive{
-    background-color:red;
+.content {
+    /* .img{
+        aspect-ratio: 3;
+        object-fit: cover;
+    } */
+  .name {
+    p {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+  .detailsTopRank {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    .detailsTopRankRate {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 5px;
+      color: #B5E745;
+      white-space:nowrap; 
+      overflow:hidden; 
+      text-overflow:ellipsis;
+    }
+    .detailsTopRankEpsiodes {
+      color: #78909C;
+    }
+    .detailsTopRankReleaseYear {
+      color: #78909C;
+
+    }
+  }
 }

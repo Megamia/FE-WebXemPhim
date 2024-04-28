@@ -1,11 +1,12 @@
 import React from "react";
 import { FaPlay } from "react-icons/fa";
 import { FacebookProvider, Comments } from "react-facebook";
+import TopRank from "../../Home/TopRank/TopRank";
 const Righter = () => {
   return (
-    <div className="bg-[#141414] text-white w-full flex py-[20px] flex-col">
-      <div className="bg-[#181D1F] px-[10px] pb-[10px] rounded flex flex-col ">
-        <div className="py-[10px] border-b-[3px] border-[#B5E745]">
+    <div className="bg-[#141414] text-white w-full flex flex-col gap-[10px]">
+      <div className="bg-[#181D1F] p-[10px] rounded flex flex-col ">
+        <div className=" border-b-[3px] border-[#B5E745]">
           <p className="font-bold">Hôm nay xem gì?</p>
         </div>
         <div className="mt-[20px] flex flex-row">
@@ -25,6 +26,8 @@ const Righter = () => {
             </a>
           </button>
         </div>
+      </div>
+      <div className="bg-[#181D1F] p-[10px] rounded flex flex-col ">
         <div>
           <img
             src="../../img/gif.gif"
@@ -32,7 +35,7 @@ const Righter = () => {
             className="w-[100%] rounded"
           />
         </div>
-        <div className="py-[10px] border-b-[3px] border-[#B5E745] mt-2">
+        <div className=" border-b-[3px] border-[#B5E745] mt-2">
           <p className="font-bold">Hỏi/đáp phim</p>
         </div>
         <div className="bg-white rounded mt-3">
@@ -45,6 +48,9 @@ const Righter = () => {
             />
           </FacebookProvider>
         </div>
+      </div>
+      <div className="bg-[#181D1F] p-[10px] rounded flex flex-col ">
+        <TopRank />
       </div>
     </div>
   );
