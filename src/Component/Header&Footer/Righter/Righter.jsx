@@ -43,7 +43,7 @@ const Righter = () => {
             <Comments
               href={`https://fe-megami.vercel.app/`}
               width="100%"
-              numPosts={5}
+              numPosts={3}
               locale="vi_VN"
             />
           </FacebookProvider>

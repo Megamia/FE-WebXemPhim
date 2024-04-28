@@ -127,7 +127,7 @@ const MovieDetail = () => {
           const isFollow = response.data.isFollow;
           if (response.status === 200) {
             setActive(isFollow);
-            console.log("Data lấy được: " + response.data);
+            // console.log("Data lấy được: " + response.data);
           }
         })
         .catch(function (error) {
@@ -141,7 +141,7 @@ const MovieDetail = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/phim/${id}`)
       .then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         setMovieData(response.data.movies);
         setTypeData(response.data.types);
         setCategoryData(response.data.categories);

@@ -6,10 +6,19 @@ import "./TopRank.css";
 import axios from "axios";
 const TopRank = () => {
   const [activeTab, setActiveTab] = useState(1);
+
+  const [hoveredIndex, setHoveredIndex] = useState(null);
   const [dataPhimBo, setDataPhimBo] = useState([]);
   const [dataPhimLe, setDataPhimLe] = useState([]);
   const handleTabClick = (index) => {
     setActiveTab(index);
+  };
+  const handleMouseEnter = (index) => {
+    setHoveredIndex(index);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredIndex(null);
   };
 
   useEffect(() => {
@@ -30,12 +39,12 @@ const TopRank = () => {
     };
     fetchData();
   }, []);
-  const show = () => {
-    console.log(dataPhimBo);
-    // dataPhimBo.forEach((phimbo) => {
-    //   console.log(phimbo.poster);
-    // });
-  };
+  // const show = () => {
+  //   console.log(dataPhimBo);
+  // dataPhimBo.forEach((phimbo) => {
+  //   console.log(phimbo.poster);
+  // });
+  // };
 
   return (
     <div className="text-white relative  ">
@@ -71,26 +80,47 @@ const TopRank = () => {
           <div className=" w-full relative ">
             <ul className="flex flex-col gap-[10px]">
               {dataPhimBo.map((phimbo, index) => (
-                <li key={phimbo.movieid} className=" ">
+                <li key={phimbo.movieid} className="">
                   <div className="flex  flex-row gap-[10px]">
-                    <div className="img  ">
-                      <div className="absolute">
-                        <FaBookmark className="text-[#B5E745] text-[28px] absolute left-[-8px]" />
-                        <p className="absolute text-black text-[15px] left-[-2px]">
-                          #{index + 1}
-                        </p>
+                    <a href={`/phim/${phimbo.movieurl}-a${phimbo.movieid}`}>
+                      <div
+                        className={index === hoveredIndex ? "activeBlur" : ""}
+                        onMouseEnter={() => handleMouseEnter(index)}
+                        onMouseLeave={handleMouseLeave}
+                      >
+                        <div className="absolute">
+                          <FaBookmark className="text-[#B5E745] text-[28px] absolute left-[-8px]" />
+                          <p className="absolute text-black text-[15px] left-[-2px]">
+                            #{index + 1}
+                          </p>
+                        </div>
+                        <div className="w-[80px]">
+                          <img
+                            src={`${process.env.REACT_APP_API_URL}/upload/poster/${phimbo.poster}`}
+                            alt=""
+                          />
+                        </div>
                       </div>
-                      <div className="w-[80px]">
-                        <img
-                          src={`${process.env.REACT_APP_API_URL}/upload/poster/${phimbo.poster}`}
-                          alt=""
-                        />
-                      </div>
-                    </div>
+                    </a>
+
                     <div className=" flex-1 flex-col">
-                      <div className="name flex flex-1" onClick={show}>
-                        <p className="text-[15px]">{phimbo.moviename}</p>
-                      </div>
+                      <a href={`/phim/${phimbo.movieurl}-a${phimbo.movieid}`}>
+                        <div
+                          className={`name flex flex-1 ${
+                            index === hoveredIndex ? "activeBlur" : ""
+                          }`}
+                          onMouseEnter={() => handleMouseEnter(index)}
+                          onMouseLeave={handleMouseLeave}
+                        >
+                          <p
+                            className={`text-[15px] ${
+                              index === hoveredIndex ? "activeBlur" : ""
+                            }`}
+                          >
+                            {phimbo.moviename}
+                          </p>
+                        </div>
+                      </a>
                       <div className=" detailsTopRank flex flex-row">
                         <div className="detailsTopRankRate ">
                           <FaStar />
@@ -124,27 +154,48 @@ const TopRank = () => {
         >
           <div className=" w-full relative ">
             <ul className="flex flex-col gap-[10px]">
-              {dataPhimLe.map((phimle, index) => (
-                <li key={phimle.movieid} className=" ">
+            {dataPhimLe.map((phimle, index) => (
+                <li key={phimle.movieid} className="">
                   <div className="flex  flex-row gap-[10px]">
-                    <div className="img  ">
-                      <div className="absolute">
-                        <FaBookmark className="text-[#B5E745] text-[28px] absolute left-[-8px]" />
-                        <p className="absolute text-black text-[15px] left-[-2px]">
-                          #{index + 1}
-                        </p>
+                    <a href={`/phim/${phimle.movieurl}-a${phimle.movieid}`}>
+                      <div
+                        className={index === hoveredIndex ? "activeBlur" : ""}
+                        onMouseEnter={() => handleMouseEnter(index)}
+                        onMouseLeave={handleMouseLeave}
+                      >
+                        <div className="absolute">
+                          <FaBookmark className="text-[#B5E745] text-[28px] absolute left-[-8px]" />
+                          <p className="absolute text-black text-[15px] left-[-2px]">
+                            #{index + 1}
+                          </p>
+                        </div>
+                        <div className="w-[80px]">
+                          <img
+                            src={`${process.env.REACT_APP_API_URL}/upload/poster/${phimle.poster}`}
+                            alt=""
+                          />
+                        </div>
                       </div>
-                      <div className="w-[80px]">
-                        <img
-                          src={`${process.env.REACT_APP_API_URL}/upload/poster/${phimle.poster}`}
-                          alt=""
-                        />
-                      </div>
-                    </div>
+                    </a>
+
                     <div className=" flex-1 flex-col">
-                      <div className="name flex flex-1" onClick={show}>
-                        <p className="text-[15px]">{phimle.moviename}</p>
-                      </div>
+                      <a href={`/phim/${phimle.movieurl}-a${phimle.movieid}`}>
+                        <div
+                          className={`name flex flex-1 ${
+                            index === hoveredIndex ? "activeBlur" : ""
+                          }`}
+                          onMouseEnter={() => handleMouseEnter(index)}
+                          onMouseLeave={handleMouseLeave}
+                        >
+                          <p
+                            className={`text-[15px] ${
+                              index === hoveredIndex ? "activeBlur" : ""
+                            }`}
+                          >
+                            {phimle.moviename}
+                          </p>
+                        </div>
+                      </a>
                       <div className=" detailsTopRank flex flex-row">
                         <div className="detailsTopRankRate ">
                           <FaStar />

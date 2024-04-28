@@ -1,3 +1,12 @@
+@keyframes fade-in-animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .details {
   .active {
     background-color: white;
@@ -8,16 +17,22 @@
   }
 }
 .content {
-    /* .img{
+  /* .img{
         aspect-ratio: 3;
         object-fit: cover;
     } */
+
   .name {
     p {
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      opacity: 1;
+      transition: opacity 0.1s ease-in-out;
+    }
+    .activeBlur {
+      opacity: 0.5;
     }
   }
   .detailsTopRank {
@@ -30,17 +45,16 @@
       flex-direction: row;
       align-items: center;
       gap: 5px;
-      color: #B5E745;
-      white-space:nowrap; 
-      overflow:hidden; 
-      text-overflow:ellipsis;
+      color: #b5e745;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .detailsTopRankEpsiodes {
-      color: #78909C;
+      color: #78909c;
     }
     .detailsTopRankReleaseYear {
-      color: #78909C;
-
+      color: #78909c;
     }
   }
 }
