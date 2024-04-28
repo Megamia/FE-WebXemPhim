@@ -79,7 +79,7 @@ const TopRank = () => {
         >
           <div className=" w-full relative ">
             <ul className="flex flex-col gap-[10px]">
-              {dataPhimBo.map((phimbo, index) => (
+              {dataPhimBo.slice(0,5).map((phimbo, index) => (
                 <li key={phimbo.movieid} className="">
                   <div className="flex  flex-row gap-[10px]">
                     <a href={`/phim/${phimbo.movieurl}-a${phimbo.movieid}`}>
@@ -154,7 +154,7 @@ const TopRank = () => {
         >
           <div className=" w-full relative ">
             <ul className="flex flex-col gap-[10px]">
-            {dataPhimLe.map((phimle, index) => (
+            {dataPhimLe.slice(0,5).map((phimle, index) => (
                 <li key={phimle.movieid} className="">
                   <div className="flex  flex-row gap-[10px]">
                     <a href={`/phim/${phimle.movieurl}-a${phimle.movieid}`}>
