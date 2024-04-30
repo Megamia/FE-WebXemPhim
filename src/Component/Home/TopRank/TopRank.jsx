@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { FaBookmark, FaStar } from "react-icons/fa";
 import { LuCalendarDays } from "react-icons/lu";
 import { GoClock } from "react-icons/go";
+import { PiPlayCircleThin } from "react-icons/pi";
+
 import "./TopRank.css";
 import axios from "axios";
 const TopRank = () => {
   const [activeTab, setActiveTab] = useState(1);
+  const [isHovered, setIsHovered] = useState(false);
 
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [dataPhimBo, setDataPhimBo] = useState([]);
@@ -79,7 +82,7 @@ const TopRank = () => {
         >
           <div className=" w-full relative ">
             <ul className="flex flex-col gap-[10px]">
-              {dataPhimBo.slice(0,5).map((phimbo, index) => (
+              {dataPhimBo.slice(0, 5).map((phimbo, index) => (
                 <li key={phimbo.movieid} className="">
                   <div className="flex  flex-row gap-[10px]">
                     <a href={`/phim/${phimbo.movieurl}-a${phimbo.movieid}`}>
@@ -88,19 +91,41 @@ const TopRank = () => {
                         onMouseEnter={() => handleMouseEnter(index)}
                         onMouseLeave={handleMouseLeave}
                       >
-                        <div className="absolute">
+                        <div className="absolute z-50">
                           <FaBookmark className="text-[#B5E745] text-[28px] absolute left-[-8px]" />
                           <p className="absolute text-black text-[15px] left-[-2px]">
                             #{index + 1}
                           </p>
                         </div>
                         <div className="w-[80px]">
+                          <div className="relative">
+
                           <img
                             src={`${process.env.REACT_APP_API_URL}/upload/poster/${phimbo.poster}`}
                             alt=""
                           />
+                          <div
+                            className={`play-overlay ${
+                              index === hoveredIndex
+                                ? "animate-fadeIn"
+                                : "animate-fadeOut"
+                            }`}
+                          >
+                            <div className=" blur bg-black bg-opacity-50 rounded-[50%]">
+                              <PiPlayCircleThin className="text-white text-6xl" />
+                            </div>
+                            <PiPlayCircleThin
+                              className={`text-white text-7xl absolute ${
+                                index === hoveredIndex
+                                  ? "animate-zoomIn"
+                                  : "animate-zoomOut"
+                              }`}
+                            />
+                          </div>
+                          </div>
                         </div>
                       </div>
+                      
                     </a>
 
                     <div className=" flex-1 flex-col">
@@ -144,6 +169,7 @@ const TopRank = () => {
                       </div>
                     </div>
                   </div>
+                  
                 </li>
               ))}
             </ul>
@@ -154,7 +180,7 @@ const TopRank = () => {
         >
           <div className=" w-full relative ">
             <ul className="flex flex-col gap-[10px]">
-            {dataPhimLe.slice(0,5).map((phimle, index) => (
+              {dataPhimLe.slice(0, 5).map((phimle, index) => (
                 <li key={phimle.movieid} className="">
                   <div className="flex  flex-row gap-[10px]">
                     <a href={`/phim/${phimle.movieurl}-a${phimle.movieid}`}>
