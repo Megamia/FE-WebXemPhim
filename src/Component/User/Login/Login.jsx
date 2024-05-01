@@ -23,9 +23,23 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
   const [phone, setPhone] = useState("");
+  const [errors, setErrors] = useState("");
 
-  const danhkythanhcong = () => {
+  const dangkythanhcong = () => {
     toast.success("Đăng ký thành công", {
+      position: "bottom-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+
+  const dangkythatbai = () => {
+    toast.error("Đăng ký thất bại", {
       position: "bottom-center",
       autoClose: 2000,
       hideProgressBar: false,
@@ -83,10 +97,13 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/login`, {
-        username: User,
-        password: Password,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/login`,
+        {
+          username: User,
+          password: Password,
+        }
+      );
 
       if (response.status === 200) {
         const token = response.data.token;
@@ -134,30 +151,40 @@ const Login = () => {
 
   //SIGNUP//
   const handleSignup = async (event) => {
+    if (
+      !fullname.trim() ||
+      !username.trim() ||
+      !email.trim() ||
+      !password.trim() ||
+      !phone.trim()
+    ) {
+      setErrors("Vui lòng điền vào trường này");
+      return;
+    }
     event.preventDefault();
+
     if (username === "admin") {
       alert("Không được đăng kí với username=admin");
       return;
     }
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/signup`, {
-        username,
-        fullname,
-        email,
-        password,
-        phone,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/signup`,
+        {
+          username,
+          fullname,
+          email,
+          password,
+          phone,
+        }
+      );
 
       console.log("Signup successful:", response.data);
-      danhkythanhcong();
+      dangkythanhcong();
       handleLoginClick();
     } catch (error) {
       console.error("Error signing up:", error);
-      if (username === "admin") {
-        alert("Không được đăng kí với username=admin");
-      } else {
-        nguoidungtontai();
-      }
+      dangkythatbai();
     }
   };
   const [isSignUpActive, setIsSignUpActive] = useState(false);
@@ -242,6 +269,7 @@ const Login = () => {
                       onChange={(e) => setpassword(e.target.value)}
                       required
                     />
+
                     <input
                       type="email"
                       id="email"
@@ -252,6 +280,7 @@ const Login = () => {
                       onChange={(e) => setEmail(e.target.value)}
                       required
                     />
+
                     <input
                       type="text"
                       id="phone"
@@ -259,15 +288,20 @@ const Login = () => {
                       value={phone}
                       className="inputUser"
                       placeholder="Số điện thoại"
+                      pattern="[0-9]*"
                       onChange={(e) => setPhone(e.target.value)}
+                      onInput={(e) => {
+                        e.target.value = e.target.value.replace(/\D/g, "");
+                      }}
                       required
                     />
-                    <button
+
+                    <input
+                      type="submit"
+                      value="Đăng ký"
                       onClick={handleSignup}
-                      className="rounded-full border border-solid border-red-500 bg-red-500 text-white text-xs font-bold py-3 px-12 tracking-wide uppercase transition-transform duration-80 ease-in"
-                    >
-                      Đăng ký
-                    </button>
+                      className="cursor-pointer rounded-full border border-solid border-red-500 bg-red-500 text-white text-xs font-bold py-3 px-12 tracking-wide uppercase transition-transform duration-80 ease-in"
+                    />
                   </form>
                 </div>
                 <div className="form-container sign-in-container">
@@ -321,12 +355,12 @@ const Login = () => {
                     >
                       Forgot your password?
                     </a>
-                    <button
+                    <input
+                      type="submit"
+                      value="Đăng nhập"
                       onClick={handleLogin}
-                      className="rounded-full border border-solid border-red-500 bg-red-500 text-white text-xs font-bold py-3 px-12 tracking-wide uppercase transition-transform duration-80 ease-in"
-                    >
-                      Đăng nhập
-                    </button>
+                      className="cursor-pointer rounded-full border border-solid border-red-500 bg-red-500 text-white text-xs font-bold py-3 px-12 tracking-wide uppercase transition-transform duration-80 ease-in"
+                    />
                   </form>
                 </div>
                 <div className="overlay-container">
