@@ -40,7 +40,7 @@ const VideoDetail = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/phim/${movieid}/${videoid}`)
       .then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         setMovieData(response.data.movies);
         setListVideoData(response.data.listvideos);
         setVideoData(response.data.videos);

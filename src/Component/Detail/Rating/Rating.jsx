@@ -44,7 +44,7 @@ const Rating = (props) => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/rating/${movieid}`)
       .then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         setRatingData(response.data.ratings);
       })
       .catch(function (error) {
