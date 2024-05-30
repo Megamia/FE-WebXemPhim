@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import "./load.css";
 const Loading = () => {
   const [isError, setIsError] = useState(false);
 
@@ -12,17 +12,29 @@ const Loading = () => {
   }, []);
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center bg-[#1C273A]">
+    <div className="w-screen h-screen flex justify-center items-center bg-[#333]">
       {isError ? ( // Hiển thị thông báo lỗi nếu isError là true
-        <div className="w-screen h-screen flex">
-          <div className="flex-1 flex flex-col justify-center items-center">
-            <p className="font-extrabold text-lg md:text-xl lg:text-2xl xl:text-3xl text-white">
-              Đang kết nối đến máy chủ
-            </p>
-            <img src="../../img/loadvip.gif" className="h-[200px] w-auto" alt="" />
-          </div>
-          <div className="">
-            <img src="../../img/anhdep.jpg" className="h-screen" alt="" />
+        <div className="main">
+          <div class="loading-window">
+            <div class="car">
+              <div class="strike"></div>
+              <div class="strike strike2"></div>
+              <div class="strike strike3"></div>
+              <div class="strike strike4"></div>
+              <div class="strike strike5"></div>
+              <div class="car-detail spoiler"></div>
+              <div class="car-detail back"></div>
+              <div class="car-detail center"></div>
+              <div class="car-detail center1"></div>
+              <div class="car-detail front"></div>
+              <div class="car-detail wheel"></div>
+              <div class="car-detail wheel wheel2"></div>
+            </div>
+
+            <div class="text">
+              <span>Loading please wait</span>
+              <span class="dots">...</span>
+            </div>
           </div>
         </div>
       ) : (

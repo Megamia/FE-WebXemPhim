@@ -108,6 +108,7 @@ function App() {
             <Route path="/phim-noi-bat" element={<HotMovie />} />
             <Route path="/sap-chieu/:page" element={<ComingSoon />} />
             <Route path="/sap-chieu" element={<ComingSoon />} />
+
           </Routes>
         </PayPalScriptProvider>
       </Router>
