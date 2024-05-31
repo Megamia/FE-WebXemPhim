@@ -14,7 +14,7 @@ const Loading = () => {
   return (
     <div className="w-screen h-screen flex justify-center items-center bg-[#333]">
       {isError ? ( // Hiển thị thông báo lỗi nếu isError là true
-        <div className="main">
+        <div className="mainload">
           <div class="loading-window">
             <div class="car">
               <div class="strike"></div>
