@@ -19,7 +19,7 @@ const Righter = () => {
           <button className="flex flex-1 justify-end items-center">
             <FaPlay className="" />
             <a
-              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+              href="https://upos-sz-mirrorcos.bilivideo.com/upgcxcode/96/68/1616116896/1616116896-1-192.mp4?e=ig8euxZM2rNcNbNM7bdVhwdlhbKjhwdVhoNvNC8BqJIzNbfq9rVEuxTEnE8L5F6VnEsSTx0vkX8fqJeYTj_lta53NCM=&uipk=5&nbs=1&deadline=1721189238&gen=playurlv2&os=cosbv&oi=2018263300&trid=4853f5a6ff4d446392d7c08e7c66f803T&mid=3546655628462543&platform=html5&og=cos&upsig=862e7c238e4e0249a77d7b50ba3c633d&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,mid,platform,og&bvc=vod&nettype=0&bw=247185&orderid=0,1&buvid=&build=0&mobi_app=&f=T_0_0&logo=80000000"
               className="flex-1 flex justify-center"
             >
               Xem Phim Ngẫu nhiên
